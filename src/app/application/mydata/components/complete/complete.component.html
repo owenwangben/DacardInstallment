@@ -1,0 +1,34 @@
+<div class="wrap wrap__pd">
+    <div class="result">
+        <ng-container [ngSwitch]="success">
+            <div class="result__icon" *ngSwitchCase="true"><img src="assets/images/img/img-success-gold.svg">
+                <h2>MyData 申請成功</h2>
+            </div>
+            <div class="result__icon" *ngSwitchCase="false"><img src="assets/images/img/img-fail.svg">
+                <h2 class="fail">MyData 申請失敗</h2>
+            </div>
+        </ng-container>
+        <div class="align-center result__content m-bottom">
+            <p>
+                ※提醒您，個人化資料自主運用(MyData)平臺服務由國發會提供，若資料傳送過程異常以致無法完成申請，您可前往官網上傳缺補文件，以維護您的申辦權益。
+            </p>
+            <p>若有問題請洽客服專線(02)2528-7776</p>
+        </div>
+    </div>
+    <ng-container *ngIf="success;else fail">
+        <div class="button-group">
+            <button class="btn btn--primary btn--w250" (click)="goCardManage()">確定</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="callCustomerServer()">聯繫客服</button>
+        </div>
+    </ng-container>
+    <ng-template #fail>
+        <div class="button-group">
+            <button class="btn btn--primary btn--w250" (click)="callCustomerServer()">聯繫客服</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goCardManage()">回帳務明細</button>
+        </div>
+    </ng-template>
+</div>

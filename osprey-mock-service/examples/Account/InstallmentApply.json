@@ -1,0 +1,22 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "RefNo": "612C3081F72732A",
+        "AuthKeys": [
+            "Auth1_6",
+            "OTP"
+        ],
+        "IsClearAuthData": true
+    },
+    "Original": {},
+    "Success": true
+}

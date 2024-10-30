@@ -1,0 +1,227 @@
+<mat-horizontal-stepper #stepper [@.disabled]="true" [linear]="true" [selectedIndex]="this.selectedIndex">
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+<ng-template #step1>
+    <div class="wrap wrap__pd pb-md">
+        <div class="pill-content-card">
+            <div class="flex-center mt-sm">
+                <div class="inline-block">
+                    <h1 class="title inline-block">未到期應繳本金總額</h1>
+                    <span (click)="lightBoxControl(true)" class="icon--tr icon--info-white inline-block"></span>
+                </div>
+            </div>
+        </div>
+        <div class="result content-bill">
+            <div class="flex-center">
+                <p class="fc-gold mr-xxs">臺幣</p>
+                <div class="bill-installment">
+                    <h2>{{totalAmount| number}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="tab">
+            <div class="tab__wrap">
+                <ul class="tab__navs">
+                    <li class="tab__nav-undue" (click)="changePage('未到期')"
+                        [ngClass]="pageControl === '未到期'? 'is-active':'' "><a class="tab__nav tab__nav-undue">未到期</a>
+                    </li>
+                    <li class="tab__nav-result" (click)="changePage('帳單分期申請紀錄')"
+                        [ngClass]="pageControl === '帳單分期申請紀錄'? 'is-active':'' "><a
+                            class="tab__nav tab__nav-result">帳單分期申請紀錄</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="content-bill" [ngClass]="pageControl === '未到期'? '':'hide'">
+        <div class="payment_analysis" *ngIf="unsettledInstallmentRecordList?.length <= 0; else showList">
+            <div class="payment__detail">
+                <div class="step step__full">
+                    <div class="step step__pd--md">
+                        <div class="list-table">
+                            <div class="list-table__row">
+                                <p class="t-primary">尚無申請紀錄喔！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-template #showList>
+            <div class="step step__full">
+                <a class="list-table__row u-nounderline" href="javascript:void(0)"
+                    *ngFor="let item of unsettledInstallmentRecordList">
+                    <div class="list-table__col">
+                        <h4>{{item.ITEM}}</h4>
+                        <p class="pt-xxs pb-xxs">交易日期：{{item.TXDATE}}</p>
+                        <div class="flex-left">
+                            <div class="flex-left"><span class="fs-xs">本期應繳本金：</span>
+                                <h4 class="list-table__col">{{item.AMT | number}}</h4>
+                            </div>
+                            <div class="mr-xxs ml-xxs bill-installment__br"></div>
+                            <div class="flex-left"><span class="fs-xs">未到期應繳本金：</span>
+                                <h4 class="fc-gold list-table__col fs-sm">{{item.INST_AMT | number}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-table__col">
+                        <button class="btn--more inline-block" href="./billStep_2.html" (click)="openDetail(item)">
+                            <img src="assets/images/icon/icon-arrow-gray.svg">
+                        </button>
+                    </div>
+                </a>
+            </div>
+        </ng-template>
+    </div>
+    <div class="content-card" [ngClass]="pageControl === '帳單分期申請紀錄'? '':'hide'">
+        <div class="payment_analysis" *ngIf="stmtInstallmentApplyRecordList?.length <= 0; else showRecordList">
+            <div class="payment__detail">
+                <div class="step step__full">
+                    <div class="step step__pd--md">
+                        <div class="list-table">
+                            <div class="list-table__row">
+                                <p class="t-primary">尚無申請紀錄喔！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-template #showRecordList>
+            <div class="step step__full">
+                <a class="list-table__row u-nounderline" href="javascript:void(0)" *ngFor="let item of stmtInstallmentApplyRecordList">
+                    <!-- 申請中/成功 -->
+                    <div class="list-table__col" *ngIf="item?.Status !== '失敗'">
+                        <h4>{{item?.Period}}期：帳單分期<span class="fc-gold pl-s">({{item?.Status}})</span></h4>
+                        <p>申請日期：{{item?.ApplyDate | date:'yyyy/MM/dd'}}</p>
+                        <div class="flex-left">
+                            <div class="flex-left"><span class="fs-xs">分期本金：</span>
+                                <h4 class="list-table__col">{{item?.InstallmentAmt | number}}</h4>
+                            </div>
+                            <div class="mr-xxs ml-xxs bill-installment__br"></div>
+                            <div class="flex-left"><span class="fs-xs">分期年利率：</span>
+                                <h4 class="list-table__col pr-ssm">{{item?.Rate}}%</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 失敗 -->
+                    <div class="list-table__col" *ngIf="item?.Status === '失敗'">
+                        <h4 class="fc-gray-100">{{item?.Period}}期：帳單分期<span class="pl-s">(失敗)</span></h4>
+                        <p>申請日期：{{item?.ApplyDate | date:'yyyy/MM/dd'}}</p>
+                        <div class="flex-left">
+                            <div class="flex-left">
+                                <h4 class="fc-gray-100 fs-xs">分期本金：</h4>
+                                <p class="fc-gray-10 fs-b fw-b">{{item?.InstallmentAmt | number}}</p>
+                            </div>
+                            <div class="mr-xxs ml-xxs bill-installment__br"></div>
+                            <div class="flex-left">
+                                <h4 class="fc-gray-100 fs-xs">分期年利率：</h4>
+                                <p class="pr-ssm fc-gray-10 fs-b fw-b">{{item?.Rate}}%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-table__col flex-between">
+                        <img class="icon" src={{item?.StatusUrl}}>
+                    </div>
+                </a>
+                <a class="list-table__row u-nounderline" href="javascript:void(0)"></a>
+            </div>
+        </ng-template>
+    </div>
+</ng-template>
+<ng-template #step2>
+    <div class="wrap wrap__pd">
+        <div class="step step__pt--lg">
+            <div class="list-table">
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <h5 class="fs-b nowrap pr-ssm">分期項目</h5>
+                    </div>
+                    <div class="list-table__col">
+                        <h3 class="fs-base fw-b align-right">{{detailItem?.ITEM}}</h3>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">交易日期</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4>{{detailItem?.TXDATE}}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row" *ngIf="detailItem?.CARD_DESC !== ''">
+                    <div class="list-table__col">
+                        <p class="fs-b">交易卡別</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="align-right">{{detailItem?.CARD_DESC}}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">本期應繳本金</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4>{{detailItem?.AMT | number}}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">未到期應繳本金</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b fc-gold">{{detailItem?.INST_AMT | number}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-group">
+            <button class="btn btn--primary btn--w250 btn--apply" (click)="closeDetail()">關閉</button>
+        </div>
+        <div class="notice">
+            <p>注意事項：各項分期利息金額請詳見信用卡帳單。</p>
+        </div>
+    </div>
+</ng-template>
+<div class="lightbox" [ngClass]="lightboxstatus? 'show' :''" id="QuotaNotes">
+    <div class="lightbox__back"></div>
+    <div class="lightbox__outer">
+        <div class="lightbox__inner lightbox--bold lightbox--iframe">
+            <div class="iframe-box iframe-box--lg">
+                <h3 class="mb-ss">注意事項</h3>
+                <div class="content_outer">
+                    <div class="content_inner">
+                        <ul class="lightbox__listUl lightbox__listUl--decimal black">
+                            <li>本頁面所載信用卡分期明細資料，基準日為持卡人的信用卡帳單結帳日。</li>
+                            <li>本頁面資料未含信用卡消費爭議款項以及信用卡帳單結帳日前取消之信用卡分期交易。</li>
+                            <li style="font-weight:bold;">
+                                若持卡人於分期還款期間內有逾期繳款、停卡、不續卡或不接受新卡等情形，則所有未償還之分期金額將視為全部到期，全部列入下期信用卡帳單。</li>
+                            <li style="font-weight:bold;">
+                                本信用卡分期付款服務每期分期付款應付本金、利息、總費用金額及其他因該筆分期交易衍生之相關費用均應計入當期信用卡帳單最低應繳款項，不得使用循環信用
+                                ；若持卡人未於當期信用卡帳單繳款截止日前繳足當期信用卡帳單最低應繳金額，則將依永豐銀行信用卡契約計算違約金。</li>
+                            <li>未清償之餘額將占用持卡人信用卡帳戶的信用額度，且一經申辦完成後，不得變更申請金額及償還期數，完全清償前亦不得更改帳單週期。</li>
+                            <li>持卡人應按月繳付信用卡帳款，如有溢繳情形時，該溢繳之金額將列入下期信用卡帳單抵付下期信用卡帳單之應繳款項，不會提前清償信用卡分期付款之金額。</li>
+                            <li>
+                                <h6 class="fc-gold">各項分期利息金額請詳見信用卡帳單。</h6>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="button-group mb-md mt-sm">
+                    <button class="btn btn--primary btn--w250 btn--check"
+                        (click)="lightBoxControl(false)">確&nbsp;&nbsp;&nbsp;定</button>
+                </div>
+                <!-- <div class="button-group mt-0 mb-0 hide">
+                    <button
+                        class="btn btn--text btn--text-dark btn--text-line btn--cancel hide">取&nbsp;&nbsp;&nbsp;消</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

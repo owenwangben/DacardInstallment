@@ -1,0 +1,119 @@
+<div class="wrap wrap__pd">
+    <h1 class="title">兌換詳情</h1>
+    <div class="step step__pd--ssm mt-ssm mb-ssm">
+        <div class="list-table--line">
+            <div *ngFor="let item of giftSelecd; let i = index"
+                [ngClass]=" i < giftSelecd.length - 1 ? 'list-table__row pt-ssm' : 'flex-between pt-ssm pb-sm'">
+                <div class="list-table__col">
+                    <h4 class="fs-md">{{ item.Name }}</h4>
+                    <p class="fs-xs">兌換期間：即日起~{{ item.EndTime }}</p>
+                </div>
+                <div class="list-table__col list-table__col--auto">
+                    <div class="align-right">
+                        <h6 class="inline-block">
+                            {{ item.Point | number }}點
+                        </h6>
+                        <p class="fs-xs">數量 {{ item.qty }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="step step__bg-dark step__pd--md mt-ssm mb-ssm">
+        <div class="list-table">
+            <div class="list-table__row">
+                <div class="list-table__col fc-w"> <span class="fs-sm">目前累積</span></div>
+                <div class="list-table__col list-table__col--auto align-right"> <span class="fs-sm fc-w">{{ pointAll |
+                        number }}點</span>
+                </div>
+            </div>
+            <div class="list-table__row">
+                <div class="list-table__col fc-w"> <span class="fs-sm">本次兌換</span></div>
+                <div class="list-table__col list-table__col--auto align-right">
+                    <h6>{{ pointNow | number }}點</h6>
+                </div>
+            </div>
+            <div class="list-table__row">
+                <div class="list-table__col fc-w"> <span class="fs-sm">兌換後剩餘</span></div>
+                <div class="list-table__col list-table__col--auto align-right"> <span class="fs-sm fc-w">{{ ( pointAll -
+                        pointNow ) | number }}點</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-lg" *ngIf="isExchangeAnyRealProduct()">
+        <div class="flex-between">
+            <h1 class="title">商品寄送地址</h1>
+            <div class="inline-block">
+                <div class="icon icon--eye icon--tl icon--text icon--text-w" [class.icon--eye-active]="addressHide"
+                    (click)="addressHide = !addressHide;addressSet()">
+                    <span class="fc-gray fs-xs inline-block">顯示資訊</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="step step__pd--md pt-0 mt-ssm mb-lg" *ngIf="isExchangeAnyRealProduct()">
+        <div [formGroup]="form" class="form list">
+            <div class="form__row form__row--line-none form__row--h-auto">
+                <div class="form__col">
+                    <div class="form__data">
+                        <label class="check-row check-row-text check-row-fl">
+                            <p>同現居/通訊地址</p>
+                            <input formControlName="isSameAddress" (change)="sameSwitch()" id="sameAddress"
+                                type="checkbox" name="sameAddress"><span></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form__row form__row--line-none form__row--group form__row--h-auto">
+                <div class="form__row form__row--h-auto pt-0">
+                    <div class="form__data">
+                        <select formControlName="addressCity" (change)="getArea()" id="addCity">
+                            <option value="">請選擇縣市</option>
+                            <option *ngFor="let item of optionsCity" [value]="item">{{ item }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form__row form__row--h-auto pt-0">
+                    <div class="form__data">
+                        <select formControlName="addressArea" id="addDistrict">
+                            <option value="">請選擇區域</option>
+                            <option *ngFor="let item of optionsArea" [value]="item">{{ item }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form__row form__row--h-auto" id="addressFrom">
+                <div class="form__col">
+                    <div class="form__data">
+                        <input formControlName="addressInput" (focus)="adressfocus()" (blur)="addressblur()" type="text"
+                            placeholder="請輸入地址">
+                        <input hidden formControlName="addressInputHide">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button-group mb-md mt-md">
+        <button class="btn btn--primary btn--primary-wb btn--check" (click)="submit()">確定兌換</button>
+    </div>
+    <div class="button-group mt-sm">
+        <button class="btn btn--text btn--text-line" (click)="exchangeList()">返回修改</button>
+    </div>
+    <div class="notice">
+        <p>注意事項</p>
+        <ul>
+            <li>若您兌換之商品類別為【Email】或【簡訊】之電子票券時，本行將會依您留存本行之Email帳號或手機號碼寄送商品。</li>
+            <li>
+                <span class="fw-b gold">【貼心提醒】若您未留存Email帳號或欲變更，您可致電客服或透過網路銀行(MMA金融交易網)帳號進行變更，以確保您的權益哦!</span>
+            </li>
+            <li>
+                <span class="fw-b gold">
+                    若您兌換【刷卡金】時，其視為現金回饋，本行將統一回饋至申請人兌換日次月的永豐銀行信用卡帳單折抵當期消費款，申請人不得要求開立支票或領取現金。
+                </span>
+            </li>
+            <li>如果您對本次交易有任何疑義，請撥打本行信用卡客服電話02-2528-7776洽詢，再次感謝您的支持。</li>
+            <li>商品庫存依兌換結果顯示為準。</li>
+        </ul>
+    </div>
+</div>

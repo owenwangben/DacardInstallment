@@ -1,0 +1,327 @@
+<mat-horizontal-stepper #stepper [@.disabled]="true" [linear]="false" [selectedIndex]="this.selectedIndex">
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step3"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step4"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step5"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step6"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step7"></ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+<!-- CheckID -->
+<ng-template #step1>
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <h1 class="title">啟用永豐銀行信用卡</h1>
+        </div>
+        <form [formGroup]="form">
+            <div class="step step__pt-xxs">
+                <div class="form">
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">身分證字號</p>
+                            <div class="form__data">
+                                <input type="text" placeholder="請輸入您的身分證字號" name="ownerID" autocomplete="off"
+                                    maxlength="10" formControlName="ownerID" oncopy="return false;"
+                                    onpaste="return false;" onpaste="return false;" onblur-mask [start]=4 [end]=7
+                                    maxlength="10" (focus)="eyeOpen=true" (blur)="eyeOpen=false" mask="S000000000">
+                                <div class="form__icon icon icon--eye icon--tl" id="eyeOwnerID"
+                                    [ngClass]="{'icon--eye-active': eyeOpen}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-danger">{{form.controls.ownerID['errorMessages'][0]}}</div>
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">出生年月日 ( YYYY/MM/DD )</p>
+                            <div class="form__data">
+                                <input class="input-number" type="tel" name="birthday" maxlength="10"
+                                    placeholder="請輸入您的出生年月日" formControlName="birthday" oncopy="return false;"
+                                    onpaste="return false;" mask="0000/00/00" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-danger">{{form.controls.birthday['errorMessages'][0]}}</div>
+                </div>
+            </div>
+            <div class="button-group">
+                <button type="submit" (click)="checkIDsubmit()" class="btn btn--primary btn--w250">發送驗證碼</button>
+            </div>
+            <div class="button-group mt-sm">
+                <button class="btn btn--text btn--text-line"
+                    (click)="goHome()">取&nbsp;&nbsp;&nbsp;消</button>
+            </div>
+        </form>
+
+    </div>
+</ng-template>
+
+<!-- OTP -->
+<ng-template #step2>
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <h1 class="title">啟用永豐銀行信用卡</h1>
+        </div>
+        <form [formGroup]="otpform">
+            <div class="step">
+                <div class="step__title">
+                    <h3>手機號碼認證</h3>
+                    <p>已發送簡訊驗證碼至 {{ mobile| mobilemask:'●' }}</p>
+                </div>
+                <div class="form">
+                    <div class="form__row">
+                        <div class="form__col">
+                            <div class="form__data">
+                                <input class="captcha-otp" type="tel" name="captcha" maxlength="6"
+                                    autocomplete="one-time-code" oncopy="return false;" onpaste="return false;"
+                                    formControlName="captcha" mask="000000">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-danger">{{otpform.controls.captcha['errorMessages'][0]}}</div>
+                <div class="captcha-time">
+                    <div class="flex-between">
+                        <p>剩餘時間：<span>{{countdown}}</span>秒</p>
+                        <button>
+                            <p class="icon icon--tl icon--refresh" (click)="generateOTP(true)">重發驗證碼</p>
+                        </button>
+                    </div>
+                    <button *ngIf="countdown == 0" class="error" (click)="generateOTP(true)">驗證碼已失效，重新發送驗證碼</button>
+                </div>
+            </div>
+            <div class="button-group"><a class="btn btn--primary btn--w250" href="javascript:void(0)"
+                    (click)="OTPsubmit()">確&nbsp;&nbsp;&nbsp;定</a></div>
+        </form>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goHome()">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+        <div class="button-group mt-lg-2 align-center">
+            <a class="btn btn--text btn--text-line btn--text-sm msg"
+                href="https://mma.sinopac.com/Shared/HomePageTwd.aspx?CH=setting&ID=2#open-browser" target="_blank">
+                換手機號碼，收不到驗證碼?
+            </a>
+        </div>
+    </div>
+</ng-template>
+
+<!-- select card 多卡 -->
+<ng-template #step3>
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <h1 class="title">請選擇您要啟用的卡片</h1>
+        </div>
+        <div class="step step__pt-xxs">
+            <form>
+                <div class="form">
+                    <div class="form__row form__row--line-none">
+                        <div class="form__col">
+                            <div class="form__data">
+                                <label class="radio-btn-full card-list" *ngFor="let card of cards; let i=index">
+                                    <input type="radio" value={{i}} name="card" [attr.checked]="i === 0 ? '' : null"><span>
+                                        <div class="flex-left"><img class="card-img" [src]="card.CardFaceURL"
+                                            (error)="onImgError($event)">
+                                            <div class="card-list__inner">
+                                                <h4>{{card.Name| stringlength:[20]}}</h4>
+                                                <div class="flex-left"> <img [src]="card.CardBrand| cardtype">
+                                                    <p>{{card.CardNo | mask:'0000-0000-0000-0000' | cardnumbermask:'●'}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="button-group"><a class="btn btn--primary btn--w250"
+                (click)="getSelectedCard()">確&nbsp;&nbsp;&nbsp;定</a></div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goHome()">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+    </div>
+</ng-template>
+
+<!-- select card 單卡 -->
+<ng-template #step4>
+    <div class="wrap bg-gradient bg-gradient-sm">
+        <div class="card-list-single">
+            <h4>{{selectedCard?.Name}}</h4>
+            <img [src]="selectedCard?.CardFaceURL" (error)="onImgError($event)">
+            <h6>未收到卡片也可線上刷卡！</h6>
+        </div>
+        <div class="button-group"><a class="btn btn--primary btn--w250"
+                (click)="getQueryPriorActivateCardInfo(selectedCard.ProductCode + selectedCard.CardFace)">優先啟用</a></div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goHome()">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+    </div>
+</ng-template>
+
+<!-- confirm -->
+<ng-template #step5>
+    <div class="wrap bg-gradient bg-gradient-sm">
+        <div class="card-list-single pb-lg">
+            <h4>{{priorActivateCard?.CardName}}</h4>
+            <img [src]="priorActivateCard?.CardFaceURL" (error)="onImgError($event)">
+        </div>
+    </div>
+    <div class="wrap wrap__pd">
+        <h1 class="title">請確認卡片資訊</h1>
+        <div class="step step__pt-xxs">
+            <div class="wrap">
+                <div class="wrap__detail">
+                    <div class="list align-left">
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">核卡日</p>
+                                <p>{{priorActivateCard?.ApproveDate}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">優先啟用碼失效日</p>
+                                <p>{{priorActivateCard?.PriorActivateExpDate}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">卡片名稱</p>
+                                <p>{{priorActivateCard?.CardName}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">國際組織/卡別</p>
+                                <p>{{priorActivateCard?.CardTypeName}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">信用卡卡號</p>
+                                <p>{{ displayCardNo }}</p>
+                                <div class="form__icon icon icon--eye icon--tl" [ngClass]="{'icon--eye-active': cardNoEyeOpen}" (click)="changeCardNoEyeStatus()"></div>
+
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">有效期限(MM/YY)</p>
+                                <p>{{ displayExpDate }}</p>
+                                <div class="form__icon icon icon--eye icon--tl" [ngClass]="{'icon--eye-active': expDateEyeOpen}" (click)="changeExpDateEyeStatus()"></div>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">卡片背面末三碼</p>
+                                <p>{{ displayCVV }}</p>
+                                <div class="form__icon icon icon--eye icon--tl" [ngClass]="{'icon--eye-active': cvvEyeOpen}" (click)="changeCVVEyeStatus()"></div>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">持卡人中文姓名</p>
+                                <p>{{priorActivateCard?.CName}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">持卡人英文姓名</p>
+                                <p>{{priorActivateCard?.EName}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">您的信用額度</p>
+                                <p>{{priorActivateCard?.PermanentCreditLimit | currency:'TWD':'symbol':'.0'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-group">
+            <p class="msg">請點選啟用 立即消費</p>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--primary btn--w250" appPreventDoubleClick (throttledClick)="EnableCard()">立即啟用</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goHome(true)">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+        <div class="notice">
+            <p>注意事項：</p>
+            <p *ngIf="!IsLinePointCard">1.為保障您的用卡安全，優先啟用碼自核卡日起有效期間30天，請於收到實體卡立即開卡並於卡片背面簽名。</p>
+            <p *ngIf="IsLinePointCard">1.為保障您的用卡安全，優先啟用碼自核卡日起有效期間60天，請於收到實體卡立即開卡並於卡片背面簽名。</p>
+            <p>2.優先啟用碼適用指定商店的一般及分期付款網路交易或裝載Apple Pay、Google Pay感應式交易。</p>
+            <p>3.申請人同意妥善保管優先啟用碼，如有遺失、被竊、盜用情事時，請儘速以電話方式通知貴行，掛失手續費依規定辦理收費，因可歸責於申請人之事由致啟用碼外洩時申請人自負冒用損失。</p>
+            <p>4.若您無立即刷卡需求，請勿完成啟用程序，收到實體卡片後再開卡使用。</p>
+            <p>5.如有任何使用疑問，請致電02-2528-7766轉接專人為您辦理。</p>
+        </div>
+    </div>
+</ng-template>
+
+<!-- success -->
+<ng-template #step6>
+    <div class="wrap wrap__pd">
+        <div class="result">
+            <div class="result__icon"><img src="assets/images/img/img-success-gold.svg">
+                <h2>啟用成功</h2>
+            </div>
+            <div *ngIf="!IsLinePointCard" class="result__content" style="text-align: center;">
+                <p>刷卡帳務輕鬆管理，回饋報告一目瞭然</p>
+            </div>
+            <div *ngIf="IsLinePointCard" class="line__result__content" style="text-align: center;">
+                <p>您已成功啟用卡片，立即綁定永豐LINE官方帳號，享信用卡即時消費通知。請記得於收到實體卡片時，完成開卡作業，方可使用。</p>
+            </div>
+        </div>
+        <div class="button-group mt-lg-4">
+            <button *ngIf="sso && !IsLinePointCard" class="btn btn--primary btn--w250" (click)="goHome(true)">確&nbsp;&nbsp;&nbsp;定</button>
+            <button *ngIf="!sso && !IsLinePointCard" class="btn btn--primary btn--w250" (click)="goCardManage()">搶先體驗</button>
+            <button *ngIf="IsLinePointCard" class="btn btn--primary btn--w250" (click)="goLineOA()">立即綁定</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button *ngIf="sso" class="btn btn--text btn--text-line" (click)="goHome(true)">回信用卡頁</button>
+            <button *ngIf="!sso" class="btn btn--text btn--text-line" (click)="goHome()">回首頁</button>
+        </div>
+    </div>
+</ng-template>
+
+<!-- fail -->
+<ng-template #step7>
+    <div class="wrap wrap__pd">
+        <div class="result">
+            <div class="result__icon"><img src="assets/images/img/img-fail.svg">
+                <h2 class="fail">啟用失敗</h2>
+            </div>
+            <div class="result__content">
+                <h6>【錯誤代碼】</h6>
+                <p>若有問題請洽客服專線(02)2528-7776</p>
+                <p>{{failReason}}</p>
+            </div>
+        </div>
+        <div class="button-group mt-lg-4">
+            <button class="btn btn--primary btn--w250" (click)="CallCustomerServer()">聯繫客服</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button *ngIf="sso" class="btn btn--text btn--text-line" (click)="goHome(true)">回信用卡頁</button>
+            <button *ngIf="!sso" class="btn btn--text btn--text-line" (click)="goHome()">回首頁</button>
+        </div>
+    </div>
+</ng-template>

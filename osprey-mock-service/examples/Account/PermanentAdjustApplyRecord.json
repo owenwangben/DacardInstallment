@@ -1,0 +1,29 @@
+{
+    "Header": {
+        "ReferenceNo": "",
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "ClientIP": "",
+        "SessionID": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Items": [
+            {
+                "ApplyDate": "20220711",
+                "NewLine": "20000",
+                "Line": "10000",
+                "Status": "受理中"
+            },
+            {
+                "ApplyDate": "20220713",
+                "NewLine": "30000",
+                "Line": "20000",
+                "Status": "本次申請取消"
+            }
+        ]
+    }
+}

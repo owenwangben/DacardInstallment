@@ -1,0 +1,635 @@
+<div class="wrap">
+    <div class="tab">
+        <div class="tab__wrap">
+          <ul class="tab__navs">
+            <li class="tab__nav-discount" routerLink="/Account/CardBenefits"><a class="tab__nav tab__nav-discount">優惠</a></li>
+            <li class="tab__nav-bill" routerLink="/Account/CardBill"><a class="tab__nav tab__nav-bill">帳務</a></li>
+            <li class="tab__nav-card is-active"><a class="tab__nav tab__nav-card">卡片</a></li>
+          </ul>
+        </div>
+      </div>
+    <section class="wrap__carousel bg-gradient">
+        <div class="ready" *ngIf="!Cards || Cards?.length === 0">
+            <img style="margin-left: auto;margin-right: auto;width: 25%; height: 25%;"
+                src="assets/images/img/dcloading.gif">
+            <img style="margin-left: auto;margin-right: auto;margin-top:10px;width: 60%; height: 60%;"
+                src="assets/images/img/cardtext.png">
+        </div>
+        <div class="carousel__outer">
+            <ul>
+                <li #allCards *ngFor="let card of Cards;let slickindex=index">
+                    <div class="carousel__inner" [attr.data-cardnum]="slickindex"><img [src]="card.CardFaceURL"
+                            onerror="this.onerror='';this.src='mma8/card/images/card-lost/default.png'">
+                        <div class="mask" *ngIf="!card.IsActivated && card.XferFlag != 'Y'">
+                            <p *ngIf="!card.IsEmbossed && !isApplicationApproved(card)"
+                                class="icon icon--info-black icon--tl">
+                                <span class="inline-block">未核卡</span>
+                            </p>
+                            <p *ngIf="card.Spac === '4' || (!card.IsEmbossed && isApplicationApproved(card))"
+                                class="icon icon--info-black icon--tl">
+                                <span class="inline-block">已核卡</span>
+                            </p>
+                            <a *ngIf="card.IsEmbossed && !card.IsActivated && card.Spac != '4'" class="btn btn--primary btn--primary-sm"
+                                href="./cardActivate.html" href="javascript:void(0)" (click)="goCardActivate()">立即開卡</a>
+                        </div>
+                        <div class="mask" *ngIf="card.XferFlag == 'Y'">
+                            <p class="icon--fail-black icon--tl">
+                                <span class="inline-block">已掛失</span>
+                            </p>
+                        </div>
+                        <a *ngIf="!card.IsEmbossed" class="btn btn--primary btn--primary-sm mt-sm"
+                            href="javascript:void(0)" (click)="CallCustomerServer()">聯繫客服</a>
+                        <a *ngIf="card.IsEmbossed && card.showVCardBtn && card.XferFlag != 'Y'"
+                            class="btn btn--primary btn--primary-sm mt-sm" href="javascript:void(0)"
+                            (click)="goCardEnable()">啟用卡片</a>
+                        <a *ngIf="card.XferFlag === 'Y' && card.Reissue !=='1' && card.Reissue !=='3' && !card.IsDebitCard"
+                            class="btn btn--primary btn--primary-sm mt-sm" href="javascript:void(0)"
+                            (click)="goCardReissue('Loss')">補發卡片</a>
+                        <!-- apple加卡區 -->
+                        <div class="mt-xs apple-message"
+                            *ngIf="card.IsEmbossed && !card.showVCardBtn && IsShowAppleMessge() && (card.IsApplePay_iphone || card.IsApplePay_watch) && card.XferFlag != 'Y'">
+                            <div class="msg align-left">已完成加載：</div>
+                            <div class="msg align-left" *ngIf="card.IsApplePay_iphone">
+                                {{card.ApplePayItem_iphone.APDevice}}：****{{card.ApplePayItem_iphone.DANS}}</div>
+                            <div class="msg align-left" *ngIf="card.IsApplePay_watch">
+                                {{card.ApplePayItem_watch.APDevice}}：****{{card.ApplePayItem_watch.DANS}}</div>
+                        </div>
+                        <div class="mt-ssm"
+                            *ngIf="card.IsEmbossed && !card.showVCardBtn && IsShowAppleMessge() && IsShowAppleButton(card) && card.XferFlag != 'Y'">
+                            <button (click)="applePayAddCard()"><img
+                                    src="assets/images/web/Add_to_Apple_Wallet_rgb_CN_TW.svg"></button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="carousel__list--icon align-right" *ngIf="Cards && Cards?.length > 0"><a
+                routerLink="/Account/CardOrder"><img class="inline-block icon--md"
+                    src="assets/images/icon/icon-nav.svg"></a></div>
+    </section>
+    <section class="wrap__detail">
+        <div class="carousel__linking">
+            <ul>
+                <li>
+                    <!-- 資料載入中 -->
+                    <div class="detail__inner" *ngIf="!dataReady">
+                        <div>
+                            <div class="flex-between">
+                                <h4>消費紀錄</h4>
+                            </div>
+                            <div class="step step__pd--md">
+                                <div class="list-table">
+                                    <div class="list-table__row">
+                                        <p class="t-primary">
+                                            加載中...
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-lg">
+                            <h4 class="inline-block">卡片管理</h4>
+                        </div>
+                        <div class="step step__pd--md">
+                            <div class="list-table">
+                                <div class="list-table__row">
+                                    <p class="t-primary">
+                                        加載中...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail__inner" *ngIf="dataReady">
+                        <div class="flex-between">
+                            <h3>{{activeCard?.Name}}<br>
+                                <span class="icon icon--tl icon--alone--md {{cardBrand}}">
+                                    <span>{{activeCard?.CardNo | mask:'0000-0000-0000-0000'|
+                                        cardnumbermask:'●'}}</span></span>
+                            </h3>
+                            <button class="btn btn--normal btn--normal-more" *ngIf="showCardInfoFlag(activeCard)"
+                                (click)="goCardInfo()">卡片資訊</button>
+                        </div>
+                        <div class="detail__info">
+                            <!-- 申辦進度 -->
+                            <div *ngIf="!activeCard?.IsEmbossed ;else Embossed" class="step step__pd--md marketing mh">
+                                <h4>卡片申辦進度</h4>
+                                <div class="marketing__con">
+                                    <p [innerHTML]="activeCard?.StatusDesc"></p>
+                                    <div class="button-group mt-sm mb-0">
+                                        <button *ngIf="activeCard?.CanApplyUrgentCase"
+                                            class="btn btn--primary btn--primary-sm"
+                                            routerLink="/Application/CardQuery/Sso">急需用卡</button>
+                                    </div>
+                                    <div class="button-group mt-sm mb-0">
+                                        <button *ngIf="activeCard?.UploadFileMessages?.length > 0"
+                                            class="btn btn--primary btn--primary-sm"
+                                            routerLink="/Application/CardAddDoc/Sso">上傳缺補文件</button>
+                                    </div>
+                                    <div class="button-group mt-sm mb-0">
+                                        <button *ngIf="activeCard?.DownloadFileMessages?.length > 0"
+                                            class="btn btn--primary btn--primary-sm"
+                                            (click)="downloadFile(activeCard?.LetterCode)">下載聲明書</button>
+                                    </div>
+                                    <div class="button-group mt-sm mb-0">
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #Embossed>
+                                <!-- 消費紀錄 -->
+                                <div class="flex-between">
+                                    <h4>消費紀錄</h4>
+                                    <button *ngIf="!(activeCard?.VIREAL === '1' && !activeCard?.IsVCard)"
+                                        class="btn btn--normal btn--normal-more" (click)="showAllTX(activeCard)">查看更多</button>
+                                </div>
+                                <div class="step step__pd--md">
+                                    <div class="list-table">
+                                        <div class="list-table__row"
+                                            *ngIf="activeCard?.VIREAL === '1' && !activeCard?.IsVCard ;else showTx">
+                                            <p class="t-primary" routerLink="/Application/CardEnable">立即啟用卡片，輕鬆消費
+                                                <!--虛實卡&未啟用-->
+                                            </p>
+                                        </div>
+                                        <ng-template #showTx>
+                                            <div class="list-table__row" *ngIf="LatestTxs?.length == 0">
+                                                <p class="t-primary">
+                                                    查無資料
+                                                </p>
+                                            </div>
+                                            <a class="list-table__row u-nounderline" (click)="showTXDetail(tx)"
+                                                *ngFor="let tx of LatestTxs">
+                                                <div class="list-table__col">
+                                                    <h4>{{tx.Memo}}</h4>
+                                                    <p>{{tx.AuthDate}}</p>
+                                                </div>
+                                                <div class="list-table__col">
+                                                    <h6 class="inline-block">{{tx.AuthAmtView}}</h6>
+                                                    <button class="btn--more inline-block"><img
+                                                            src="assets/images/icon/icon-arrow-gray.svg"></button>
+                                                </div>
+                                            </a>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                                <!-- 消費回饋報告 -->
+                                <div *ngIf="activeCard.cardtype && !activeCard.IsDebitCard && activeCard.CardTypeCode != 'CP'">
+                                    <div class="flex-between">
+                                        <h4>消費回饋報告</h4>
+                                        <button *ngIf="activeCard.cardtype === 'cars' && (activeCard.IsActivated || activeCard?.IsVCard)"
+                                        class="btn btn--normal btn--normal-more" (click)="ExchangeRecord()">兌換紀錄與設定</button>
+                                    </div>
+                                    <div *ngIf="activeCard.cardtype === 'daway' && bonusFeedback?.DeadLine" class="flex-between">
+                                        <h4>(新戶加碼資格截止日：{{bonusFeedback.DeadLine}})</h4>
+                                    </div>
+                                    <div class="step step__pd--md">
+                                        <div class="list-table">
+                                            <div class="list-table__row">
+                                                <div class="select-box">
+                                                    <select #selected
+                                                        (change)="getbonus(selected.value,activeCard.cardtype)">
+                                                        <option *ngFor="let month of Months" value="{{month.value}}">
+                                                            {{month.Month}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <ng-container *ngIf="bonusFeedback?.Summary?.length > 0 || TPointsbonusFeedback?.Summary?.length > 0;else nofeedback">
+                                                    <a class="list-table__row u-nounderline" *ngIf="activeCard.cardtype === 'daway' && bonusFeedback?.Summary?.length > 0" (click)="$event.stopPropagation()">
+                                                    <div class="list-table__col">
+                                                        <h4>當月發放LINE Points</h4>
+                                                    </div>
+                                                    <div class="list-table__col">
+                                                        <h6 class="inline-block">{{bonusFeedback?.TotalPoints}} P</h6>
+                                                        <button class="btn--more inline-block"><img
+                                                            src="assets/images/icon/icon-arrow-white2.svg"></button>
+                                                    </div>
+                                                    </a>
+                                                    <a class="list-table__row u-nounderline"  (click)="ShowDetail(item)"
+                                                        *ngFor="let item of bonusFeedback?.Summary;let feedbackIndex = index">
+                                                        <div class="list-table__col">
+                                                            <h4>{{item.Name}}</h4>
+                                                            <p>消費金額 {{item.TotalAmt}}</p>
+                                                        </div>
+                                                        <div class="list-table__col">
+                                                            <h6 *ngIf="activeCard.cardtype === 'daway'" class="inline-block">{{item.TotalFeedbackAmt}} P</h6>
+                                                            <h6 *ngIf="activeCard.cardtype !== 'daway'" class="inline-block">{{item.TotalFeedbackAmt}}</h6>
+                                                            <button class="btn--more inline-block"><img
+                                                                    src="assets/images/icon/icon-arrow-gray.svg"></button>
+                                                        </div>
+                                                    </a>
+                                                  <!--下面消費回饋是顯示大車隊使用-->
+                                                    <a class="list-table__row u-nounderline" *ngIf="TPointsbonusFeedback?.Summary?.length > 0">
+                                                        <div class="list-table__col">
+                                                            <h4>當月發放T Points</h4>
+                                                        </div>
+                                                        <div class="list-table__col">
+                                                            <h6 class="inline-block">{{TPointsbonusFeedback?.TotalPoints | number}} T</h6>
+                                                            <button class="btn--more inline-block"><img
+                                                                src="assets/images/icon/icon-arrow-white2.svg"></button>
+                                                        </div>
+                                                    </a>
+                                                    <a class="list-table__row u-nounderline" (click)="ShowCarsDetail(item)"
+                                                        *ngFor="let item of TPointsbonusFeedback?.Summary;let feedbackIndex = index">
+                                                        <div class="list-table__col">
+                                                            <h4>{{item.Name}}</h4>
+                                                            <p>消費金額 {{item.TotalAmt | number}}</p>
+                                                        </div>
+                                                        <div class="list-table__col">
+                                                            <h6 class="inline-block">{{item.TPoints | number}} T</h6>
+                                                            <button class="btn--more inline-block"><img
+                                                                    src="assets/images/icon/icon-arrow-gray.svg"></button>
+                                                        </div>
+                                                    </a>
+                                            </ng-container>
+                                            <ng-template #nofeedback >
+                                                <div class="step step__pd--md">
+                                                    <div class="list-table">
+                                                        <div class="list-table__row">
+                                                            <p class="t-gray">尚無回饋</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 卡片管理 -->
+                                <div class="mt-lg">
+                                    <div class="flex-between">
+                                        <div class="inline-block">
+                                            <h4 class="inline-block">卡片管理</h4><span
+                                                class="icon--tr icon--info-white inline-block"
+                                                (click)="showMessages('tradeSetting', activeCard)"></span>
+                                        </div>
+                                        <button class="btn btn--normal btn--normal-more" *ngIf="(activeCard?.IsEmbossed && activeCard?.IsActivated) && activeCard?.XferFlag !== 'Y' && activeCard?.Reissue !== '2' && activeCard?.Reissue !== '3'" (click)="goCardReissue('Damag')">補發卡片</button>
+                                    </div>
+                                </div>
+                                <div class="step step__pd--md sweet-alert-target"
+                                    [ngClass]="{'disable':cardBundleFlag(activeCard),'disable-h8':(tradeOptions?.BLOCK_ALL=='Y' || tradeManagerError) && activeCard?.XferFlag != 'Y' && !activeCard.IsDebitCard,'disable-h8-devpro':(tradeOptions?.BLOCK_ALL=='Y' || tradeManagerError) && activeCard?.XferFlag != 'Y' && activeCard.IsDebitCard,'disable-error':tradeManagerError}">
+                                    <div class="list-table--line">
+                                        <div class="list-table__row" *ngIf="!activeCard.IsDebitCard">
+                                            <div class="list-table__col">
+                                                <h4 class="inline-block">DACARD APP 綁定</h4>
+                                                <span class="icon--tr icon--info inline-block"
+                                                    (click)="showMessages('bundle')"></span>
+                                            </div>
+                                            <div class="list-table__col">
+                                                <label class="switch-btn">
+                                                    <input type="checkbox" id="bindstate" [checked]="bindstate"
+                                                        (click)="gobundle($event)"><span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="list-table__row mt-lg">
+                                            <div class="list-table__col">
+                                                <h4 class="inline-block fc-gold">暫停所有交易</h4><span
+                                                    class="icon--tr icon--info inline-block"
+                                                    (click)="showMessages('stopTrade')"></span>
+                                            </div>
+                                            <div class="list-table__col">
+                                                <label class="switch-btn">
+                                                    <input type="checkbox" name="BLOCK_ALL"
+                                                        (click)="changeTradeOption($event)"
+                                                        [checked]="tradeOptions?.BLOCK_ALL == 'Y'"><span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="list-table__row">
+                                            <div class="list-table__col">
+                                                <h4>國內實體交易</h4>
+                                            </div>
+                                            <div class="list-table__col">
+                                                <label class="switch-btn">
+                                                    <input type="checkbox" name="BLOCK_L_P"
+                                                        (click)="changeTradeOption($event)"
+                                                        [checked]="tradeOptions?.BLOCK_L_P == 'N'"><span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="list-table__row">
+                                            <div class="list-table__col">
+                                                <h4>國內線上交易</h4>
+                                            </div>
+                                            <div class="list-table__col">
+                                                <label class="switch-btn">
+                                                    <input type="checkbox" name="BLOCK_L_O"
+                                                        (click)="changeTradeOption($event)"
+                                                        [checked]="tradeOptions?.BLOCK_L_O == 'N'"><span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="list-table__row">
+                                            <div class="list-table__col">
+                                                <h4>國外實體交易</h4>
+                                            </div>
+                                            <div class="list-table__col">
+                                                <label class="switch-btn">
+                                                    <input type="checkbox" name="BLOCK_F_P"
+                                                        (click)="changeTradeOption($event)"
+                                                        [checked]="tradeOptions?.BLOCK_F_P == 'N'"><span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="list-table__row">
+                                            <div class="list-table__col">
+                                                <h4>國外線上交易</h4>
+                                            </div>
+                                            <div class="list-table__col">
+                                                <label class="switch-btn">
+                                                    <input type="checkbox" name="BLOCK_F_O"
+                                                        (click)="changeTradeOption($event)"
+                                                        [checked]="tradeOptions?.BLOCK_F_O == 'N'"><span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="list-table__row flex-wrap">
+                                            <div class="list-table__col">
+                                                <h4>單筆交易額度設定</h4>
+                                            </div>
+                                            <div class="list-table__col">
+                                                <div class="icon icon--fail-black icon--tl icon--text"
+                                                    [ngStyle]="{'visibility':tradeOptions.LIMIT_AMT == 0? 'hidden':'visible'}"
+                                                    (click)="cancelTradeLimit()"><span class="inline-block">取消</span>
+                                                </div>
+                                            </div>
+                                            <div class="list-table__col list-table__col--full">
+                                                <div class="form">
+                                                    <div class="form__row form__row--line-none pb-0">
+                                                        <div class="form__col">
+                                                            <div class="form__data form__data--flex">
+                                                                <label class="radio-btn radio-btn-bg radio-btn-xxs">
+                                                                    <input type="radio" value="1000" name="LIMIT_AMT"
+                                                                        (click)="changeTradeLimit($event)"
+                                                                        [checked]="tradeOptions.LIMIT_AMT == 1000"><span>1,000元</span>
+                                                                </label>
+                                                                <label class="radio-btn radio-btn-bg radio-btn-xxs">
+                                                                    <input type="radio" value="3000" name="LIMIT_AMT"
+                                                                        (click)="changeTradeLimit($event)"
+                                                                        [checked]="tradeOptions.LIMIT_AMT == 3000"><span>3,000元</span>
+                                                                </label>
+                                                                <label class="radio-btn radio-btn-bg radio-btn-xxs">
+                                                                    <input type="radio" value="5000" name="LIMIT_AMT"
+                                                                        (click)="changeTradeLimit($event)"
+                                                                        [checked]="tradeOptions.LIMIT_AMT == 5000"><span>5,000元</span>
+                                                                </label>
+                                                                <label class="radio-btn radio-btn-bg radio-btn-xxs" *ngIf="!activeCard.IsDebitCard">
+                                                                    <input type="radio" value="10000" name="LIMIT_AMT"
+                                                                        (click)="changeTradeLimit($event)"
+                                                                        [checked]="tradeOptions.LIMIT_AMT == 10000"><span>10,000元</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="button-group mb-ssm">
+                                        <button class="btn btn--primary btn--primary-sm"
+                                            [disabled]="compareTradeOptionsChange()" appPreventDoubleClick
+                                            (throttledClick)="cardDealSetting()">儲存設定</button>
+                                    </div>
+                                    <p class="msg align-center">每日限異動3次</p>
+                                    <div class="button-group button-group--abs-middle"
+                                        [ngStyle]="{'display':tradeOptions.BLOCK_ALL == 'Y' && !tradeManagerError && activeCard?.XferFlag != 'Y'? 'block':'none'}">
+                                        <button
+                                            class="btn btn--primary btn--primary-xs btn--primary-white icon--tl icon--lock"><span
+                                                class="inline-block">{{tradeOptionsOriginTemp?.BLOCK_ALL !=
+                                                tradeOptions?.BLOCK_ALL ? "請點選「儲存設定」將暫停所有交易":"功能已鎖定"}}</span></button>
+                                    </div>
+                                </div>
+                                <div class="button-group"
+                                    *ngIf="activeCard?.XferFlag != 'Y' && activeCard?.IsActivated && !activeCard.IsDebitCard">
+                                    <button
+                                        class="btn btn--primary btn--primary-sm btn--primary-white icon--tl icon--lock"
+                                        (click)="goCardLose()">
+                                        <span class="inline-block">線上掛失</span>
+                                    </button>
+                                </div>
+                            </ng-template>
+                        </div>
+                        <!-- 查看申請進度 -->
+                        <div *ngIf="!activeCard?.IsEmbossed && activeCard?.StatusDesc" class="button-group mt-lg-2">
+                            <button routerLink="/Application/CardQuery/Sso"
+                                class="btn btn--primary btn--w250">查看申請進度</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="warning mt-lg-2"><img class="margin-center" src="assets/images/demo/warning.svg" alt="謹慎理財 信用至上">
+        </div>
+    </section>
+</div>
+<div *ngIf="detailA" class="wrap wrap__pd">
+    <h1 class="title flex-between">
+        <span>{{detailA?.Name}}</span>
+        <ng-container
+            *ngIf="detailA?.Code === 'RE08' || detailA?.Code === 'RE07' || detailA?.Code === 'RE09';else TaiwanDollar">
+            <span *ngIf="detailA?.Code === 'RE08'" class="remark">(依美元計)</span>
+            <span *ngIf="detailA?.Code === 'RE07'" class="remark">(依日圓計)</span>
+            <span *ngIf="detailA?.Code === 'RE09'" class="remark">(依歐元計)</span>
+        </ng-container>
+        <ng-template #TaiwanDollar>
+            <span class="remark">(依臺幣計)</span>
+        </ng-template>
+    </h1>
+    <span class="white fs-xs" *ngIf="activeCard.cardtype === 'daway' && showLinePoints">(消費金額/LINE POINTS)</span>
+    <span class="fc-gold" *ngIf="activeCard.cardtype === 'daway' && !showLinePoints">帳單次期月底前回饋LINE POINTS點數</span>
+    <div class="step step__pt--lg">
+        <div class="list-table">
+            <div class="list-table__row" *ngFor="let detail of detailA?.Items">
+                <div class="list-table__col">
+                    <h4>{{detail.MEMO}}</h4>
+                    <p>{{detail.TXDATE}}</p>
+                </div>
+                <div class="list-table__col">
+                    <h6 *ngIf="showLinePoints" class="inline-block">{{detail.TX_AMT}} / {{detail.POINT}} P</h6>
+                    <h6 *ngIf="!showLinePoints" class="inline-block">{{detail.TX_AMT}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button-group">
+        <button class="btn btn--primary btn--w250" (click)="onBack()">關&nbsp;&nbsp;&nbsp;閉</button>
+    </div>
+    <div class="notice" *ngIf="activeCard.cardtype === 'daway'">
+        <p>注意事項：</p>
+        <ul>
+            <li>本服務功能為提供「DAWAY卡消費回饋查詢」，相關活動內容、回饋資格及回饋點數，請參照永豐銀行活動網頁公告。</li>
+            <li>DAWAY卡消費回饋LINE POINTS點數有效期限為最後一次獲得點數當日起算180日止，一旦超過有效期限，將會立即失效且無法復原，請至LINE APP「錢包」＞「LINE POINTS」＞「歷史紀錄」＞於點數下方查看使用期限。</li>
+            <li>新戶加碼資格自核卡月份起算12個月，範例：小豐2024年4月份核卡，可享有新戶加碼資格至2025年4月30日。</li>
+        </ul>
+    </div>
+</div>
+<div *ngIf="detailB" class="wrap wrap__pd">
+    <h1 class="title flex-between"><span>{{detailB?.Name}}</span><span class="remark">(依臺幣計)</span></h1>
+    <div class="step step__pt--lg">
+        <div class="list-table">
+            <ng-container *ngFor="let CItem of detailB.CurrencyItems">
+                <div class="list-table__row" *ngFor="let item of CItem.Items">
+                    <div class="list-table__col">
+                        <h4>{{item.MEMO}}</h4>
+                        <p>{{item.TXDATE}}</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h6 *ngIf="item.ORG === ''" class="inline-block">{{item.TW_AMT}}</h6>
+                        <h6 *ngIf="item.ORG !== ''" class="inline-block">{{item.TTL_AMT}}</h6>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="button-group">
+        <button class="btn btn--primary btn--w250" (click)="onBack()">關&nbsp;&nbsp;&nbsp;閉</button>
+    </div>
+</div>
+<div *ngIf="detailModel?.Details.length > 0 " class="wrap wrap__pd">
+    <h1 class="title flex-between" *ngIf="detailModel.Details[0].DataType == 1"><span>{{detailModel.DetailName}}(金額/ T Points)</span><span class="remark">(依臺幣計)</span></h1>
+    <h1 class="title flex-between" *ngIf="detailModel.Details[0].DataType == 2"><span>{{detailModel.DetailName}}(金額)</span><span class="remark">(依臺幣計)</span></h1>
+    <h1 class="title flex-between" *ngIf="detailModel.Details[0].DataType == 3"><span>{{detailModel.DetailName}}(T Points)</span></h1>
+    <div class="step step__pt--lg">
+        <div class="list-table">
+            <div class="list-table__row" *ngFor="let detail of detailModel.Details">
+                <div class="list-table__col">
+                    <h4>{{detail.MEMO}}</h4>
+                    <p *ngIf="detail.DataType == 1">{{detail.TX_DATE}} / {{detail.LEVEL}}{{detail.FEEDBACK_RATE}}</p>
+                    <p *ngIf="detail.DataType == 2">消費日{{detail.TX_DATE}} / 入點日{{detail.DE_DATE}}</p>
+                    <p *ngIf="detail.DataType == 3">{{detail.DE_DATE}}</p>
+                </div>
+                <div class="list-table__col">
+                    <h6 class="inline-block" *ngIf="detail.DataType == 1" >{{detail.TX_AMT | number}} / {{detail.POINT}} T</h6>
+                    <h6 class="inline-block" *ngIf="detail.DataType == 2" >{{detail.TX_AMT | number}}</h6>
+                    <h6 class="inline-block" *ngIf="detail.DataType == 3" >{{detail.POINT}} T</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button-group">
+        <button class="btn btn--primary btn--primary-wsm" style="background-color: #8f8f8f;"
+            (click)="onBack()">關&nbsp;&nbsp;&nbsp;閉</button>
+        <button class="btn btn--primary btn--primary-wsm" (click)="ExchangeRecord()">兌換紀錄</button>
+    </div>
+    <div class="notice">
+        <p>注意事項：</p>
+        <ul>
+            <li>「開啟」折抵信用卡帳單功能將於次月第一個營業日扣除T Points點數並折抵次月帳單。(EX：7月20日設定「開啟」折抵信用卡帳單，不再異動，則該T
+                Points點數將於8月第一個營業日扣除並折抵8月份帳單。)</li>
+            <li>本服務功能為提供永豐55688聯名卡之T Points回饋查詢，相關活動內容及回饋資格等，請參考<a class="fw-b gold" target="blank"
+                (click)="toExternalLink('https://bank.sinopac.com/sinopacBT/webevents/2108_taxicard/index.html#open-browser')">永豐銀行活動網頁公告</a>。</li>
+            <li>本「月份」為T Points回饋月份，非實際消費月份或帳單月份。</li>
+        </ul>
+    </div>
+</div>
+<div *ngIf="ExchangeRecordButton" class="wrap wrap__pd">
+    <div class="list-table__row">
+        <h1 class="title flex-between"><span>目前剩餘點數(T Points)：</span><span
+                class="fc-gold fw-b">{{resultModel?.AvailablePoints | number}} T</span></h1>
+    </div>
+    <h1 class="title flex-between"><span class="remark">到期日：{{resultModel?.ExpiryDate | date:'y/MM/dd'}}</span>
+    </h1>
+    <div class="detail__inner">
+        <div class="list-table__row"></div>
+        <div class="list-table__row">
+            <div class="list-table__col">
+                <h4 class="fc-w inline-block">折抵信用卡帳單</h4><span (click)="showMessages('cars')"class="icon--tr icon--info-white inline-block"
+                    data-popup="billCompensation"></span>
+            </div>
+            <div class="list-table__col">
+                <label class="switch-btn">
+                    <input class="js-IsRedeemSpecificChannels" (change)="ChangeTPointSeting()" type="checkbox"><span></span>
+                </label>
+            </div>
+        </div>
+        <div class="step step__pd--md">
+            <div class="list-table">
+                <div class="list-table__row">
+                    <div class="select-box">
+                        <select id="selected2" #selected2 (change)="onSelectMonth(selected2.value)">
+                            <option *ngFor="let month of Months" value="{{month.value}}">
+                                {{month.Month}}</option>
+                        </select>
+                    </div>
+                </div>
+                <a class="list-table__row u-nounderline" href="javascript:void(0);"
+                    *ngFor="let item of resultModel?.Items">
+                    <div class="list-table__col">
+                        <h4>{{item.MEMO}}</h4>
+                        <p>{{item.DE_DATE}}</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h6 class="inline-block">{{item.POINT | number}} T</h6>
+                    </div>
+                </a>
+                <a class="list-table__row u-nounderline" href="javascript:void(0);" >
+                    <p class="t-primary" *ngIf="!resultModel?.Items.length">
+                        尚無折抵紀錄
+                    </p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="button-group">
+        <button class="btn btn--primary btn--primary-wb" (click)="onBack()">關&nbsp;&nbsp;&nbsp;閉</button>
+    </div>
+    <div class="notice">
+        <p>注意事項：</p>
+        <ul>
+            <li>「開啟」折抵信用卡帳單功能將於次月第一個營業日扣除T Points點數並折抵次月帳單。(EX：7月20日設定「開啟」折抵信用卡帳單，不再異動，則該T Points點數將於8月第一個營業日扣除並折抵8月份帳單。)
+            </li>
+            <li>提醒您，T Points到期後將失效不可兌換，有效期限為最後一次獲得點數當天起算6個月，持續消費獲點可延長到期日。</li>
+            <li>歡迎您至台灣大車隊APP折抵搭車消費，享100%全額折抵！</li>
+        </ul>
+    </div>
+</div>
+<div class="lightbox" [ngStyle]="{'display':lightBoxStatus.IsDisplay?'block':'none'}">
+    <div class="lightbox__back"></div>
+    <div class="lightbox__outer">
+        <div class="lightbox__inner lightbox--error" *ngIf="lightBoxStatus?.LightBoxType=='Info'">
+            <h3>{{lightBoxStatus?.Title}}</h3>
+            <p [ngClass]="lightBoxStatus?.IsContentCenter ? 'align-center':''">{{lightBoxStatus?.Content}}</p>
+            <div class="button-group mb-md mt-md">
+                <button class="btn btn--primary btn--w250 btn--cancel"
+                    (click)="lightBoxStatus.IsDisplay=false;">確&nbsp;&nbsp;&nbsp;定</button>
+            </div>
+        </div>
+        <div class="lightbox__inner lightbox--iframe" *ngIf="lightBoxStatus?.LightBoxType=='Notice'">
+            <div class="iframe-box">
+                <h4 class="mb-ssm">{{lightBoxStatus?.Title}}</h4>
+                <div class="content_outer">
+                    <div class="content_inner" loadHtml="{{lightBoxStatus?.NoticeUrl}}"></div>
+                </div>
+            </div>
+            <div class="button-group mb-md mt-md">
+                <button class="btn btn--primary btn--w250 btn--cancel"
+                    (click)="lightBoxStatus.IsDisplay=false;">確&nbsp;&nbsp;&nbsp;定</button>
+            </div>
+        </div>
+        <div class="lightbox__inner" *ngIf="lightBoxStatus?.LightBoxType=='cars'">
+            <h4>想要次月折抵55688聯名卡消費帳單，<br>請至<a class="underline fw-b fc-gold" target="blank"
+                (click)="toExternalLink('https://bank.sinopac.com/sinopacBT/webevents/2108_taxicard/index.html#open-browser')">永豐55688聯名卡網站</a>查詢。
+            </h4>
+            <div class="button-group mb-md">
+                <button class="btn btn--primary btn--w250 btn--cancel" (click)="lightBoxStatus.IsDisplay=false;">確&nbsp;&nbsp;&nbsp;定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="lightbox" [class.show]="lightBoxFido">
+    <div class="lightbox__back"></div>
+    <div class="lightbox__outer">
+        <div class="lightbox__inner lightbox--bold">
+            <h3 class="mb-ssm fc-red">提醒訊息</h3>
+            <p class="align-center">此功能需設定生物辨識(FIDO)，請您先進行設定。</p>
+            <div class="button-group mb-md mt-md">
+                <button class="btn btn--primary btn--w250 btn--check" (click)="goCardSetting()">
+                    確定
+                </button>
+            </div>
+            <div class="button-group mt-0 mb-0">
+                <button class="btn btn--text btn--text-dark btn--text-line btn--cancel" (click)="lightBoxFido = false;">
+                取消
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

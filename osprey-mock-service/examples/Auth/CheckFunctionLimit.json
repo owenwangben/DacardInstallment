@@ -1,0 +1,19 @@
+{
+	"Header": {
+		"RequestTime": "",
+		"ResponseTime": "",
+		"ApplicationName": "SinoPac.Cawho.Web",
+		"SessionID": "",
+		"ClientIP": "",
+		"UserAgent": ""
+	},
+	"ResultCode": "00",
+	"ResultMessage": "",
+	"Result": {
+        "TodayCount":2,
+        "DailyLimit":3
+	},
+	"Original": {
+	},
+	"Success": true
+}

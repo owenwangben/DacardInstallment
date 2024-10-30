@@ -1,0 +1,50 @@
+<div class="wrap wrap__pd">
+    <div class="result mb-sm">
+        <div class="result__icon"><img
+                [src]="resultStatus? 'assets/images/img/img-success-gold.svg' : 'assets/images/img/img-fail.svg'">
+            <h2>{{resultStatus? '兌換結果':'兌換失敗'}}</h2>
+        </div>
+    </div>
+    <div class="step step__bg-dark step__pd--md mt-ssm">
+        <div class="list-table">
+            <div class="list-table__row">
+                <div class="list-table__col fc-w"> <span class="fs-sm">本次兌換</span></div>
+                <div class="list-table__col list-table__col--auto align-right">
+                    <h6>{{ this.resultPoint | number }}點</h6>
+                </div>
+            </div>
+            <div class="list-table__row">
+                <div class="list-table__col fc-w"> <span class="fs-sm">兌換後剩餘</span></div>
+                <div class="list-table__col list-table__col--auto align-right"> <span class="fs-sm fc-w">{{
+                        this.lastPoint | number }}點</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="title">兌換詳情</h1>
+    <div class="step step__pd--md mt-ssm mb-ssm">
+        <div class="list-table--line">
+            <div *ngFor="let item of resultItems; let i=index" class="list-table__row"
+                [class.list-table__row--line-none]="i !== 0">
+                <div class="list-table__col">
+                    <h4 class="fs-md">{{ item.Item.Name }}</h4>
+                    <p class="fs-xs">兌換期間：即日起~{{ item.Item.EndTime }}</p>
+                    <span class="fs-xs" [class.fc-red]="!item.IsExchangeSuccess">{{ item.IsExchangeSuccess? '兌換成功':
+                        item.ErrorMessage }}</span>
+                </div>
+                <div class="list-table__col list-table__col--auto">
+                    <div class="align-right">
+                        <h6 class="inline-block">{{ item.Item.TotalPoints | number }}點</h6>
+                        <p class="fs-xs">數量 {{ item.Item.Quantity }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button-group mb-md mt-md">
+        <button class="btn btn--primary btn--primary-wb btn--check" (click)="goExchangeList()">兌換其他商品</button>
+    </div>
+    <div class="button-group mt-sm">
+        <button class="btn btn--text btn--text-line" (click)="goExchangeRecord()">查詢紅利紀錄</button>
+    </div>
+</div>

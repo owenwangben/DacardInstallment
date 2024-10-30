@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>DACARD - 永豐銀行</title>
+    <meta name="title" content="DACARD - 永豐銀行">
+    <meta name="description" content="">
+    <meta property="og:title" content="DACARD - 永豐銀行">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="author" content="永豐銀行">
+    <meta name="copyright" content="永豐銀行">
+    <meta property="og:site_name" content="DACARD - 永豐銀行">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="">
+    <link rel="apple-touch-icon" href="">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+  </head>
+  <body class="card_damag_reissue_5">
+    <main class="container">
+      <div class="wrap wrap__pd">
+        <div class="result"> 
+          <div class="result__icon"><img src="../../assets/images/img/img-success-gold.svg">
+            <h2>補發成功</h2>
+          </div>
+        </div>
+        <div class="flex-between mt-lg">
+          <h1 class="title">補發資訊</h1>
+          <div class="icon icon--eye-white icon--tl icon--text icon--text-w"><span class="inline-block">顯示內容</span></div>
+        </div>
+        <div class="step step__pt-xxs">
+          <div class="wrap">
+            <div class="wrap__detail">
+              <div class="list align-left">
+                <div class="list__row">
+                  <div class="list__col">
+                    <p class="list__label">申請日</p>
+                    <p>2022/06/06 18:32:22</p>
+                  </div>
+                </div>
+                <div class="list__row list__row--sp">
+                  <div class="list__col">
+                    <p class="list__label">補發卡別</p>
+                    <div class="inline-block-group flex-center"><img class="mr-ssm" src="../assets/images/icon/icon_master.svg">
+                      <p>卡片名稱可能會很長，所以留兩行。卡片名稱可能會很長，所以留兩行。</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="list__row">
+                  <div class="list__col">
+                    <p class="list__label">卡片寄送地址</p>
+                    <p>卡片名稱可能會很長，所以留兩行。卡片名稱可能會很長，所以留兩行。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="btn btn--primary btn--w250">回信用卡頁</button>
+        </div>
+      </div>
+      <footer></footer>
+    </main>
+    <script src="../../assets/js/source/jquery-3.3.1.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/jquery.payment.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/slick.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/sortable.min.securejs" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){
+        $('.icon--eye-white').on('click', function(){
+          $(this).toggleClass('icon--eye-white-active');
+          if($(this).hasClass('icon--eye-white-active')){
+            $(this).find('span').html('隱藏內容');
+            $('.icon--copy').toggleClass('hide');
+      
+          }else{
+            $(this).find('span').html('顯示內容');
+            $('.icon--copy').toggleClass('hide');
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

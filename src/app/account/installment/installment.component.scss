@@ -1,0 +1,60 @@
+:host ::ng-deep .mat-horizontal-stepper-header-container {
+    display: none;
+}
+
+.wrap__pd1 {
+    padding: 30px 16px 0;
+}
+
+.li {
+    color: #333;
+    font-size: 14px;
+    text-align: justify;
+    line-height: 1.68;
+}
+
+.form__error {
+    margin: 5px 5px 0 5px;
+    color: red;
+    font-size: 12px;
+    display: block;
+}
+
+.column {
+    display: flex;
+}
+
+.border {
+    border-bottom: 2px solid rgba(0, 0, 0, .1);
+}
+
+.m-bottom {
+    margin-bottom: 100px;
+}
+
+.errorMessage {
+    color: red;
+    font-size  : 18px;
+    font-weight: 700;
+    padding    : 16px 0 auto auto;
+    text-align : left;
+    width      : 100%
+}
+
+.errorMessage2 {
+    color: #12213a;;
+    font-size  : 16px;
+    font-weight: 700;
+    padding    : 16px 0;
+    text-align : left;
+    width      : 100%
+}
+
+.errorMessage3 {
+    color: #12213a;;
+    font-size  : 16px;
+    font-weight: 700;
+    text-align : left;
+    width      : 100%
+}
+

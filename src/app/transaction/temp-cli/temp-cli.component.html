@@ -1,0 +1,395 @@
+<mat-horizontal-stepper #stepper [@.disabled]="true" [linear]="false" [selectedIndex]="this.selectedIndex"
+    (selectionChange)="scrollTop()">
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step3"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step4"></ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<ng-template #step1>
+    <form [formGroup]="form">
+        <div class="wrap wrap__pd">
+            <div class="form">
+                <div class="flex-between">
+                    <h1 class="title">額度資訊</h1>
+                </div>
+                <div class="step step__pt-xxs" formGroupName="info">
+                    <div class="form list align-left">
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">原始信用額度</div>
+                                <p class="fs-md">{{res?.OriginalCredit | number:'1.0-0' }} 元</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">目前可用餘額</div>
+                                <p class="fs-md">{{res?.AvailableCredit | number:'1.0-0'}}元</p>
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form__col">
+                                <p class="form__label">申請增加信用額度</p>
+                                <div class="form__data">
+                                    <input inputmode="numeric" maxlength="8" placeholder="以仟元為單位"
+                                        formControlName="credits" (ngModelChange)="Change()" oncopy="return false;"
+                                        onpaste="return false;" autocomplete="off" mask="separator"
+                                        thousandSeparator=","
+                                        oninput="this.value = this.value.replace(new RegExp('[^\\d]|^[0]','g'))">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">提高後可用餘額</div>
+                                <p class="fs-md">{{raiseAmount | number:'1.0-0'}} 元</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-lg">
+                    <h1 class="title">申請卡片</h1>
+                </div>
+                <div class="step step__pt-xxs" formArrayName="applyCard">
+                    <div class="list">
+                        <label *ngFor="let card of cards; index as idx"
+                            class="list__row check-row list__row--sp card-list card-list-radio pb-ssm">
+                            <div class="list__col">
+                                <div class="flex-left flex-nowrap">
+                                    <img class="card-img" [src]="'mma8/card/images/card-lost/'
+                                        + card.ProductCode + card.CardFace + '.png'"
+                                        onerror="this.onerror='';this.src='mma8/card/images/card-lost/default.png'">
+                                    <div class="card-list__inner">
+                                        <h4>
+                                            {{'('+card.CardTypeDesc+')'}}
+                                            {{card.Name}}
+                                        </h4>
+                                        <div class="flex-left"><img [src]="card.CardBrand | cardtype">
+                                            <p>{{card.CardNo | mask:'0000-0000-0000-0000' |
+                                                cardnumbermask:'●'}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="checkbox" value="1" [name]="card.ProductCode + card.CardFace" checked
+                                    [value]="card.CardNo" [formControlName]='idx'>
+                                <span class="right"></span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="mt-lg">
+                    <h1 class="title">申請資訊</h1>
+                </div>
+                <div class="step step__pt-xxs" formGroupName="applyInfo">
+                    <div class="form list align-left">
+                        <!-- 錯誤訊息請於下方 addClass .is-error-->
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">申請起日</div>
+                                <div class="form__data">
+                                    <p class="fs-md">{{DateStart.value | date:'yyyy/MM/dd'}}</p>
+                                    <input formControlName="dataStart" hidden>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form__col">
+                                <p class="form__label">申請迄日</p>
+                                <div class="form__data">
+                                    <input class="input-number" mask="0000/00/00" maxlength="10" placeholder="請輸入申請迄日"
+                                        formControlName="dataEnd">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form__notice">臨調結束日最長為申請日後60天，若遇國定例假日則順延至下一工作日。臨調結束後於繳款入帳前可能會因超額無法刷卡，可致電客服由專人協助處理。
+                        </div>
+                        <div class="form__row">
+                            <div class="form__col">
+                                <p class="form__label">申請原因</p>
+                                <div class="form__data">
+                                    <input type="hidden" formControlName="reason">
+                                    <button class="select-btn btn-native" (click)="openreson()">
+                                        <!-- 選擇後 addClass .selected-->
+                                        <input type="text" placeholder="請選擇原因" [value]="Reason ? Reason : ''" readonly>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form__col">
+                                <p class="form__label">申請說明</p>
+                                <div class="form__data">
+                                    <input type="text" maxlength="50" placeholder="請輸入說明" formControlName="illustrate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form__notice">{{datareason}}</div>
+                        <div class="form__row form__row--line-none pb-0">
+                            <div class="form__col">
+                                <p class="form__label">聯絡方式(僅作為審核通知使用)</p>
+                                <div class="form__data">
+                                    <label class="check-row check-row-text check-row-fl">
+                                        <p>行動電話 {{res?.ContactMobile | mobilemask:'●':6}}</p>
+                                        <input type="radio" value="Phone" formControlName="contact"><span></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form__row form__row--line-grow">
+                            <div class="form__col flex-between">
+                                <div class="form__data mr-ssm">
+                                    <label class="check-row check-row-text check-row-fl">
+                                        <p>其他</p>
+                                        <input type="radio" value="Other" formControlName="contact"><span></span>
+                                    </label>
+                                </div>
+                                <div class="form__data flex-full">
+                                    <input inputmode="numeric" type="text" maxlength="10" placeholder="請輸入"
+                                        formControlName="contactOther" [required]="contact.value === 'Other'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-group"><a class="btn btn--primary btn--w250" (click)="submit()">我要申請</a></div>
+                <div class="button-group mt-sm">
+                    <button class="btn btn--text btn--text-line" (click)="goCardManage()">取&nbsp;&nbsp;&nbsp;消</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</ng-template>
+<ng-template #step2>
+    <div class="wrap wrap__pd">
+        <h1 class="title flex-between"><span>請確認以下資訊</span></h1>
+        <div class="step step__pt--lg">
+            <div class="list-table">
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">原始信用額度</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{res?.OriginalCredit | number:'1.0-0' }}元</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">目前可用餘額</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{res?.AvailableCredit | number:'1.0-0' }}元</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">申請增加信用額度</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b fc-gold">{{AddCredits.value | number:'1.0-0' }} 元</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">提高後可用餘額</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{raiseAmount | number:'1.0-0' }}元</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">申請卡片</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b align-right" *ngFor="let card of cardList">
+                            {{'('+card.Desc+')'}}{{card.Name}} - {{card.No}}
+                        </h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">申請起日</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{DateStart.value | date:'yyy/MM/dd'}}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">申請迄日</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{dateFmt(DateEnd.value) | date:'yyyy/MM/dd'}}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">申請原因</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{Reason}}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">申請說明</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b align-right"><br>{{ApplyDes.value}}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">聯絡方式</p>
+                    </div>
+                    <div class="list-table__col list-table__col--w">
+                        <h4 class="fs-b align-right">{{eyeOpen? ShowTel : ShowTel | mobilemask:'●':6}}</h4>
+                    </div>
+                    <div class="list-table__col">
+                        <div class="form__eye icon icon--eye icon--tl" (click)="eyeOpen=!eyeOpen"
+                            [ngClass]="{'icon--eye-active': eyeOpen}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-group">
+            <button class="btn btn--primary btn--w250 btn--apply" appPreventDoubleClick
+                (throttledClick)="apply()">確定申請</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goCardManage()">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #step3>
+    <div class="wrap wrap__pd">
+        <div class="result">
+            <div class="result__icon"><img src="assets/images/img/img-success-gold.svg">
+                <h2>{{applyStatus}}</h2>
+            </div>
+            <div class="result__content" *ngIf="applyFinish">
+                <p>
+                    感謝您的申請，申請資料已送出，<br>將儘速為您處理，審核結果將另行通知。<br>如欲查詢申請進度請至(額度調整進度查詢)<br>或於營業時間聯繫本行客服專線02-25287776，謝謝。
+                </p>
+            </div>
+        </div>
+        <div class="step step__pt-xxs">
+            <div class="wrap">
+                <div class="wrap__detail">
+                    <div class="list align-left">
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">交易序號</div>
+                                <p>{{RefNo}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">原始信用額度</div>
+                                <p>{{res?.OriginalCredit | number:'1.0-0' }}元</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">目前可用餘額</div>
+                                <p>{{res?.AvailableCredit | number:'1.0-0' }}元</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">申請增加信用額度</div>
+                                <p> <span class="gold" style="font-weight: 700;">{{AddCredits.value | number:'1.0-0'
+                                        }}</span>元</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">提高後可用餘額</div>
+                                <p> <span class="gold" style="font-weight: 700;">{{raiseAmount | number:'1.0-0'
+                                        }}</span>元</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">申請卡片</div>
+                                <p *ngFor="let card of cardList">
+                                    {{'('+card.Desc+')'}}{{card.Name}} - {{card.No}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">申請起日</div>
+                                <p>{{DateStart.value | date:'yyy/MM/dd'}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">申請迄日</div>
+                                <p>{{dateFmt(DateEnd.value) | date:'yyyy/MM/dd'}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">申請原因</div>
+                                <p>{{Reason}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">申請說明</div>
+                                <p>{{ApplyDes.value}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">聯絡方式</div>
+                                <p>{{eyeOpen? ShowTel : ShowTel | mobilemask:'●':6}}</p>
+                            </div>
+                            <div class="list__col align-self-end">
+                                <div class="form__eye icon icon--eye icon--tl" (click)="eyeOpen=!eyeOpen"
+                                    [ngClass]="{'icon--eye-active': eyeOpen}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="button-group">
+                <button class="btn btn--primary btn--w250" (click)="exit()">確&nbsp;&nbsp;&nbsp;定</button>
+            </div>
+            <div class="button-group mt-sm">
+                <button class="btn btn--text btn--text-line" routerLink="/Transaction/TempCLIStatus">申請進度查詢</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #step4>
+    <div class="wrap wrap__pd">
+        <div class="result">
+            <div class="result__icon"><img src="assets/images/img/img-fail.svg">
+                <h2 class="fail">{{applyStatus}}</h2>
+            </div>
+        </div>
+        <div class="result__content" style="text-align: center;">
+            <p>請致電本行客服專線 02-25287776<br>由客服人員協助您處理</p>
+            <p style="text-align:center">【錯誤代碼:{{failCode}}】</p>
+        </div>
+        <div>
+            <div class="button-group">
+                <button class="btn btn--primary btn--w250" (click)="callCustomerServer()">聯繫客服</button>
+            </div>
+            <div class="button-group mt-sm">
+                <button class="btn btn--text btn--text-line" (click)="goCardManage()">回帳務明細</button>
+            </div>
+        </div>
+    </div>
+</ng-template>

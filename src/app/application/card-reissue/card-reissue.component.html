@@ -1,0 +1,527 @@
+<mat-horizontal-stepper #stepper [@.disabled]="true" [linear]="false" [selectedIndex]="this.selectedIndex"
+    (selectionChange)="scrollTop()">
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step3"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step4"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step5"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step6"></ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<ng-template #step1>
+    <!--OTP驗證-->
+    <div class="wrap wrap__pd">
+        <form [formGroup]="otpForm">
+            <div class="step">
+                <div class="step__title">
+                    <h3>請輸入您的手機驗證碼</h3>
+                    <p>已發送簡訊驗證碼至 {{ mobile | mobilemask:'●' }}</p>
+                </div>
+                <div class="form">
+                    <div class="form__row">
+                        <div class="form__col">
+                            <div class="form__data">
+                                <input class="captcha-otp" type="tel" name="captcha" maxlength="6"
+                                    autocomplete="one-time-code" oncopy="return false;" onpaste="return false;"
+                                    formControlName="captcha" mask="000000" inputmode="numeric" numberOnly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-danger" *ngIf="captcha.touched && captcha?.errors?.pattern">*請輸入6位數字驗證碼。</div>
+                <div class="text-danger" *ngIf="captcha.touched && captcha?.errors?.required">*請輸入驗證碼。</div>
+                <div class="captcha-time">
+                    <div class="flex-between">
+                        <p>剩餘時間：<span>{{countdown}}</span>秒</p>
+                        <button>
+                            <p class="icon icon--tl icon--refresh" (click)="generateOTP(true)">重發驗證碼</p>
+                        </button>
+                    </div>
+                    <button *ngIf="countdown == 0" class="error" (click)="generateOTP(true)">驗證碼已失效，重新發送驗證碼</button>
+                </div>
+            </div>
+            <div class="button-group"><a class="btn btn--primary btn--w250" href="javascript:void(0)"
+                    appPreventDoubleClick (throttledClick)="OTPSubmit()">確&nbsp;&nbsp;&nbsp;定</a></div>
+        </form>
+    </div>
+</ng-template>
+<ng-template #step2>
+    <!--掛失、毀損補發 填寫頁面-->
+    <div class="container">
+        <div class="wrap bg-gradient bg-gradient-sm">
+            <div class="card-list-single pb-lg">
+                <h4>{{displayCardName}}</h4>
+                <img class="mt-md" [src]="displayCardImgUrl" (error)="onImgError($event)">
+            </div>
+        </div>
+        <div class="wrap wrap__pd pb-0">
+            <ng-container *ngIf="isLoss ;else Damag">
+                <ng-container *ngIf="primaryCardItem.length !==0">
+                    <h1 class="title">正卡 </h1>
+                    <div class="step pb-ssm pt-sm" *ngFor="let item of primaryCardItem;let itemIndex=index">
+                        <div class="wrap">
+                            <div class="wrap__detail">
+                                <div class="list align-left">
+                                    <label class="check-row list__row list__row--line-none pt-0 list__row--sp">
+                                        <div class="list__col">
+                                            <div class="inline-block-group icon icon--tl icon--alone--md"
+                                                [ngClass]="addCardBrandclass(item.CardBrand)">
+                                                <p>{{item?.CardNo | mask:'0000-0000-0000-0000' | cardnumbermask:'●'}}
+                                                </p>
+                                            </div>
+                                            <div class="list__label mb-0 mt-xs">{{item?.CardHolderName}}</div>
+                                            <input type="checkbox" name="agree" disabled value="{{itemIndex}}"
+                                                [checked]="primarySelectedCards[itemIndex]"
+                                                (change)="changeSelectCardItems(itemIndex,item.CardTypeCode)"><span
+                                                class="right"></span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="this.additionalCardItem.length !==0">
+                    <h1 class="title">附卡</h1>
+                    <div class="step pb-ssm pt-sm" *ngFor="let item of additionalCardItem;let itemIndex=index">
+                        <div class="wrap">
+                            <div class="wrap__detail">
+                                <div class="list align-left">
+                                    <label class="check-row list__row list__row--line-none pt-0 list__row--sp">
+                                        <div class="list__col">
+                                            <div class="inline-block-group icon icon--tl icon--alone--md"
+                                                [ngClass]="addCardBrandclass(item.CardBrand)">
+                                                <p>{{item?.CardNo | mask:'0000-0000-0000-0000' | cardnumbermask:'●'}}
+                                                </p>
+                                            </div>
+                                            <div class="list__label mb-0 mt-xs">{{item?.CardHolderName}}</div>
+                                            <input type="checkbox" name="agree" value="{{itemIndex}}"
+                                                [checked]="additionalSelectedCards[itemIndex]"
+                                                (change)="changeSelectCardItems(itemIndex,item.CardTypeCode)"><span
+                                                class="right"></span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+            <ng-template #Damag>
+                <h1 class="title">補發原因</h1>
+                <div class="step step__pt-xxs">
+                    <div class="form" [formGroup]="damageForm">
+                        <!-- 錯誤訊息請於下方 addClass .is-error-->
+                        <div class="form__row">
+                            <div class="form__col">
+                                <p class="form__label">請選擇補發原因</p>
+                                <div class="form__data">
+                                    <input type="hidden" formControlName="reason">
+                                    <button class="select-btn btn-native" (click)="openDamageReason()">
+                                        <!-- 選擇後 addClass .selected--><span class="selected">{{damageReason}}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-container *ngIf="this.addressFlag">
+                <div class="flex-between">
+                    <h1 class="title">卡片寄送地址</h1>
+                    <div class="icon icon--eye-white icon--tl icon--text icon--text-w"
+                        [ngClass]="{'icon--eye-white-active':!hideInfo}" (click)="hideInfo=!hideInfo"><span
+                            class="inline-block">顯示內容</span></div>
+                </div>
+                <form [formGroup]="addressForm">
+                    <div class="step pb-ssm pt-sm" *ngIf="homeAddress && homeAddress !== ''">
+                        <div class="wrap">
+                            <div class="wrap__detail">
+                                <div class="list align-left">
+                                    <label class="check-row list__row list__row--line-none pt-0 list__row--sp">
+                                        <div class="list__col">
+                                            <div class="inline-block">
+                                                <h4 class="fw-b">現居地址</h4>
+                                            </div>
+                                            <div class="list__label list__label--address mb-0 mt-xs">
+                                                {{hideInfo?(homeAddress | addressmask):homeAddress}}</div>
+                                            <input type="radio" formControlName="address" value="1"
+                                                (click)="updateSelectedAddr(homeAddress)"><span class="right"></span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step pb-ssm pt-sm" *ngIf="companyAddr && companyAddr !== ''">
+                        <div class="wrap">
+                            <div class="wrap__detail">
+                                <div class="list align-left">
+                                    <label class="check-row list__row list__row--line-none pt-0 list__row--sp">
+                                        <div class="list__col">
+                                            <div class="inline-block">
+                                                <h4 class="fw-b">公司地址</h4>
+                                            </div>
+                                            <div class="list__label list__label--address mb-0 mt-xs">
+                                                {{hideInfo?(companyAddr | addressmask):companyAddr}}</div>
+                                            <input type="radio" formControlName="address" value="2"
+                                                (click)="updateSelectedAddr(companyAddr)"><span class="right"></span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step pb-ssm pt-sm" *ngIf="residentAddr && residentAddr !== ''">
+                        <div class="wrap">
+                            <div class="wrap__detail">
+                                <div class="list align-left">
+                                    <label class="check-row list__row list__row--line-none pt-0 list__row--sp">
+                                        <div class="list__col">
+                                            <div class="inline-block">
+                                                <h4 class="fw-b">戶籍地址</h4>
+                                            </div>
+                                            <div class="list__label list__label--address mb-0 mt-xs">
+                                                {{hideInfo?(residentAddr | addressmask):residentAddr}}</div>
+                                            <input type="radio" formControlName="address" value="3"
+                                                (click)="updateSelectedAddr(residentAddr)"><span class="right"></span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </ng-container>
+            <div class="notice" *ngIf="productCode === '273' && cardFace === '088'">
+                <p class="fw-b gold">注意事項：永傳世界卡正卡為限量發行之「金屬卡面」，製卡工本費每卡NT$3,000，但繳交全額年費之正卡持卡人，則享首次製卡免收費用；如因汙損、消磁、刮傷、遺失或其他原因而須換發新卡者，永豐銀行得收取上述製卡工本費。</p>
+            </div>
+            <div class="button-group"><button class="btn btn--primary btn--w250"
+                    [disabled]="this.addressForm.get('address').value === ''" (click)="submit()">下一步</button></div>
+            <div class="button-group mt-sm">
+                <button class="btn btn--text btn--text-line" (click)="backToLast()">取&nbsp;&nbsp;&nbsp;消</button>
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+</ng-template>
+<ng-template #step3>
+    <!--掛失、毀損補發 確認頁面-->
+    <div class="container">
+        <div class="wrap bg-gradient bg-gradient-sm">
+            <div class="card-list-single pb-lg">
+                <h4>{{displayCardName}}</h4><img class="mt-md" [src]="displayCardImgUrl" (error)="onImgError($event)">
+            </div>
+        </div>
+        <div class="wrap wrap__pd pb-0">
+            <div class="flex-between">
+                <h1 class="title">補發資訊</h1>
+                <div class="icon icon--eye-white icon--tl icon--text icon--text-w"
+                    [ngClass]="{'icon--eye-white-active':!hideInfo}" (click)="hideInfo=!hideInfo"><span
+                        class="inline-block">顯示內容</span></div>
+            </div>
+            <div class="step step__pt-xxs">
+                <div class="wrap">
+                    <div class="wrap__detail">
+                        <div class="list align-left">
+                            <div class="list__row">
+                                <div class="list__col">
+                                    <p class="list__label">申請日期</p>
+                                    <p>{{displayDate | date:'YYYY/MM/dd'}}</p>
+                                </div>
+                            </div>
+                            <div class="list__row" *ngIf="!isLoss">
+                                <div class="list__col">
+                                    <p class="list__label">補發原因</p>
+                                    <p>{{damageReason}}</p>
+                                </div>
+                            </div>
+                            <div class="list__row" *ngIf="this.addressFlag">
+                                <div class="list__col">
+                                    <p class="list__label">卡片寄送地址</p>
+                                    <p>{{hideInfo?(confirmAddr | addressmask):confirmAddr}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-container *ngIf="isLoss">
+                <ng-container *ngIf="selectPrimaryCardItem.length !==0">
+                    <h1 class="title">正卡 </h1>
+                    <div class="step pb-ssm pt-sm" *ngFor="let item of selectPrimaryCardItem">
+                        <div class="wrap">
+                            <div class="wrap__detail">
+                                <div class="list align-left">
+                                    <label class="check-row list__row list__row--line-none pt-0 list__row--sp">
+                                        <div class="list__col">
+                                            <div class="inline-block-group icon icon--tl icon--alone--md"
+                                                [ngClass]="addCardBrandclass(item.CardBrand)">
+                                                <p>{{item?.CardNo | mask:'0000-0000-0000-0000' | cardnumbermask:'●'}}
+                                                </p>
+                                            </div>
+                                            <div class="list__label mb-0 mt-xs">{{item?.CardHolderName}}</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="this.selectAdditionalCardItem.length !== 0">
+                    <h1 class="title">附卡</h1>
+                    <div class="step pb-ssm pt-sm" *ngFor="let item of selectAdditionalCardItem">
+                        <div class="wrap">
+                            <div class="wrap__detail">
+                                <div class="list align-left">
+                                    <label class="check-row list__row list__row--line-none pt-0 list__row--sp">
+                                        <div class="list__col">
+                                            <div class="inline-block-group icon icon--tl icon--alone--md"
+                                                [ngClass]="addCardBrandclass(item.CardBrand)">
+                                                <p>{{item?.CardNo | mask:'0000-0000-0000-0000' | cardnumbermask:'●'}}
+                                                </p>
+                                            </div>
+                                            <div class="list__label mb-0 mt-xs">{{item?.CardHolderName}}</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+            <div class="button-group"><a class="btn btn--primary btn--w250" appPreventDoubleClick
+                    (throttledClick)="ApplyCardReissue()">確&nbsp;&nbsp;&nbsp;定</a></div>
+            <div class="button-group mt-sm">
+                <button class="btn btn--text btn--text-line" (click)="backToLast()">取&nbsp;&nbsp;&nbsp;消</button>
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+</ng-template>
+<ng-template #step4>
+    <!--掛失、毀損補發 成功頁面-->
+    <div class="container">
+        <div class="wrap wrap__pd">
+            <div class="result">
+                <div class="result__icon"><img src="assets/images/img/img-success-gold.svg">
+                    <h2>補發成功</h2>
+                </div>
+            </div>
+            <div class="flex-between mt-lg">
+                <h1 class="title">補發資訊</h1>
+                <div class="icon icon--eye-white icon--tl icon--text icon--text-w"
+                    [ngClass]="{'icon--eye-white-active':!hideInfo}" (click)="hideInfo=!hideInfo"><span
+                        class="inline-block">顯示內容</span></div>
+            </div>
+            <div class="step step__pt-xxs">
+                <div class="wrap">
+                    <div class="wrap__detail">
+                        <div class="list align-left">
+                            <div class="list__row">
+                                <div class="list__col">
+                                    <p class="list__label">申請日期</p>
+                                    <p>{{successDateTime | date:'YYYY/MM/dd HH:mm:ss'}}</p>
+                                </div>
+                            </div>
+                            <div class="list__row list__row--sp">
+                                <div class="list__col">
+                                    <p class="list__label">補發卡別</p>
+                                    <div class="inline-block-group flex-center icon--tl icon--alone--md"
+                                        [ngClass]="addCardBrandclass(displayCardBrand)">
+                                        <p>{{displayCardName}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list__row" *ngIf="this.addressFlag">
+                                <div class="list__col">
+                                    <p class="list__label">卡片寄送地址</p>
+                                    <p>{{hideInfo?(displayAddressRs | addressmask):displayAddressRs}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-container *ngIf="isLoss">
+                <ng-container *ngIf="selectPrimaryCardItem.length !==0">
+                    <h1 class="title">正卡 </h1>
+                    <div class="step pb-ssm pt-sm" *ngFor="let item of selectPrimaryCardItem">
+                        <div class="wrap">
+                            <div class="wrap__detail">
+                                <div class="list align-left">
+                                    <label class="check-row list__row list__row--line-none pt-0 list__row--sp">
+                                        <div class="list__col">
+                                            <div class="inline-block-group icon icon--tl icon--alone--md"
+                                                [ngClass]="addCardBrandclass(item.CardBrand)">
+                                                <p>{{item?.CardNo | mask:'0000-0000-0000-0000' | cardnumbermask:'●'}}
+                                                </p>
+                                            </div>
+                                            <div class="list__label mb-0 mt-xs">{{item?.CardHolderName}}</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="this.selectAdditionalCardItem.length !==0">
+                    <h1 class="title">附卡</h1>
+                    <div class="step pb-ssm pt-sm" *ngFor="let item of selectAdditionalCardItem">
+                        <div class="wrap">
+                            <div class="wrap__detail">
+                                <div class="list align-left">
+                                    <label class="check-row list__row list__row--line-none pt-0 list__row--sp">
+                                        <div class="list__col">
+                                            <div class="inline-block-group icon icon--tl icon--alone--md"
+                                                [ngClass]="addCardBrandclass(item.CardBrand)">
+                                                <p>{{item?.CardNo | mask:'0000-0000-0000-0000' | cardnumbermask:'●'}}
+                                                </p>
+                                            </div>
+                                            <div class="list__label mb-0 mt-xs">{{item?.CardHolderName}}</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+            <div class="button-group">
+                <button class="btn btn--primary btn--w250" (click)="backToLast()">回信用卡頁</button>
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+</ng-template>
+<ng-template #step5>
+    <!--失敗頁面-->
+    <div class="container">
+        <div class="wrap wrap__pd">
+            <div class="result">
+                <div class="result__icon"><img src="assets/images/img/img-fail.svg">
+                    <h2 class="fail">補發失敗</h2>
+                </div>
+                <div class="result__content">
+                    <p>您的補發作業失敗，<br>請致電本行客服專線02 -25287776<br>由客服人員協助您處理</p>
+                </div>
+            </div>
+            <div class="button-group mt-lg-4">
+                <button class="btn btn--primary btn--w250" (click)="callCustomerServer()">聯繫客服</button>
+            </div>
+            <div class="button-group mt-sm">
+                <button class="btn btn--text btn--text-line" (click)="backToLast()">回信用卡頁</button>
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+</ng-template>
+<ng-template #step6>
+    <div class="wrap wrap__pd">
+        <div class="result" [ngStyle]="{'display':!AllFailStatus?'block':'none'}">
+            <div class="result__icon"><img src="assets/images/img/img-fail.svg">
+            </div>
+            <div class="result__content">
+                <h1 class="title"><span class="remark-gold">您的補發作業部分失敗，請致電本行<br>客服專線02 -25287776，由客服人<br>員協助您處理。</span>
+                </h1>
+            </div>
+        </div>
+        <div class="flex-between mt-lg">
+            <h1 class="title">補發資訊</h1>
+            <div class="icon icon--eye-white icon--tl icon--text icon--text-w"
+                [ngClass]="{'icon--eye-white-active':!hideInfo}" (click)="hideInfo=!hideInfo"><span
+                    class="inline-block">顯示內容</span></div>
+        </div>
+        <div class="step step__pt-xxs">
+            <div class="wrap">
+                <div class="wrap__detail">
+                    <div class="list align-left">
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">申請日期</p>
+                                <p>{{successDateTime | date:'YYYY/MM/dd HH:mm:ss'}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row list__row--sp">
+                            <div class="list__col">
+                                <p class="list__label">補發卡別</p>
+                                <div
+                                    class="inline-block-group flex-center icon--tl icon--alone--md {{addCardBrandclass(displayCardBrand)}}">
+                                    <p>{{displayCardName}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list__row" *ngIf="this.addressFlag">
+                            <div class="list__col">
+                                <p class="list__label">卡片寄送地址</p>
+                                <p>{{hideInfo?(displayAddressRs | addressmask):displayAddressRs}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-container *ngIf="primaryCardResult.length !==0">
+            <h1 class="title">正卡 </h1>
+            <div class="step pb-ssm pt-sm" *ngFor="let item of primaryCardResult">
+                <div class="wrap">
+                    <div class="list align-left">
+                        <div class="list__row list__row--line-none pt-0 list__row--sp">
+                            <div class="list__col">
+                                <div class="inline-block-group icon icon--tl icon--alone--md"
+                                    [ngClass]="addCardBrandclass(item.CardBrand)">
+                                    <p>{{item?.CardNo | mask:'0000-0000-0000-0000' | cardnumbermask:'●'}}</p>
+                                </div>
+                                <div class="list__label mb-0 mt-xs">{{item.CardHolderName}}</div>
+                            </div>
+                            <div class="list__col">
+                                <div class="icon icon--tl"
+                                    [ngClass]="item?.IsSuccess?'icon--success-green':'icon--fail-gray'"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="this.additionalCardResult.length !==0">
+            <h1 class="title">附卡</h1>
+            <div class="step pb-ssm pt-sm" *ngFor="let item of additionalCardResult">
+                <div class="wrap">
+                    <div class="list align-left">
+                        <div class="list__row list__row--line-none pt-0 list__row--sp">
+                            <div class="list__col">
+                                <div class="inline-block-group icon icon--tl icon--alone--md"
+                                    [ngClass]="addCardBrandclass(item.CardBrand)">
+                                    <p>{{item?.CardNo | mask:'0000-0000-0000-0000' | cardnumbermask:'●'}}</p>
+                                </div>
+                                <div class="list__label mb-0 mt-xs">{{item.CardHolderName}}</div>
+                            </div>
+                            <div class="list__col">
+                                <div class="icon icon--tl"
+                                    [ngClass]="item?.IsSuccess?'icon--success-green':'icon--fail-gray'"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div class="button-group">
+        <button class="btn btn--primary btn--w250" (click)="callCustomerServer()">聯繫客服</button>
+    </div>
+    <div class="button-group mt-sm">
+        <button class="btn btn--text btn--text-line" (click)="backToLast()">回信用卡頁</button>
+    </div>
+</ng-template>

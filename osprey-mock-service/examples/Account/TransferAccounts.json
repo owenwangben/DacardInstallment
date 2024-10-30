@@ -1,0 +1,25 @@
+{
+    "Header": {
+        "ReferenceNo": "",
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "ClientIP": "",
+        "SessionID": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Items": [
+            {
+                "AccountNo": "00100460185231",
+                "AccountName": "一般活期儲蓄存款"
+            },
+            {
+                "AccountNo": "20100460185231",
+                "AccountName": "外幣組合存款"
+            }
+        ]
+    }
+}

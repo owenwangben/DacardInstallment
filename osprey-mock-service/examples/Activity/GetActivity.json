@@ -1,0 +1,69 @@
+{
+    "Header": {
+      "ReferenceNo": "6f613b5cd3214c4e94ecaf440b5f71dc",
+      "RequestTime": "2024-07-10T14:02:38.9735908+08:00",
+      "ResponseTime": "2024-07-10T14:02:39.0308176+08:00",
+      "ApplicationName": "DACARD",
+      "SessionID": "SinopacCawhoDevice",
+      "ClientIP": "10.11.33.34",
+      "ClientRefNo": "eb3f2f9dc2484db584baa9d8fa7eb72e",
+      "ClientTimestamp": "2024-07-10T06:02:37.681Z",
+      "UserAgent": "sinopac://CaWhoPay?appVer=appVer&osType=Web&osVerName=osVerName&osVer=12&manufacturer=manufacturer&model=model"
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+      "Items": [
+        {
+          "Title": "每日活動登錄測試一_6/12紅點提示",
+          "Code": "X610",
+          "RegisterBeginTime": "2024-06-12T10:00:00",
+          "RegisterEndTime": "2024-12-31T23:59:00",
+          "SignUrl": "https://bank.sinopac.com/sinopacBT/personal/credit-card/discount/024470972.html"
+        },
+        {
+          "Title": "每日活動登錄測試二_6/12排序",
+          "Code": "X611",
+          "RegisterBeginTime": "2024-06-12T15:00:00",
+          "RegisterEndTime": "2024-12-31T23:59:00",
+          "SignUrl": "https://bank.sinopac.com/sinopacBT/personal/credit-card/discount/814407078.html"
+        },
+        {
+          "Title": "每日活動登錄測試三_不於6/8顯示紅點",
+          "Code": "X612",
+          "RegisterBeginTime": "2024-06-08T10:00:00",
+          "RegisterEndTime": "2024-12-31T23:59:00",
+          "SignUrl": "https://bank.sinopac.com/sinopacBT/personal/credit-card/discount/953559172.html"
+        },
+        {
+          "Title": "每日活動登錄測試四",
+          "Code": "X613",
+          "RegisterBeginTime": "2024-06-01T00:00:00",
+          "RegisterEndTime": "2024-12-31T23:59:00",
+          "SignUrl": "https://bank.sinopac.com/sinopacBT/personal/credit-card/discount/654249345.html"
+        },
+        {
+          "Title": "每日活動登錄測試五",
+          "Code": "X614",
+          "RegisterBeginTime": "2024-06-01T00:00:00",
+          "RegisterEndTime": "2024-12-31T23:59:00",
+          "SignUrl": "https://bank.sinopac.com/sinopacBT/personal/credit-card/discount/024470972.html"
+        },
+        {
+          "Title": "每日活動登錄測試六",
+          "Code": "X615",
+          "RegisterBeginTime": "2024-06-01T00:00:00",
+          "RegisterEndTime": "2024-12-31T23:59:00",
+          "SignUrl": "https://bank.sinopac.com/sinopacBT/personal/credit-card/discount/814407078.html"
+        },
+        {
+          "Title": "新網銀測試_名額限1人",
+          "Code": "X999",
+          "RegisterBeginTime": "2024-06-01T00:00:00",
+          "RegisterEndTime": "2024-12-31T23:59:00"
+        }
+      ]
+    },
+    "Original": {},
+    "Success": true
+  }

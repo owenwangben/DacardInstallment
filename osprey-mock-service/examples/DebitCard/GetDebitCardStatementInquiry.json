@@ -1,0 +1,172 @@
+{
+    "Header": {
+        "RequestTime": "2023-05-24T10:11:49.6486462+08:00",
+        "ResponseTime": "2023-05-24T10:11:49.7896457+08:00",
+        "ApplicationName": "DACARD",
+        "SessionID": "SinopacCawhoDevice",
+        "ClientIP": "10.11.33.34",
+        "ClientRefNo": "e16a2c7eb4c44721a0e35fe8585c4b04",
+        "ClientTimestamp": "2023-05-24T02:11:49.069Z",
+        "UserAgent": "sinopac://CaWhoPay?appVer=appVer&osType=Web&osVerName=osVerName&osVer=12&manufacturer=manufacturer&model=model"
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Cards": [
+            {
+                "CardName": "預製現金回饋Debit卡(多幣)",
+                "CardLast4": "8201",
+                "CardIdx": "8201",
+                "Count": 2,
+                "SubTotalAmt": "230.00"
+            },
+            {
+                "CardName": "其他卡片",
+                "CardLast4": "----",
+                "CardIdx": "OTHERS",
+                "Count": 1,
+                "SubTotalAmt": "0.00"
+            },
+            {
+                "CardName": "預製現金回饋Debit卡(多幣)",
+                "CardLast4": "8201",
+                "CardIdx": "8201",
+                "Count": 2,
+                "SubTotalAmt": "2,110.00"
+            },
+            {
+                "CardName": "其他卡片",
+                "CardLast4": "----",
+                "CardIdx": "OTHERS",
+                "Count": 1,
+                "SubTotalAmt": "0.00"
+            }
+        ],
+        "Items": [
+            {
+                "TXDATE": "20230509",
+                "DEDATE": "20230512",
+                "CARDNO": "8201",
+                "CARDNAME": "預製現金回饋Debit卡(多幣)",
+                "CardIdx": "8201",
+                "ACCOUNT": "10900800555935",
+                "MEMO": "卡號 4 －美金－直接扣款 0512            ",
+                "AMT": "125.00",
+                "CURDATE": "20230509",
+                "TXAMT": "USD 125.00",
+                "NOT_DE_AMT": "",
+                "CurrencyCode": "840",
+                "CurrencyCName": "美元",
+                "CurrencyEName": "USD",
+                "CountryCode": "USA"
+            },
+            {
+                "TXDATE": "20230509",
+                "DEDATE": "20230512",
+                "CARDNO": "8201",
+                "CARDNAME": "預製現金回饋Debit卡(多幣)",
+                "CardIdx": "8201",
+                "ACCOUNT": "10900800555935",
+                "MEMO": "卡號 4 －美金－解圈扣款 0512            ",
+                "AMT": "105.00",
+                "CURDATE": "20230509",
+                "TXAMT": "USD 105.00",
+                "NOT_DE_AMT": "",
+                "CurrencyCode": "840",
+                "CurrencyCName": "美元",
+                "CurrencyEName": "USD",
+                "CountryCode": "USA"
+            },
+            {
+                "TXDATE": "        ",
+                "DEDATE": "        ",
+                "CARDNO": "    ",
+                "CARDNAME": "",
+                "CardIdx": "OTHERS",
+                "ACCOUNT": "10900800555935",
+                "MEMO": "存款帳號109*****5935  本期未扣款金額    ",
+                "AMT": "0.00",
+                "CURDATE": "        ",
+                "TXAMT": "    ",
+                "NOT_DE_AMT": "",
+                "CurrencyCode": "840",
+                "CurrencyCName": "美元",
+                "CurrencyEName": "USD",
+                "CountryCode": "   "
+            },
+            {
+                "TXDATE": "20230509",
+                "DEDATE": "20230512",
+                "CARDNO": "8201",
+                "CARDNAME": "預製現金回饋Debit卡(多幣)",
+                "CardIdx": "8201",
+                "ACCOUNT": "10900800555935",
+                "MEMO": "卡號 4 －日幣－直接扣款 0512            ",
+                "AMT": "1,105.00",
+                "CURDATE": "20230509",
+                "TXAMT": "JPY 1,105.00",
+                "NOT_DE_AMT": "",
+                "CurrencyCode": "392",
+                "CurrencyCName": "日圓",
+                "CurrencyEName": "JPY",
+                "CountryCode": "JPN"
+            },
+            {
+                "TXDATE": "20230509",
+                "DEDATE": "20230512",
+                "CARDNO": "8201",
+                "CARDNAME": "預製現金回饋Debit卡(多幣)",
+                "CardIdx": "8201",
+                "ACCOUNT": "10900800555935",
+                "MEMO": "卡號 4 －日幣－解圈扣款 0512            ",
+                "AMT": "1,005.00",
+                "CURDATE": "20230509",
+                "TXAMT": "JPY 1,005.00",
+                "NOT_DE_AMT": "",
+                "CurrencyCode": "392",
+                "CurrencyCName": "臺幣",
+                "CurrencyEName": "TWD",
+                "CountryCode": "JPN"
+            },
+            {
+                "TXDATE": "        ",
+                "DEDATE": "20230512",
+                "CARDNO": "    ",
+                "CARDNAME": "",
+                "CardIdx": "OTHERS",
+                "ACCOUNT": "10900800555935",
+                "MEMO": "存款帳號109*****5935  本期未扣款金額    ",
+                "AMT": "0.00",
+                "CURDATE": "        ",
+                "TXAMT": "    ",
+                "NOT_DE_AMT": "",
+                "CurrencyCode": "392",
+                "CurrencyCName": "日圓",
+                "CurrencyEName": "JPY",
+                "CountryCode": "   "
+            },
+            {
+                "TXDATE": "        ",
+                "DEDATE": "20230512",
+                "CARDNO": "    ",
+                "CARDNAME": "",
+                "CardIdx": "OTHERS",
+                "ACCOUNT": "10900800555935",
+                "MEMO": "存款帳號109*****5935  本期未扣款金額    ",
+                "AMT": "2467.00",
+                "CURDATE": "        ",
+                "TXAMT": "    ",
+                "NOT_DE_AMT": "",
+                "CurrencyCode": "901",
+                "CurrencyCName": "台幣",
+                "CurrencyEName": "TWD",
+                "CountryCode": "   "
+            }
+        ]
+    },
+    "Original": {
+        "ID": "S155476318",
+        "QueryMonth": "202305"
+    },
+    "Success": true
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>DACARD - 永豐銀行</title>
+    <meta name="title" content="DACARD - 永豐銀行">
+    <meta name="description" content="">
+    <meta property="og:title" content="DACARD - 永豐銀行">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="author" content="永豐銀行">
+    <meta name="copyright" content="永豐銀行">
+    <meta property="og:site_name" content="DACARD - 永豐銀行">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="">
+    <link rel="apple-touch-icon" href="">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+  </head>
+  <body class="cash_advance_2">
+    <main class="container">
+      <div class="wrap wrap__pd">
+        <div class="flex-between">
+          <h1 class="title">請確認以下資訊</h1>
+        </div>
+        <div class="step step__pt--lg">
+          <div class="list-table">
+            <div class="list-table__row"> 
+              <div class="list-table__col">
+                <p class="fs-b">申請卡片</p>
+              </div>
+              <div class="list-table__col">
+                <h4 class="fs-b align-right">永豐 幣倍卡 <br>1234-56●●●●●●-7890</h4>
+              </div>
+            </div>
+            <div class="list-table__row"> 
+              <div class="list-table__col">
+                <p class="fs-b">有效期限</p>
+              </div>
+              <div class="list-table__col">
+                <h4 class="fs-b">03/26</h4>
+              </div>
+            </div>
+            <div class="list-table__row"> 
+              <div class="list-table__col">
+                <p class="fs-b">借款金額</p>
+              </div>
+              <div class="list-table__col">
+                <h4 class="fs-b fc-gold">50,000 元</h4>
+              </div>
+            </div>
+            <div class="list-table__row"> 
+              <div class="list-table__col">
+                <p class="fs-b">轉入帳號</p>
+              </div>
+              <div class="list-table__col">
+                <h4 class="fs-b align-right"> 008華南銀行 4801123456789</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="step step__pt-xxs">
+          <form>
+            <div class="form">
+              <div class="form__row">
+                <div class="form__col">
+                  <p class="form__label">預借現金密碼</p>
+                  <div class="form__data">
+                    <input type="tel" name="credit-number" pattern="d*" maxlength="4" placeholder="請輸入4位數預借現金密碼">
+                    <!-- 開眼請 addClass .icon--eye-active-->
+                    <div class="form__icon icon icon--eye icon--tl"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form__error">格式不正確</div>
+            </div>
+          </form>
+        </div>
+        <div class="button-group">
+          <button class="btn btn--primary btn--w250">我要申請</button>
+        </div>
+        <div class="button-group mt-sm">
+          <button class="btn btn--text btn--text-line">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+      </div>
+      <footer></footer>
+    </main>
+    <script src="../../assets/js/source/jquery-3.3.1.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/jquery.payment.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/slick.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/sortable.min.securejs" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){
+        // input 須為 number
+        $(".input-number").on("keypress", function (e) {
+          const keyCode = e.which ? e.which : e.keyCode
+          if (!(keyCode >= 48 && keyCode <= 57)) {
+            return false;
+          }
+        });
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+{
+	"Header": {
+		"RequestTime": "2021-07-31T21:39:12.5306959+08:00",
+		"ResponseTime": "2021-07-31T21:39:12.6581669+08:00",
+		"ApplicationName": "SinoPac.Cawho.Web",
+		"SessionID": "becdddc0-cbb6-5ce7-0c53-e31074df2faf",
+		"ClientIP": "127.0.0.1",
+		"UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36"
+	},
+	"ResultCode": "00",
+	"ResultMessage": "",
+	"Result": {
+		"NewToken": "eyJhbGciOiJBMjU2R0NNS1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIiwiaXYiOiJISlBOMHY2aUptcGN6RWZHIiwidGFnIjoiQTdZeVdwbFlmakNfMjByaXFNWUZEUSIsInppcCI6IkRFRiJ9.ABD_iOdRDzU6ZwpNit7SJKX0vmUBsEv7xoj8hQZTIaGWVmATMIF_VJEYIe_KFLzkklBZ3OA-vxMEqL1tCTWLfg.NhmeRMvRjcG6Y4cDLUzThQ.STpsc4AzKl2PkUljB_Ib2EM-pOl75YI_dQ9i2oAkjVb9DN-UNmUOuVARqMhve5aQKif4ogP4hzvm7BPORJSLD8qNuRTG4GbuzZW6jjYSz7KnFNb-PMAxdzKmvMV28FC2qBHVc-7wdCr61nqwhwNTEN7oWLee2z14nSKdMSBrqAE.mBBX6HhcS0rieoMzc7AzTcxg19ZLsv90i9SL3b_NRIE",
+		"TokenExpiredAt": "2021-07-31T22:39:12.5310147+08:00",
+        "CustomerId": "A123456789"
+	},
+	"Original": {
+		"AppToken": "A123456789"
+	},
+	"Success": true
+}

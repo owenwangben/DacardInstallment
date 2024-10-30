@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>DACARD - 永豐銀行</title>
+    <meta name="title" content="DACARD - 永豐銀行">
+    <meta name="description" content="">
+    <meta property="og:title" content="DACARD - 永豐銀行">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="author" content="永豐銀行">
+    <meta name="copyright" content="永豐銀行">
+    <meta property="og:site_name" content="DACARD - 永豐銀行">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="">
+    <link rel="apple-touch-icon" href="">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/main_all.css">
+  </head>
+  <body class="Unauth_SelfTxnConf_Popup">
+    <main class="container">
+      <div class="wrap"></div>
+      <div class="lightbox show" id="QuotaNotes">
+        <div class="lightbox__back"></div>
+        <div class="lightbox__outer">
+          <div class="lightbox__inner lightbox--iframe">
+            <div class="iframe-box iframe-box--sm">
+              <h4 class="mb-ssm">
+                 開放刷卡注意事項</h4>
+              <div class="content_outer">
+                <div class="content_inner">
+                  <ul class="decimal">
+                    <li>開放刷卡可於3分鐘後即可重新交易。</li>
+                    <li>開放時間為操作開放日+1日，例：6/4操作開放刷卡，即開放到6/5 24:00為止。</li>
+                    <li>開放後務必保管卡片及卡號，以免造成損失。</li>
+                    <li>開放刷卡後亦可能受其餘原因導致刷卡無法成功，如商店系統連線問題﹅磁條晶片磨損﹅人為操作錯誤﹅額度不足等諸多原因。</li>
+                    <li>信用卡僅為代支付工具，無法100%保證每筆交易皆刷卡成功，惟本行保有交易授權准駁與否權利，若有其餘刷卡問題可致電客服中心查詢。</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <hr class="gray mt-sm">
+            <div class="form__check mt-sm">
+              <div class="form__notice form__notice-left">請先閱讀完畢再進行勾選</div>
+              <div class="form__check__item">
+                <label class="check-row disable">本人已詳閱【開放刷卡注意事項】並充分了解且同意遵守全部內容。
+                  <input type="checkbox" name="agree" disabled><span></span>
+                </label>
+              </div>
+            </div>
+            <div class="button-group mb-md mt-md">
+              <button class="btn btn--primary btn--w250 btn--check" disabled>確&nbsp;&nbsp;&nbsp;定</button>
+            </div>
+            <div class="button-group mt-0 mb-0">
+              <button class="btn btn--text btn--text-dark btn--text-line btn--cancel">取&nbsp;&nbsp;&nbsp;消</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer></footer>
+    </main>
+    <script src="../../assets/js/source/jquery-3.3.1.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/jquery.payment.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/slick.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/sortable.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/highcharts.securejs" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){
+          //- 彈窗
+          $('.btn--cancel').on('click', function(e){
+              e.preventDefault();
+              $('.lightbox').removeClass('show');
+          })
+          $('.btn--check').on('click', function(e){
+              e.preventDefault();
+              $('.lightbox').removeClass('show');
+          })
+          let termsBox = document.querySelector('.content_outer');
+          console.log(termsBox.scrollHeight+"-"+termsBox.scrollTop+"<="+termsBox.clientHeight);
+              if(termsBox.scrollHeight > termsBox.clientHeight){
+                  termsBox.addEventListener('scroll', function(e) {
+                  console.log("scrolling");
+      
+                  console.log(termsBox.scrollHeight+"-"+termsBox.scrollTop+"<="+termsBox.clientHeight);
+      
+                  if(termsBox.scrollHeight - termsBox.scrollTop <= termsBox.clientHeight){
+                  $('.check-row').removeClass('disable')
+                  $(':checkbox[name="agree"]').removeAttr("disabled");
+                  //- $('.form__notice').hide();
+                  }else{
+                      $('.check-row').addClass('disable')
+                      $(':checkbox[name="agree"]').prop("disabled", true);
+                      $('.form__notice').show();
+                  }
+                  })
+              }else{
+                  $('.check-row').removeClass('disable')
+                  $(':checkbox[name="agree"]').removeAttr("disabled");
+                  //- $('.form__notice').hide();
+              }
+      
+          $(':checkbox[name="agree"]').change(function() {
+              var agree = $(this).filter(':checked').val();
+              if(agree){
+              $('.btn--check').removeAttr("disabled");
+              }else{
+              $('.btn--check').prop("disabled", true);
+              }
+              }); 
+      });
+    </script>
+  </body>
+</html>

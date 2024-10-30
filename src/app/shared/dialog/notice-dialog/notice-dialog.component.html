@@ -1,0 +1,38 @@
+<div class="lightbox" [class.show]="show">
+    <div class="lightbox__back"></div>
+    <div class="lightbox__outer">
+        <div class="lightbox__inner lightbox--iframe">
+            <div class="iframe-box">
+                <div class="content_outer" id="terms_outer" scrollCheck (changeState)="changeState($event)">
+                    <div class="content_inner" id="terms_innter" >
+                        <h4 class="mb-ssm">{{ Title2 !== ""? Title2:agreementData?.Title }}</h4>
+                        <div class="termsContent1" *ngIf="agreementData?.Type === 1 ; else gethtml" loadHtml="{{agreementData?.Content}}">
+                        </div>
+                        <ng-template #gethtml>
+                            <p class="termsContent2" [innerHTML]="agreementData?.Content"></p>
+                        </ng-template>
+                    </div>
+                </div>
+                <hr class="gray mt-sm">
+                <div class="form__check mt-sm">
+                    <div class="form__check__item">
+                        <label class="check-row" [class.disable]="disable">
+                            <q class="form__notice">請先閱讀完畢「{{ agreementData?.Title }}」再進行勾選。</q><br>
+                            {{NoticeContent1}}<a [style.color]="color" class="line-none">{{ NoticeMatter }}</a>{{NoticeContent2}}
+                            <input type="checkbox" name="agree" [(ngModel)]="agree" [disabled]="disable"><span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="button-group mb-md mt-md">
+                    <button class="btn btn--primary btn--w250 btn--check" (click)="confirm()"
+                        [disabled]="!agree">確&nbsp;&nbsp;&nbsp;定</button>
+                </div>
+                <div class="button-group mt-0 mb-0">
+                    <button class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                        (click)="cancel()">取&nbsp;&nbsp;&nbsp;消</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

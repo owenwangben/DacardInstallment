@@ -1,0 +1,181 @@
+<div class="wrap">
+    <div class="bg-reward-points">
+        <div class="gold-bee-summary">
+            <div class="flex-center">
+                <div class="select-input--icon">
+                    <select [value]="selectoptionNow" (change)="selectchange($event)">
+                        <option *ngFor="let item of selectoption" [value]="item.id">{{ item.name }}</option>
+                    </select>
+                    <div class="iconbox">
+                        <ng-container [ngSwitch]="selectoptionNow">
+                            <ng-container *ngSwitchCase="selectoptionE.rewardPoints">
+                                <img class="rewardPoints-img" src="assets/images/icon/icon-reward-points.svg">
+                            </ng-container>
+                            <ng-container *ngSwitchCase="selectoptionE.goldBee">
+                                <img class="goldBee-img" src="assets/images/icon/icon-gold-bee.svg">
+                            </ng-container>
+                            <ng-container *ngSwitchCase="selectoptionE.dacardMission">
+                                <img class="dacardMission-img" src="assets/images/icon/icon-event-darts.svg">
+                            </ng-container>
+                            <ng-container *ngSwitchCase="selectoptionE.fonPoint">
+                                <img class="fonPoint-img" src="assets/images/icon/icon-event-darts.svg">
+                            </ng-container>
+                            <ng-container *ngSwitchCase="selectoptionE.right">
+                                <img class="rewardPoints-img" src="assets/images/icon/icon-reward-points.svg">
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                    <input class="destination" type="text" value="{{ selectoptionC }}">
+                </div>
+            </div>
+            <h2>{{ pointAll | number }}<span class="ml-xxs">點</span></h2>
+            <p>{{ ExDate }}到期 {{ Expoint | number }}點 </p>
+        </div>
+    </div>
+    <div class="tab">
+        <div class="tab__wrap">
+            <ul class="tab__navs">
+                <!-- <li class="tab__nav-pointPile" [class.is-active]="pointtypeNow === pointtype.pointPile"
+                    (click)="pointtypeNow= pointtype.pointPile">
+                    <a class="tab__nav tab__nav-pointPile">點數累積</a>
+                </li> -->
+                <li class="tab__nav-pointExchange" [class.is-active]="pointtypeNow === pointtype.pointExchange"
+                    (click)="pointtypeNow= pointtype.pointExchange">
+                    <a class="tab__nav tab__nav-pointExchange">點數兌換</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- <div *ngIf="pointtypeNow === pointtype.pointPile" class="content-pointPile">
+        <div class="wrap wrap__pd">
+            <div class="detail__info">
+                <div class="flex-between">
+                    <h1 class="title">獲點方式</h1>
+                </div>
+                <div class="step step__pd--md">
+                    <div class="list-table">
+                        <div class="list-table__row u-nounderline">
+                            <div class="list-table__col">
+                                <h4>紅利享樂回饋計畫</h4>
+                                <p>刷卡消費享紅利點數</p>
+                            </div>
+                            <div class="list-table__col"><a
+                                    href="https://bank.sinopac.com/sinopacBT/personal/credit-card/bonus/accumulation/enjoy.html#open-browser"
+                                    target="_blank">
+                                    <button class="btn btn--normal btn--normal-more btn--normal-gold">計畫說明</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-lg">
+                    <div class="flex-between">
+                        <h1 class="title">獲點紀錄</h1><a (click)="toRecord(pointtype.pointPile)">
+                            <button class="btn btn--normal btn--normal-more">查看更多</button></a>
+                    </div>
+                    <h1 class="title flex-between"> <span class="remark mt-ssm">*僅顯示近五筆紀錄</span></h1>
+                </div>
+                <div class="step step__pd--md">
+                    <a *ngFor="let item of ( pileRecordList | slice : 0:5 )" class="list-table__row u-nounderline">
+                        <div class="list-table__col list-table__col--65">
+                            <div class="list-table__overflow--3">
+                                <h4>{{ item.MEMO }}</h4>
+                            </div>
+                            <p>{{ item.DE_DATE }}</p>
+                        </div>
+                        <div class="list-table__col list-table__col--auto">
+                            <div class="flex-right">
+                                <div class="icon icon--reward-points icon--tr icon--text flex-center">
+                                    <h6 class="inline-block">{{ item.ADD_POINT | number }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div *ngIf="!pileRecordList || pileRecordList?.length < 1" class="list-table__row">
+                        <p class="t-primary">您目前尚無獲點紀錄</p>
+                    </div>
+                </div>
+                <div class="notice">
+                    <p>注意事項：</p>
+                    <p>紅利點數可使用效期為2年（不含點數累積當年度），即當年度所累積之點數尚未使用者，將可於次年度繼續累積計算，最長可延續使用期限至點數累積當年度結束後兩個年度內，但不含國定假日。</p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div *ngIf="pointtypeNow === pointtype.pointExchange" class="content-pointExchange">
+        <div class="wrap wrap__pd">
+            <div class="detail__info">
+                <div class="flex-between">
+                    <h1 class="title">兌換專區</h1>
+                </div><a (click)="goExChange()">
+                    <div class="step step__pd--banner banner-billList">
+                        <div class="list-table">
+                            <div class="list-table__row u-nounderline">
+                                <div class="list-table__col list-table__col--auto"><img
+                                        src="assets/images/icon/icon-coin-gold.svg"></div>
+                                <div class="list-table__col">
+                                    <h4 class="fs-b">刷卡金及好康兌換</h4>
+                                </div>
+                                <div class="list-table__col">
+                                    <button
+                                        class="btn btn--primary btn--primary-xs btn--primary-withArrow icon--tr icon--arrow-white">兌換去!!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div class="mt-lg">
+                    <div class="flex-between">
+                        <h1 class="title">兌換紀錄</h1><a (click)="toRecord(pointtype.pointExchange)">
+                            <button class="btn btn--normal btn--normal-more">查看更多</button></a>
+                    </div>
+                    <h1 class="title flex-between"> <span class="remark mt-ssm">*僅顯示近五筆紀錄</span></h1>
+                    <div class="step step__pd--md">
+                        <a *ngFor="let item of ( exchangeRecordList | slice : 0:5 )"
+                            class="list-table__row u-nounderline">
+                            <div class="list-table__col list-table__col--65">
+                                <div class="list-table__overflow--3">
+                                    <h4>{{ item.MEMO }}</h4>
+                                </div>
+                                <p>{{ item.DE_DATE }}</p>
+                            </div>
+                            <div class="list-table__col list-table__col--auto">
+                                <div class="flex-right">
+                                    <div class="icon icon--reward-points icon--tr icon--text flex-center">
+                                        <h6 class="inline-block">{{ item.TRA_POINT_TTL | number }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div *ngIf="!exchangeRecordList || exchangeRecordList?.length < 1" class="list-table__row">
+                            <p class="t-primary">您目前尚無兌換紀錄</p>
+                        </div>
+                    </div>
+                    <div class="notice">
+                        <p>注意事項：</p>
+                        <ul>
+                            <li>您可於紅利商品兌換完畢後2個工作天，查詢到詳細兌換紀錄。</li>
+                            <li><span class="fw-b gold">透過電話語音服務兌換之紀錄將不列入 </span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lightbox" [class.show]="show">
+        <div class="lightbox__back"></div>
+        <div class="lightbox__outer">
+            <div class="lightbox__inner lightbox--bold">
+                <h3 class="mb-ssm">{{ title }}</h3>
+                <p>{{ content }}</p>
+                <div class="button-group mb-md mt-md">
+                    <button class="btn btn--primary btn--w250 btn--check" (click)="lightboxBtn(true)">{{ btn1
+                        }}</button>
+                </div>
+                <div class="button-group mt-0 mb-0">
+                    <button class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                        (click)="lightboxBtn(false)">{{ btn2 }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

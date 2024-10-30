@@ -1,0 +1,21 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "BusinessNo": "CRDCD02",
+        "ApiVersion": "1.0",
+        "HashKeyNo": "1",
+        "VerifyNo": "4d539be968cb4ae3893c388233b7417d",
+        "Token": "4f819467803b4e75a284b14125fac5c0817980fb",
+        "IdentifyNo": "8f918bfeac3be18fc5d24854fbf9aea4a58993d9e75ea3de86e7821bfc2e23c0",
+        "TwidPortalUrl": "http://10.11.37.16/IDPortal"
+    }
+}

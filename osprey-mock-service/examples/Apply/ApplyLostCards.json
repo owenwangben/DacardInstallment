@@ -1,0 +1,61 @@
+{
+    "Result": {
+        "ApplyDate": "2020-07-15T12:14:01.7999503+08:00",
+        "Name": "美元雙幣信用卡",
+        "CardBrand": "MasterCard",
+        "Cards": [
+            {
+                "CardNo": "5588438888881001",
+                "Name": "美元雙幣信用卡",
+                "CardTypeCode": "SP",
+                "CardTypeDesc": "主卡",
+                "ProductCode": "211",
+                "CardFace": "840",
+                "CardBrand": "M",
+                "CardHolderName": "王小明",
+                "ExpDate":"1223",
+                "IsSuccess": true
+            },
+            {
+                "CardNo": "5588438888881002",
+                "Name": "美元雙幣信用卡",
+                "CardTypeCode": "NP",
+                "CardTypeDesc": "附卡",
+                "ProductCode": "211",
+                "CardFace": "840",
+                "CardBrand": "M",
+                "CardHolderName": "王小明",
+                "ExpDate":"0125",
+                "IsSuccess": true
+            },
+            {
+                "CardNo": "5588438888881003",
+                "Name": "美元雙幣信用卡",
+                "CardTypeCode": "NP",
+                "CardTypeDesc": "附卡",
+                "ProductCode": "211",
+                "CardFace": "840",
+                "CardBrand": "M",
+                "CardHolderName": "王小明",
+                "ExpDate":"0626",
+                "IsSuccess": true
+            }
+        ],
+        "NoHandlingFee": true,
+        "HasTransactionHistory": true
+    },
+    "Header": {
+        "SessionID": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "ReferenceNo": "",
+        "UserID": "",
+        "RequestTime": "",
+        "TxCode": "",
+        "RemoteAddr": "",
+        "PageName": "",
+        "SsaToken": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Error": null
+}

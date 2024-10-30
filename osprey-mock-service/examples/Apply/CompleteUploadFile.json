@@ -1,0 +1,17 @@
+{
+	"Header": {
+		"RequestTime": "",
+		"ResponseTime": "",
+		"ApplicationName": "SinoPac.Cawho.Web",
+		"SessionID": "",
+		"ClientIP": "",
+		"UserAgent": ""
+	},
+	"ResultCode": "00",
+	"ResultMessage": "測試完成API回傳訊息",
+	"Result": {
+	},
+	"Original": {
+	},
+	"Success": true
+}

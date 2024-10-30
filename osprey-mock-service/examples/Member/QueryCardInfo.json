@@ -1,0 +1,22 @@
+{
+	"Header": {
+		"RequestTime": "",
+		"ResponseTime": "",
+		"ApplicationName": "SinoPac.Cawho.Web",
+		"SessionID": "",
+		"ClientIP": "",
+		"UserAgent": ""
+	},
+	"ResultCode": "00",
+	"ResultMessage": "",
+	"Result": {
+        "CVV2":"788",
+		"CardHolderCName": "",
+		"CardHolderEName": "",
+		"ElectronicTicketName": "一卡通",
+		"ElectronicTicketNo": "9123807070000062"
+	},
+	"Original": {
+	},
+	"Success": true
+}

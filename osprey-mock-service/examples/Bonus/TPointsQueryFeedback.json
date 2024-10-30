@@ -1,0 +1,184 @@
+{
+    "Result": {
+        "Summary": [
+            {
+                "SummaryID": 1,
+                "Name": "台灣大車隊APP綁卡回饋",
+                "TotalAmt": "1000",
+                "TPoints": 1500,
+                "DataType": 1
+            },
+            {
+                "SummaryID": 2,
+                "Name": "一般消費基本回饋1%",
+                "TotalAmt": "16967",
+                "TPoints": 17000,
+                "DataType": 2
+            },
+            {
+                "SummaryID": 3,
+                "Name": "首年上市加碼1%",
+                "TotalAmt": "16967",
+                "TPoints": 1700,
+                "DataType": 2
+            },
+            {
+                "SummaryID": 4,
+                "Name": "搭車當曰限時加碼5%",
+                "TotalAmt": "3570",
+                "TPoints": 17000009,
+                "DataType": 2
+            },
+            {
+                "SummaryID": 5,
+                "Name": "保修廠專屬加碼3%",
+                "TotalAmt": "1000",
+                "TPoints": 30,
+                "DataType": 2
+            },
+            {
+                "SummaryID": 6,
+                "Name": "專案回饋",
+                "TotalAmt": "1000",
+                "TPoints": 30,
+                "DataType": 3
+            }
+        ],
+        "TotalPoints": 729,
+        "Details": [
+            {
+                "SummaryID": 1,
+                "DE_DATE": "20201201",
+                "TX_DATE": "20201201",
+                "TX_AMT": "6967",
+                "MEMO": "11/30 UBER EATS HELP.UBER.COM",
+                "LEVEL": "黑熊",
+                "FEEDBACK_RATE": "8%",
+                "POINT": "1000"
+            },
+            {
+                "SummaryID": 1,
+                "DE_DATE": "20201213",
+                "TX_DATE": "20201213",
+                "TX_AMT": "869",
+                "MEMO": "12/12 UBER EATS HELP.UBER.COM",
+                "LEVEL": "銀熊",
+                "FEEDBACK_RATE": "10%",
+                "POINT": "5000"
+            },
+            {
+                "SummaryID": 2,
+                "DE_DATE": "20201201",
+                "TX_DATE": "",
+                "TX_AMT": "6967",
+                "MEMO": "11/30 UBER EATS HELP.UBER.COM help.uber.com",
+                "LEVEL": "",
+                "FEEDBACK_RATE": "",
+                "POINT": ""
+            },
+            {
+                "SummaryID": 2,
+                "DE_DATE": "20201205",
+                "TX_DATE": "",
+                "TX_AMT": "196",
+                "MEMO": "12/05 UBER EATS HELP.UBER.COM help.uber.com",
+                "LEVEL": "",
+                "FEEDBACK_RATE": "",
+                "POINT": ""
+            },
+            {
+                "SummaryID": 2,
+                "DE_DATE": "20201213",
+                "TX_DATE": "",
+                "TX_AMT": "869",
+                "MEMO": "12/12 UBER EATS HELP.UBER.COM help.uber.com",
+                "LEVEL": "",
+                "FEEDBACK_RATE": "",
+                "POINT": ""
+            },
+            {
+                "SummaryID": 2,
+                "DE_DATE": "20201223",
+                "TX_DATE": "",
+                "TX_AMT": "510",
+                "MEMO": "12/23 UBER EATS HELP.UBER.COM help.uber.com",
+                "LEVEL": "",
+                "FEEDBACK_RATE": "",
+                "POINT": ""
+            },
+            {
+                "SummaryID": 6,
+                "DE_DATE": "20201201",
+                "TX_DATE": "",
+                "TX_AMT": "",
+                "MEMO": "0718搭車當日限時加碼(視個案回饋時填入項目而定)",
+                "LEVEL": "",
+                "FEEDBACK_RATE": "",
+                "POINT": "5"
+            },
+            {
+                "SummaryID": 6,
+                "DE_DATE": "20201213",
+                "TX_DATE": "",
+                "TX_AMT": "",
+                "MEMO": "搭車加碼回饋",
+                "LEVEL": "",
+                "FEEDBACK_RATE": "",
+                "POINT": "25"
+            },
+            {
+                "SummaryID": 3,
+                "DE_DATE": "20201215",
+                "TX_DATE": "",
+                "TX_AMT": "10000",
+                "MEMO": "首年上市加碼1%",
+                "LEVEL": "",
+                "FEEDBACK_RATE": "",
+                "POINT": ""
+            },
+            {
+                "SummaryID": 4,
+                "DE_DATE": "20201208",
+                "TX_DATE": "",
+                "TX_AMT": "2500",
+                "MEMO": "12/08 搭車當曰限時加碼5%",
+                "LEVEL": "",
+                "FEEDBACK_RATE": "",
+                "POINT": ""
+            },
+            {
+                "SummaryID": 4,
+                "DE_DATE": "20201212",
+                "TX_DATE": "",
+                "TX_AMT": "3000",
+                "MEMO": "12/12 搭車當曰限時加碼5%",
+                "LEVEL": "",
+                "FEEDBACK_RATE": "",
+                "POINT": ""
+            },
+            {
+                "SummaryID": 5,
+                "DE_DATE": "",
+                "TX_DATE": "",
+                "TX_AMT": "8000",
+                "MEMO": "台灣大車隊保修廠專屬加碼3%",
+                "LEVEL": "",
+                "FEEDBACK_RATE": "",
+                "POINT": ""
+            }
+        ]
+    },
+    "Header": {
+        "SessionID": "",
+        "ApplicationName": "EWEB2",
+        "ReferenceNo": "",
+        "UserID": "",
+        "RequestTime": "",
+        "TxCode": "",
+        "RemoteAddr": "::1",
+        "PageName": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Error": null
+}

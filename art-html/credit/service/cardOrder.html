@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>CAWHOPAY - 永豐銀行</title>
+    <meta name="title" content="CAWHOPAY - 永豐銀行">
+    <meta name="description" content="">
+    <meta property="og:title" content="CAWHOPAY - 永豐銀行">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="author" content="永豐銀行">
+    <meta name="copyright" content="永豐銀行">
+    <meta property="og:site_name" content="CAWHOPAY - 永豐銀行">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="">
+    <link rel="apple-touch-icon" href="">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+  </head>
+  <body class="card_order">
+    <main class="container">
+      <div class="wrap wrap__pd">
+        <div class="flex-between">
+          <h1 class="title">長按可調整卡片顯示順序</h1>
+        </div>
+        <div class="step step__pt-xxs">
+          <div class="form">
+            <div class="form__row form__row--line-none">
+              <div class="form__col">
+                <div class="form__data card-list__drag" id="card-list__drag">
+                  <div class="radio-btn-full card-list"><span>
+                      <div class="flex-left"><img class="card-img" src="../assets/images/demo/card-01.png">
+                        <div class="card-list__inner">
+                          <h4>永豐 幣倍卡</h4>
+                          <div class="flex-left"> <img src="../assets/images/icon/icon_master.svg">
+                            <p>1234-56●●●●●●-7890</p>
+                          </div>
+                        </div>
+                      </div></span></div>
+                  <div class="radio-btn-full card-list"><span>
+                      <div class="flex-left"><img class="card-img" src="../assets/images/demo/card-02.png">
+                        <div class="card-list__inner">
+                          <h4>永豐 現金回饋JCB卡</h4>
+                          <div class="flex-left"> <img src="../assets/images/icon/icon_jcb.svg">
+                            <p>1234-56●●●●●●-7891</p>
+                          </div>
+                        </div>
+                      </div></span></div>
+                  <div class="radio-btn-full card-list"><span>
+                      <div class="flex-left"><img class="card-img" src="../assets/images/demo/card-03.png">
+                        <div class="card-list__inner">
+                          <h4>永豐 夢行卡</h4>
+                          <div class="flex-left"> <img src="../assets/images/icon/icon_master.svg">
+                            <p>1234-56●●●●●●-7892</p>
+                          </div>
+                        </div>
+                      </div></span></div>
+                  <div class="radio-btn-full card-list"><span>
+                      <div class="flex-left"><img class="card-img" src="../assets/images/demo/card-04.png">
+                        <div class="card-list__inner">
+                          <h4>永豐 保倍卡</h4>
+                          <div class="flex-left"> <img src="../assets/images/icon/icon_master.svg">
+                            <p>1234-56●●●●●●-7893</p>
+                          </div>
+                        </div>
+                      </div></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button-group"><a class="btn btn--primary btn--w250" href="./cardManage.html">確&nbsp;&nbsp;&nbsp;定</a></div>
+        <div class="button-group mt-sm">
+          <button class="btn btn--text btn--text-line">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+      </div>
+      <footer></footer>
+    </main>
+    <script src="../../assets/js/source/jquery-3.3.1.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/jquery.payment.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/slick.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/sortable.min.securejs" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){
+        var el = document.getElementById( "card-list__drag" );
+        Sortable.create(el, {
+          disabled: false, // 關閉Sortable
+          animation: 150,  // 物件移動時間(單位:毫秒)
+          handle: ".form__row",  // 可拖曳的區域
+          draggable: ".card-list",  // 可拖曳的物件
+          ghostClass: "sortable-ghost",  // 拖曳時，給予物件的類別
+          chosenClass: "sortable-chosen",  // 選定時，給予物件的類別
+          forceFallback: false  // 忽略HTML5 DnD
+        });
+      })
+    </script>
+  </body>
+</html>

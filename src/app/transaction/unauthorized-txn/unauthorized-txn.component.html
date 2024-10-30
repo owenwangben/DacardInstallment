@@ -1,0 +1,344 @@
+<mat-horizontal-stepper
+    #stepper
+    [@.disabled]="true"
+    [linear]="false"
+    [selectedIndex]="this.selectedIndex"
+    (selectionChange)="scrollTop()"
+>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step3"></ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+<ng-template #step1>
+    <div class="wrap wrap__pd">
+        <h1 class="title flex-between">
+            <span class="fw-b">未核准授權交易</span><span class="remark">依臺幣計</span>
+        </h1>
+        <div class="step step__pd--ssm" *ngIf="items && items.length == 0">
+            <div class="list-table__row">
+                <p class="t-primary">交易已超過24小時，查無資料!</p>
+            </div>
+        </div>
+        <div
+            class="step step__pd--ssm {{
+                item.Status == 1
+                    ? 'unauth_self'
+                    : item.Status == 2 || item.Status == 3
+                    ? 'unauth_non_self'
+                    : 'accordion__item'
+            }} {{ item.ExpandStatus && item.Status == 0 ? 'active' : '' }}"
+            *ngFor="let item of items; let idx = index"
+        >
+            <div class="list-table">
+                <div
+                    class="list-table__row u-nounderline"
+                    (click)="accrodionExpand(idx)"
+                >
+                    <div class="list-table__col" [ngSwitch]="item.Status">
+                        <p *ngSwitchCase="1" class="fw-b fs-xs">本人交易</p>
+                        <p *ngSwitchCase="2" class="fw-b fs-xs">非本人交易</p>
+                        <p *ngSwitchCase="3" class="fw-b fs-xs">已回覆</p>
+                        <h4>{{ item.CardDescription }}</h4>
+                        <p>{{ item.AuthorizationTime }}</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h6 class="inline-block">{{ item.Amount | number }}</h6>
+                        <button
+                            class="btn--more inline-block"
+                            *ngIf="item.Status == 0"
+                        >
+                            <img
+                                class="arrow"
+                                src="assets/images/icon/icon-arrow-gray.svg"
+                            />
+                        </button>
+                    </div>
+                </div>
+                <div
+                    class="list-table__row justify-content-center"
+                    *ngIf="item.Status == 0"
+                >
+                    <div class="list-table__col">
+                        <p class="t-primary fc-red fs-md">交易授權失敗</p>
+                        <p class="align-center fc-black fs-sm">
+                            請確認是否為本人交易?
+                        </p>
+                        <div class="button-group mt-sm">
+                            <button
+                                class="btn btn--primary btn--primary-xxs gray"
+                                (click)="unAuthorizedMessage(idx)"
+                            >
+                                非本人交易
+                            </button>
+                            <button
+                                class="btn btn--primary btn--primary-xxs ml-ssm"
+                                (click)="nextStep(idx)"
+                            >
+                                本人交易
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 class="white">
+            注意事項：未核准交易請於24小時內回覆，若超過時效則無法回覆。
+        </h4>
+        <div class="button-group">
+            <button
+                class="btn btn--primary btn--w250"
+                (click)="backToCardManage()"
+            >
+                回信用卡頁
+            </button>
+        </div>
+        <div class="warning mt-lg-2">
+            <img
+                class="margin-center"
+                src="assets/images/demo/warning.svg"
+                alt="謹慎理財 信用至上"
+            />
+        </div>
+    </div>
+    <div class="lightbox" [ngClass]="messageBox ? 'show' : ''">
+        <div class="lightbox__back" (click)="closeMessageBox()"></div>
+        <div class="lightbox__outer">
+            <div class="lightbox__inner lightbox--bold">
+                <h3 class="mb-ssm">非本人交易!!</h3>
+                <p class="align-center">
+                    因攸關用卡安全，<br />請您再次確認是否為本人交易?<br />(確認資料一經送出，無法更正)
+                </p>
+                <div class="button-group mb-md mt-md">
+                    <button
+                        class="btn btn--primary btn--w250 btn--check"
+                        (click)="submit(false)"
+                        appPreventDoubleClick
+                    >
+                        非本人交易
+                    </button>
+                </div>
+                <div class="button-group mt-0 mb-0">
+                    <button
+                        class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                        (click)="nextStep()"
+                    >
+                        是本人交易
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #step2>
+    <div class="wrap wrap__pd">
+        <h1 class="title flex-between">
+            <span class="fw-b">請確認以下資訊</span><span class="remark">依臺幣計</span>
+        </h1>
+        <div class="step step__pd--ssm">
+            <div class="list-table__row">
+                <p class="t-primary fw-b fc-red align-center">
+                    因攸關用卡安全，請您再次確認是否為本人交易並開放刷卡?
+                </p>
+            </div>
+            <div class="list-table__row">
+                <div class="list-table__col">
+                    <h5 class="fs-b fw-b">交易金額</h5>
+                </div>
+                <div class="list-table__col">
+                    <p class="fc-gold fw-b fs-md">
+                        {{ checkItem?.Amount | number }}
+                    </p>
+                </div>
+            </div>
+            <div class="list-table__row">
+                <div class="list-table__col">
+                    <p class="fs-sm">交易卡別</p>
+                </div>
+                <div class="list-table__col">
+                    <p class="fc-black fs-sm fw-b">{{ checkItem?.CardDescription }}</p>
+                </div>
+            </div>
+            <div class="form__row form__row--line-none form__row--h-auto">
+                <div class="form__col">
+                    <label
+                        class="check-row check-row-agree check-row-text"
+                        (click)="showAgreement()"
+                    >
+                        <p class="fs-sm">
+                            本人已詳閱及了解並同意開放刷卡注意事項
+                        </p>
+                        <input
+                            type="checkbox"
+                            [checked]="agreeSelfTrade"
+                            disabled
+                        /><span></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <h4 class="align-center white">
+            請點選【 確定 】開放刷卡<br />(是本人交易，3分鐘後可重新刷卡)
+        </h4>
+        <div class="button-group">
+            <button
+                class="btn btn--primary btn--w250"
+                (click)="submit(true)"
+                appPreventDoubleClick
+            >
+                確定
+            </button>
+        </div>
+        <div class="button-group mt-sm">
+            <button
+                class="btn btn--text btn--text-line"
+                (click)="backToPevStep()"
+            >
+                取消
+            </button>
+        </div>
+        <div class="warning mt-lg-2">
+            <img
+                class="margin-center"
+                src="assets/images/demo/warning.svg"
+                alt="謹慎理財 信用至上"
+            />
+        </div>
+    </div>
+    <div class="lightbox show" *ngIf="agreementBox">
+        <div class="lightbox__back"></div>
+        <div class="lightbox__outer">
+            <div class="lightbox__inner lightbox--iframe">
+                <div class="iframe-box iframe-box--sm">
+                    <h4 class="mb-ssm">開放刷卡注意事項</h4>
+                    <div
+                        class="content_outer"
+                        id="terms_outer"
+                        scrollCheck
+                        (changeState)="changeState($event)"
+                    >
+                        <div class="content_inner" id="terms_inner">
+                            <ul class="lightbox__listUl lightbox__listUl--decimal black">
+                                <li>於申請開放刷卡3分鐘後可重新交易。</li>
+                                <li>
+                                    重新交易時間為申請開放刷卡日+1日，例：6/4申請開放刷卡，則重新交易時間至6/5 24:00為止。
+                                </li>
+                                <li>
+                                    刷卡後務必妥善保管卡片及卡號，以免造成損失。
+                                </li>
+                                <li>
+                                    於開放刷卡後亦可能受其他原因導致刷卡無法成功，如商店系統連線問題、磁條晶片磨損、人為操作錯誤、額度不足等諸多原因。
+                                </li>
+                                <li>
+                                    信用卡僅為代支付工具，無法100%保證每筆交易皆刷卡成功，本行保有交易授權准駁與否權利，若有刷卡問題可致電客服中心查詢。
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr class="gray mt-sm" />
+                <div class="form__check mt-sm">
+                    <div class="form__notice form__notice-left">
+                        請先閱讀完畢再進行勾選
+                    </div>
+                    <div class="form__check__item">
+                        <label
+                            class="check-row"
+                            [ngClass]="disable ? 'disable' : ''"
+                            >本人已詳閱【開放刷卡注意事項】並充分了解且同意遵守全部內容。
+                            <input
+                                type="checkbox"
+                                [checked]="agreeContract"
+                                (change)="agreeContract = !agreeContract"
+                                [disabled]="disable"
+                            /><span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="button-group mb-md mt-md">
+                    <button
+                        class="btn btn--primary btn--w250 btn--check"
+                        [disabled]="!agreeContract"
+                        (click)="hideAgreement(true)"
+                    >
+                        確&nbsp;&nbsp;&nbsp;定
+                    </button>
+                </div>
+                <div class="button-group mt-0 mb-0">
+                    <button
+                        class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                        (click)="hideAgreement(false)"
+                    >
+                        取&nbsp;&nbsp;&nbsp;消
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #step3>
+    <div class="wrap wrap__pd">
+        <h1 class="title flex-between"><span class="fw-b">未核准授權交易</span></h1>
+        <div class="step step__pd--ssm">
+            <div class="list-table__row">
+                <p class="t-primary" [innerHTML]="resultMessage"></p>
+            </div>
+        </div>
+        <div class="button-group">
+            <button
+                class="btn btn--primary btn--w250"
+                (click)="callCustomerServer()"
+            >
+                聯繫客服
+            </button>
+        </div>
+        <div class="button-group mt-sm">
+            <button
+                class="btn btn--text btn--text-line"
+                (click)="backToCardManage()"
+            >
+                回到信用卡頁
+            </button>
+        </div>
+    </div>
+</ng-template>
+
+<div class="lightbox" [ngClass]="errorMessageBox ? 'show' : ''">
+    <div class="lightbox__back"></div>
+    <div class="lightbox__outer">
+        <div class="lightbox__inner lightbox--bold">
+            <h3 class="mb-ssm">提醒訊息</h3>
+            <p class="align-center" [innerHTML]="errorMessageContent"></p>
+            <div class="button-group mb-md mt-md">
+                <button
+                    class="btn btn--primary btn--w250 btn--check"
+                    *ngIf="!resultStatus"
+                    (click)="callCustomerServer()"
+                >
+                    聯繫客服
+                </button>
+                <button
+                    class="btn btn--primary btn--w250 btn--check"
+                    *ngIf="resultStatus"
+                    (click)="backToPevStep(true)"
+                >
+                    確定
+                </button>
+            </div>
+            <div class="button-group mt-0 mb-0">
+                <button
+                    class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                    *ngIf="!resultStatus"
+                    (click)="backToCardManage()"
+                >
+                    取消
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

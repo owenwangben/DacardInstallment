@@ -1,0 +1,749 @@
+#%RAML 1.0
+baseUri: http://localhost:3001/
+title: SinoPac.Cawho.Api
+version: 0.1
+
+/api/misc/getMyHostInfo:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/MyHostInfo.json
+/api/Account/RecentBillSummary:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/RecentBillSummary.json
+/api/Account/RecentBill:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/RecentBill.json
+/api/Account/OutstandingDetail:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/OutstandingDetail.json
+/api/Account/LatestTx:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/LatestTx.json
+/api/Account/StatementBarCode:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/StatementBarCode.json
+/api/Account/PaymentRecords:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/PaymentRecords.json
+/api/Account/ApplyStmtInstallment:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/ApplyStmtInstallment.json
+/api/Account/EasyCashCalcCycleFee:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/EasyCashCalcCycleFee.json
+/api/Account/GetStmtInstallmentData:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/GetStmtInstallmentData.json
+/api/Account/SetInstallmentAgreement:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/SetInstallmentAgreement.json
+/api/Account/GetInstallmentData:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/GetInstallmentData.json
+/api/Account/InstallmentApply:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/InstallmentApply.json
+/api/Account/InstallmentApplyCheck:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/InstallmentApplyCheck.json
+/api/Apply/CardActivation:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/CardActivation.json
+/api/Apply/CardActivationSso:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/CardActivation.json
+/api/Apply/StatusInquiry:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/StatusInquiry.json
+/api/Apply/StatusInquirySso:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/StatusInquirySso.json
+/api/Apply/QueryPriorActivateCardInfo:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/QueryPriorActivateCardInfo.json
+/api/Apply/PriorActivateCard:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/PriorActivateCard.json
+/api/Apply/UploadFileCheckID:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/UploadFileCheckID.json
+/api/Apply/CompleteUploadFile:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/CompleteUploadFile.json
+/api/Apply/CompleteUploadFile2:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/CompleteUploadFile.json
+/api/Apply/UploadFile:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/UploadFile.json
+/api/Apply/ApplicationStatusWorkflow:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/ApplicationStatusWorkflow.json
+
+/api/Apply/QueryLostCards:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/QueryLostCards.json
+/api/Apply/ApplyLostCards:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/ApplyLostCards.json
+/api/Apply/QueryCardDealSettingInfo:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/QueryCardDealSettingInfo.json
+/api/Apply/CardDealSetting:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/CardDealSetting.json
+
+/api/Auth/VerifyToken:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Auth/VerifyToken.json
+/api/Auth/AuthByBirthday:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Auth/AuthByBirthday.json
+/api/Auth/CheckFunctionLimit:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Auth/CheckFunctionLimit.json
+/api/Auth/UpdateFunctionCount:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Auth/UpdateFunctionCount.json
+/api/Auth/CheckFunctionLimitByCode:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Auth/CheckFunctionLimitByCode.json
+/api/Bonus/QueryDcurFeedback:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Bonus/QueryDcurFeedback.json
+/api/Bonus/QueryDawhoFeedback:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Bonus/QueryDawhoFeedback.json
+/api/Bonus/QuerySportFeedback:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Bonus/QuerySportFeedback.json
+/api/Bonus/QueryCardFeedback:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Bonus/QueryCardFeedback.json
+/api/Bonus/QueryCashFeedback:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Bonus/QueryCashFeedback.json
+/api/Bonus/QueryMitsuiFeedback:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Bonus/QueryMitsuiFeedback.json
+/api/Bonus/QueryDawayFeedback:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Bonus/QueryDawayFeedback.json
+/api/Bonus/QueryCardFeedbackType:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Bonus/QueryCardFeedbackType.json
+/api/Member/AllCards:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Member/AllCards.json
+/api/Member/CardStatus:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Member/CardStatus.json
+/api/Member/CardStatus2:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Member/CardStatus2.json
+/api/Member/QueryMobile:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Member/QueryMobile.json
+/api/Member/GenerateOTP:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Member/GenerateOTP.json
+/api/Member/VerifyOTP:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Member/VerifyOTP.json
+/api/Member/UpdateOrderedCardList:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Member/UpdateOrderedCardList.json
+/api/Member/GetEnglishName:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Member/GetEnglishName.json
+/api/Member/QueryCardInfo:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Member/QueryCardInfo.json
+/api/MyData/MyDataLogin:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/MyData/MyDataLogin.json
+/api/MyData/MyDataDo:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/MyData/MyDataDo.json
+/api/MyData/MyDataReturn:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/MyData/MyDataReturn.json
+/api/Security/SuspendCheck:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Security/SuspendCheck.json
+/api/PayBill/PaymentToolQuery:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/PayBill/PaymentToolQuery.json
+/api/PayBill/BindCreditCard:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/PayBill/BindCreditCard.json
+/api/Agreement/GetAgreementInfo:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Agreement/GetAgreementInfo.json
+/api/Agreement/InsertAgreementRecord:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Agreement/InsertAgreementRecord.json
+/api/Account/GetTemporaryCreditInfo:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/GetTemporaryCreditInfo.json
+/api/Account/ApplyTemporaryCredit:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/ApplyTemporaryCredit.json
+/api/Data/CheckIsHoliday:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Data/CheckIsHoliday.json
+/api/Account/GetCashAdvanceApplyInfo:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/GetCashAdvanceApplyInfo.json
+/api/Account/TemporaryCreditApplyRecord:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/TemporaryCreditApplyRecord.json
+/api/Account/PermanentAdjustApplyRecord:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/PermanentAdjustApplyRecord.json
+/api/Account/PermanentAdjustApply:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/PermanentAdjustApply.json
+/api/Data/GetBankList:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Data/GetBankList.json
+/api/Account/TransferAccounts:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/TransferAccounts.json
+/api/Account/GetPermanentCreditInfo:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/GetPermanentCreditInfo.json
+/api/Account/UploadPermanentCreditAttachment:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/UploadPermanentCreditAttachment.json
+/api/Account/ApplyCashAdvance:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/ApplyCashAdvance.json
+/api/Data/GetBranchList:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Data/GetBranchList.json
+/api/Apply/QueryCardReissue:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/QueryCardReissue.json
+/api/Apply/ApplyCardReissue:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/ApplyCardReissue.json
+/api/Apply/CardReissueCheck:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Apply/CardReissueCheck.json
+/api/Bonus/TPointsQueryFeedback:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Bonus/TPointsQueryFeedback.json
+/api/Bonus/TPointsRedemptionRecords:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Bonus/TPointsRedemptionRecords.json
+/api/Auth/AuthByBirthdayWithCaptcha:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Auth/AuthByBirthdayWithCaptcha.json
+/api/Bonus/TPointsSetting:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Bonus/TPointsSetting.json
+/api/Activity/GetActivity:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Activity/GetActivity.json
+/api/Activity/QueryIVRActivity:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Activity/QueryIVRActivity.json
+/api/DebitCard/GetDebitCardLatestTx:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/DebitCard/GetDebitCardLatestTx.json
+/api/DebitCard/GetDebitCardStatementInquiry:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/DebitCard/GetDebitCardStatementInquiry.json
+/api/Activity/SignActivity:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Activity/SignActivity.json
+/api/Account/RecentBill:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/RecentBill.json
+/api/Account/OutstandingDetail:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Account/OutstandingDetail.json
+/api/AutoDeduct/AuthAutoDeduct:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/AutoDeduct/AuthAutoDeduct.json
+/api/AutoDeduct/GetAutoDeduct:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/AutoDeduct/GetAutoDeduct.json
+/api/AutoDeduct/ApplyAutoDeduct:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/AutoDeduct/ApplyAutoDeduct.json
+/api/AutoDeduct/SetAutoDeductType:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/AutoDeduct/SetAutoDeductType.json
+/api/AutoDeduct/GetAutoDeductAccount:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/AutoDeduct/GetAutoDeductAccount.json
+/api/Bonus/ExchangeRecord:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Bonus/ExchangeRecord.json
+/api/Bonus/Point:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Bonus/Point.json
+/api/Bonus/Gifts:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Bonus/Gifts.json
+/api/Data/TWZip3Code:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Data/TWZip3Code.json
+/api/Member/GetContactInfo:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Member/GetContactInfo.json
+/api/Bonus/GiftExchange:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Bonus/GiftExchange.json
+/api/Finance/UnsettledInstallmentRecord :
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Finance/UnsettledInstallmentRecord.json
+/api/Finance/StmtInstallmentApplyRecord :
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Finance/StmtInstallmentApplyRecord.json
+/api/Unauthorized/QueryUnauthorized :
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Unauthorized/QueryUnauthorized.json
+/api/Unauthorized/UnauthorizedConfirm :
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Unauthorized/UnauthorizedConfirm.json
+/api/Activity/QueryAirportPickup:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Activity/QueryAirportPickup.json
+/api/Activity/QueryRoadsideAssistance:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Activity/QueryRoadsideAssistance.json
+/api/Activity/QueryAirportVIPService:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Activity/QueryAirportVIPService.json
+/api/Fido/QueryVerifiyRecord:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Fido/QueryVerifiyRecord.json
+/api/Fido/VerifiyComplete:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/Fido/VerifiyComplete.json

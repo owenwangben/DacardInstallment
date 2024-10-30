@@ -1,0 +1,11 @@
+<svg id="icon_action_visibilityclose_24px" data-name="icon/action/visibilityclose_24px" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <rect id="Boundary" width="24" height="24" fill="none"/>
+  <g id="组_3033" data-name="组 3033" transform="translate(-603.849 -774.285)">
+    <g id="组_3034" data-name="组 3034" transform="translate(604.849 784.285)">
+      <path id="路径_6838" data-name="路径 6838" d="M616.9,791.285c-7.961,0-10.932-5.737-11.054-5.981l1.623-1.019c.1.2,2.607,4.923,9.431,4.923s9.207-4.707,9.307-4.907l1.64.985C627.731,785.531,624.873,791.285,616.9,791.285Z" transform="translate(-605.849 -784.285)" fill="#fff"/>
+      <rect id="矩形_2509" data-name="矩形 2509" width="2" height="4" transform="translate(10.516 6)" fill="#fff"/>
+      <rect id="矩形_2510" data-name="矩形 2510" width="4" height="2" transform="matrix(0.5, -0.866, 0.866, 0.5, 2.507, 8.232)" fill="#fff"/>
+      <rect id="矩形_2511" data-name="矩形 2511" width="2" height="4" transform="matrix(0.866, -0.5, 0.5, 0.866, 15.877, 5.768)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

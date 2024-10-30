@@ -1,0 +1,35 @@
+{
+    "Header": {
+        "ReferenceNo": "",
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "DACARD",
+        "SessionID": "",
+        "ClientIP": "",
+        "ClientRefNo": "",
+        "ClientTimestamp": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Accounts": [
+            {
+                "AccountNo": "10700460008014",
+                "AccountName": "證券活期儲蓄存款"
+            },
+            {
+                "AccountNo": "12100300684059",
+                "AccountName": "行員儲蓄存款"
+            },
+            {
+                "AccountNo": "19801800029176",
+                "AccountName": "一般活期儲蓄存款"
+            }
+        ]
+    },
+    "Original": {
+        "ID": "F151429224"
+    },
+    "Success": true
+}

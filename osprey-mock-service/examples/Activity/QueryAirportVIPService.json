@@ -1,0 +1,18 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "CardName": "永富世界卡",
+        "CanusedCNT": "6"
+    },
+    "Original": {},
+    "Success": true
+}

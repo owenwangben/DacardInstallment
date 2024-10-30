@@ -1,0 +1,25 @@
+<div class="wrap wrap__pd">
+    <h1 class="title flex-between"><span>近6個月信用卡帳單繳款紀錄</span><span class="remark">(依臺幣計)</span></h1>
+    <div class="step step__pt--lg">
+        <div class="list-table">
+            <div *ngFor="let record of paymentRecordsList" class="list-table__row">
+                <div class="list-table__col">
+                    <h4>{{ record?.MEMO }}</h4>
+                    <p>{{ record?.TXDATE }}</p>
+                </div>
+                <div class="list-table__col">
+                    <h6 class="inline-block">{{ record?.AMT | number }}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="notice">
+        <p>注意事項：</p>
+        <ul>
+            <li>繳款日非即時入帳，需進行入帳處理，依繳款方式不同需約1~3個工作天。</li>
+            <li>繳款金額以本行帳載金額為準。</li>
+        </ul>
+    </div>
+    <div class="warning mt-lg-2"><img class="margin-center" src="assets/images/demo/warning.svg" alt="謹慎理財 信用至上">
+    </div>
+</div>

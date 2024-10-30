@@ -1,0 +1,42 @@
+{
+    "Result": {
+        "AvailablePoints": 1235,
+        "ExpiryDate": "2021/06/30",
+        "IsRedeemSpecificChannels": false,
+        "Items": [
+            {
+                "DE_DATE": "20200720",
+                "POINT": "3000",
+                "MEMO": "台灣大車隊APP"
+            },
+            {
+                "DE_DATE": "20200718",
+                "POINT": "6000",
+                "MEMO": "台灣大車隊APP"
+            },
+            {
+                "DE_DATE": "20200716",
+                "POINT": "2000",
+                "MEMO": "台灣大車隊機場接送"
+            },
+            {
+                "DE_DATE": "20200701",
+                "POINT": "5004",
+                "MEMO": "帳單指定通路(差旅/娛樂)"
+            }
+        ]
+    },
+    "Header": {
+        "SessionID": "",
+        "ApplicationName": "EWEB2",
+        "ReferenceNo": "",
+        "UserID": "",
+        "RequestTime": "",
+        "TxCode": "",
+        "RemoteAddr": "::1",
+        "PageName": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Error": null
+}

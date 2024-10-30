@@ -1,0 +1,4 @@
+<div class="form__captcha__img" id="v_container" (click)="refreshCaptcha()">
+    <img *ngIf="captchaUrl" class="mobile-col-4" style="width:120px;height:30px;cursor:pointer" [src]="captchaUrl">
+    <a style="margin-left: 5px;"><img src="assets/images/icon/icon-refresh.svg"></a>
+</div>

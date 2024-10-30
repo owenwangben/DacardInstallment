@@ -1,0 +1,15 @@
+:host ::ng-deep .mat-horizontal-stepper-header-container {
+    display: none;
+}
+
+.short ::ng-deep {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 90%;
+}
+
+::ng-deep h4,
+p {
+    word-break: break-all !important;
+}

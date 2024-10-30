@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>DACARD - 永豐銀行</title>
+    <meta name="title" content="DACARD - 永豐銀行">
+    <meta name="description" content="">
+    <meta property="og:title" content="DACARD - 永豐銀行">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="author" content="永豐銀行">
+    <meta name="copyright" content="永豐銀行">
+    <meta property="og:site_name" content="DACARD - 永豐銀行">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="">
+    <link rel="apple-touch-icon" href="">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+  </head>
+  <body class="popup">
+    <main class="container">
+      <div class="wrap wrap__pd">
+        <div class="lightbox show" id="QuotaNotes">
+          <div class="lightbox__back"></div>
+          <div class="lightbox__outer">
+            <div class="lightbox__inner lightbox--iframe">
+              <div class="iframe-box">
+                <div class="content_outer">
+                  <div class="content_inner">
+                    <h4 class="mb-ssm">申請提高臨時信用額度注意事項</h4>
+                    <ul>
+                      <li>一、	申請條件 :
+                        <p>1. 需持有永豐銀行有效信用卡正卡。</p>
+                        <p>2. 距離前次信用卡永久額度調整達半年以上。</p>
+                        <p>3. 持有卡片非公司商務卡、美安鈦金卡、科士威普卡、學生卡。</p>
+                        <p>4.【永久提高信用額度】須檢附財力證明文件如:最近年度綜所稅申報資料、最近兩個月薪資單或薪資轉帳明細(含存摺封面)、最近兩個月活期存款明細(含存摺封面)、未到期定存單…等，煩請您預先準備並將資料轉換為電子檔案 (JPG/GIF/TIF)格式。</p>
+                      </li>
+                      <li>二、	注意事項 :
+                        <p>1. 申請人聲明以上所記載額度調整申請內容均為事實，並同意貴行查詢申請人於財團法人金融聯合徵信中心之信用記錄。</p>
+                        <p>2. 本行保有徵提文件及額度調整與否之權利。</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <hr class="gray mt-sm">
+                <div class="form__check mt-sm">
+                    <div class="form__check__item">
+                        <label class="check-row disable">
+                            <label class="form__notice">請先閱讀完畢「申請提高臨時信用額度注意事項」再進行勾選。</label><br>
+                            本人已詳閱【<a class="line-none" href="#">永豐商業銀行信用卡掛失注意事項</a>】並充分了解且同遵守全部內容。
+                            <input type="checkbox" name="agree" disabled><span></span>
+                        </label>
+                  </div>
+                </div>
+              </div>
+              <div class="button-group mb-md mt-md">
+                <button class="btn btn--primary btn--w250 btn--check" disabled>確&nbsp;&nbsp;&nbsp;定</button>
+              </div>
+              <div class="button-group mt-0 mb-0">
+                <button class="btn btn--text btn--text-dark btn--text-line btn--cancel">取&nbsp;&nbsp;&nbsp;消</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer></footer>
+    </main>
+    <script src="../../assets/js/source/jquery-3.3.1.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/jquery.payment.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/slick.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/sortable.min.securejs" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){
+
+        // 開啟彈窗
+        $('[data-popup]').on('click', function(e){
+          e.preventDefault();
+          let target = $(this).data('popup');
+          $('#'+ target).addClass('show');
+        })
+
+        $('.btn--check').on('click', function(e){
+          e.preventDefault();
+          $('.lightbox').removeClass('show');
+        })
+        // 關閉彈窗
+        $('.btn--cancel').on('click', function(e){
+          e.preventDefault();
+          $('.lightbox').removeClass('show');
+        })
+
+        //- SCROLL　BAR 判斷
+        let termsBox = document.querySelector('.content_outer');
+        if(termsBox.scrollHeight > termsBox.clientHeight){
+          termsBox.addEventListener('scroll', function(e) {
+          if(termsBox.scrollHeight - termsBox.scrollTop <= termsBox.clientHeight){
+              $('.check-row').removeClass('disable')
+              $(':checkbox[name="agree"]').removeAttr("disabled");
+            }else{
+              $('.check-row').addClass('disable')
+              $(':checkbox[name="agree"]').prop("disabled", true);
+            }
+          })
+        }else{
+          $('.check-row').removeClass('disable')
+          $(':checkbox[name="agree"]').removeAttr("disabled");
+        }
+
+        $(':checkbox[name="agree"]').change(function() {
+          var agree = $(this).filter(':checked').val();
+          if(agree){
+            $('.btn--check').removeAttr("disabled");
+          }else{
+            $('.btn--check').prop("disabled", true);
+          }
+        });
+      })
+    </script>
+  </body>
+</html>

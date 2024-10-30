@@ -1,0 +1,19 @@
+{
+	"Header": {
+		"RequestTime": "",
+		"ResponseTime": "",
+		"ApplicationName": "SinoPac.Cawho.Web",
+		"SessionID": "",
+		"ClientIP": "",
+		"UserAgent": ""
+	},
+	"ResultCode": "00",
+	"ResultMessage": "",
+	"Result": {
+        "Mobile":"0912345678",
+        "SessionKey":"AKFHDWHJSHCFF646LKNFKNS"
+	},
+	"Original": {
+	},
+	"Success": true
+}

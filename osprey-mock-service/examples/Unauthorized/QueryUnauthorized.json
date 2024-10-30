@@ -1,0 +1,57 @@
+{
+    "Header": {
+        "ReferenceNo": "6338733a999e44eea8405bb4811e643e",
+        "RequestTime": "2024-05-07T17:29:38.0108478+08:00",
+        "ResponseTime": "2024-05-07T17:29:38.4907135+08:00",
+        "ApplicationName": "DACARD",
+        "SessionID": "SinopacCawhoDevice",
+        "ClientIP": "10.11.140.10",
+        "ClientRefNo": "3ca55c942e594c579f7aa303c63bd413",
+        "ClientTimestamp": "2024-04-19T04:17:55.658Z"
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Items": [
+            {
+                "DecisionAuthorizationCode": "999999",
+                "Amount": 9000.00,
+                "AuthorizationTime": "2024-04-19 04:09:50",
+                "CardDescription": "鈦金商務公司卡0212",
+                "Status": 0
+            },
+            {
+                "DecisionAuthorizationCode": "857541",
+                "Amount": 2525.00,
+                "AuthorizationTime": "2024-04-25 09:09:50",
+                "CardDescription": "鈦金商務公司卡0212",
+                "Status": 0
+            },
+            {
+                "DecisionAuthorizationCode": "666666",
+                "Amount": 27.00,
+                "AuthorizationTime": "2024-04-25 09:09:50",
+                "CardDescription": "鈦金商務公司卡1234",
+                "Status": 1
+            },
+            {
+                "DecisionAuthorizationCode": "888555",
+                "Amount": 295.00,
+                "AuthorizationTime": "2024-04-25 09:09:50",
+                "CardDescription": "鈦金商務公司卡5678",
+                "Status": 2
+            },
+            {
+                "DecisionAuthorizationCode": "123444",
+                "Amount": 25.00,
+                "AuthorizationTime": "2024-04-25 09:09:50",
+                "CardDescription": "鈦金商務公司卡9974",
+                "Status": 3
+            }
+        ]
+    },
+    "Original": {
+        "ID": "A131577859"
+    },
+    "Success": true
+}

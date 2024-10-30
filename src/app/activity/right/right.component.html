@@ -1,0 +1,180 @@
+<main class="container">
+    <div *ngIf="!show" class="wrap">
+        <div class="bg-creditCard-benefit">
+            <div class="dacard-mission-summary">
+                <div class="flex-center">
+                    <div class="select-input--icon">
+                        <select [value]="selectOptionNow" (change)="selectchange($event)">
+                            <option *ngFor="let item of selectOption" [value]="item.id">
+                                {{ item.name }}
+                            </option>
+                        </select>
+                        <div class="iconbox">
+                            <ng-container [ngSwitch]="selectOptionNow">
+                                <ng-container *ngSwitchCase="SelectOptionE.Rights">
+                                    <img class="rewardPoints-img" src="assets/images/icon/icon-reward-points.svg" />
+                                </ng-container>
+                                <ng-container *ngSwitchCase="SelectOptionE.RewardPoints">
+                                    <img class="rewardPoints-img" src="assets/images/icon/icon-reward-points.svg" />
+                                </ng-container>
+                                <ng-container *ngSwitchCase="SelectOptionE.GoldBee">
+                                    <img class="goldBee-img" src="assets/images/icon/icon-gold-bee.svg" />
+                                </ng-container>
+                                <ng-container *ngSwitchCase="SelectOptionE.DacardMission">
+                                    <img class="dacardMission-img" src="assets/images/icon/icon-event-darts.svg" />
+                                </ng-container>
+                                <ng-container *ngSwitchCase="SelectOptionE.FonPoint">
+                                    <img class="fonPoint-img" src="assets/images/icon/icon-event-darts.svg" />
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                        <input class="destination" type="text" value="{{selectOptionC}}" />
+                    </div>
+                </div>
+                <div class="dacard-mission-data flex-center">
+                    <h4>專屬權益</h4>
+                    <h2>{{ equityItems.length }}</h2>
+                    <h4>項</h4>
+                </div>
+                <p>資格計算到期日</p>
+                <p>{{ endDate }}</p>
+            </div>
+        </div>
+        <div class="tab">
+            <div class="tab__wrap">
+                <ul class="tab__navs">
+                    <li class="is-active"><a class="tab__nav">權益項目</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-unregistered">
+            <div class="wrap wrap__pd">
+                <div class="detail__info">
+                    <div class="flex-between">
+                        <p class="fs-xs fc-gold">
+                            各項權益顯示之可使用總次數皆尚未扣除已使用次數，使用前請詳閱注意事項，若確定使用即代表您已了解並同意注意事項。
+                        </p>
+                    </div>
+                    <div class="step step__pd--ssm" *ngFor="let item of equityItems; index as idx">
+                        <div class="list-table">
+                            <a class="list-table__row u-nounderline">
+                                <div class="list-table__col pr-sm">
+                                    <h4 class="fs-md">
+                                        {{ item.title }}
+                                    </h4>
+                                    <!-- <h4 class="fc-gold fw-r" *ngIf="
+                                            item.remark &&
+                                            item.apiStatus &&
+                                            item.coincidence
+                                        ">
+                                        {{ item.remark }}
+                                    </h4> -->
+                                    <div class="list-table__overflow--4 pt-xxs">
+                                        <p [innerHTML]="item.content"></p>
+                                    </div>
+                                    <div class="flex-left flex-nowrap mt-xs" *ngIf="
+                                        item.remark &&
+                                        item.apiStatus
+                                    "><img [ngClass]="item.coincidence ? 'rewardPoints-img' : 'icon'" [src]="item.coincidence ? 'assets/images/icon/icon-reward-points.svg' : 'assets/images/icon/icon-key.svg'">
+                                        <h4 [class.fc-gold]="item.coincidence">{{ item.remark }}</h4>
+                                    </div>
+                                </div>
+                                <div class="list-table__col list-table__col--auto">
+                                    <!-- <h4 class="fw-r align-center mb-xxs" *ngIf="item.apiStatus">
+                                        {{
+                                        idx === 0
+                                        ? "免費權益"
+                                        : item.coincidence
+                                        ? "已符合"
+                                        : "未符合"
+                                        }}
+                                    </h4> -->
+                                    <!-- <button class="btn btn--normal btn--normal-more btn--normal-gold" (click)="
+                                            openDetailDialog(
+                                                item.index,
+                                                item.coincidence
+                                            )
+                                        ">
+                                        使用詳情
+                                    </button> -->
+                                    <button class="btn--more" data-popup="TravelInsurance" (click)="
+                                            openDetailDialog(
+                                                item.index,
+                                                item.coincidence
+                                            )
+                                        "><img src="assets/images/icon/icon-arrow-gray.svg"></button>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lightbox show" *ngIf="equityTerms.show">
+            <div class="lightbox__back"></div>
+            <div class="lightbox__outer">
+                <div class="lightbox__inner lightbox--iframe lightbox--bold">
+                    <h3 class="mb-xs align-left">{{ equityTerms.title }}</h3>
+                    <div class="iframe-box iframe-box--sm">
+                        <div class="content_outer content_outer--md">
+                            <div class="content_inner align-left">
+                                <p [innerHTML]="equityTerms.content"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="gray mt-md" />
+                    <div class="button-group mb-md mt-md">
+                        <a class="btn btn--primary btn--w250 btn--check"
+                            (click)="detailDialogEvent(equityTerms.eventType,equityTerms.coincidence)">{{ equityTerms.confirm }}</a>
+                    </div>
+                    <div class="button-group mt-0 mb-0">
+                        <button class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                            (click)="equityTerms.show = false">
+                            {{ equityTerms.cancel }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lightbox show" *ngIf="memberCheckDialog.show">
+        <div class="lightbox__back"></div>
+        <div class="lightbox__outer">
+            <div class="lightbox__inner lightbox--bold">
+                <h3 class="mb-ssm">{{ memberCheckDialog.title }}</h3>
+                <p>{{ memberCheckDialog.content }}</p>
+                <div class="button-group mb-md mt-md">
+                    <button class="btn btn--primary btn--w250 btn--check" (click)="lightboxBtn(true)">
+                        {{ memberCheckDialog.confirm }}
+                    </button>
+                </div>
+                <div class="button-group mt-0 mb-0">
+                    <button class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                        (click)="lightboxBtn(false)">
+                        {{ memberCheckDialog.cancel }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lightbox show" *ngIf="apiErrorCnt >= 2">
+        <div class="lightbox__back"></div>
+        <div class="lightbox__outer">
+            <div class="lightbox__inner lightbox--bold">
+                <h3 class="mb-ssm">卡友權益</h3>
+                <p>您的專屬權益準備中，請大咖們稍等，還有更多任務在等您!</p>
+                <div class="button-group mb-md mt-md">
+                    <button class="btn btn--primary btn--w250 btn--check"
+                        (click)="routeByBillID(SelectOptionE.DacardMission)">
+                        前往大咖任務
+                    </button>
+                </div>
+                <div class="button-group mt-0 mb-0">
+                    <button class="btn btn--text btn--text-dark btn--text-line btn--cancel" (click)="close()">
+                        關閉
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

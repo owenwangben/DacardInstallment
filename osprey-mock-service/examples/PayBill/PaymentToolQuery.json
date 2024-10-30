@@ -1,0 +1,43 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": [
+        {
+            "acct_type": "string",
+            "acct_bank_id": "string",
+            "acct_num": "4567894563219632",
+            "acct_name": "string",
+            "bound": true,
+            "is_default": true,
+            "is_debit_card": true
+        },
+        {
+            "acct_type": "string",
+            "acct_bank_id": "string",
+            "acct_num": "7412456996549874",
+            "acct_name": "string",
+            "bound": true,
+            "is_default": true,
+            "is_debit_card": true
+        },
+        {
+            "acct_type": "string",
+            "acct_bank_id": "string",
+            "acct_num": "4444555566667777",
+            "acct_name": "string",
+            "bound": true,
+            "is_default": true,
+            "is_debit_card": true
+        }
+    ],
+    "Original": {},
+    "Success": true
+}

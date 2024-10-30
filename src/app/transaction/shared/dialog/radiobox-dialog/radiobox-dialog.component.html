@@ -1,0 +1,39 @@
+<div class="lightbox show">
+    <div class="lightbox__back"></div>
+    <div class="lightbox__outer">
+      <div class="lightbox__inner">
+        <div class="lightbox__select">
+          <div class="step__title step__title--align-left">
+            <h3>{{ title }}</h3>
+          </div>
+          <form>
+            <!-- 搜尋功能 -->
+            <div class="search-input" *ngIf="filter">
+                <input type="text" placeholder="輸入關鍵字" [(ngModel)]="query" name="輸入關鍵字" (ngModelChange)="search()">
+                <div class="icon icon--tl icon--search"></div>
+            </div>
+            <div class="lightbox__ps" [class.lightbox__ps--search]="filter">
+              <div class="select__content">
+                <div class="select__content__inner">
+                  <div class="select__content__item" *ngFor="let item of filterList">
+                    <label class="radio-btn-full">
+                      <input type="radio"  [(ngModel)]="result" [name]="item.name" [value]="item.value"><span>{{ item.name }}
+                        <div class="inline-block fs-xs" *ngIf="item.comment">{{ item.comment }}</div></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="lightbox__footer">
+              <div class="button-group mb-md mt-md">
+                <button class="btn btn--primary btn--w250 btn--check" [disabled]="!result" (click)="close()">確&nbsp;&nbsp;&nbsp;定</button>
+              </div>
+              <div class="button-group mt-0 mb-0">
+                <button class="btn btn--text btn--text-dark btn--text-line btn--cancel" (click)="cancel()">取&nbsp;&nbsp;&nbsp;消</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

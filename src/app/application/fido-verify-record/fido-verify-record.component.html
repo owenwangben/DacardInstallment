@@ -1,0 +1,46 @@
+<div class="wrap wrap__pd pb-md bg-blue-light">
+    <h1 class="title flex-between">
+        <span>可查詢近三個月紀錄，請選擇月份</span>
+    </h1>
+    <div class="select-box mt-md">
+        <select #selected (change)="changeMon(selected.value)">
+            <option *ngFor="let item of monArea" value="{{ item }}">
+                {{ item }}月
+            </option>
+        </select>
+    </div>
+</div>
+<div class="step step__full">
+    <div class="list-table--line">
+        <div *ngFor="let item of Items" class="list-table__row">
+            <div
+                class="list-table__col list-table__col--no mr-ssm align-center"
+            >
+                {{ item.SerialID }}
+            </div>
+            <div class="list-table__col list-table__col--w align-left">
+                <h4>3DS驗證</h4>
+                <p>{{ item.VerifyTime }}</p>
+            </div>
+            <div class="list-table__col">
+                <p
+                    class="inline-block fs-b fw-b"
+                    [class.fc-gold]="item.VerifyResult === '成功'"
+                >
+                    {{ item.VerifyResult }}
+                </p>
+                <a
+                    class="btn--more inline-block"
+                    (click)="openDetail(item.SerialID)"
+                    ><img src="assets/images/icon/icon-arrow-gray.svg"
+                /></a>
+            </div>
+        </div>
+        <div *ngIf="!Items || Items?.length === 0" class="flex-center pt-ssm">
+            <p class="fw-b">目前尚無驗證紀錄</p>
+        </div>
+    </div>
+    <div class="button-group">
+        <button class="btn btn--primary btn--w250" (click)="goCard()">回信用卡頁</button>
+    </div>
+</div>

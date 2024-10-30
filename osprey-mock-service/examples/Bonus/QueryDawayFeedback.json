@@ -1,0 +1,109 @@
+{
+	"Header": {
+		"ApplicationName": "Sinopac.Cawho.Web",
+		"SessionID": "",
+		"ServiceType": "",
+		"ClientIP": "",
+		"UserAgent": "",
+		"Tag": "",
+		"UserId": "",
+		"ReferenceNo": "bf142380076145a2bf7637c1c0ca55c9",
+		"RequestTime": "2024-02-26T17:14:59.0051837+08:00",
+		"ResponseTime": "2024-02-26T17:14:59.3003592+08:00"
+	},
+	"ResultCode": "00",
+	"ResultMessage": "",
+	"Result": {
+		"DeadLine": "20250331",
+		"TotalPoints": "1,037",
+		"Summary": [
+			{
+				"Code": "DAW1",
+				"Name": "DAWAY卡一般消費回饋(國內)",
+				"TotalAmt": "13,256",
+				"TotalFeedbackAmt": "133",
+				"DESC": "1"
+			},
+			{
+				"Code": "DAW2",
+				"Name": "DAWAY卡一般消費回饋(國外)",
+				"TotalAmt": "23,518",
+				"TotalFeedbackAmt": "470",
+				"DESC": "1"
+			},
+			{
+				"Code": "DAW3",
+				"Name": "DAWAY卡 新戶自扣加碼",
+				"TotalAmt": "36,774",
+				"TotalFeedbackAmt": "368",
+				"DESC": "2"
+			},
+			{
+				"Code": "DAW4",
+				"Name": "DAWAY卡 新戶LINE Pay加碼",
+				"TotalAmt": "13,256",
+				"TotalFeedbackAmt": "66",
+				"DESC": "2"
+			}
+		],
+		"DetailA": [
+			{
+				"Code": "DAW1",
+				"Name": "DAWAY卡一般消費回饋(國內)",
+				"Items": [
+					{
+						"DEDATE": "20240205",
+						"TXDATE": "20240201",
+						"MEMO": "A- 里仁南京伊通店",
+						"TX_AMT": "13,256",
+						"POINT": "133"
+					}
+				]
+			},
+			{
+				"Code": "DAW2",
+				"Name": "DAWAY卡一般消費回饋(國外)",
+				"Items": [
+					{
+						"DEDATE": "20240205",
+						"TXDATE": "20240201",
+						"MEMO": "SP URBAN SOPHISTICAT WHITE PLAINS US",
+						"TX_AMT": "23,518",
+						"POINT": "470"
+					}
+				]
+			},
+			{
+				"Code": "DAW3",
+				"Name": "DAWAY卡 新戶自扣加碼",
+				"Items": [
+					{
+						"DEDATE": "20240205",
+						"TXDATE": "20240201",
+						"MEMO": "A- 里仁南京伊通店",
+						"TX_AMT": "36,774",
+						"POINT": "0"
+					}
+				]
+			},
+			{
+				"Code": "DAW4",
+				"Name": "DAWAY卡 新戶LINE Pay加碼",
+				"Items": [
+					{
+						"DEDATE": "20240205",
+						"TXDATE": "20240201",
+						"MEMO": "連加＊ＬＯＵＩＳＡ　Ｃ",
+						"TX_AMT": "13,256",
+						"POINT": "0"
+					}
+				]
+			}
+		]
+	},
+	"Original": {
+		"ID": "D251186984",
+		"Period": "202402"
+	},
+	"Success": true
+}

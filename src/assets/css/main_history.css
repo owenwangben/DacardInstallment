@@ -1,0 +1,382 @@
+@charset "UTF-8";
+
+.loadingio__outer .loadingGif {
+    min-width: 240px;
+    position : absolute;
+    top      : 50%;
+    left     : 50%;
+    transform: translate(-50%, -50%)
+}
+
+.loadingio__outer .loadingGif:before {
+    content         : '';
+    display         : block;
+    margin          : 0 auto;
+    width           : 76px;
+    height          : 76px;
+    background-image: url(../images/img/loading.gif);
+    background-size : contain
+}
+
+.card_enable_2_2 .container {
+    background: #12213a;
+}
+
+.lightbox.lightbox__introview {
+    background: rgba(0, 0, 0, .8)
+}
+
+.introview {
+    display       : flex;
+    flex-direction: column
+}
+
+.introview div:nth-child(2) {
+    height: 87px
+}
+
+.introview div:nth-child(3) {
+    height: 123px
+}
+
+.introview div:nth-child(4) {
+    height: 76px
+}
+
+.introview div:nth-child(5) {
+    height: 115px
+}
+
+.introview .pinbox {
+    width   : 100%;
+    position: relative;
+    height  : 100px
+}
+
+.introview .pinbox .circle {
+    position       : absolute;
+    top            : 0;
+    left           : 50%;
+    width          : 180px;
+    height         : 180px;
+    border-radius  : 50%;
+    background     : #cfcfcf;
+    border         : 15px solid rgba(207, 207, 207, .5);
+    background-clip: padding-box;
+    text-align     : center;
+    overflow       : hidden;
+    padding        : 5px
+}
+
+.introview .pinbox .circle img {
+    display      : inline;
+    margin-bottom: -3px
+}
+
+.introview .pinbox .circle img.star {
+    position: relative;
+    left    : -1000px;
+    filter  : drop-shadow(transparent 1000px 0);
+    width   : 20px
+}
+
+.introview .pinbox .circle p {
+    color    : #fff;
+    font-size: 14px
+}
+
+.introview .pinbox .circle p.no1 {
+    font-weight: 700;
+    line-height: 120%
+}
+
+.introview .pinbox .circle h3.amount {
+    color        : #fff;
+    font-size    : 26px;
+    margin-bottom: 0
+}
+
+.introview .pinbox .circle--top {
+    transform      : translate(-100%, 0);
+    background     : #fec933;
+    border         : 15px solid rgba(254, 201, 51, .5);
+    background-clip: padding-box;
+    color          : #00f;
+    fill           : #00f
+}
+
+.introview .pinbox .circle--top img.star {
+    filter: drop-shadow(#fda128 1000px 0)
+}
+
+.introview .pinbox .circle--top p.no1 {
+    color: #fda128
+}
+
+.introview .pinbox .circle--middle {
+    transform      : translate(0, 0);
+    background-clip: padding-box
+}
+
+.introview .pinbox .circle--middle img.star {
+    filter: drop-shadow(#979797 1000px 0);
+    margin: 0 1%
+}
+
+.introview .pinbox .circle--middle p.no1 {
+    color: #979797
+}
+
+.introview .pinbox .circle--bottom {
+    transform      : translate(-90%, 0);
+    background     : #e58257;
+    border         : 15px solid rgba(229, 130, 87, .5);
+    background-clip: padding-box
+}
+
+.introview .pinbox .circle--bottom img.star {
+    filter: drop-shadow(#b95c32 1000px 0);
+    width : 13.28px;
+    margin: 0 .5%
+}
+
+.introview .pinbox .circle--bottom p.no1 {
+    color: #b95c32
+}
+
+.introview .pinbox .circle--min {
+    width     : 120px;
+    height    : 120px;
+    transform : translate(30px, 0);
+    background: rgba(255, 255, 255, .9);
+    border    : 0 solid rgba(207, 207, 207, .5)
+}
+
+.introview .pinbox .circle--min img {
+    margin-top: 10px
+}
+
+.introview .pinbox .circle--min h4 {
+    font-size: 20px;
+    color    : #131313;
+    font-size: bold
+}
+
+.introview .pinbox .circle--min p {
+    color: #8f8f8f
+}
+
+.payment_analysis #contentCustomized,
+.payment_analysis #contentYear {
+    display: none
+}
+
+.payment_analysis .piechart__wrapper--none {
+    height: 450px
+}
+
+.payment_analysis .piechart__wrapper .chart-expo--sticky {
+    position: fixed
+}
+
+.welfare h2 {
+    font-size  : 40px;
+    font-weight: 700;
+    color      : #f5bc55;
+}
+
+.welfare p {
+    color: #fff;
+}
+
+.welfare h4 {
+    font-size  : 20px;
+    font-weight: 700;
+    color      : #fff;
+}
+
+.welfare h6 {
+    font-size: 13px;
+    color    : #fff;
+    font-size: 20px;
+}
+
+.welfare--info {
+    background: #fff;
+    padding   : 16px 8px;
+    width     : 80%;
+    max-width : 290px;
+    margin    : 0 auto;
+}
+
+.welfare--info h6,
+.welfare--info p {
+    line-height: 1.68;
+}
+
+.welfare--info h6 {
+    color      : #131313;
+    font-weight: 700;
+}
+
+.welfare--info p {
+    color: #8f8f8f;
+}
+
+.relay .logo {
+    max-width: 140px;
+    margin   : 0 auto 30px;
+}
+
+.relay h3 {
+    color      : #12213a;
+    font-size  : 22px;
+    font-weight: 700;
+}
+
+.relay h5 {
+    color      : #131313;
+    font-size  : 18px;
+    font-weight: 700;
+}
+
+.relay p.fs-s {
+    font-size: 14px;
+}
+
+.relay p.remark {
+    color    : #f5bc55;
+    font-size: 13px;
+}
+
+.relay p.red {
+    color: red;
+}
+
+.relay--list {
+    margin-top: 30px;
+}
+
+.relay--list * {
+    text-align: center !important;
+}
+
+.relay--list li {
+    margin-bottom: 16px;
+}
+
+.relay--list p {
+    color    : #8f8f8f;
+    font-size: 14px;
+}
+
+.relay--list .check-btn {
+    width : 20px;
+    height: 20px;
+}
+
+.relay--list .check-btn-active:after {
+    top : 2px;
+    left: 5px;
+}
+
+.sweet-alert-target {
+    position: relative;
+}
+
+.position-absolute {
+    position: absolute !important;
+    height  : auto !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.action-center {
+    justify-content: center !important;
+}
+
+.step.disable-error::after {
+    top   : 100px !important;
+    height: 100% !important;
+}
+
+.payment_analysis .container {
+    background-color: #fff
+}
+
+.icon--jcb::before,
+.icon--jcb:after {
+    background-image: url(../../assets/images/icon/icon_jcb.svg);
+}
+
+.icon--master::before,
+.icon--master:after {
+    background-image: url(../../assets/images/icon/icon_master.svg);
+}
+
+.icon--visa::before,
+.icon--visa:after {
+    background-image: url(../../assets/images/icon/icon_visa-white.svg);
+}
+
+.payment_analysis .swiper__group .swiper-wrapper .row .col {
+    padding: 2px;
+    margin : 2px
+}
+
+.payment_analysis .swiper__group .swiper-wrapper .row .col .btn-check label.radio-label {
+    height     : auto;
+    color      : #fff;
+    font-weight: 900;
+    font-size  : 12px;
+    padding    : 4px 8px
+}
+
+.payment_analysis .piechart__wrapper {
+    background-color: #203e5b;
+    height          : 550px
+}
+
+.payment_analysis .piechart__wrapper #chart-1,
+.payment_analysis .piechart__wrapper #chart-2,
+.payment_analysis .piechart__wrapper #chart-3,
+.payment_analysis .piechart__wrapper #chart-4 {
+    transition: opacity .28s ease-in
+}
+
+.payment_analysis .piechart__wrapper .chart-expo .text-group .piechart_title {
+    color    : #efefef;
+    font-size: 14px
+}
+
+.payment_analysis .piechart__wrapper .chart-expo .text-group .piechart_total {
+    color    : #dfa340;
+    font-size: 34px
+}
+
+.payment_analysis .piechart__wrapper .chart-expo .text-group a.btn {
+    margin-top: 15px
+}
+
+.payment_analysis .piechart__wrapper .chart-expo .text-group--none .piechart_title {
+    margin-bottom: 4px;
+    color        : #efefef;
+    font-size    : 14px
+}
+
+.payment_analysis .piechart__wrapper .chart-expo .text-group--none .piechart_total {
+    color      : #dfa340;
+    font-size  : 20px;
+    font-weight: 700
+}
+
+.payment_analysis .piechart__wrapper .chart-expo .text-group--none a.btn {
+    margin-top: 15px
+}
+
+.step.disable-h8-devpro::after {
+    top: 100px;
+    height: calc(100% - (32px + 92px + 106px));
+}

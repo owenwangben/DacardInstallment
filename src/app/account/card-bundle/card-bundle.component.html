@@ -1,0 +1,60 @@
+<mat-horizontal-stepper #stepper [@.disabled]="true" [linear]="false" [selectedIndex]="this.selectedIndex">
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<ng-template #step1>
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <h1 class="title">綁定卡片快速消費</h1>
+        </div>
+        <div class="step">
+            <div class="step__title">
+                <h3>手機號碼認證</h3>
+                <p *ngIf="!beenSendOTP">將發送簡訊驗證碼至 {{ mobile| mobilemask:'●' }}</p>
+                <p *ngIf="beenSendOTP">已發送簡訊驗證碼至 {{ mobile| mobilemask:'●' }}</p>
+            </div>
+            <form *ngIf="beenSendOTP" [formGroup]="otpform">
+                <div class="form">
+                    <div class="form__row">
+                        <div class="form__col">
+                            <div class="form__data">
+                                <input class="captcha-otp" type="tel" name="captcha" maxlength="6"
+                                    autocomplete="one-time-code" oncopy="return false;" onpaste="return false;"
+                                    formControlName="captcha" mask="000000">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-danger">{{otpform.controls.captcha['errorMessages'][0]}}</div>
+                <div class="captcha-time">
+                    <div class="flex-between">
+                        <p>剩餘時間：<span>{{countdown}}</span>秒</p>
+                        <button>
+                            <p class="icon icon--tl icon--refresh" (click)="generateOTP(true)">重發驗證碼</p>
+                        </button>
+                    </div>
+                    <button *ngIf="countdown == 0" class="error" (click)="generateOTP(true)">驗證碼已失效，重新發送驗證碼</button>
+                </div>
+            </form>
+        </div>
+        <div class="button-group" *ngIf="!beenSendOTP"><a class="btn btn--primary btn--w250" href="javascript:void(0)"
+                (click)="generateOTP()">發送簡訊驗證碼</a></div>
+        <div class="button-group" *ngIf="beenSendOTP"><a class="btn btn--primary btn--w250" href="javascript:void(0)"
+            appPreventDoubleClick (throttledClick)="OTPsubmit()">確&nbsp;&nbsp;&nbsp;定</a></div>
+        <div class="button-group mt-sm">
+            <button *ngIf="beenSendOTP" class="btn btn--text btn--text-line" routerLink="/Account/CardManage">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+        <div *ngIf="!beenSendOTP" class="button-group mt-lg-2 align-center">
+            <p class="btn btn--text btn--text-line btn--text-sm msg" (click)="goEditMobile()">換手機號碼，收不到驗證碼?</p>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #step2>
+    <!-- TODO 驗證成功後接續頁面 -->
+</ng-template>

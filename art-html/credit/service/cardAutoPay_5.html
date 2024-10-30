@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>DACARD - 永豐銀行</title>
+    <meta name="title" content="DACARD - 永豐銀行">
+    <meta name="description" content="">
+    <meta property="og:title" content="DACARD - 永豐銀行">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="author" content="永豐銀行">
+    <meta name="copyright" content="永豐銀行">
+    <meta property="og:site_name" content="DACARD - 永豐銀行">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="">
+    <link rel="apple-touch-icon" href="">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/main_all.css">
+  </head>
+  <body class="card_auto_pay_5">
+    <main class="container">
+      <div class="wrap">
+        <div class="tab">
+          <div class="tab__wrap">
+            <ul class="tab__navs">
+              <li class="tab__nav-bill is-active"><a class="tab__nav tab__nav-bill">代查帳單(5)</a></li>
+              <li class="tab__nav-card"><a class="tab__nav tab__nav-card">自設提醒(2)</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="wrap wrap__pd">
+        <div class="flex-between">
+          <div class="inline-block">
+            <h1 class="title inline-block">扣款方式設定</h1>
+          </div>
+        </div>
+        <div class="step step__pt-xxs">
+          <form>
+            <div class="form">
+              <div class="form__row form__row--line-none">
+                <div class="form__col">
+                  <p class="form__label">每月永豐卡費自動扣繳</p>
+                  <div class="form__data form__data--flex">
+                    <label class="radio-btn radio-btn-bg">
+                      <input type="radio" value="sinopac" name="radio1"><span>當期應繳總金額</span>
+                    </label>
+                    <label class="radio-btn radio-btn-bg">
+                      <input type="radio" value="other" name="radio1"><span>最低應繳總金額</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row" data-sinopac>
+                <div class="form__col">
+                  <p class="form__label icon icon--eye icon--tr">扣款帳戶</p>
+                  <div class="form__data">
+                    <input type="hidden">
+                    <button class="select-btn btn-native fs-base" data-popup="acctBankAccount">
+                      <!-- 選擇後 addClass .selected-->
+                      <p class="selected">永豐銀行_營業部DAHWO活期儲蓄存款</p>
+                      <p>***************2316</p>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="form__notice">限本行存款帳戶扣款本行信用卡</div>
+              <div class="form__row form__row--line-none form__row--h-auto">
+                <div class="form__col">
+                  <label class="check-row check-row-agree check-row-text">
+                    <p class="fs-sm">本人已詳閱及了解注意事項並同意遵守信用卡自動扣繳設定約定條款</p>
+                    <input type="checkbox"><span></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="button-group mb-md mt-md">
+          <button class="btn btn--primary btn--primary-wb btn--check">下一步</button>
+        </div>
+        <div class="button-group mt-sm">
+          <button class="btn btn--text btn--text-line">取消</button>
+        </div>
+        <div class="notice">
+          <p>注意事項：</p>
+          <p>1. 本服務限本行存款帳戶扣繳本行信用卡應繳款項。</p>
+          <p>2. 本交易於營業日17:00以前完成，將於次營業日生效；若於營業日17:00以後完成，將於次營業日之下一營業日生效。 </p>
+          <p>3. 本交易若為由其他行庫變更為本行自動扣繳，本次變更將於次期帳單生效，請以帳單顯示之扣款帳號為準。</p>
+        </div>
+        <div class="warning mt-lg-2"><img class="margin-center" src="../../assets/images/demo/warning.svg" alt="謹慎理財 信用至上"></div>
+        <div class="lightbox" id="acctBankAccount">
+          <div class="lightbox__back"></div>
+          <div class="lightbox__outer">
+            <div class="lightbox__inner">
+              <div class="lightbox__select">
+                <div class="step__title step__title--align-left">
+                  <h3>請選擇銀行帳號</h3>
+                </div>
+                <form>
+                  <div class="lightbox__ps lightbox__ps--search">
+                    <div class="select__content">
+                      <div class="select__content__inner">
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="acctBankAccount" value="" data-name="楊梅分行活期儲蓄存款" data-account="11100400371445"><span class="pt-ssm pb-ssm">
+                              <div class="list-table">
+                                <div class="list-table__row flex-left flex-nowrap">
+                                  <div class="list-table__col list-table__col-num mr-ssm">
+                                    <h4 class="fs-md-1 fc-gray">01</h4>
+                                  </div>
+                                  <div class="list-table__col">
+                                    <p class="fs-b fw-b">楊梅分行活期儲蓄存款</p>
+                                    <h4>11100400371445</h4>
+                                  </div>
+                                </div>
+                              </div></span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="acctBankAccount" value="" data-name="松山分行活期儲蓄存款" data-account="11100400371445"><span class="pt-ssm pb-ssm">
+                              <div class="list-table">
+                                <div class="list-table__row flex-left flex-nowrap">
+                                  <div class="list-table__col list-table__col-num mr-ssm">
+                                    <h4 class="fs-md-1 fc-gray">02</h4>
+                                  </div>
+                                  <div class="list-table__col">
+                                    <p class="fs-b fw-b">松山分行活期儲蓄存款</p>
+                                    <h4>11100400371445</h4>
+                                  </div>
+                                </div>
+                              </div></span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="acctBankAccount" value="" data-name="松山分行活期儲蓄存款" data-account="11100400371445"><span class="pt-ssm pb-ssm">
+                              <div class="list-table">
+                                <div class="list-table__row flex-left flex-nowrap">
+                                  <div class="list-table__col list-table__col-num mr-ssm">
+                                    <h4 class="fs-md-1 fc-gray">03</h4>
+                                  </div>
+                                  <div class="list-table__col">
+                                    <p class="fs-b fw-b">松山分行活期儲蓄存款</p>
+                                    <h4>11100400371445</h4>
+                                  </div>
+                                </div>
+                              </div></span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="acctBankAccount" value="" data-name="松山分行活期儲蓄存款" data-account="11100400371445"><span class="pt-ssm pb-ssm">
+                              <div class="list-table">
+                                <div class="list-table__row flex-left flex-nowrap">
+                                  <div class="list-table__col list-table__col-num mr-ssm">
+                                    <h4 class="fs-md-1 fc-gray">04</h4>
+                                  </div>
+                                  <div class="list-table__col">
+                                    <p class="fs-b fw-b">松山分行活期儲蓄存款</p>
+                                    <h4>11100400371445</h4>
+                                  </div>
+                                </div>
+                              </div></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="lightbox__footer">
+                    <div class="button-group mb-md mt-xs">
+                      <button class="btn btn--primary btn--w250 btn--acccheck" disabled>確&nbsp;&nbsp;&nbsp;定</button>
+                    </div>
+                    <div class="button-group mt-0 mb-0">
+                      <button class="btn btn--text btn--text-dark btn--text-line btn--cancel">取&nbsp;&nbsp;&nbsp;消</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer></footer>
+    </main>
+    <script src="../../assets/js/source/jquery-3.3.1.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/jquery.payment.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/slick.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/sortable.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/highcharts.securejs" type="text/javascript"></script>
+    <script>
+      $(document).ready(function () {
+        $('.tab__nav-bill').on('click' , function (e) {
+          $('.tab__nav-bill').addClass('is-active'); 
+          $('.tab__nav-card').removeClass('is-active');
+          $('.content-bill').show();
+          $('.content-registered').hide()
+        });
+        $('.tab__nav-card').on('click' , function (e) {
+          $('.tab__nav-card').addClass('is-active'); 
+          $('.tab__nav-bill').removeClass('is-active');
+          $('.content-card').show();
+          $('.content-bill').hide()
+        });
+      });
+      
+    </script>
+    <script>
+      $(document).ready(function(){
+        // 隱碼
+        $('.icon--eye').on('click', function(){
+          $(this).toggleClass('icon--eye-active');
+          if($(this).hasClass('icon--eye-active')){
+            $('.form__data').eq(1).find('button p').eq(1).html('(807)12345678942316');
+          }else{
+            $('.form__data').eq(1).find('button p').eq(1).html('***************2316');
+          }
+        })
+      // 彈窗
+        $('[data-popup]').on('click', function(e){
+          e.preventDefault();
+          let target = $(this).data('popup');
+          $('#'+ target).addClass('show');
+        })
+      //- for 帳戶
+        $('input[name^="acct"]').change(function() {
+          let val_name = $(this).filter(':checked').data('name');
+          let val_account = $(this).filter(':checked').data('account');
+          if(val_name){
+            $('.btn--acccheck').removeAttr("disabled");
+          }
+        });
+      })
+    </script>
+  </body>
+</html>

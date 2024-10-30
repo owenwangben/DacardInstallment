@@ -1,0 +1,16 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "已經登錄過",
+    "Result": {
+
+        "Seq":"50"
+    }
+}

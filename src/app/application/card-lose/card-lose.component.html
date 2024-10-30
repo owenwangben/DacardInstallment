@@ -1,0 +1,335 @@
+<mat-horizontal-stepper #stepper [@.disabled]="true" [linear]="true" [selectedIndex]="selectedIndex"
+    (selectionChange)="selectedIndexChange()">
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step3"></ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+<ng-template #step1>
+    <div class="wrap bg-gradient bg-gradient-sm">
+        <div class="card-list-single pb-lg">
+            <h4>{{loseCardItem?.Name}}</h4><img class="mt-md" [src]="loseCardItem?.CardFaceURL"
+                (error)="onImgError($event)">
+        </div>
+    </div>
+    <div class="wrap wrap__pd pb-0">
+        <div *ngFor="let item of primaryCardItem;let itemIndex=index">
+            <div class="flex-between" *ngIf="itemIndex < 1">
+                <h1 class="title">{{item?.CardTypeDesc}} <span class="remark-gold"
+                    *ngIf="item?.CardTypeCode !='NP'">(掛失正卡，所有附卡將一併掛失)</span></h1>
+                <div class="icon icon--tl icon--eye-white icon--text icon--text-w"
+                [ngClass]="{'icon--eye-white-active':!hidePrimaryCardInfo}" (click)="hidePrimaryCardInfo=!hidePrimaryCardInfo"><span
+                            class="inline-block">顯示內容</span>
+                </div>
+            </div>
+            <div class="step pb-ssm pt-sm">
+                <div class="wrap">
+                    <div class="list align-left">
+                        <label class="check-row list__row list__row--line-none pt-0 list__row--sp">
+                            <div class="list__col">
+                                <div class="inline-block-group icon icon--tl icon--alone--md {{addCardBrandclass(item.CardBrand)}}">
+                                    <p>{{hidePrimaryCardInfo?(item?.CardNo|mask:'0000-0000-0000-0000'|cardnumbermask:'●'):(item?.CardNo|mask:'0000-0000-0000-0000')}}
+                                    </p>
+                                </div>
+                                <div class="list__label mb-0 mt-xs">{{item?.CardHolderName}}</div>
+                                <input type="checkbox" name="agree" value="{{itemIndex}}"
+                                    [checked]="primarySelectedCards[itemIndex]"
+                                    (change)="changeSelectCardItems(itemIndex,item.CardTypeCode)"><span class="right"></span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let item of additionalCardItem;let itemIndex=index">
+            <div class="flex-between" *ngIf="itemIndex < 1">
+                <h1 class="title">{{item?.CardTypeDesc}} </h1>
+                <div class="icon icon--tl icon--eye-white icon--text icon--text-w"
+                [ngClass]="{'icon--eye-white-active':!hideAdditionalCardInfo}" (click)="hideAdditionalCardInfo=!hideAdditionalCardInfo"><span
+                            class="inline-block">顯示內容</span>
+                </div>
+            </div>
+            <div class="step pb-ssm pt-sm">
+                <div class="wrap">
+                    <div class="list align-left">
+                        <label class="check-row list__row list__row--line-none pt-0 list__row--sp">
+                            <div class="list__col">
+                                <div class="inline-block-group icon icon--tl icon--alone--md {{addCardBrandclass(item.CardBrand)}}">
+                                    <p>{{hideAdditionalCardInfo?(item?.CardNo|mask:'0000-0000-0000-0000'|cardnumbermask:'●'):(item?.CardNo|mask:'0000-0000-0000-0000')}}
+                                    </p>
+                                </div>
+                                <div class="list__label mb-0 mt-xs">{{item?.CardHolderName}}</div>
+                                <input type="checkbox" name="agree" value="{{itemIndex}}"
+                                    [checked]="additionalSelectedCards[itemIndex]"
+                                    (change)="changeSelectCardItems(itemIndex,item.CardTypeCode)"
+                                    [disabled]="!canChangeAdditionalCard() ? true : null"><span
+                                    class="right"></span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="notice">
+            <p>提醒您:</p>
+            <ul>
+                <li>掛失停用生效後，即無法更改或取消，請於送出前詳閱本行「信用卡掛失注意事項」說明。</li>
+                <li>掛失停用生效後，次月帳單收取<span class="fc-gold">每卡新臺幣200元</span>之掛失停用手續費(若辦理正卡掛失停用，因該同卡別之附卡亦連帶一併停用，將不收取附卡之掛失停用手續費)。</li>
+                <li>辦理正卡掛失後，該同卡別之附卡亦連帶一併停用，但該同卡別之虛擬卡仍須辦理掛失停用；如有疑問，請洽24小時客服專線(02)2528-7776。</li>
+                <li><a href="https://www.ba.org.tw/PublicInformation/Detail/5218?enumtype=ConsumerType&type=CreditInfo#open-browser" target="_blank">【銀行公會-各銀行信用卡掛失服務資訊】</a></li>
+            </ul>
+        </div>
+        <div class="button-group mt-lg-2">
+            <button class="btn btn--primary btn--w250" [disabled]="!confirmButton"
+                (click)="checkSelectedLoseCard()">確&nbsp;&nbsp;&nbsp;定</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="backToLast()">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+    </div>
+    <!-- <div class="lightbox" [ngClass]="{'show':!hideLoseCardNoticeBlock}">
+        <div class="lightbox__back"></div>
+        <div class="lightbox__outer">
+            <div class="lightbox__inner lightbox--iframe">
+                <div class="iframe-box">
+                    <div class="content_outer">
+                        <div class="content_inner">
+                            <h4 class="mb-ssm">{{agreementData?.Title}}</h4>
+                            <ul>
+                                <li>1. 公司卡、簽帳金融卡如須掛失，請電洽本行24小時客服專線02-25287776辦理。</li>
+                                <li>2. 掛失生效後下個月帳單將收取每卡新台幣200元之掛失停用手續費(若因正卡掛失連帶附卡掛失將不收取附卡費用)。
+                                    正卡辦理掛失停用手續後，該同卡別之附卡及虛擬卡亦連帶一併停用；惟附卡或虛擬卡辦理掛失停用手續後，正卡仍得繼續使用。</li>
+                                <li>3. 如掛失之卡片為金融信用卡，於掛失作業確定成功時，卡片之金融端功能亦一併停用。</li>
+                                <li>4. 掛失之信用卡如已設定代扣繳公營事業費用(如水、電、瓦斯)、中華電信費用或其他定期扣款之費用(如保險、民營電信、有線電視等)，
+                                    於掛失停用生效後，將無法繼續進行扣款服務，請務必向設定代扣繳之事業單位申請變更。</li>
+                                <li>5. 信用卡若附加記名式電子票證功能(如悠遊卡、一卡通…等)且於掛失完成時尚有餘額者，餘額將於掛失完成後約7-45個工作日內，退還至持卡人之信用卡帳戶；
+                                    因悠遊卡/一卡通之扣款為非線上即時交易，自掛失前24小時至完成掛失手續後三小時內被冒用所發生之損失，仍由持卡人自行負擔。</li>
+                                <li>6. 掛失之卡片如已綁定虛擬手機信用卡(如Apple Pay、HCE或其他行動支付等)，一經掛失完成虛擬手機信用卡亦將無法使用。</li>
+                                <li>7. 信用卡經掛失生效後，如持卡人未申請補發新卡且於本行名下已無其他持有之信用卡時，其紅利點數、卡片優惠及相關之會員權益，皆一併取消。</li>
+                                <li>8. 如欲申請補發新卡，請電洽本行24小時客服專線02-25287776辦理，惟附卡之申請補發，須由主卡人來電辦理。另為維護您的權益，您可透過網路銀行的帳單/查詢功能，
+                                    確認您的消費紀錄(功能選項：信用卡>帳單/查詢>近期帳單或未出帳單明細)。如對消費內容有任何疑義，請您來電本行客服專線02-25287776，
+                                    由客服人員協助您作進一步之確認。以上如有不便來電之情形，亦可攜帶身分證至就近分行，由人員協助您連繫處理。</li>
+                            </ul>
+                            <div loadHtml="{{agreementData?.Content}}"></div>
+                        </div>
+                    </div>
+                    <hr class="gray mt-sm">
+                    <div class="form__check mt-sm">
+                        <div class="form__check__item">
+                            <label class="check-row" (change)="agreeNotice=!agreeNotice">本人已詳閱【<a
+                                    class="line-none">永豐商業銀行信用卡掛失注意事項</a>】並充分了解且同意遵守全部內容。
+                                <input type="checkbox" name="agree"><span></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-group mb-md mt-md">
+                    <button class="btn btn--primary btn--w250 btn--check" [disabled]="!agreeNotice"
+                        (click)="hideLoseCardNoticeBlock=true">確&nbsp;&nbsp;&nbsp;定</button>
+                </div>
+                <div class="button-group mt-0 mb-0">
+                    <button class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                        (click)="backToLast()">取&nbsp;&nbsp;&nbsp;消</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</ng-template>
+<ng-template #step2>
+    <div class="wrap bg-gradient bg-gradient-sm">
+        <div class="card-list-single pb-lg">
+            <h4>{{loseCardItem?.Name}}</h4><img class="mt-md" [src]="loseCardItem?.CardFaceURL"
+                (error)="onImgError($event)">
+        </div>
+    </div>
+    <div class="wrap wrap__pd pb-0">
+        <h1 class="title">掛失資訊</h1>
+        <div class="step step__pt-xxs">
+            <div class="wrap">
+                <div class="list align-left">
+                    <div class="list__row">
+                        <div class="list__col">
+                            <p class="list__label">申請日</p>
+                            <p>{{currentDate}}</p>
+                        </div>
+                    </div>
+                    <div class="list__row">
+                        <div class="list__col" *ngIf="isVip">
+                            <p class="list__label">掛失停用手續費</p>
+                            <p>為了感謝貴用戶長期對本行的支持，將為您減免本次掛失所產生的費用，謝謝</p>
+                        </div>
+                        <div class="list__col" *ngIf="!isVip">
+                            <p class="list__label">掛失停用手續費</p>
+                            <p>掛失生效後下個月帳單將收取每卡<span>新台幣200元</span>之掛失停用手續費(若辦理正卡掛失停用，因該同卡別之附卡亦連帶一併停用，將不收取附卡之掛失停用手續費)。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let item of selectPrimaryCardItem;let itemIndex=index">
+            <div class="flex-between" *ngIf="itemIndex < 2">
+                <h1 class="title">{{item?.CardTypeDesc}} <span class="remark-gold"
+                    *ngIf="item?.CardTypeCode!='NP'">(掛失正卡，所有附卡將一併掛失)</span></h1>
+                <div class="icon icon--tl icon--eye-white icon--text icon--text-w"
+                [ngClass]="{'icon--eye-white-active':!hidePrimaryCardInfo}" (click)="hidePrimaryCardInfo=!hidePrimaryCardInfo"><span
+                            class="inline-block">顯示內容</span>
+                </div>
+            </div>
+            <div class="step pb-ssm pt-sm">
+                <div class="wrap">
+                    <div class="list align-left">
+                        <div class="list__row list__row--line-none pt-0 list__row--sp">
+                            <div class="list__col">
+                                <div class="inline-block-group icon icon--tl icon--alone--md {{addCardBrandclass(item.CardBrand)}}">
+                                    <p>{{hidePrimaryCardInfo?(item?.CardNo|mask:'0000-0000-0000-0000'|cardnumbermask:'●'):(item?.CardNo|mask:'0000-0000-0000-0000')}}
+                                    </p>
+                                </div>
+                                <div class="list__label mb-0 mt-xs">{{item?.CardHolderName}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let item of selectAdditionalCardItem;let itemIndex=index">
+            <div class="flex-between" *ngIf="itemIndex == 0">
+                <h1 class="title">{{item?.CardTypeDesc}} </h1>
+                <div class="icon icon--tl icon--eye-white icon--text icon--text-w"
+                [ngClass]="{'icon--eye-white-active':!hideAdditionalCardInfo}" (click)="hideAdditionalCardInfo=!hideAdditionalCardInfo"><span
+                            class="inline-block">顯示內容</span>
+                </div>
+            </div>
+            <div class="step pb-ssm pt-sm">
+                <div class="wrap">
+                    <div class="list align-left">
+                        <div class="list__row list__row--line-none pt-0 list__row--sp">
+                            <div class="list__col">
+                                <div class="inline-block-group icon icon--tl icon--alone--md {{addCardBrandclass(item.CardBrand)}}">
+                                    <p>{{hideAdditionalCardInfo?(item?.CardNo|mask:'0000-0000-0000-0000'|cardnumbermask:'●'):(item?.CardNo|mask:'0000-0000-0000-0000')}}
+                                    </p>
+                                </div>
+                                <div class="list__label mb-0 mt-xs">{{item?.CardHolderName}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-group"><a class="btn btn--primary btn--w250" appPreventDoubleClick (throttledClick)="submit();insertAgreementRecord()">確&nbsp;&nbsp;&nbsp;定</a>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="backToLast()">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+        <div class="notice">
+            <p>注意事項：</p>
+            <ul>
+                <li>提醒您，掛失經生效即無法更改或取消請於確定送出前詳閱【<a style="border-bottom: 0px;cursor: default;">永豐商業銀行信用卡掛失注意事項</a>】說明。 </li>
+                <li>上列為以您正卡人身分登錄名下之所屬信用卡(含正附卡)，若您持有卡為他人之附卡，則需請該正卡人本人登錄網銀進行信用卡掛失。 </li>
+                <li>正卡辦理掛失停用手續後，該同卡別之附卡及虛擬卡亦連帶一併停用；惟附卡或虛擬卡辦理掛失停用手續後，正卡仍得繼續使用；如有疑問，請洽24小時客服中心。  </li>
+                <li>如掛失之卡片為金融信用卡，於掛失作業確定成功時，卡片之金融端功能亦一併停用。 </li>
+                <li>欲申請補發新卡，請電洽本行客服專線02-25287776 辦理；附卡之申請補發，須由主卡人來電辦理。 </li>
+            </ul>
+        </div>
+    </div>
+</ng-template>
+<ng-template #step3>
+    <div class="wrap wrap__pd">
+        <div class="result" [ngStyle]="{'display':applyLoseCardAllSuccessStatus?'block':'none'}">
+            <div class="result__icon"><img src="assets/images/img/img-success-gold.svg">
+                <h2>掛失成功</h2>
+            </div>
+            <div class="result__content" style="text-align: left;" *ngIf="applyLoseCardResult?.HasTransactionHistory">
+                <p>1. 掛失已完成。您所掛失的卡號於掛失完成前24小時內有交易紀錄，如有疑義，請您電洽本行客服專線02-25287776，由客服人員協助您進行進一步確認。</p>
+                <p>2. 欲申請補發新卡，請於大咖DACARD APP申請補發或電洽本行客服專線02-25287776辦理；附卡之申請補發，須由正卡持卡人來電辦理。如有不便來電之情形，亦可攜帶身分證至就近分行，由分行人員協助您聯繫處理。</p>
+                <p>3. <a href="https://www.ba.org.tw/PublicInformation/Detail/5218?enumtype=ConsumerType&type=CreditInfo#open-browser" target="_blank" style="color:#dfa340; text-decoration: underline;">【銀行公會-各銀行信用卡掛失服務資訊】</a></p>
+            </div>
+            <div class="result__content" style="text-align: left;" *ngIf="!applyLoseCardResult?.HasTransactionHistory">
+                <p>1. 掛失已完成。</p>
+                <p>2. 欲申請補發新卡，請於大咖DACARD APP申請補發或電洽本行客服專線02-25287776辦理；附卡之申請補發，須由正卡持卡人來電辦理。如有不便來電之情形，亦可攜帶身分證至就近分行，由分行人員協助您聯繫處理。</p>
+                <p>3. <a href="https://www.ba.org.tw/PublicInformation/Detail/5218?enumtype=ConsumerType&type=CreditInfo#open-browser" target="_blank" style="color:#dfa340; text-decoration: underline;">【銀行公會-各銀行信用卡掛失服務資訊】</a></p>
+            </div>
+        </div>
+        <div class="result" [ngStyle]="{'display':!applyLoseCardAllSuccessStatus?'block':'none'}">
+            <div class="result__icon"><img src="assets/images/img/img-fail.svg">
+                <h2 *ngIf="this.applyLoseCardAllFailStatus">掛失失敗</h2>
+                <h2 *ngIf="!this.applyLoseCardAllFailStatus">部分失敗</h2>
+            </div>
+            <div class="result__content" style="text-align: left;" *ngIf="this.applyLoseCardAllFailStatus">
+                <p>1. 您的掛失作業失敗，請返回重新申請線上掛失。</p>
+                <p>2. 如再次操作仍無法掛失完成，請致電本行客服專線02-25287776，由客服人員協助您完成掛失之處理。</p>
+                <p>3. <a href="https://www.ba.org.tw/PublicInformation/Detail/5218?enumtype=ConsumerType&type=CreditInfo#open-browser" target="_blank" style="color:#dfa340; text-decoration: underline;">【銀行公會-各銀行信用卡掛失服務資訊】</a></p>
+            </div>
+            <div class="result__content" style="text-align: left;" *ngIf="!this.applyLoseCardAllFailStatus">
+                <p>1. 您的掛失作業有部分失敗，請聯繫客服重新申請線上掛失。</p>
+                <p>2. 如再次操作仍無法掛失完成，請致電本行客服專線02-25287776，由客服人員協助您完成掛失之處理。</p>
+                <p>3. <a href="https://www.ba.org.tw/PublicInformation/Detail/5218?enumtype=ConsumerType&type=CreditInfo#open-browser" target="_blank" style="color:#dfa340; text-decoration: underline;">【銀行公會-各銀行信用卡掛失服務資訊】</a></p>
+            </div>
+        </div>
+        <h1 class="title">掛失資訊</h1>
+        <div class="step step__pt-xxs">
+            <div class="wrap">
+                <div class="list align-left">
+                    <div class="list__row">
+                        <div class="list__col">
+                            <p class="list__label">申請日</p>
+                            <p>{{applyLoseCardResult?.ApplyDate| date:'YYYY-MM-dd'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let item of applyLoseCardResult?.Cards;let itemIndex=index">
+            <div class="flex-between" *ngIf="itemIndex < 2">
+                <h1 class="title">{{item.CardTypeDesc}} <span class="remark-gold"
+                    *ngIf="item?.CardTypeCode!='NP'">(掛失正卡，所有附卡將一併掛失)</span></h1>
+                <div *ngIf="itemIndex === 0" class="icon icon--tl icon--eye-white icon--text icon--text-w"
+                [ngClass]="{'icon--eye-white-active':!hidePrimaryCardInfo}" (click)="hidePrimaryCardInfo=!hidePrimaryCardInfo"><span
+                            class="inline-block">顯示內容</span>
+                </div>
+                <div *ngIf="itemIndex === 1" class="icon icon--tl icon--eye-white icon--text icon--text-w"
+                [ngClass]="{'icon--eye-white-active':!hideAdditionalCardInfo}" (click)="hideAdditionalCardInfo=!hideAdditionalCardInfo"><span
+                            class="inline-block">顯示內容</span>
+                </div>
+            </div>
+            <div class="step pb-ssm pt-sm">
+                <div class="wrap">
+                    <div class="list align-left">
+                        <div class="list__row list__row--line-none pt-0 list__row--sp">
+                            <div class="list__col">
+                                <div class="inline-block-group icon icon--tl icon--alone--md {{addCardBrandclass(item.CardBrand)}}">
+                                    <p *ngIf="itemIndex === 0">{{hidePrimaryCardInfo?(item?.CardNo | mask:'0000-0000-0000-0000'|cardnumbermask:'●'):(item?.CardNo | mask:'0000-0000-0000-0000')}}
+                                    </p>
+                                    <p *ngIf="itemIndex !== 0">{{hideAdditionalCardInfo?(item?.CardNo | mask:'0000-0000-0000-0000'|cardnumbermask:'●'):(item?.CardNo | mask:'0000-0000-0000-0000')}}
+                                    </p>
+                                </div>
+                                <div class="list__label mb-0 mt-xs">{{item.CardHolderName}}</div>
+                            </div>
+                            <div class="list__col">
+                                <div class="icon icon--tl"
+                                    [ngClass]="item?.IsSuccess?'icon--success-green':'icon--fail-gray'"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-container *ngIf="showToCardReissue;else callCus">
+            <div class="button-group">
+                <button class="btn btn--primary btn--w250" (click)="goCardReissue()">補發卡片</button>
+            </div>
+        </ng-container>
+        <ng-template #callCus>
+            <div class="button-group">
+                <button class="btn btn--primary btn--w250" (click)="callCustomerServer()">聯繫客服</button>
+            </div>
+        </ng-template>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="backToLast()">回信用卡頁</button>
+        </div>
+    </div>
+</ng-template>

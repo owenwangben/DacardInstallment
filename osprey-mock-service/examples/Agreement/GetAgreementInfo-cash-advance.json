@@ -1,0 +1,19 @@
+{
+    "Header": {
+        "ReferenceNo": "",
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "ClientIP": "",
+        "SessionID": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Title": "永豐銀行活動登錄注意事項",
+        "Version": "1.02.3",
+        "Type": 1,
+        "Content": "assets/htmls/活動登錄注意事項.html"
+    }
+}

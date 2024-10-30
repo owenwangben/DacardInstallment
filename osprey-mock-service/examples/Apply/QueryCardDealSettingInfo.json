@@ -1,0 +1,23 @@
+{
+	"Header": {
+		"RequestTime": "",
+		"ResponseTime": "",
+		"ApplicationName": "SinoPac.Cawho.Web",
+		"SessionID": "",
+		"ClientIP": "",
+		"UserAgent": ""
+	},
+	"ResultCode": "00",
+	"ResultMessage": "",
+	"Result": {
+        "BLOCK_ALL":"N",
+        "BLOCK_L_P":"Y",
+        "BLOCK_L_O":"Y",
+        "BLOCK_F_P":"Y",
+        "BLOCK_F_O":"Y",
+        "LIMIT_AMT":1000
+	},
+	"Original": {
+	},
+	"Success": true
+}

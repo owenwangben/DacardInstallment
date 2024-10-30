@@ -1,0 +1,20 @@
+{
+    "Header": {
+        "ApplicationName": "DACARD",
+        "SessionID": "SinopacCawhoDevice",
+        "ServiceType": "",
+        "ClientIP": "10.11.33.34",
+        "ClientRefNo": "d21dbbaa24534a75b7c7422d2ff9d531",
+        "ClientTimestamp": "2023-01-19T02:44:09.341Z",
+        "UserAgent": "sinopac://CaWhoPay?appVer=appVer&osType=Web&osVerName=osVerName&osVer=12&manufacturer=manufacturer&model=model",
+        "Tag": "",
+        "Signature": "",
+        "UserId": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {},
+    "Error": null,
+    "Original": null,
+    "Success": true
+}

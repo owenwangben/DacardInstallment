@@ -1,0 +1,30 @@
+{
+    "Header": {
+        "ReferenceNo": "",
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "DACARD",
+        "SessionID": "",
+        "ClientIP": "",
+        "ClientRefNo": "",
+        "ClientTimestamp": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Flag": "N",
+        "BankCode": "",
+        "AccountNo": "",
+        "PaymentType": "2",
+        "TotalAmt": "36,611",
+        "MinAmt": "3,661",
+        "DueDate": "2023/08/03",
+        "EffectDate": "2023/05/25之次一營業日",
+        "StmtAmt": "36611"
+    },
+    "Original": {
+        "ID": "F151429224"
+    },
+    "Success": true
+}

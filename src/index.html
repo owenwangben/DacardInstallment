@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, max-age=0, must-revalidate">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+    <title>CAWHOPAY - 永豐銀行</title>
+    <base href="/">
+    <meta name="title" content="CAWHOPAY - 永豐銀行">
+    <meta name="description" content="">
+    <meta property="og:title" content="CAWHOPAY - 永豐銀行">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="author" content="永豐銀行">
+    <meta name="copyright" content="永豐銀行">
+    <meta property="og:site_name" content="CAWHOPAY - 永豐銀行">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="">
+    <link rel="apple-touch-icon" href="">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/main_history.css">
+    <script src="assets/js/jquery-3.3.1.securejs" type="text/javascript"></script>
+    <script src="assets/js/jquery.payment.securejs" type="text/javascript"></script>
+    <script src="assets/js/slick.securejs" type="text/javascript"></script>
+    <script src="assets/js/sortable.securejs" type="text/javascript"></script>
+    <script src="assets/js/make_writable.securejs" type="text/javascript"></script>
+    <script src="assets/js/site-config.securejs" type="text/javascript"></script>
+    <script src="mma8/card/js/dacard-banner.securejs" type="text/javascript"></script>
+    <script src="mma8/card/js/dacard-activity.securejs" type="text/javascript"></script>
+</head>
+<body class="card_manage">
+    <main class="container">
+        <app-root></app-root>
+    </main>
+    <script>
+        function dialogCallBack(id, action, data) { window.AppWrapper && window.AppWrapper.dialogCallBack(id, action, data); }
+        function dataCallBack(id, data) { window.AppWrapper && window.AppWrapper.dataCallBack(id, data); }
+        function addCardFinishCallBack(action, data) { window.AppWrapper && window.AppWrapper.addCardFinishCallBack(action, data); }
+        makePropertyWritable(window, "navigator", "userAgent");
+        window.onload = function () {
+            console.log('window.onload');
+        }
+        $(document).ready(function(){
+            console.log('document ready');
+            function setupWebViewJavascriptBridge(callback) {
+                if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+                if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+                window.WVJBCallbacks = [callback];
+                var WVJBIframe = document.createElement('iframe');
+                WVJBIframe.style.display = 'none';
+                WVJBIframe.src = 'https://wvjb-bridge-loaded';
+                document.documentElement.appendChild(WVJBIframe);
+                setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+            }
+            window.setupWebViewJavascriptBridge = setupWebViewJavascriptBridge
+
+            window.setupWebViewJavascriptBridge(function (bridge) {
+                bridge.registerHandler('dialogCallBack', function (res) {
+                    const { id, action, data } = JSON.parse(res);
+                    dialogCallBack(id, action, data);
+                });
+                bridge.registerHandler('dataCallBack', function (res) {
+                    const { id, data } = JSON.parse(res);
+                    dataCallBack(id, data);
+                });
+                bridge.registerHandler('addCardFinishCallBack', function (res) {
+                    const { action, data } = JSON.parse(res);
+                    addCardFinishCallBack(action, data);
+                });
+            });
+        })
+    </script>
+</body>
+</html>

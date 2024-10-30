@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>CAWHOPAY - 永豐銀行</title>
+    <meta name="title" content="CAWHOPAY - 永豐銀行">
+    <meta name="description" content="">
+    <meta property="og:title" content="CAWHOPAY - 永豐銀行">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="author" content="永豐銀行">
+    <meta name="copyright" content="永豐銀行">
+    <meta property="og:site_name" content="CAWHOPAY - 永豐銀行">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="">
+    <link rel="apple-touch-icon" href="">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+  </head>
+  <body class="card_activate">
+    <main class="container">
+      <div class="wrap wrap__pd">
+        <div class="flex-between">
+          <h1 class="title">永豐銀行開卡</h1>
+        </div>
+        <div class="step step__pt-xxs">
+          <form>
+            <div class="form">
+              <!-- 錯誤訊息請於下方 addClass .is-error-->
+              <div class="form__row is-error">
+                <div class="form__col">
+                  <p class="form__label">信用卡卡號</p>
+                  <div class="form__data">
+                    <input type="tel" name="credit-number" pattern="d*" maxlength="19" placeholder="請輸入您的卡號">
+                    <div class="form__data--icon">
+                      <div class="icon icon--camera icon--alone icon--alone--lg"></div>拍照識別
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form__error">格式不正確</div>
+              <div class="form__row">
+                <div class="form__col">
+                  <p class="form__label">信用卡卡號</p>
+                  <div class="form__data">
+                    <input type="tel" name="credit-number" pattern="d*" maxlength="19" placeholder="請輸入您的卡號" value="1234-56●●●●●●-7890">
+                    <!-- 開眼請 addClass .icon--eye-active-->
+                    <div class="form__icon icon icon--eye icon--tl"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form__error">格式不正確</div>
+              <div class="form__row form__row--line-none">
+                <div class="form__col">
+                  <p class="form__label">有效期限</p>
+                  <div class="form__data flex-center">
+                    <div class="line">
+                      <input class="align-center" type="tel" maxlength="2" placeholder="月">
+                    </div><span class="mr-sm ml-sm black-bg">/</span>
+                    <div class="line">
+                      <input class="align-center" type="tel" maxlength="2" placeholder="年">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form__error">格式不正確</div>
+              <div class="form__row">
+                <div class="form__col">
+                  <p class="form__label">出生年月日 ( YYYY/MM/DD )</p>
+                  <div class="form__data">
+                    <input class="input-number" type="tel" name="birthday" pattern="d*" maxlength="10" placeholder="請輸入您的出生年月日">
+                  </div>
+                </div>
+              </div>
+              <div class="form__error">格式不正確</div>
+              <div class="form__row form__row--line-none">
+                <div class="form__col">
+                  <p class="form__label">驗證碼</p>
+                  <div class="form__data form__captcha flex-center">
+                    <div class="line">
+                      <input type="text" name="captcha" pattern="d*" maxlength="6" placeholder="請輸入驗證碼">
+                    </div>
+                    <div class="form__captcha__img"><img src="../../assets/images/demo/captcha.svg"><img src="../../assets/images/icon/icon-refresh.svg"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form__error">驗證碼錯誤</div>
+            </div>
+          </form>
+        </div>
+        <div class="button-group">
+          <button class="btn btn--primary btn--w250" disabled>確定開卡</button>
+        </div>
+        <div class="button-group mt-sm">
+          <button class="btn btn--text btn--text-line">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+      </div>
+      <footer></footer>
+    </main>
+    <script src="../../assets/js/source/jquery-3.3.1.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/jquery.payment.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/slick.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/sortable.min.securejs" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){
+        // 信用卡欄位 使用 jQuery.payment
+        $("input[name=credit-number]").formatCardNumber();
+        $("input[name=credit-expires]").formatCardExpiry();
+      
+        // 生日 自動補 /
+        $("input[name=birthday]").on('keyup', function (e) {
+          const value = $(this).val();
+          // 191 /?
+          if (e.keyCode !== 191) {
+            // 8 BackSpace
+            if (e.keyCode !== 8) {
+              if (value.length === 4 || value.length === 7) {
+                $(this).val(value + "/");
+              }
+            }
+          } else {
+            $(this).val(value.substring(0, value.length - 1));
+          }
+        });
+      
+        // input 須為 number
+        $(".input-number").on("keypress", function (e) {
+          const keyCode = e.which ? e.which : e.keyCode
+          if (!(keyCode >= 48 && keyCode <= 57)) {
+            return false;
+          }
+        });
+      })
+    </script>
+  </body>
+</html>

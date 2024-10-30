@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "ReferenceNo": "",
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "ClientIP": "",
+        "SessionID": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Name": "王ＸＸ",
+        "Birthday": "19520516",
+        "OriginalCredit": 200000,
+        "PermanentAvailableCredit": 1000,
+        "HomeAddress": "新北市中和區南金東路七段256巷5弄2032號13樓之8",
+        "ResidentAddress": "台北市松山區市民大道八段888號90樓",
+        "IsSmsList": false,
+        "IsRequireFinancialProof": null,
+        "DefaultIncreaseCredit": null
+    }
+}

@@ -1,0 +1,110 @@
+<div class="wrap">
+    <div class="swiper__group">
+        <div class="swiper-wrapper">
+            <div class="row">
+                <div class="col">
+                    <div class="btn-check">
+                        <input type="radio" id="a1" name="point-pile" value="全部" checked (click)="categoryChange(0)">
+                        <label class="radio-label" for="a1">全部</label>
+                    </div>
+                </div>
+                <div *ngFor="let item of mainCategories" class="col">
+                    <div class="btn-check">
+                        <input type="radio" [id]="item.ID" name="point-pile" (click)="categoryChange(item.ID)">
+                        <label class="radio-label" [for]="item.ID">{{ item.Name }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrap__pd">
+        <div *ngFor="let item of giftsList" class="step step__pd--md mt-0">
+            <div class="list-table">
+                <div class="fc-gold fs-sm fw-b">{{ item.MainCategoryName }}</div>
+                <div class="list-table__row pt-0">
+                    <div class="list-table__col">
+                        <h4 class="fs-md">{{ item.Name }}</h4>
+                    </div>
+                    <div class="list-table__col list-table__col--auto">
+                        <div class="flex-right">
+                            <div class="icon icon--reward-points icon--tr icon--text">
+                                <h6 class="inline-block">{{ item.Point | number }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-table__row pt-0">
+                    <div class="list-table__col">
+                        <p class="fs-xs">兌換期間：即日起~{{ item.EndTime }}</p>
+                        <p class="fs-xs"><a class="fw-b" (click)="memoShow(item)">商品說明</a></p>
+                    </div>
+                    <div class="list-table__col list-table__col--auto align-self-end">
+                        <div class="flex-right exchangeBtn-toggle">
+                            <button *ngIf="item.qty <= 0"
+                                class="btn btn--normal btn--normal-more btn--normal-gold btn-exchange"
+                                (click)="add(item.ID)">兌 換</button>
+                            <div class="stepper-input" [class.hide]="item.qty <= 0">
+                                <button class="btn btn-reduce" (click)="reduce(item.ID)"></button>
+                                <input class="input-box" type="text" inputmode="numeric" pattern="[0-9]*"
+                                    [value]="item.qty">
+                                <button class="btn btn-add" (click)="add(item.ID)"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="memoPrduucts" class="lightbox show">
+        <div class="lightbox__back"></div>
+        <div class="lightbox__outer">
+            <div class="lightbox__inner lightbox--iframe lightbox--bold">
+                <div class="fc-gold fs-sm fw-b">{{ giftmemo.MainCategoryName }}</div>
+                <h3 class="mb-0 align-left">{{ giftmemo.Name }}</h3>
+                <div class="iframe-box iframe-box--sm">
+                    <div class="content_outer content_outer--md">
+                        <div class="content_inner">
+                            <p [innerHTML]="giftmemo.Description"></p>
+                        </div>
+                    </div>
+                </div>
+                <hr class="gray mt-md">
+                <div class="button-group mb-md mt-md">
+                    <button class="btn btn--primary btn--w250 btn--check"
+                        (click)="add(giftmemo.ID);memoPrduucts = false">我要兌換</button>
+                </div>
+                <div class="button-group mt-0 mb-0">
+                    <button class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                        (click)="memoPrduucts = false">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="lightbox_point" class="lightbox show">
+        <div class="lightbox__back"></div>
+        <div class="lightbox__outer">
+            <div class="lightbox__inner lightbox--bold">
+                <h3 class="mb-ssm">唉呀!點數不夠!</h3>
+                <p class="align-center">點數不足，請重新選擇，再加油一點下次就能換更多!</p>
+                <div class="button-group mb-md mt-md">
+                    <button class="btn btn--primary btn--w250 btn--check" (click)="lightbox_point = false">確定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="onePay flex-center">
+    <div class="onePay-info">
+        <div class="flex-left">
+            <h4 class="fw-b mr-xxs">已選擇兌換商品 </h4>
+            <div class="icon icon--reward-points icon--tr icon--text">
+                <h6 class="inline-block fc-gold fs-base fw-b">{{ pointNow | number }}</h6>
+            </div>
+        </div>
+        <p class="fs-xs">兌換後剩餘{{ ( pointAll - pointNow ) | number }}點</p>
+    </div>
+    <button class="onePay-btn" [class.disabled]="qtyNow === 0 || pointNow > pointAll"
+        (click)="goExchangeConfirmation()">
+        兌換 <span class="count">({{ qtyNow }})</span>
+    </button>
+</div>

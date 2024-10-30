@@ -1,0 +1,145 @@
+<div class="wrap wrap__pd" *ngIf="!NotSameID && !isNotMyself && !isTimeOut && !isReplied">
+    <h1 class="title flex-between"><span class="fw-b">請確認以下資訊</span></h1>
+    <div class="step">
+        <div class="list-table__row">
+            <p class="t-primary fw-b fc-red align-center">
+                請確認是否為本人交易?
+            </p>
+        </div>
+        <div *ngIf="haveAmount" class="list-table__row">
+            <div class="list-table__col">
+                <h5 class="fs-b fw-b">交易金額</h5>
+            </div>
+            <div class="list-table__col">
+                <h6 *ngIf="currencyCode === 'TWD' || currencyCode === 'JPY'; else otherCurrency" class="fc-gold fw-b fs-md">{{ currency + ' ' + (amount | number:'1.0-0')}}</h6>
+                <ng-template #otherCurrency>
+                    <h6 class="fc-gold fw-b fs-md">{{ amount? (currency + ' ' + (amount | number:'1.2-2')) : '永豐確認中' }}</h6>
+                </ng-template>
+            </div>
+        </div>
+        <div class="list-table__row">
+            <div class="list-table__col">
+                <p class="fs-b fw-b">交易卡別</p>
+            </div>
+            <div class="list-table__col">
+                <p class="fc-black fs-sm fw-b fs-base">{{ '永豐' + cardType + ' ' + CardNoLast4 }}</p>
+            </div>
+        </div>
+    </div>
+    <h4 class="align-center white">
+        若非本人交易，請點擊左方按鈕回覆，並速洽客服專線(02)2528-7776處理。
+    </h4>
+    <div class="button-group">
+        <button
+            class="btn btn--primary btn--primary-wsm disabled"
+            (click)="notMelfCheck()"
+        >
+            非本人交易
+        </button>
+        <button class="btn btn--primary btn--primary-wsm" (click)="submit()">本人交易</button>
+    </div>
+    <div class="button-group mt-sm">
+        <button class="btn btn--text btn--text-line" (click)="cancel()">取消</button>
+    </div>
+    <div class="warning mt-lg-2">
+        <img
+            class="margin-center"
+            src="assets/images/demo/warning.svg"
+            alt="謹慎理財 信用至上"
+        />
+    </div>
+</div>
+<div class="wrap wrap__pd" *ngIf="!NotSameID && isNotMyself">
+    <div class="step step__pd--ssm">
+        <div class="list-table__row">
+            <p class="t-primary">
+                已收到確認為非本人交易的回覆，<br />請您速洽客服專線(02)2528-7776，<br />與客服聯絡處理，謝謝。
+            </p>
+        </div>
+    </div>
+    <div class="button-group">
+        <button class="btn btn--primary btn--w250" (click)="goCustomerService()">聯繫客服</button>
+    </div>
+    <div class="button-group mt-sm">
+        <button class="btn btn--text btn--text-line" (click)="goCard()">回到信用卡頁</button>
+    </div>
+</div>
+<div class="wrap wrap__pd" *ngIf="NotSameID">
+    <div class="step step__pd--ssm">
+        <div class="list-table__row">
+            <p class="t-primary">
+                [AB01]驗證失敗，若有問題請洽客服專線<br />(02)2528-7776，謝謝。
+            </p>
+        </div>
+    </div>
+    <div class="button-group">
+        <button class="btn btn--primary btn--w250" (click)="goCustomerService()">聯繫客服</button>
+    </div>
+    <div class="button-group mt-sm">
+        <button class="btn btn--text btn--text-line" (click)="goCard()">回到信用卡頁</button>
+    </div>
+</div>
+<div class="wrap wrap__pd" *ngIf="isTimeOut">
+    <div class="step step__pd--ssm">
+        <div class="list-table__row">
+            <p class="t-primary">
+                已超過驗證時效5分鐘，<br />請您回到原交易頁面重新驗證。
+            </p>
+        </div>
+    </div>
+    <div class="button-group">
+        <button class="btn btn--primary btn--w250" (click)="goCard()">回到信用卡</button>
+    </div>
+</div>
+<div class="wrap wrap__pd" *ngIf="isReplied">
+    <div class="step step__pd--ssm">
+        <div class="list-table__row">
+            <p class="t-primary">
+                您已回覆過本次交易，若有問題請洽客服專線(02)2528-7776，謝謝。
+            </p>
+        </div>
+    </div>
+    <div class="button-group">
+        <button class="btn btn--primary btn--w250" (click)="goCustomerService()">聯繫客服</button>
+    </div>
+    <div class="button-group mt-sm">
+        <button class="btn btn--text btn--text-line" (click)="goCard()">回到信用卡頁</button>
+    </div>
+</div>
+<div class="lightbox" [class.show]="twoBtnBox">
+    <div class="lightbox__back"></div>
+    <div class="lightbox__outer">
+        <div class="lightbox__inner lightbox--bold">
+            <h3 *ngIf="twoData?.title" class="mb-ssm">{{ twoData?.title }}</h3>
+            <p *ngIf="twoData?.content" class="align-center" [innerHTML]="twoData?.content"></p>
+            <div class="button-group mb-md mt-md">
+                <button
+                    class="btn btn--primary btn--w250 btn--check"
+                    (click)="twoBtn1()"
+                >
+                {{ twoData?.btn1 }}
+                </button>
+            </div>
+            <div class="button-group mt-0 mb-0">
+                <button
+                    class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                    (click)="twoBtn2()"
+                >
+                {{ twoData?.btn2 }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="lightbox"  [class.show]="oneBtnBox">
+    <div class="lightbox__back"></div>
+    <div class="lightbox__outer">
+      <div class="lightbox__inner lightbox--bold">
+        <h3 *ngIf="oneData?.title" class="mb-ssm">{{ oneData?.title }}</h3>
+        <p *ngIf="oneData?.content" class="align-center">{{ oneData?.content }}</p>
+        <div class="button-group mb-md mt-md">
+          <button class="btn btn--primary btn--w250 btn--check" (click)="oneBtn()">{{ oneData?.btn }}</button>
+        </div>
+      </div>
+    </div>
+</div>

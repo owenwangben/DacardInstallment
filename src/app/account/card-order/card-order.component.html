@@ -1,0 +1,37 @@
+<div class="wrap wrap__pd">
+    <div class="flex-between">
+        <h1 class="title">長按可調整卡片顯示順序</h1>
+    </div>
+    <div class="step step__pt-xxs">
+        <div class="form">
+            <div class="form__row form__row--line-none">
+                <div class="form__col">
+                    <div class="form__data card-list__drag" id="card-list__drag">
+                        <div class="radio-btn-full card-list" *ngFor="let card of cards;let i = index"
+                            [attr.data-id]="i"><span (click)="showCard(card)">
+                                <div class="flex-between">
+                                    <div class="flex-left flex-full"><img class="card-img" src="{{card.CardFaceURL}}"
+                                        (error)="onImgError($event)">
+                                        <div class="card-list__inner">
+                                            <h4>{{card.Name| stringlength:[20]}}</h4>
+                                            <div class="flex-left"> <img [src]="card.CardBrand | cardtype">
+                                                <p>{{card.CardNo| mask:'0000-0000-0000-0000' | cardnumbermask:'●'}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-list__drag-btn"></div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button-group"><a class="btn btn--primary btn--w250" href="javascript:void(0)"
+        appPreventDoubleClick (throttledClick)="updateSort()">確&nbsp;&nbsp;&nbsp;定</a>
+    </div>
+    <div class="button-group mt-sm" routerLink="/Account/CardManage">
+        <button class="btn btn--text btn--text-line">取&nbsp;&nbsp;&nbsp;消</button>
+    </div>
+</div>

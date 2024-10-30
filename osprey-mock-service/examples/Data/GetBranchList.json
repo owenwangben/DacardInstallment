@@ -1,0 +1,525 @@
+{
+    "Header": {
+        "ReferenceNo": "",
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "ClientIP": "",
+        "SessionID": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Items": [
+            {
+              "BranchCode": "0299",
+              "FullName": "七賢分行"
+            },
+            {
+              "BranchCode": "0945",
+              "FullName": "二重分行"
+            },
+            {
+              "BranchCode": "0277",
+              "FullName": "八德分行"
+            },
+            {
+              "BranchCode": "0679",
+              "FullName": "三民分行"
+            },
+            {
+              "BranchCode": "0255",
+              "FullName": "三重分行"
+            },
+            {
+              "BranchCode": "1045",
+              "FullName": "三峽分行"
+            },
+            {
+              "BranchCode": "0266",
+              "FullName": "土城分行"
+            },
+            {
+              "BranchCode": "0657",
+              "FullName": "士林分行"
+            },
+            {
+              "BranchCode": "0967",
+              "FullName": "大安分行"
+            },
+            {
+              "BranchCode": "0222",
+              "FullName": "大里分行"
+            },
+            {
+              "BranchCode": "0705",
+              "FullName": "大昌分行"
+            },
+            {
+              "BranchCode": "0358",
+              "FullName": "大雅分行"
+            },
+            {
+              "BranchCode": "0624",
+              "FullName": "大順分行"
+            },
+            {
+              "BranchCode": "0288",
+              "FullName": "大墩分行"
+            },
+            {
+              "BranchCode": "0738",
+              "FullName": "小港分行"
+            },
+            {
+              "BranchCode": "0417",
+              "FullName": "中山分行"
+            },
+            {
+              "BranchCode": "1252",
+              "FullName": "中工分行"
+            },
+            {
+              "BranchCode": "0439",
+              "FullName": "中和分行"
+            },
+            {
+              "BranchCode": "0130",
+              "FullName": "中壢分行"
+            },
+            {
+              "BranchCode": "0543",
+              "FullName": "五股分行"
+            },
+            {
+              "BranchCode": "1300",
+              "FullName": "五權分行"
+            },
+            {
+              "BranchCode": "1137",
+              "FullName": "仁德分行"
+            },
+            {
+              "BranchCode": "1001",
+              "FullName": "內埔分行"
+            },
+            {
+              "BranchCode": "0462",
+              "FullName": "內湖分行"
+            },
+            {
+              "BranchCode": "0163",
+              "FullName": "天母分行"
+            },
+            {
+              "BranchCode": "0141",
+              "FullName": "文心分行"
+            },
+            {
+              "BranchCode": "0392",
+              "FullName": "斗六分行"
+            },
+            {
+              "BranchCode": "0691",
+              "FullName": "木柵分行"
+            },
+            {
+              "BranchCode": "0510",
+              "FullName": "北天母分行"
+            },
+            {
+              "BranchCode": "0864",
+              "FullName": "北投分行"
+            },
+            {
+              "BranchCode": "0347",
+              "FullName": "北高雄分行"
+            },
+            {
+              "BranchCode": "0901",
+              "FullName": "北新分行"
+            },
+            {
+              "BranchCode": "0749",
+              "FullName": "北新莊分行"
+            },
+            {
+              "BranchCode": "0989",
+              "FullName": "古亭分行"
+            },
+            {
+              "BranchCode": "0716",
+              "FullName": "台東簡易型分行"
+            },
+            {
+              "BranchCode": "0152",
+              "FullName": "台南分行"
+            },
+            {
+              "BranchCode": "0635",
+              "FullName": "左營分行"
+            },
+            {
+              "BranchCode": "0211",
+              "FullName": "民生分行"
+            },
+            {
+              "BranchCode": "0598",
+              "FullName": "民權分行"
+            },
+            {
+              "BranchCode": "1115",
+              "FullName": "永安分行"
+            },
+            {
+              "BranchCode": "0521",
+              "FullName": "永和分行"
+            },
+            {
+              "BranchCode": "0233",
+              "FullName": "永康分行"
+            },
+            {
+              "BranchCode": "1355",
+              "FullName": "玉山太平分行"
+            },
+            {
+              "BranchCode": "0912",
+              "FullName": "玉山銀行中崙分行"
+            },
+            {
+              "BranchCode": "1285",
+              "FullName": "玉山銀行頭份分行"
+            },
+            {
+              "BranchCode": "1078",
+              "FullName": "光復分行"
+            },
+            {
+              "BranchCode": "0495",
+              "FullName": "光華分行"
+            },
+            {
+              "BranchCode": "1218",
+              "FullName": "朴子分行"
+            },
+            {
+              "BranchCode": "1230",
+              "FullName": "汐止分行"
+            },
+            {
+              "BranchCode": "0750",
+              "FullName": "竹北分行"
+            },
+            {
+              "BranchCode": "0440",
+              "FullName": "竹南分行"
+            },
+            {
+              "BranchCode": "1159",
+              "FullName": "西屯分行"
+            },
+            {
+              "BranchCode": "0428",
+              "FullName": "佳里分行"
+            },
+            {
+              "BranchCode": "0576",
+              "FullName": "和平分行"
+            },
+            {
+              "BranchCode": "0794",
+              "FullName": "岡山分行"
+            },
+            {
+              "BranchCode": "0875",
+              "FullName": "忠孝分行"
+            },
+            {
+              "BranchCode": "0853",
+              "FullName": "東三重分"
+            },
+            {
+              "BranchCode": "0761",
+              "FullName": "東台南分行"
+            },
+            {
+              "BranchCode": "1193",
+              "FullName": "東門分行"
+            },
+            {
+              "BranchCode": "0978",
+              "FullName": "東港分行"
+            },
+            {
+              "BranchCode": "0897",
+              "FullName": "東湖分行"
+            },
+            {
+              "BranchCode": "0509",
+              "FullName": "東嘉義分行"
+            },
+            {
+              "BranchCode": "0886",
+              "FullName": "林口分行"
+            },
+            {
+              "BranchCode": "0819",
+              "FullName": "林園分行"
+            },
+            {
+              "BranchCode": "0484",
+              "FullName": "板新分行"
+            },
+            {
+              "BranchCode": "1171",
+              "FullName": "板橋分行"
+            },
+            {
+              "BranchCode": "0565",
+              "FullName": "松山分行"
+            },
+            {
+              "BranchCode": "1056",
+              "FullName": "松江分行"
+            },
+            {
+              "BranchCode": "1023",
+              "FullName": "花蓮分行"
+            },
+            {
+              "BranchCode": "1067",
+              "FullName": "金華分行"
+            },
+            {
+              "BranchCode": "0406",
+              "FullName": "長春分行"
+            },
+            {
+              "BranchCode": "1229",
+              "FullName": "信義分行"
+            },
+            {
+              "BranchCode": "0196",
+              "FullName": "前鎮分行"
+            },
+            {
+              "BranchCode": "1207",
+              "FullName": "南土城分行"
+            },
+            {
+              "BranchCode": "0680",
+              "FullName": "南屯分行"
+            },
+            {
+              "BranchCode": "1311",
+              "FullName": "南永康分行"
+            },
+            {
+              "BranchCode": "0026",
+              "FullName": "南京東路分行"
+            },
+            {
+              "BranchCode": "0613",
+              "FullName": "南崁分行"
+            },
+            {
+              "BranchCode": "0842",
+              "FullName": "南桃園簡易型分行"
+            },
+            {
+              "BranchCode": "1182",
+              "FullName": "南港分行"
+            },
+            {
+              "BranchCode": "1160",
+              "FullName": "南勢角分行"
+            },
+            {
+              "BranchCode": "0532",
+              "FullName": "城中分行"
+            },
+            {
+              "BranchCode": "0048",
+              "FullName": "城東分行"
+            },
+            {
+              "BranchCode": "0934",
+              "FullName": "屏東分行"
+            },
+            {
+              "BranchCode": "0923",
+              "FullName": "建成分行"
+            },
+            {
+              "BranchCode": "0831",
+              "FullName": "後庄分行"
+            },
+            {
+              "BranchCode": "1296",
+              "FullName": "後龍分行"
+            },
+            {
+              "BranchCode": "0668",
+              "FullName": "苓雅分行"
+            },
+            {
+              "BranchCode": "0325",
+              "FullName": "重新分行"
+            },
+            {
+              "BranchCode": "1104",
+              "FullName": "員林分行"
+            },
+            {
+              "BranchCode": "0174",
+              "FullName": "埔墘分行"
+            },
+            {
+              "BranchCode": "0185",
+              "FullName": "桃園分行"
+            },
+            {
+              "BranchCode": "1090",
+              "FullName": "桃鶯分行"
+            },
+            {
+              "BranchCode": "0602",
+              "FullName": "泰山分行"
+            },
+            {
+              "BranchCode": "1148",
+              "FullName": "泰和分行"
+            },
+            {
+              "BranchCode": "0587",
+              "FullName": "海山分行"
+            },
+            {
+              "BranchCode": "0990",
+              "FullName": "草屯分行"
+            },
+            {
+              "BranchCode": "1012",
+              "FullName": "迴龍分行"
+            },
+            {
+              "BranchCode": "0082",
+              "FullName": "高雄分行"
+            },
+            {
+              "BranchCode": "0783",
+              "FullName": "基隆分行"
+            },
+            {
+              "BranchCode": "0118",
+              "FullName": "基隆路分行"
+            },
+            {
+              "BranchCode": "0808",
+              "FullName": "連城分行"
+            },
+            {
+              "BranchCode": "0303",
+              "FullName": "復興分行"
+            },
+            {
+              "BranchCode": "0314",
+              "FullName": "敦南分行"
+            },
+            {
+              "BranchCode": "0060",
+              "FullName": "新竹分行"
+            },
+            {
+              "BranchCode": "0554",
+              "FullName": "新店分行"
+            },
+            {
+              "BranchCode": "0059",
+              "FullName": "新莊分行"
+            },
+            {
+              "BranchCode": "1089",
+              "FullName": "新湖分行"
+            },
+            {
+              "BranchCode": "1241",
+              "FullName": "新樹分行"
+            },
+            {
+              "BranchCode": "1126",
+              "FullName": "新豐分行"
+            },
+            {
+              "BranchCode": "0646",
+              "FullName": "楠梓分行"
+            },
+            {
+              "BranchCode": "0369",
+              "FullName": "楊梅分行"
+            },
+            {
+              "BranchCode": "0071",
+              "FullName": "嘉義分行"
+            },
+            {
+              "BranchCode": "0336",
+              "FullName": "彰化分行"
+            },
+            {
+              "BranchCode": "0772",
+              "FullName": "福和簡易型分行"
+            },
+            {
+              "BranchCode": "0244",
+              "FullName": "鳳山分行"
+            },
+            {
+              "BranchCode": "0727",
+              "FullName": "澄清分行"
+            },
+            {
+              "BranchCode": "0956",
+              "FullName": "潮州分行"
+            },
+            {
+              "BranchCode": "1034",
+              "FullName": "澎湖分行"
+            },
+            {
+              "BranchCode": "0370",
+              "FullName": "樹林分行"
+            },
+            {
+              "BranchCode": "1263",
+              "FullName": "龍井分行"
+            },
+            {
+              "BranchCode": "0015",
+              "FullName": "營業部"
+            },
+            {
+              "BranchCode": "0381",
+              "FullName": "豐原分行"
+            },
+            {
+              "BranchCode": "0129",
+              "FullName": "雙和分行"
+            },
+            {
+              "BranchCode": "0473",
+              "FullName": "壢新分行"
+            },
+            {
+              "BranchCode": "0451",
+              "FullName": "羅東分行"
+            },
+            {
+              "BranchCode": "0820",
+              "FullName": "蘆洲分行"
+            }
+          ]
+    }
+}

@@ -1,0 +1,56 @@
+<div class="lightbox show">
+    <div class="lightbox__back"></div>
+    <div class="lightbox__outer">
+        <div class="lightbox__inner">
+            <div class="lightbox__select">
+                <div class="step__title step__title--align-left">
+                    <h3>{{ title }}</h3>
+                </div>
+                <form>
+                    <div class="lightbox__ps">
+                        <div class="select__content">
+                            <div class="select__content__inner">
+                                <div class="select__content__item" *ngFor="let item of list; index as idx">
+                                    <label class="radio-btn-full radio-btn-full--block-unset">
+                                        <input type="radio" [(ngModel)]="result" [value]="item.value"
+                                            [name]="item.name"><span class="pt-ssm pb-ssm">
+                                            <div class="list-table">
+                                                <div class="list-table__row flex-left flex-nowrap">
+                                                    <div class="list-table__col list-table__col-num mr-ssm">
+                                                        <h4 class="fs-md-1 fc-gray">{{ idx+1 >= 10 ? idx+1 : '0' +
+                                                            (idx+1) }}</h4>
+                                                    </div>
+                                                    <div class="list-table__col">
+                                                        <p class="fs-b fw-b">{{ item.name }}</p>
+                                                        <ng-container *ngIf="mask;else orig" [ngSwitch]="maskType">
+                                                            <h4 *ngSwitchCase="type.card">
+                                                                {{item.value | mask:'0000-0000-0000-0000' |
+                                                                cardnumbermask:'●' }}</h4>
+                                                            <h4 *ngSwitchCase="type.custom">{{item.value |
+                                                                custommask}}</h4>
+                                                        </ng-container>
+                                                        <ng-template #orig>
+                                                            <h4>{{item.value}}</h4>
+                                                        </ng-template>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-group mb-md mt-xs">
+                        <button class="btn btn--primary btn--w250 btn--acccheck" [disabled]="!result"
+                            (click)="close()">確&nbsp;&nbsp;&nbsp;定</button>
+                    </div>
+                    <div class="button-group mt-0 mb-0">
+                        <button class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                            (click)="cancel()">取&nbsp;&nbsp;&nbsp;消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

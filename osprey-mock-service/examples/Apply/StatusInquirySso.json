@@ -1,0 +1,139 @@
+{
+  "Header": {
+    "RequestTime": "",
+    "ResponseTime": "",
+    "ApplicationName": "SinoPac.Cawho.Web",
+    "SessionID": "",
+    "ClientIP": "",
+    "UserAgent": ""
+  },
+  "ResultCode": "00",
+  "ResultMessage": "",
+  "Result": {
+    "CanApplyUrgentCase": true,
+    "Items": [
+      {
+        "CARD_TYPE": "211",
+        "STATUS": "8",
+        "STATUS_DATE": "20151123",
+        "STATUS_DESC": "申請資料尚未完整，煩請聯絡本行客服中心，謝謝!",
+        "EBOSSING_TYPE": "840",
+        "BIRTHDAY": "1030",
+        "CARD_DESC": "商務御璽卡(VISA御璽卡)",
+        "DOC_STATUS": [
+          "2S",
+          "VP",
+          "1T",
+          "1X",
+          "2F"
+        ],
+        "ServiceMessages": [
+          "需確認本次信用卡申請卡別",
+          "附卡未滿20歲，需父母共同簽名或監護人簽名",
+          "改辦美安鈦金卡同意聲明書"
+        ],
+        "UploadFileMessages": [
+          "請提供最新戶籍謄本影本"
+        ],
+        "APPLNO": "JC220100",
+        "Memo": "",
+        "DownloadFileMessages": ["11"],
+        "LetterCode":"E"
+      },
+      {
+        "CARD_TYPE": "638",
+        "STATUS": "8",
+        "STATUS_DATE": "20151123",
+        "STATUS_DESC": "申請資料尚未完整，煩請聯絡本行客服中心，謝謝!",
+        "EBOSSING_TYPE": "001",
+        "BIRTHDAY": "1030",
+        "CARD_DESC": "三井晶緻聯名卡(JCB晶緻卡)",
+        "DOC_STATUS": [
+          "01",
+          "  ",
+          "  ",
+          "  ",
+          "  "
+        ],
+        "ServiceMessages": [],
+        "UploadFileMessages": [
+          "請提供主卡申請人最新版本身份證正反面影印本"
+        ],
+        "APPLNO": "JC220101",
+        "Memo": "",
+        "DownloadFileMessages": [],
+        "LetterCode":"B"
+      },
+      {
+        "CARD_TYPE": "228",
+        "CARD_DESC": "國民旅遊卡",
+        "STATUS": "1",
+        "STATUS_DESC": "資料正在審理中，如有問題可與本行客服中心聯絡，謝謝!",
+        "STATUS_DATE": "20170501",
+        "EBOSSING_TYPE": "188",
+        "DOC_STATUS": [
+          "1T",
+          "  ",
+          "  ",
+          "  ",
+          "  "
+        ],
+        "ServiceMessages": [
+          "附卡未滿20歲，需父母共同簽名或監護人簽名"
+        ],
+        "UploadFileMessages": [],
+        "APPLNO": "JC220102",
+        "Memo": "",
+        "DownloadFileMessages": [],
+        "LetterCode":"B"
+      },
+      {
+        "CARD_TYPE": "228",
+        "CARD_DESC": "美安鈦金悠遊卡",
+        "STATUS": "8",
+        "STATUS_DESC": "申請資料尚未完整，煩請聯絡本行客服中心，謝謝!",
+        "STATUS_DATE": "20170502",
+        "EBOSSING_TYPE": "179",
+        "DOC_STATUS": [
+          "2F",
+          "B",
+          "  ",
+          "  ",
+          "  "
+        ],
+        "ServiceMessages": [],
+        "UploadFileMessages": [],
+        "APPLNO": "JC220103",
+        "Memo": "",
+        "DownloadFileMessages": [
+          "美安悠遊鈦金卡同意聲明書，請聯絡本行客服中心",
+          "因未表明同意提供相關資料予聯名/認同機構，請點選下方按鍵下載同意書，謝謝。"
+        ],
+        "LetterCode":"B"
+      },
+      {
+        "CARD_TYPE": "643",
+        "CARD_DESC": "漢神巨蛋鈦金卡",
+        "STATUS": "5",
+        "STATUS_DESC": "已核卡，祝您用卡愉快。",
+        "STATUS_DATE": "20170503",
+        "EBOSSING_TYPE": "088",
+        "DOC_STATUS": [
+          "  ",
+          "  ",
+          "  ",
+          "  ",
+          "  "
+        ],
+        "ServiceMessages": [],
+        "UploadFileMessages": [],
+        "APPLNO": "JC220104",
+        "Memo": "卡片製作中",
+        "DownloadFileMessages": [],
+        "LetterCode":"B"
+      }
+    ]
+  },
+  "Original": {},
+  "Success": true
+}

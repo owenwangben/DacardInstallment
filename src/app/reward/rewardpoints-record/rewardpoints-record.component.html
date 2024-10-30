@@ -1,0 +1,95 @@
+<div class="wrap">
+    <div class="tab bg-blue-light">
+        <div class="tab__wrap">
+            <ul class="tab__navs">
+                <!-- <li class="tab__nav-pointPile" [class.is-active]="pointtypeNow === pointtype.pointPile"
+                    (click)="setTab(pointtype.pointPile)"><a class="tab__nav tab__nav-pointPile">點數累積</a>
+                </li> -->
+                <li class="tab__nav-pointExchange" [class.is-active]="pointtypeNow === pointtype.pointExchange"
+                    (click)="setTab(pointtype.pointExchange)"><a class="tab__nav tab__nav-pointExchange">點數兌換</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div [class]="pointtypeNow === pointtype.pointPile? 'content-pointPile' : 'content-pointExchange'">
+        <div class="swiper__group">
+            <div class="swiper-wrapper">
+                <div class="row">
+                    <div *ngFor="let item of dateArea; let i=index" class="col">
+                        <div class="btn-check">
+                            <input type="radio" [id]="i" name="point-pile" [value]="item" [checked]="i === 0"
+                                (click)="datechange(item)">
+                            <label class="radio-label" [for]="i">{{item}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrap">
+                <div class="gold-bee-summary gold-bee-summary--records bg-blue-light">
+                    <div class="gold-bee-pill">
+                        <div class="icon icon--reward-points icon--tl flex-center">
+                            <h6 class="inline-block">紅利點數 </h6>
+                        </div>
+                    </div>
+                    <h2>{{ pointAll | number }}<span class="ml-xxs">點</span></h2>
+                    <p>{{ ExDate }}到期 {{ Expoint | number }}點</p>
+                </div>
+                <!-- <div *ngIf="pointtypeNow === pointtype.pointPile" class="wrap wrap__pd">
+                    <div class="gold-bee-summary--records">
+                        <h4>本月點數累積紀錄<span class="icon--tr icon--tr--sm2 icon--info-blue-light inline-block mb-xxs"
+                                (click)="recordmemo()"></span></h4>
+                        <div class="gold-bee-summary--records-month">
+                            <p>累積點數：<span class="fc-gold fw-b">{{pointpileRecord | number}}</span></p>
+                            <p>累積筆數：<span class="fw-b">{{ pileRecordListShow?.length}}</span></p>
+                        </div>
+                        <h6 *ngIf="!pileRecordListShow || pileRecordListShow.length === 0">尚無累積紀錄…</h6>
+                    </div>
+                    <div *ngIf="pileRecordListShow && pileRecordListShow.length" class="list-table mt-md">
+                        <a *ngFor="let item of pileRecordListShow" class="list-table__row u-nounderline">
+                            <div class="list-table__col list-table__col--65">
+                                <div class="list-table__overflow--3">
+                                    <h4>{{ item.MEMO }}</h4>
+                                </div>
+                                <p>{{ item.DE_DATE }}</p>
+                            </div>
+                            <div class="list-table__col list-table__col--auto">
+                                <div class="flex-right">
+                                    <div class="icon icon--reward-points icon--tr icon--text flex-center">
+                                        <h6 class="inline-block">{{ item.ADD_POINT | number }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div> -->
+                <div *ngIf="pointtypeNow === pointtype.pointExchange" class="wrap wrap__pd">
+                    <div class="gold-bee-summary--records">
+                        <h4>本月點數兌換紀錄</h4>
+                        <div class="gold-bee-summary--records-month">
+                            <p>兌換點數：<span class="fc-gold">{{pointexchangeRecord | number}}</span></p>
+                            <p>兌換筆數：<span class="fw-b">{{ exchangeRecordListShow?.length }}</span></p>
+                        </div>
+                        <h6 *ngIf="!exchangeRecordListShow || exchangeRecordListShow.length === 0">尚無兌換紀錄…</h6>
+                    </div>
+                    <div *ngIf="exchangeRecordListShow && exchangeRecordListShow.length" class="list-table mt-md">
+                        <a *ngFor="let item of exchangeRecordListShow" class="list-table__row u-nounderline">
+                            <div class="list-table__col list-table__col--65">
+                                <div class="list-table__overflow--3">
+                                    <h4>{{ item.MEMO }}</h4>
+                                </div>
+                                <p>{{ item.DE_DATE }}</p>
+                            </div>
+                            <div class="list-table__col list-table__col--auto">
+                                <div class="flex-right">
+                                    <div class="icon icon--reward-points icon--tr icon--text flex-center">
+                                        <h6 class="inline-block">{{ item.TRA_POINT_TTL | number }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

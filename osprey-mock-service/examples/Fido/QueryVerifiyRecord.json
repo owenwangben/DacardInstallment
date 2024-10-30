@@ -1,0 +1,134 @@
+{
+    "Header": {
+        "ApplicationName": "DACARD",
+        "SessionID": "SinopacCawhoDevice",
+        "ServiceType": "",
+        "ClientIP": "10.11.33.34",
+        "ClientRefNo": "d21dbbaa24534a75b7c7422d2ff9d531",
+        "ClientTimestamp": "2023-01-19T02:44:09.341Z",
+        "UserAgent": "sinopac://CaWhoPay?appVer=appVer&osType=Web&osVerName=osVerName&osVer=12&manufacturer=manufacturer&model=model",
+        "Tag": "",
+        "Signature": "",
+        "UserId": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Items": [
+            {
+                "TractionId": "0001",
+                "Type": "成功",
+                "VerifyTime": "2024-09-08T14:15:22Z",
+                "VerifyResult": "成功",
+                "ClientIP": "223.136.234.29",
+                "CardType": "簽帳金融卡",
+                "CardNoLast4": "1234",
+                "Amt": "500,000.10",
+                "CurrencyName": "新臺幣",
+                "CurrencyCode": "TWD",
+                "Minutes": 6,
+                "IsTimeout": true
+            },
+            {
+                "TractionId": "0002",
+                "Type": "成功",
+                "VerifyTime": "2024-09-21T14:15:22Z",
+                "VerifyResult": "失敗",
+                "ClientIP": "223.136.234.29",
+                "CardType": "簽帳金融卡",
+                "CardNoLast4": "1234",
+                "Amt": "500,000.10",
+                "CurrencyName": "美金",
+                "CurrencyCode": "USD"
+            },
+            {
+                "TractionId": "0003",
+                "Type": "成功",
+                "VerifyTime": "2024-09-08T17:15:22Z",
+                "VerifyResult": "成功",
+                "ClientIP": "223.136.234.29",
+                "CardType": "簽帳金融卡",
+                "CardNoLast4": "1234",
+                "Amt": "50,000.10",
+                "CurrencyName": "日幣",
+                "CurrencyCode": "JPY"
+            }
+            ,{
+                "TractionId": "0004",
+                "Type": "成功",
+                "VerifyTime": "2024-08-22T14:15:22Z",
+                "VerifyResult": "成功",
+                "ClientIP": "223.136.234.29",
+                "CardType": "簽帳金融卡",
+                "CardNoLast4": "1234",
+                "Amt": "0",
+                "CurrencyName": "新臺幣",
+                "CurrencyCode": "TWD"
+            }
+            ,{
+                "TractionId": "0006",
+                "Type": "驗證卡號",
+                "VerifyTime": "2024-08-21T14:15:22Z",
+                "VerifyResult": "失敗",
+                "ClientIP": "223.136.234.29",
+                "CardType": "儲值卡",
+                "CardNoLast4": "1234",
+                "Amt": "500000",
+                "CurrencyName": "新臺幣",
+                "CurrencyCode": "TWD"
+            }
+            ,{
+                "TractionId": "0007",
+                "Type": "純綁卡",
+                "VerifyTime": "2024-09-24T14:15:22Z",
+                "VerifyResult": "失敗",
+                "ClientIP": "223.136.234.29",
+                "CardType": "儲值卡",
+                "CardNoLast4": "1234",
+                "Amt": "500000",
+                "CurrencyName": "新臺幣",
+                "CurrencyCode": "TWD"
+            }
+            ,{
+                "TractionId": "0008",
+                "Type": "成功",
+                "VerifyTime": "2024-08-14T14:15:22Z",
+                "VerifyResult": "成功",
+                "ClientIP": "223.136.234.29",
+                "CardType": "儲值卡",
+                "CardNoLast4": "1234",
+                "Amt": "",
+                "CurrencyName": "新臺幣",
+                "CurrencyCode": "TWD"
+            }
+            ,{
+                "TractionId": "0009",
+                "Type": "成功",
+                "VerifyTime": "2024-09-14T14:44:22Z",
+                "VerifyResult": "成功",
+                "ClientIP": "223.136.234.29",
+                "CardType": "信用卡",
+                "CardNoLast4": "1234",
+                "Amt": "500000",
+                "CurrencyName": "新臺幣",
+                "CurrencyCode": "TWD",
+                "AuthType":"本人"
+            }
+            ,{
+                "TractionId": "123g",
+                "Type": "成功",
+                "VerifyTime": "2024-08-24T14:15:22Z",
+                "VerifyResult": "成功",
+                "ClientIP": "223.136.234.29",
+                "CardType": "信用卡",
+                "CardNoLast4": "1234",
+                "Amt": "1300000",
+                "CurrencyName": "日圓",
+                "CurrencyCode": "JYP"
+            }
+        ]
+    },
+    "Error": null,
+    "Original": null,
+    "Success": true
+}

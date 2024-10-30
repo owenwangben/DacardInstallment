@@ -1,0 +1,228 @@
+var banner_list = [
+    {
+        ActivityName: "新戶刷卡滿額贈「館內刷卡金500元」",
+        Style: "linen",
+        Title: "三井卡新戶贈500元",
+        Subtitle: "核卡30天內刷卡滿額享館內500元回饋",
+        ActivityTimeS: "2024/07/01 00:00:00",
+        ActivityTimeE: "2024/12/31 23:59:59",
+        Image: "mma8/card/images/dacard/banner/Banner1.png",
+        SortOrder: 2,
+        DisplayTimeS: "2024/07/01 00:00:00",
+        DisplayTimeE: "2024/12/31 23:59:59",
+        PublishGroup: [
+            "未綁定/無卡",
+        ],
+        Link: "https://bank.sinopac.com/sinopacBT/personal/credit-card/introduction/co-brand/mitsui-outlet-park-card.html",
+        CreateTime: "2024/07/01 00:00:00"
+    },
+    {
+        ActivityName: "DAWAY3%回饋無上限",
+        Style: "gold",
+        Title: "DAWAY3%無上限",
+        Subtitle: "新戶設定自扣LINE Pay/海外享3%無上限",
+        ActivityTimeS: "2024/01/01 00:00:00",
+        ActivityTimeE: "2024/12/31 23:59:59",
+        Image: "mma8/card/images/dacard/banner/Banner2.jpg",
+        SortOrder: 1,
+        DisplayTimeS: "2024/06/01 00:00:00",
+        DisplayTimeE: "2024/12/31 23:59:59",
+        PublishGroup: [
+            "未綁定/無卡"
+        ],
+        Link: "https://bank.sinopac.com/sinopacBT/webevents/2024_DAWAY/index.html?Branch=dacard&utm_source=dacard&utm_medium=banner&utm_term=nonpaid&utm_content=daway&utm_campaign=creditcardDAWAY20240401",
+        CreateTime: "2024/06/01 00:00:00"
+    },
+    {
+        ActivityName: "現金回饋Green卡新戶享最高700元回饋",
+        Style: "blue",
+        Title: "現金回饋Green卡",
+        Subtitle: "新戶核卡30天完成指定消費享最高700元回饋",
+        ActivityTimeS: "2024/01/01 00:00:00",
+        ActivityTimeE: "2024/12/31 23:59:59",
+        Image: "mma8/card/images/dacard/banner/Banner3.jpg",
+        SortOrder: 3,
+        DisplayTimeS: "2024/06/01 00:00:00",
+        DisplayTimeE: "2024/12/31 23:59:59",
+        PublishGroup: [
+            "未綁定/無卡"
+        ],
+        Link: "https://bank.sinopac.com/sinopacBT/webevents/2312_greencard/index.html?Branch=GCDCBN24&utm_source=dacardapp&utm_medium=banner&utm_term=nonpaid&utm_content=apply&utm_campaign=creditcardgcdcpush24202312",
+        CreateTime: "2024/01/01 00:00:00"
+    },
+    {
+        ActivityName: "日本購物最高27%折扣",
+        Style: "gold",
+        Title: "日本最高享27%折扣",
+        Subtitle: "於指定購物中心出示聯名卡及圖碼即享優惠！",
+        ActivityTimeS: "2024/01/01 00:00:00",
+        ActivityTimeE: "2024/12/31 23:59:59",
+        Image: "mma8/card/images/dacard/banner/Banner1.png",
+        SortOrder: 1,
+        DisplayTimeS: "2024/06/01 00:00:00",
+        DisplayTimeE: "2024/12/31 23:59:59",
+        PublishGroup: [
+            "有卡"
+        ],
+        Link: "https://bank.sinopac.com/sinopacBT/personal/credit-card/introduction/co-brand/mitsui-outlet-park-card.html",
+        CreateTime: "2024/01/01 00:00:00"
+    },
+    {
+        ActivityName: "館外餐廳/指定外送平台享10%回饋（需登錄）",
+        Style: "rose",
+        Title: "館外餐廳/外送享10%",
+        Subtitle: "帳單達檻享館外餐飲（含外送）10%刷卡金回饋",
+        ActivityTimeS: "2024/07/01 00:00:00",
+        ActivityTimeE: "2024/12/31 23:59:59",
+        Image: "mma8/card/images/dacard/banner/Banner1.png",
+        SortOrder: 2,
+        DisplayTimeS: "2024/07/01 00:00:00",
+        DisplayTimeE: "2024/12/31 23:59:59",
+        PublishGroup: [
+            "有卡"
+        ],
+        Link: "https://bank.sinopac.com/sinopacBT/personal/credit-card/introduction/co-brand/mitsui-outlet-park-card.html",
+        CreateTime: "2024/07/01 00:00:00"
+    },
+    {
+        ActivityName: "和苑三井花園飯店 台北忠孝 住宿優惠",
+        Style: "blue",
+        Title: "和苑三井花園飯店優惠",
+        Subtitle: "預約訂房並使用三井聯名卡結帳享指定房型優惠價",
+        ActivityTimeS: "2024/01/01 00:00:00",
+        ActivityTimeE: "2024/12/31 23:59:59",
+        Image: "mma8/card/images/dacard/banner/Banner1.png",
+        SortOrder: 6,
+        DisplayTimeS: "2024/06/01 00:00:00",
+        DisplayTimeE: "2024/12/31 23:59:59",
+        PublishGroup: [
+            "有卡"
+        ],
+        Link: "https://bank.sinopac.com/sinopacBT/personal/credit-card/introduction/co-brand/mitsui-outlet-park-card.html",
+        CreateTime: "2024/06/25 00:00:00"
+    },
+    {
+        ActivityName: "付費分期活動",
+        Style: "teal",
+        Title: "付費分期活動",
+        Subtitle: "申辦付費分期最高享1,100元刷卡金",
+        ActivityTimeS: "2024/07/01 00:00:00",
+        ActivityTimeE: "2024/09/30 23:59:59",
+        Image: "mma8/card/images/dacard/banner/Banner7.png",
+        SortOrder: 4,
+        DisplayTimeS: "2024/07/01 00:00:00",
+        DisplayTimeE: "2024/09/30 23:59:59",
+        PublishGroup: [
+            "有卡"
+        ],
+        Link: "https://bank.sinopac.com/sinopacBT/personal/credit-card/manage/credit-staging-single.html",
+        CreateTime: "2024/07/01 00:00:00"
+    },
+    {
+        ActivityName: "天天永豐日活動",
+        Style: "linen",
+        Title: "天天永豐日 夏日繽紛樂",
+        Subtitle: "最高享9%回饋",
+        ActivityTimeS: "2024/07/01 00:00:00",
+        ActivityTimeE: "2024/09/30 23:59:59",
+        Image: "mma8/card/images/dacard/banner/Banner8.png",
+        SortOrder: 3,
+        DisplayTimeS: "2024/07/01 00:00:00",
+        DisplayTimeE: "2024/09/30 23:59:59",
+        PublishGroup: [
+            "有卡",
+            "未綁定/無卡"
+        ],
+        Link: "https://bank.sinopac.com/sinopacBT/personal/credit-card/discount/654249345.html",
+        CreateTime: "2024/07/01 00:00:00"
+    },
+    {
+        ActivityName: "分期享雙重好禮",
+        Style: "blue",
+        Title: "分期享雙重好禮",
+        Subtitle: "【雙重送】分期滿額享最高2%及加碼雙重送",
+        ActivityTimeS: "2024/07/01 00:00:00",
+        ActivityTimeE: "2024/09/30 23:59:59",
+        Image: "mma8/card/images/dacard/banner/Banner9.png",
+        SortOrder: 5,
+        DisplayTimeS: "2024/07/01 00:00:00",
+        DisplayTimeE: "2024/09/30 23:59:59",
+        PublishGroup: [
+            "有卡"
+        ],
+        Link: "https://bank.sinopac.com/sinopacBT/personal/credit-card/discount/502664361.html",
+        CreateTime: "2024/07/01 00:00:00"
+    },
+    {
+        ActivityName: "夏日巔峰之戰",
+        Style: "linen",
+        Title: "夏日顛峰之戰",
+        Subtitle: "不限通路滿萬送百，回饋無上限！",
+        ActivityTimeS: "2024/07/01 00:00:00",
+        ActivityTimeE: "2024/08/31 23:59:59",
+        Image: "mma8/card/images/dacard/banner/Banner10.png",
+        SortOrder: 1,
+        DisplayTimeS: "2024/08/01 00:00:00",
+        DisplayTimeE: "2024/08/31 23:59:59",
+        PublishGroup: [
+            "未綁定/無卡",
+            "有卡"
+        ],
+        Link: "https://bank.sinopac.com/sinopacBT/personal/credit-card/discount/031946725.html",
+        CreateTime: "2024/07/01 00:00:00"
+    },
+    {
+        ActivityName: "下半年分期活動",
+        Style: "gold",
+        Title: "(大咖加碼)線上分期活動",
+        Subtitle: "線上分期立即辦 滿額最高回饋100元",
+        ActivityTimeS: "2024/08/26 00:00:00",
+        ActivityTimeE: "2024/10/31 23:59:59",
+        Image: "mma8/card/images/dacard/banner/Banner11.png",
+        SortOrder: 1,
+        DisplayTimeS: "2024/08/26 00:00:00",
+        DisplayTimeE: "2024/10/31 23:59:59",
+        PublishGroup: [
+            "未綁定/無卡",
+            "有卡"
+        ],
+        Link: "https://bank.sinopac.com/sinopacBT/personal/credit-card/manage/credit-staging-single.html?utm_source=dacardapp&utm_medium=banner&utm_term=nonpaid&utm_content=creditcardcarousel&utm_campaign=creditcard_stagingevent_202408",
+        CreateTime: "2024/08/26 00:00:00"
+    },
+    {
+        ActivityName: "55688卡新戶享綁卡搭車最高20%",
+        Style: "blue",
+        Title: "永豐55688卡",
+        Subtitle: "新戶享綁卡搭車最高20%T Points",
+        ActivityTimeS: "2024/07/01 00:00:00",
+        ActivityTimeE: "2024/12/31 23:59:59",
+        Image: "mma8/card/images/dacard/banner/Banner12.jpg",
+        SortOrder: 2,
+        DisplayTimeS: "2024/08/15 00:00:00",
+        DisplayTimeE: "2024/12/15 23:59:59",
+        PublishGroup: [
+            "未綁定/無卡",
+            "有卡"
+        ],
+        Link: "https://bank.sinopac.com/sinopacBT/webevents/2108_taxicard/index.html?Branch=56DACARD&utm_source=offline&utm_medium=banner&utm_term=nonpaid&utm_content=card&utm_campaign=creditcard56DACARD45520",
+        CreateTime: "2024/07/01 00:00:00"
+    },
+    {
+        ActivityName: "百家餐廳最優75折",
+        Style: "gold",
+        Title: "永富世界卡 饗受幸福",
+        Subtitle: "百家餐廳最優75折，開始您的美食之旅吧!",
+        ActivityTimeS: "2024/01/01 00:00:00",
+        ActivityTimeE: "2024/12/31 23:59:59",
+        Image: "mma8/card/images/dacard/banner/Banner13.png",
+        SortOrder: 3,
+        DisplayTimeS: "2024/09/01 00:00:00",
+        DisplayTimeE: "2024/12/30 23:59:59",
+        PublishGroup: [
+            "未綁定/無卡",
+            "有卡"
+        ],
+        Link: "https://bank.sinopac.com/sinopacBT/personal/credit-card/introduction/bankcard/WBFU.html",
+        CreateTime: "2024/01/01 00:00:00"
+    },
+];

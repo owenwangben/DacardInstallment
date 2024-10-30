@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>DACARD - 永豐銀行</title>
+    <meta name="title" content="DACARD - 永豐銀行">
+    <meta name="description" content="">
+    <meta property="og:title" content="DACARD - 永豐銀行">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="author" content="永豐銀行">
+    <meta name="copyright" content="永豐銀行">
+    <meta property="og:site_name" content="DACARD - 永豐銀行">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="">
+    <link rel="apple-touch-icon" href="">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+  </head>
+  <body class="temporary_adjust_2">
+    <main class="container">
+      <div class="wrap wrap__pd">
+        <div class="flex-between">
+          <h1 class="title">請確認以下資訊</h1>
+        </div>
+        <div class="step step__pt--lg">
+          <div class="list-table">
+            <div class="list-table__row"> 
+              <div class="list-table__col">
+                <p class="fs-b">原始信用額度</p>
+              </div>
+              <div class="list-table__col">
+                <h4 class="fs-b">10,000 元</h4>
+              </div>
+            </div>
+            <div class="list-table__row"> 
+              <div class="list-table__col">
+                <p class="fs-b">目前可用餘額</p>
+              </div>
+              <div class="list-table__col">
+                <h4 class="fs-b">30,000 元</h4>
+              </div>
+            </div>
+            <div class="list-table__row"> 
+              <div class="list-table__col">
+                <p class="fs-b">申請增加信用額度</p>
+              </div>
+              <div class="list-table__col">
+                <h4 class="fs-b fc-gold">100,000 元</h4>
+              </div>
+            </div>
+            <div class="list-table__row"> 
+              <div class="list-table__col">
+                <p class="fs-b">提高後可用餘額</p>
+              </div>
+              <div class="list-table__col">
+                <h4 class="fs-b">130,000 元</h4>
+              </div>
+            </div>
+            <div class="list-table__row"> 
+              <div class="list-table__col">
+                <p class="fs-b">申請卡片</p>
+              </div>
+              <div class="list-table__col">
+                <h4 class="fs-b align-right">永豐 幣倍卡 <br>1234-56●●●●●●-7890</h4>
+              </div>
+            </div>
+            <div class="list-table__row"> 
+              <div class="list-table__col">
+                <p class="fs-b">申請起日</p>
+              </div>
+              <div class="list-table__col">
+                <h4 class="fs-b">2022/01/01</h4>
+              </div>
+            </div>
+            <div class="list-table__row"> 
+              <div class="list-table__col">
+                <p class="fs-b">申請迄日</p>
+              </div>
+              <div class="list-table__col">
+                <h4 class="fs-b">2022/02/01</h4>
+              </div>
+            </div>
+            <div class="list-table__row"> 
+              <div class="list-table__col">
+                <p class="fs-b">申請原因</p>
+              </div>
+              <div class="list-table__col">
+                <h4 class="fs-b">出國</h4>
+              </div>
+            </div>
+            <div class="list-table__row"> 
+              <div class="list-table__col">
+                <p class="fs-b">申請說明</p>
+              </div>
+              <div class="list-table__col">
+                <h4 class="fs-b align-right">5/2~5/8、日本、<br>機票及國外購物</h4>
+              </div>
+            </div>
+            <div class="list-table__row"> 
+              <div class="list-table__col">
+                <p class="fs-b">聯絡方式</p>
+              </div>
+              <div class="list-table__col list-table__col--w">
+                <h4 class="fs-b align-right">0900-123-123</h4>
+              </div>
+              <div class="list-table__col">
+                <div class="icon icon--eye icon--tr"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="btn btn--primary btn--w250 btn--apply">我要申請</button>
+        </div>
+        <div class="button-group mt-sm">
+          <button class="btn btn--text btn--text-line">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+      </div>
+      <footer></footer>
+    </main>
+    <script src="../../assets/js/source/jquery-3.3.1.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/jquery.payment.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/slick.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/sortable.min.securejs" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){
+        $('.icon--eye').on('click', function(){
+          $(this).toggleClass('icon--eye-active');
+        })
+      
+        $('[data-popup]').on('click', function(e){
+          e.preventDefault();
+          let target = $(this).data('popup');
+          $('#'+ target).addClass('show');
+        })
+      
+        $('.btn--cancel').on('click', function(e){
+          e.preventDefault();
+          $('.lightbox').removeClass('show');
+        })
+        $('.btn--check').on('click', function(e){
+          e.preventDefault();
+          $('.lightbox').removeClass('show');
+        })
+        
+        let termsBox = document.querySelector('.content_outer');
+        if(termsBox.scrollHeight > termsBox.clientHeight){
+          termsBox.addEventListener('scroll', function(e) {
+          if(termsBox.scrollHeight - termsBox.scrollTop <= termsBox.clientHeight){
+              $('.check-row').removeClass('disable')
+              $(':checkbox[name="agree"]').removeAttr("disabled");
+            }else{
+              $('.check-row').addClass('disable')
+              $(':checkbox[name="agree"]').prop("disabled", true);
+            }
+          })
+        }else{
+          $('.check-row').removeClass('disable')
+          $(':checkbox[name="agree"]').removeAttr("disabled");
+        }
+      
+        
+        $(':checkbox[name="agree"]').change(function() {
+          var agree = $(this).filter(':checked').val();
+          if(agree){
+            $('.btn--check').removeAttr("disabled");
+          }else{
+            $('.btn--check').prop("disabled", true);
+          }
+        });
+        
+      })
+    </script>
+  </body>
+</html>

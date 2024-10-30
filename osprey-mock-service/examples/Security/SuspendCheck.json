@@ -1,0 +1,18 @@
+{
+    "Header": {
+        "ApplicationName": "DACARD",
+        "SessionID": "SinopacCawhoDevice",
+        "ServiceType": "",
+        "ClientIP": "10.11.33.34",
+        "ClientRefNo": "d21dbbaa24534a75b7c7422d2ff9d531",
+        "ClientTimestamp": "2023-01-19T02:44:09.341Z",
+        "UserAgent": "sinopac://CaWhoPay?appVer=appVer&osType=Web&osVerName=osVerName&osVer=12&manufacturer=manufacturer&model=model",
+        "Tag": "",
+        "Signature": "",
+        "UserId": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "本行將於2023年1月31日23：00至2月4日2：00進行系統維護作業，系統維護期間無法受理申請臨時額度調整服務，不便之處敬請見諒。",
+    "Result": "Success",
+    "Success": false
+}

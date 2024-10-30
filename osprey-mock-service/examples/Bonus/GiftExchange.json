@@ -1,0 +1,43 @@
+{
+    "Header": {
+        "ReferenceNo": "",
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cards.Web",
+        "ClientIP": "",
+        "SessionID": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "說明文字說明文字說明文字說明文字說明文字",
+    "Result": {
+        "Items": [
+            {
+                "Item": {
+                    "ProjCode": "509002",
+                    "ProdCode": "2071",
+                    "Quantity": 1,
+                    "EndTime": "2017-12-31T00:00:00",
+                    "Description": "萬寶龍紳仕短夾",
+                    "TotalPoints": 37920
+                },
+                "ErrorMessage": "兌換失敗，庫存不足",
+                "IsExchangeSuccess": false,
+                "IsExchangeable": false
+            },
+            {
+                "Item": {
+                    "ProjCode": "510002",
+                    "ProdCode": "1310",
+                    "Quantity": 1,
+                    "EndTime": "2017-12-31T00:00:00",
+                    "Description": "Glasslock強化玻璃保鮮盒組",
+                    "TotalPoints": 12800
+                },
+                "ErrorMessage": "",
+                "IsExchangeSuccess": true,
+                "IsExchangeable": true
+            }
+        ]
+    }
+}

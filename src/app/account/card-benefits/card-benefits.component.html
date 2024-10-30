@@ -1,0 +1,226 @@
+<div class="wrap">
+    <div class="tab">
+        <div class="tab__wrap">
+            <ul class="tab__navs">
+                <li class="tab__nav-discount is-active">
+                    <a class="tab__nav tab__nav-discount">優惠</a>
+                </li>
+                <li class="tab__nav-bill" (click)="routeByBillID(0)">
+                    <a class="tab__nav tab__nav-bill">帳務</a>
+                </li>
+                <li class="tab__nav-card" (click)="routeByBillID(1)">
+                    <a class="tab__nav tab__nav-card">卡片</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="banner--outer mt-md mb-md">
+    <div class="banner--slide">
+        <ul>
+            <li #banner *ngFor="let item of bannerList">
+                <a class="banner--card" [ngClass]="item.data.Style" (click)="openLink(item)">
+                    <div class="banner--title">
+                        <div class="title">{{ item.data.Title }}</div>
+                        <div class="desc">
+                            {{ item.data.Subtitle }}
+                        </div>
+                        <div class="date" *ngIf="item.data?.ActivityTimeS && item.data?.ActivityTimeE">
+                            {{ (item.data.ActivityTimeS| date : "yyyy/MM/dd") + " - " + (item.data.ActivityTimeE | date :
+                            "yyyy/MM/dd") }}
+                        </div>
+                    </div>
+                    <img class="banner--img" [src]="item.data.Image" />
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="wrap wrap__pd pb-0 pt-0">
+    <div class="card-apply">
+        <div class="title-img" [style.background-image]="'url(' + rightMessage.imageUrl + ')'"></div>
+        <button class="btn btn--primary btn--primary-xs btn--primary-withArrow icon--tr icon--arrow-white"
+            (click)="toRightPage()">
+            {{ rightMessage.buttonMsg }}
+        </button>
+    </div>
+    <div class="flex-between mt-sm">
+        <h1 class="title">活動行事曆</h1>
+        <button class="btn btn--normal btn--normal-more" (click)="toRegisterPage()">
+            前往登錄
+        </button>
+    </div>
+    <div class="step step-calendar" [style.display]="calendarLoadFinish ? 'block' : 'none'">
+        <div class="banner--calendar">
+            <div class="month">2024 /<span id="month"></span>月份</div>
+            <div class="week">
+                <ul #calendar id="{{ items.week }}" *ngFor="let items of activityCalendar">
+                    <li *ngFor="let item of items.item">
+                        <p class="weekday">{{ item.weekDay }}</p>
+                        <p class="month">{{ item.month }}</p>
+                        <a (click)="toDailyActivity(item.fullDate)" class="date" [class.today]="item.isToday"
+                            [class.newEvent]="item.anyAcivityBeginToday">{{ item.date }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="step step-empty" [style.display]="!calendarLoadFinish ? 'block' : 'none'">
+        <div class="flex-center">
+            <div class="align-center line-h-2 mt-md mb-md">
+                <p>加載中...</p>
+            </div>
+        </div>
+    </div>
+    <div class="pt-sm">
+        <h1 class="title">精選活動列表</h1>
+    </div>
+</div>
+<div class="content-card mt-xs" id="ChoiceActivity">
+    <div class="scroll-tab with-icon">
+        <div class="scroll-tab__wrap">
+            <ul class="scroll-tab__navs">
+                <li [class.is-active]="item.active" data-tab="hot" *ngFor="let item of navList; let idx = index"
+                    (click)="changeNav(idx)">
+                    <img class="scroll-tab__icon" [src]="item.navImage" /><a class="scroll-tab__nav">{{ item.navTitle
+                        }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="filter mt-md mb-sm">
+        <label class="check-row">
+            <!-- <div class="fs-sm flex-left">
+                我的專屬活動
+                <div
+                    class="icon--tr icon--tr--sm2 icon--info inline-block"
+                    data-popup="discountDetails"
+                ></div>
+            </div>
+            <input type="checkbox" name="agree" /><span></span> -->
+        </label>
+        <label class="check-row">
+            <div class="fs-sm">僅顯示進行中的活動</div>
+            <input type="checkbox" name="agree" [checked]="activityInProgress"
+                (change)="showActivityInProgress()" /><span></span>
+        </label>
+    </div>
+
+    <div class="list-table-discount tab-content show" *ngIf="activityShowList.length == 0; else activity">
+        <div class="flex-center pb-lg-1" *ngIf="!activityLoadFinish && activityList.length == 0">
+            <div class="align-center">
+                <img class="margin-center loadingGif" src="assets/images/img/dcloading.gif" />
+                <p class="fs-sm pt-xxs">優惠活動載入中...</p>
+            </div>
+        </div>
+        <div class="flex-center mt-lg pb-lg-1" *ngIf="activityLoadFinish && activityList.length > 0">
+            <div class="align-center line-h-2">
+                <p>此分類目前尚無活動，</p>
+                <p>看看其他分類吧！</p>
+            </div>
+        </div>
+    </div>
+    <ng-template #activity>
+        <div class="list-table-discount tab-content show">
+            <div class="list-table__row" data-popup="discountEvent" *ngFor="let item of activityShowList"
+                (click)="showLightBox(item)" #activity>
+                <div class="list-table__col list-table__col--auto">
+                    <img class="img" [src]="item.ActivityImage" />
+                </div>
+                <div class="list-table__col">
+                    <div class="fw-b" [class.new]="isActivityStartToday(item.StartTime)">
+                        {{ item.TextOne }}
+                    </div>
+                    <div class="fc-gold fs-md fw-b pt-xxs">
+                        {{ item.TextTwo }}
+                    </div>
+                    <div class="fc-gray fs-xs pt-xxs">
+                        {{
+                        (item.StartTime| date : "yyyy/MM/dd") +
+                        " - " +
+                        (item.EndTime | date : "yyyy/MM/dd")
+                        }}
+                    </div>
+                </div>
+                <div class="list-table__col flex-between">
+                    <button class="btn--more">
+                        <img src="assets/images/icon/icon-arrow-gray.svg" />
+                    </button>
+                </div>
+            </div>
+            <div class="flex-center mt-md pb-md" *ngIf="activityShowList.length > 0 && !checkNoMoreItem()">
+                <button class="more btn btn--primary btn--primary-xxs fs-xs" (click)="showMoreItem()">
+                    更多活動
+                </button>
+            </div>
+        </div>
+    </ng-template>
+    <div class="toTop" id="top"></div>
+</div>
+<div class="notice fs-xs white mt-md">
+    <li> 登錄各項活動前，請詳閱活動詳情(包含活動辦法及注意事項)，若完成活動登錄即表示您已了解並同意相關活動規則。<a
+        href="https://bank.sinopac.com/sinopacBT/personal/credit-card/discount/list.html#open-browser" target="_blank"
+        rel="noopener noreferrer">查看信用卡活動</a></li>
+    <li>24小時服務專線：(02)&zwj;2528&zwj;-7776/0800&zwj;-058&zwj;-888 (限市話) 循環信用利率5%~15% (基準日2023/3/3)；預借現金手續費：預借現金金額X3.5%+指定金額(100元新台幣/3.5美元/350日圓/3歐元)其他費用請上永豐銀行網站查詢</li>
+    <div class="warning mt-md">
+        <img src="assets/images/demo/warning.svg" alt="謹慎理財 信用至上" />
+    </div>
+</div>
+<div class="lightbox" id="discountDetails">
+    <div class="lightbox__back">
+        <div class="lightbox__outer">
+            <div class="lightbox__inner lightbox--iframe lightbox--bold">
+                <h3 class="mb-xs align-left">我的優惠說明</h3>
+                <div class="iframe-box iframe-box--md">
+                    <div class="content_outer content_outer--md">
+                        <div class="content_inner align-left">
+                            <ul class="lightbox__listUl lightbox__listUl--decimal black">
+                                <li>
+                                    列「我的專屬活動」列表係顯示會員持有卡片適用的優惠活動，不代表會員享有活動資格，詳細活動辦法、限制條件及不適用卡別等請詳閱活動詳情說明與注意事項。
+                                </li>
+                                <li>
+                                    參加各項活動前請詳閱活動詳情(包含活動辦法及注意事項)，並請留意身分是否符合活動限定。
+                                </li>
+                                <li>
+                                    參加者於參加活動之同時，即同意接受活動注意事項之規範。
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr class="gray mt-md" />
+                <div class="button-group mb-md mt-md">
+                    <a class="btn btn--primary btn--w250 btn--cancel" href="">確&nbsp;&nbsp;&nbsp;定</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="lightbox" [class.show]="lightBoxStatus" id="discountEvent">
+    <div class="lightbox__back"></div>
+    <div class="lightbox__outer">
+        <div class="lightbox__inner lightbox--iframe lightbox--bold">
+            <h3 class="mb-xs align-left">{{ lightBoxItem.ActivityTitle }}</h3>
+            <div class="lightbox__close btn--cancel icon--close-blue" (click)="lightBoxStatus = false"></div>
+            <div class="iframe-box iframe-box--sm">
+                <div class="content_outer content_outer--md">
+                    <div class="content_inner align-left">
+                        <ul class="lightbox__listUl lightbox__listUl--decimal black" [innerHTML]="lightBoxItem.Content">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="gray mt-md" />
+            <div class="button-group mb-md mt-md">
+                <a class="btn btn--primary btn--w250 btn--check" [href]="lightBoxItem.ButtonOneLink + '#open-browser'"
+                    target="_blank">{{
+                    lightBoxItem.ButtonOneText }}</a>
+            </div>
+            <div class="button-group mt-0 mb-0" *ngIf="lightBoxItem?.ButtonTwoText">
+                <a class="btn btn--text btn--text-dark btn--text-line"
+                    [href]="lightBoxItem.ButtonTwoLink + '#open-browser'">{{ lightBoxItem.ButtonTwoText }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<footer></footer>

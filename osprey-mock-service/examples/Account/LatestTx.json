@@ -1,0 +1,149 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "IsCompanyUser": false,
+        "Items": [
+            {
+                "cardFlag": "1",
+                "CardNo": "4567894563219632",
+                "CardName": "SPORT卡 狀態乙",
+                "IsMobileCard": true,
+                "AuthDate": "2021/9/3",
+                "AuthTime": "13:51:30",
+                "Memo": "超市",
+                "AuthAmt": 793,
+                "AuthAmtDesc": "授權金額描述",
+                "CountryCode": "消費國別",
+                "AuthResult": "授權結果"
+            },
+            {
+                "CardFlag": "1",
+                "CardNo": "4567894563219632",
+                "CardName": "SPORT卡 狀態乙",
+                "IsMobileCard": true,
+                "AuthDate": "2021/9/1",
+                "AuthTime": "08:52:06",
+                "Memo": "Uber Eats",
+                "AuthAmt": 268,
+                "AuthAmtDesc": "授權金額描述",
+                "CountryCode": "消費國別",
+                "AuthResult": "授權結果"
+            },
+            {
+                "CardFlag": "2",
+                "CardNo": "7412456996549874",
+                "CardName": "MITSUI OUTLET PARK聯名卡_台中港  狀態丙",
+                "IsMobileCard": true,
+                "AuthDate": "2021/9/6",
+                "AuthTime": "10:55:45",
+                "Memo": "商店A",
+                "AuthAmt": 100,
+                "AuthAmtDesc": "授權金額描述",
+                "CountryCode": "消費國別",
+                "AuthResult": "授權結果"
+            },
+            {
+                "CardFlag": "2",
+                "CardNo": "7412456996549874",
+                "CardName": "MITSUI OUTLET PARK聯名卡_台中港  狀態丙",
+                "IsMobileCard": true,
+                "AuthDate": "2021/9/6",
+                "AuthTime": "11:55:45",
+                "Memo": "商店B",
+                "AuthAmt": 200,
+                "AuthAmtDesc": "授權金額描述",
+                "CountryCode": "消費國別",
+                "AuthResult": "授權結果"
+            },
+            {
+                "CardFlag": "2",
+                "CardNo": "7412456996549874",
+                "CardName": "MITSUI OUTLET PARK聯名卡_台中港  狀態丙",
+                "IsMobileCard": true,
+                "AuthDate": "2021/9/6",
+                "AuthTime": "12:55:45",
+                "Memo": "商店C",
+                "AuthAmt": 300,
+                "AuthAmtDesc": "授權金額描述",
+                "CountryCode": "消費國別",
+                "AuthResult": "授權結果"
+            },
+            {
+                "CardFlag": "2",
+                "CardNo": "4444555566667777",
+                "CardName": "永豐財富無限卡 狀態丁",
+                "IsMobileCard": true,
+                "AuthDate": "2021/9/10",
+                "AuthTime": "23:56:12",
+                "Memo": "餐廳",
+                "AuthAmt": 9654,
+                "AuthAmtDesc": "授權金額描述",
+                "CountryCode": "消費國別",
+                "AuthResult": "授權結果"
+            },
+            {
+                "CardFlag": "2",
+                "CardNo": "1111222233334444",
+                "CardName": "幣倍卡 狀態戊",
+                "IsMobileCard": true,
+                "AuthDate": "2021/9/10",
+                "AuthTime": "23:56:12",
+                "Memo": "萊爾富",
+                "AuthAmt": 516,
+                "AuthAmtDesc": "授權金額描述",
+                "CountryCode": "消費國別",
+                "AuthResult": "授權結果"
+            },
+            {
+                "CardFlag": "2",
+                "CardNo": "1111222233334444",
+                "CardName": "幣倍卡 狀態戊",
+                "IsMobileCard": true,
+                "AuthDate": "2021/9/10",
+                "AuthTime": "23:56:12",
+                "Memo": "7-11",
+                "AuthAmt": 854,
+                "AuthAmtDesc": "授權金額描述",
+                "CountryCode": "消費國別",
+                "AuthResult": "授權結果"
+            },
+            {
+                "CardFlag": "2",
+                "CardNo": "8888555522223331",
+                "CardName": "幣倍卡 狀態己",
+                "IsMobileCard": true,
+                "AuthDate": "2021/9/10",
+                "AuthTime": "23:56:12",
+                "Memo": "全家",
+                "AuthAmt": 168,
+                "AuthAmtDesc": "授權金額描述",
+                "CountryCode": "消費國別",
+                "AuthResult": "授權結果"
+            },
+            {
+                "CardFlag": "2",
+                "CardNo": "8888555522223331",
+                "CardName": "幣倍卡 狀態己",
+                "IsMobileCard": true,
+                "AuthDate": "2021/9/10",
+                "AuthTime": "23:56:12",
+                "Memo": "家樂福",
+                "AuthAmt": 4983,
+                "AuthAmtDesc": "授權金額描述",
+                "CountryCode": "消費國別",
+                "AuthResult": "授權結果"
+            }
+        ]
+    },
+    "Original": {},
+    "Success": true
+}

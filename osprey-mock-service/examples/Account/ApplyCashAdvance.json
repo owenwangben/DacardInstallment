@@ -1,0 +1,27 @@
+{
+    "Header": {
+        "ReferenceNo": "d6ebc9c40d8a4bdd86ec3fb400ff46ef ",
+        "RequestTime": "2022-07-14T09:58:05.0544752+08:00 ",
+        "ResponseTime": "2022-07-14T09:58:06.7554594+08:00 ",
+        "ApplicationName": "DACARD",
+        "ClientIP": "10.11.37.159",
+        "SessionID": " BB700530-C54B-47DE-95DE-D10AADF3E5A2",
+        "UserAgent": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko"
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Success": true,
+        "RefNo": "61D12E105954F0A",
+        "ResultCode": "00",
+        "ResultMessage": "",
+        "ResultCode2": "00",
+        "ResultMessage2": "",
+        "IsPinError": false,
+        "AuthKeys": [
+                "Auth1_5",
+                "OTP"
+        ] ,
+        "IsClearAuthData": true
+    }
+}

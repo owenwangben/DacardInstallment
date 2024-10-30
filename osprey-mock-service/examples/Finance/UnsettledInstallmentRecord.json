@@ -1,0 +1,48 @@
+{
+    "Header": {
+        "ReferenceNo": "9923c0f0e2eb4d0088c7c1ad52253cba",
+        "RequestTime": "2023-09-20T17:54:02.6632436+08:00",
+        "ResponseTime": "2023-09-20T17:54:02.7399495+08:00",
+        "ApplicationName": "DACARD",
+        "SessionID": "SinopacCawhoDevice",
+        "ClientIP": "10.11.33.34",
+        "ClientRefNo": "817c2d5aee65481086aca5dc5f0af59e",
+        "ClientTimestamp": "2023-09-20T09:54:03.041Z",
+        "UserAgent": "sinopac://CaWhoPay?appVer=appVer&osType=Web&osVerName=osVerName&osVer=12&manufacturer=manufacturer&model=model"
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Items": [
+            {
+                "ITEM": "3- 3 期 : 東森得易購股份有限公",
+                "TXDATE": "20230603",
+                "CARD_DESC": "東森網連通鈦商卡(2407)",
+                "AMT": 333.0,
+                "INST_AMT": 1000.0,
+                "MEMO": "2"
+            },
+            {
+                "ITEM": "12- 7 期 : 東森新零售百貨股份有",
+                "TXDATE": "20230204",
+                "CARD_DESC": "東森網連通鈦商卡(2407)",
+                "AMT": 825.0,
+                "INST_AMT": 3780.0,
+                "MEMO": "2"
+            },
+            {
+                "ITEM": " 6- 1 期 : 富邦ｍｏｍｏ－ＴＶ＋ 01016688",
+                "TXDATE": "20230727",
+                "CARD_DESC": "東森網連通鈦商卡(2407)",
+                "AMT": 650.0,
+                "INST_AMT": 4578.0,
+                "MEMO": "2"
+            }
+        ],
+        "TotalAmount": 9358.0
+    },
+    "Original": {
+        "ID": "E208502419"
+    },
+    "Success": true
+}

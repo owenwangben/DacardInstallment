@@ -1,0 +1,20 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Title": "信用卡臺幣自動轉帳申請授權條款",
+        "Version": "1.02.3",
+        "Type": 1,
+        "Content": "assets/htmls/20230926/信用卡臺幣自動轉帳申請授權條款.html"
+    },
+    "Original": {},
+    "Success": true
+}

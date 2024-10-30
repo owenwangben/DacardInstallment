@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>DACARD - 永豐銀行</title>
+    <meta name="title" content="DACARD - 永豐銀行">
+    <meta name="description" content="">
+    <meta property="og:title" content="DACARD - 永豐銀行">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="author" content="永豐銀行">
+    <meta name="copyright" content="永豐銀行">
+    <meta property="og:site_name" content="DACARD - 永豐銀行">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="">
+    <link rel="apple-touch-icon" href="">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/main_all.css">
+  </head>
+  <body class="card-discount">
+    <main class="container">
+      <div class="wrap wrap__pd pb-0">
+        <div class="eventDate mb-lg">
+          <div class="eventDate--prev"><img src="../../assets/images/icon/icon-arrow-gray.svg"></div>
+          <div class="eventDate--date">2024/03/28 (四)</div>
+          <div class="eventDate--next"><img src="../../assets/images/icon/icon-arrow-gray.svg"></div>
+        </div>
+        <div class="card-apply">
+          <div class="title-img"></div>
+          <button class="btn btn--primary btn--primary-xs btn--primary-withArrow icon--tr icon--arrow-white">立即辦卡</button>
+        </div>
+        <p class="fs-s white pt-sm pb-sm">登錄各項活動前，請詳閱活動詳情(包含活動辦法及注意事項)，若完成活動登錄即表示您已了解並同意相關活動規則。<a class="fc-gold underline" href="http://" target="_blank" rel="noopener noreferrer">查看信用卡活動</a></p>
+        <div class="pill-tabs mt-md"><a class="pill-tabs__button pill-tabs--card" aria-selected="true">信用卡活動</a><a class="pill-tabs__button pill-tabs--login">搶登錄</a></div>
+        <div class="flex-between mt-md">
+          <h1 class="title">當日活動</h1>
+          <button class="btn btn--normal btn--normal-more">更多活動</button>
+        </div>
+        <div class="pill-content-card">
+          <div class="step step-empty">
+            <div class="flex-center">
+              <div class="align-center line-h-2">
+                <p>opps!! 今天沒活動!!</p>
+                <p class="msg-gold pt-xxs"><a href="http://" target="_blank" rel="noopener noreferrer">看看目前還有哪些活動吧！</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="step step-empty">
+            <div class="flex-center">
+              <div class="align-center"><img class="margin-center loadingGif" src="../../assets/images/img/loading.gif">
+                <p class="fs-sm pt-xxs">優惠活動載入中...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pill-content-login" style="display: none">
+          <div class="step step-empty">
+            <div class="flex-center">
+              <div class="align-center line-h-2">
+                <p>opps!! 今天沒活動!!</p>
+                <p class="msg-gold pt-xxs"><a href="http://" target="_blank" rel="noopener noreferrer">看看目前還有哪些活動吧！</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="step step-empty">
+            <div class="flex-center">
+              <div class="align-center"><img class="margin-center loadingGif" src="../../assets/images/img/loading.gif">
+                <p class="fs-sm pt-xxs">優惠活動載入中...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notice fs-xs mt-lg">
+        <div class="warning pt-sm"><img src="../../assets/images/demo/warning.svg" alt="謹慎理財 信用至上"></div>
+      </div>
+      <footer></footer>
+    </main>
+    <script src="../../assets/js/source/jquery-3.3.1.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/jquery.payment.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/slick.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/sortable.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/highcharts.securejs" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){
+        //- pill-tab
+        let container = document.querySelector(".pill-tabs");
+        let buttons = container.querySelectorAll(".pill-tabs__button");
+      
+        buttons.forEach((btn) => {
+          btn.addEventListener("click", (event) => {
+            switchActive(btn);
+          });
+        });
+      
+        function switchActive(activeBtn) {
+          const position = [...buttons].indexOf(activeBtn);
+      
+          buttons.forEach((element) => {
+            element.setAttribute(
+              "aria-selected",
+              element !== activeBtn ? "false" : "true"
+            );
+          });
+      
+          container.style.setProperty("--background-offset", position * 100 + "%");
+        }
+        $('.pill-tabs--card').on('click' , function (e) {
+          $('.pill-content-card').show();
+          $('.pill-content-login').hide()
+        });
+        $('.pill-tabs--login').on('click' , function (e) {
+          $('.pill-content-login').show();
+          $('.pill-content-card').hide()
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<div class="wrap">
+    <div class="tab">
+        <div class="tab__wrap">
+            <ul class="tab__navs">
+                <li><a class="tab__nav" routerLink="/Transaction/TempCLIStatus">臨時調額</a></li>
+                <li class="is-active"><a class="tab__nav" href="javascript:void(0)">永久調額</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="wrap wrap__pd pt-0">
+    <ng-container *ngIf="statusData?.length>0;else noData">
+        <div class="step step__pd--md" *ngFor="let item of statusData">
+            <div class="list-table">
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">申請日期</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{item.ApplyDate | customDate}}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">申請狀態</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b fc-gold">{{item.Status}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="button-group">
+            <p class="msg fs-xs">調額進度查詢僅顯示近三個月申請紀錄</p>
+        </div>
+    </ng-container>
+
+    <ng-template #noData>
+        <app-non-data></app-non-data>
+    </ng-template>
+
+    <div class="button-group"><a class="btn btn--primary btn--w250" href="javascript:void(0)"
+            (click)="customerService()">聯繫客服</a></div>
+    <div class="button-group mt-sm">
+        <button class="btn btn--text btn--text-line" (click)="exit()">回帳務明細</button>
+    </div>
+</div>

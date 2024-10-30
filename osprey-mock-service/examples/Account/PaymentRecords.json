@@ -1,0 +1,45 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Items": [
+            {
+                "CurrencyCode": "000",
+                "CurrencyName": "臺幣",
+                "CurrencyAlphaCode": "NTD",
+                "TXDATE": "20230405",
+                "DEDATE": "20230405",
+                "MEMO": "全國繳費網",
+                "AMT": -2000
+            },
+            {
+                "CurrencyCode": "000",
+                "CurrencyName": "臺幣",
+                "CurrencyAlphaCode": "NTD",
+                "TXDATE": "20230411",
+                "DEDATE": "20230411",
+                "MEMO": "全國繳費網",
+                "AMT": -5000
+            },
+            {
+                "CurrencyCode": "",
+                "CurrencyName": "臺幣",
+                "CurrencyAlphaCode": "NTD",
+                "TXDATE": "20230411",
+                "DEDATE": "20230411",
+                "MEMO": "全國繳費網",
+                "AMT": -5000
+            }
+        ]
+    },
+    "Original": {},
+    "Success": true
+}

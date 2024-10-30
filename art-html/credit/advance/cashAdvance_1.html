@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>DACARD - 永豐銀行</title>
+    <meta name="title" content="DACARD - 永豐銀行">
+    <meta name="description" content="">
+    <meta property="og:title" content="DACARD - 永豐銀行">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="author" content="永豐銀行">
+    <meta name="copyright" content="永豐銀行">
+    <meta property="og:site_name" content="DACARD - 永豐銀行">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="">
+    <link rel="apple-touch-icon" href="">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+  </head>
+  <body class="cash_advance_1">
+    <main class="container">
+      <div class="wrap wrap__pd">
+        <div class="flex-between">
+          <h1 class="title">申請資訊</h1>
+        </div>
+        <div class="step step__pt-xxs">
+          <form>
+            <div class="form">
+              <div class="form__row">
+                <div class="form__col">
+                  <p class="form__label">信用卡卡號</p>
+                  <div class="form__data">
+                    <input type="hidden">
+                    <button class="select-btn btn-native" data-popup="acctCreditCard">
+                      <!-- 選擇後 addClass .selected--><span class="selected">永豐 MITSUI OUTLET PARK卡<br>1234-56●●●●●●-7890</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row form__row--line-none">
+                <div class="form__col">
+                  <p class="form__label">有效期限</p>
+                  <div class="form__data flex-center">
+                    <div class="line">
+                      <input class="align-center" type="tel" maxlength="2" placeholder="月">
+                    </div><span class="mr-sm ml-sm black-bg">/</span>
+                    <div class="line">
+                      <input class="align-center" type="tel" maxlength="2" placeholder="年">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form__error">格式不正確</div>
+              <div class="form__row">
+                <div class="form__col">
+                  <p class="form__label">借款金額</p>
+                  <div class="form__data">
+                    <input class="input-number" type="text" name="" pattern="d*" maxlength="" placeholder="請輸入借款金額">
+                  </div>
+                </div>
+              </div>
+              <div class="form__notice">可用預借現金額度xx,xxx元</div>
+              <div class="form__error">格式不正確</div>
+              <div class="form__row form__row--line-none">
+                <div class="form__col">
+                  <p class="form__label">請選擇轉入帳戶</p>
+                  <div class="form__data form__data--flex">
+                    <label class="radio-btn radio-btn-bg">
+                      <input type="radio" value="sinopac" name="radio1"><span>永豐帳戶</span>
+                    </label>
+                    <label class="radio-btn radio-btn-bg">
+                      <input type="radio" value="other" name="radio1"><span>他行帳戶</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form__notice mt--ssm">※ 他行帳戶需30元匯款手續費</div>
+              <div class="form__row hide" data-other>
+                <div class="form__col">
+                  <p class="form__label">轉入銀行類型</p>
+                  <div class="form__data">
+                    <input type="hidden">
+                    <button class="select-btn btn-native" data-popup="BankType">
+                      <!-- 選擇後 addClass .selected--><span>請選擇銀行類型</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row hide" data-other>
+                <div class="form__col">
+                  <p class="form__label">轉入銀行代碼</p>
+                  <div class="form__data">
+                    <input type="hidden">
+                    <button class="select-btn btn-native" data-popup="BankID">
+                      <!-- 選擇後 addClass .selected--><span>請選擇銀行代碼</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row hide" data-other>
+                <div class="form__col">
+                  <p class="form__label">轉入銀行分行</p>
+                  <div class="form__data">
+                    <input type="hidden">
+                    <button class="select-btn btn-native" data-popup="BankBranch">
+                      <!-- 選擇後 addClass .selected--><span>請選擇銀行分行</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row hide" data-other>
+                <div class="form__col">
+                  <p class="form__label">轉入銀行帳號</p>
+                  <div class="form__data">
+                    <input class="input-number" type="tel" name="" pattern="d*" maxlength="10" placeholder="請輸入銀行帳號">
+                  </div>
+                </div>
+              </div>
+              <div class="form__error">格式不正確</div>
+              <div class="form__row" data-sinopac>
+                <div class="form__col">
+                  <p class="form__label">轉入銀行帳號</p>
+                  <div class="form__data">
+                    <input type="hidden">
+                    <button class="select-btn btn-native" data-popup="acctBankAccount">
+                      <!-- 選擇後 addClass .selected--><span class="selected">松山分行活期儲蓄存款<br>11100400371445</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__col">
+                  <p class="form__label">驗證方式</p>
+                  <div class="form__data">
+                    <input type="hidden">
+                    <button class="select-btn btn-native" data-popup="BankVerify">
+                      <!-- 選擇後 addClass .selected--><span>請選擇驗證方式</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="button-group">
+          <button class="btn btn--primary btn--w250">我要申請</button>
+        </div>
+        <div class="button-group mt-sm">
+          <button class="btn btn--text btn--text-line">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+        <div class="notice">
+          <p>注意事項：</p>
+          <ul>
+            <li>銀行櫃檯、自動提款機(ATM)、電話及網路預借現金之金額合併計算，每日累計金額上限不得逾 NT$40,000，且累計最高預借現金金額最高亦不得超過各持卡人原核定之信用額度之100%或剩餘可用之信用額度(兩者取其低者)。</li>
+            <li>首次申請永豐信用卡並經獲准之持卡人(即第一次與永豐銀行訂定有效信用卡契約之持卡人)於核卡日起三個月後，開始提供預借現金服務。如持卡人與永豐銀行之信用卡契約已終止、撤銷或解除，再次與永豐銀行訂定有效信用卡契約者，亦適用之。</li>
+            <li>MMA網路預借現金動用金額及手續費，均不適用永豐信用卡『紅利享樂回饋計劃』。</li>
+            <li>動用MMA網路預借現金時，信用卡年費須已結清，不得有逾期未繳款項，且最近六個月內不得有逾期繳款記錄。</li>
+            <li>MMA網路預借現金密碼須與您所使用永豐信用卡的「預借現金密碼」相符合。</li>
+            <li>交易掛帳日期：若為匯入永豐自行帳戶，例假日及下午3時30分之後的網路預借現金交易視為下一個營業日之交易。若為匯入他行帳戶，則為撥款日當日。</li>
+            <li>撥款生效日期：若為匯入永豐自行帳戶，MMA網路預借現金為24小時交易，即時撥入您的永豐銀行存款帳戶，您可透過自動化櫃員機即時提領現金；或可透過其它自動化設備如電話銀行、網路銀行及MMA網站，完成各項繳款及匯款的交易。若為匯入他行帳戶，營業日上午11：00前進行網路預借現金者，該筆預借現金金額將於當日下午5：00 前匯入持卡人指定之本人金融機構帳戶；若逾營業日上午11：00後進行網路預借現金者，則於次一營業日下午 5：00前匯入持卡人指定之本人金融機構帳戶。若收款帳號從「他行帳戶」選擇輸入「永豐銀行帳戶」，則撥款生效日期與匯入他行帳戶相同。前述營業日係指金融機構之營業日，且匯入之金融機構帳戶戶名須為持卡人本人；如匯入之金融機構帳戶戶名非持卡人本人者，本行得取消該筆網路預借現金交易。</li>
+            <li>您的永豐信用卡MMA網路預借現金之動用，不得超過「預借現金」的可用額度，臨時提高額度之部份不得做為MMA網路預借現金之使用，且您的額度會按您的信用狀況調整，永豐信用卡保有最終核准與否及調整的權利。</li>
+            <li>ＭＭＡ網路預借現金單筆最低金額為新臺幣1,000元，並以仟元為單位。</li>
+            <li>ＭＭＡ網路預借現金手續費之計算：適用永豐信用卡契約對於「預借現金手續費」之規定，每筆預借現金金額3.5%加上NT100元計算之手續費，每筆手續費不足NT$200者，以NT$200元計算；活動推廣期間手續費之計算悉依活動辦法定之。如您使用循環信用方式繳款，則依永豐信用卡循環信用計息方式及利率計收利息。</li>
+            <li>永豐信用卡保留預借現金核准與否及手續費調整之權利。相關之最新權益變更暨服務說明，請洽信用卡客服專線02-25287776，將由專人為您服務。</li>
+          </ul>
+        </div>
+        <div class="lightbox" id="BankID">
+          <div class="lightbox__back"></div>
+          <div class="lightbox__outer">
+            <div class="lightbox__inner">
+              <div class="lightbox__select">
+                <div class="step__title step__title--align-left">
+                  <h3>請選擇銀行代碼</h3>
+                </div>
+                <form>
+                  <div class="search-input">
+                    <input type="text" placeholder="輸入關鍵字">
+                    <div class="icon icon--tl icon--search"></div>
+                  </div>
+                  <div class="lightbox__ps lightbox__ps--search">
+                    <div class="select__content">
+                      <div class="select__content__inner">
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankID" value="523 枋寮區漁會；東港區漁會；林邊區漁會"><span>523 枋寮區漁會；東港區漁會；林邊區漁會</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankID" value="951 台北縣農會附設北區農會電腦共同利用中心"><span>951 台北縣農會附設北區農會電腦共同利用中心</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankID" value="081 匯豐銀行"><span>081 匯豐銀行</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankID" value="805 遠東銀行"><span>805 遠東銀行</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankID" value="808 玉山銀行"><span>808 玉山銀行</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankID" value="809 凱基銀行"><span>809 凱基銀行</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankID" value="816 安泰銀行"><span>816 安泰銀行</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankID" value="822 中國信託"><span>822 中國信託</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="button-group mb-md mt-md">
+                    <button class="btn btn--primary btn--w250 btn--check" disabled>確&nbsp;&nbsp;&nbsp;定</button>
+                  </div>
+                  <div class="button-group mt-0 mb-0">
+                    <button class="btn btn--text btn--text-dark btn--text-line btn--cancel">取&nbsp;&nbsp;&nbsp;消</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lightbox" id="acctCreditCard">
+          <div class="lightbox__back"></div>
+          <div class="lightbox__outer">
+            <div class="lightbox__inner">
+              <div class="lightbox__select">
+                <div class="step__title step__title--align-left">
+                  <h3>請選擇信用卡卡號</h3>
+                </div>
+                <form>
+                  <div class="lightbox__ps">
+                    <div class="select__content">
+                      <div class="select__content__inner">
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="acctCreditCard" value="" data-name="永豐 幣倍卡" data-account="1234-56●●●●●●-7890"><span class="pt-ssm pb-ssm">
+                              <div class="list-table">
+                                <div class="list-table__row flex-left flex-nowrap">
+                                  <div class="list-table__col list-table__col-num mr-ssm">
+                                    <h4 class="fs-md-1 fc-gray">01</h4>
+                                  </div>
+                                  <div class="list-table__col">
+                                    <p class="fs-b fw-b">永豐 幣倍卡</p>
+                                    <h4>1234-56●●●●●●-7890</h4>
+                                  </div>
+                                </div>
+                              </div></span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="acctCreditCard" value="" data-name="永豐 MITSUI OUTLET PARK卡" data-account="1234-56●●●●●●-7890"><span class="pt-ssm pb-ssm">
+                              <div class="list-table">
+                                <div class="list-table__row flex-left flex-nowrap">
+                                  <div class="list-table__col list-table__col-num mr-ssm">
+                                    <h4 class="fs-md-1 fc-gray">02</h4>
+                                  </div>
+                                  <div class="list-table__col">
+                                    <p class="fs-b fw-b">永豐 MITSUI OUTLET PARK卡</p>
+                                    <h4>1234-56●●●●●●-7890</h4>
+                                  </div>
+                                </div>
+                              </div></span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="acctCreditCard" value="" data-name="永豐 MITSUI OUTLET PARK卡" data-account="1234-56●●●●●●-7890"><span class="pt-ssm pb-ssm">
+                              <div class="list-table">
+                                <div class="list-table__row flex-left flex-nowrap">
+                                  <div class="list-table__col list-table__col-num mr-ssm">
+                                    <h4 class="fs-md-1 fc-gray">03</h4>
+                                  </div>
+                                  <div class="list-table__col">
+                                    <p class="fs-b fw-b">永豐 MITSUI OUTLET PARK卡</p>
+                                    <h4>1234-56●●●●●●-7890</h4>
+                                  </div>
+                                </div>
+                              </div></span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="acctCreditCard" value="" data-name="永豐 MITSUI OUTLET PARK卡" data-account="1234-56●●●●●●-7890"><span class="pt-ssm pb-ssm">
+                              <div class="list-table">
+                                <div class="list-table__row flex-left flex-nowrap">
+                                  <div class="list-table__col list-table__col-num mr-ssm">
+                                    <h4 class="fs-md-1 fc-gray">04</h4>
+                                  </div>
+                                  <div class="list-table__col">
+                                    <p class="fs-b fw-b">永豐 MITSUI OUTLET PARK卡</p>
+                                    <h4>1234-56●●●●●●-7890</h4>
+                                  </div>
+                                </div>
+                              </div></span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="acctCreditCard" value="" data-name="永豐 MITSUI OUTLET PARK卡" data-account="1234-56●●●●●●-7890"><span class="pt-ssm pb-ssm">
+                              <div class="list-table">
+                                <div class="list-table__row flex-left flex-nowrap">
+                                  <div class="list-table__col list-table__col-num mr-ssm">
+                                    <h4 class="fs-md-1 fc-gray">05</h4>
+                                  </div>
+                                  <div class="list-table__col">
+                                    <p class="fs-b fw-b">永豐 MITSUI OUTLET PARK卡</p>
+                                    <h4>1234-56●●●●●●-7890</h4>
+                                  </div>
+                                </div>
+                              </div></span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="acctCreditCard" value="" data-name="永豐 MITSUI OUTLET PARK卡" data-account="1234-56●●●●●●-7890"><span class="pt-ssm pb-ssm">
+                              <div class="list-table">
+                                <div class="list-table__row flex-left flex-nowrap">
+                                  <div class="list-table__col list-table__col-num mr-ssm">
+                                    <h4 class="fs-md-1 fc-gray">06</h4>
+                                  </div>
+                                  <div class="list-table__col">
+                                    <p class="fs-b fw-b">永豐 MITSUI OUTLET PARK卡</p>
+                                    <h4>1234-56●●●●●●-7890</h4>
+                                  </div>
+                                </div>
+                              </div></span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="acctCreditCard" value="" data-name="永豐 MITSUI OUTLET PARK卡" data-account="1234-56●●●●●●-7890"><span class="pt-ssm pb-ssm">
+                              <div class="list-table">
+                                <div class="list-table__row flex-left flex-nowrap">
+                                  <div class="list-table__col list-table__col-num mr-ssm">
+                                    <h4 class="fs-md-1 fc-gray">07</h4>
+                                  </div>
+                                  <div class="list-table__col">
+                                    <p class="fs-b fw-b">永豐 MITSUI OUTLET PARK卡</p>
+                                    <h4>1234-56●●●●●●-7890</h4>
+                                  </div>
+                                </div>
+                              </div></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="button-group mb-md mt-xs">
+                    <button class="btn btn--primary btn--w250 btn--acccheck" disabled>確&nbsp;&nbsp;&nbsp;定</button>
+                  </div>
+                  <div class="button-group mt-0 mb-0">
+                    <button class="btn btn--text btn--text-dark btn--text-line btn--cancel">取&nbsp;&nbsp;&nbsp;消</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lightbox" id="acctBankAccount">
+          <div class="lightbox__back"></div>
+          <div class="lightbox__outer">
+            <div class="lightbox__inner">
+              <div class="lightbox__select">
+                <div class="step__title step__title--align-left">
+                  <h3>請選擇銀行帳號</h3>
+                </div>
+                <form>
+                  <div class="lightbox__ps lightbox__ps--search">
+                    <div class="select__content">
+                      <div class="select__content__inner">
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="acctBankAccount" value="" data-name="楊梅分行活期儲蓄存款" data-account="11100400371445"><span class="pt-ssm pb-ssm">
+                              <div class="list-table">
+                                <div class="list-table__row flex-left flex-nowrap">
+                                  <div class="list-table__col list-table__col-num mr-ssm">
+                                    <h4 class="fs-md-1 fc-gray">01</h4>
+                                  </div>
+                                  <div class="list-table__col">
+                                    <p class="fs-b fw-b">楊梅分行活期儲蓄存款</p>
+                                    <h4>11100400371445</h4>
+                                  </div>
+                                </div>
+                              </div></span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="acctBankAccount" value="" data-name="松山分行活期儲蓄存款" data-account="11100400371445"><span class="pt-ssm pb-ssm">
+                              <div class="list-table">
+                                <div class="list-table__row flex-left flex-nowrap">
+                                  <div class="list-table__col list-table__col-num mr-ssm">
+                                    <h4 class="fs-md-1 fc-gray">02</h4>
+                                  </div>
+                                  <div class="list-table__col">
+                                    <p class="fs-b fw-b">松山分行活期儲蓄存款</p>
+                                    <h4>11100400371445</h4>
+                                  </div>
+                                </div>
+                              </div></span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="acctBankAccount" value="" data-name="松山分行活期儲蓄存款" data-account="11100400371445"><span class="pt-ssm pb-ssm">
+                              <div class="list-table">
+                                <div class="list-table__row flex-left flex-nowrap">
+                                  <div class="list-table__col list-table__col-num mr-ssm">
+                                    <h4 class="fs-md-1 fc-gray">03</h4>
+                                  </div>
+                                  <div class="list-table__col">
+                                    <p class="fs-b fw-b">松山分行活期儲蓄存款</p>
+                                    <h4>11100400371445</h4>
+                                  </div>
+                                </div>
+                              </div></span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="acctBankAccount" value="" data-name="松山分行活期儲蓄存款" data-account="11100400371445"><span class="pt-ssm pb-ssm">
+                              <div class="list-table">
+                                <div class="list-table__row flex-left flex-nowrap">
+                                  <div class="list-table__col list-table__col-num mr-ssm">
+                                    <h4 class="fs-md-1 fc-gray">04</h4>
+                                  </div>
+                                  <div class="list-table__col">
+                                    <p class="fs-b fw-b">松山分行活期儲蓄存款</p>
+                                    <h4>11100400371445</h4>
+                                  </div>
+                                </div>
+                              </div></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="lightbox__footer">
+                    <div class="button-group mb-md mt-xs">
+                      <button class="btn btn--primary btn--w250 btn--acccheck" disabled>確&nbsp;&nbsp;&nbsp;定</button>
+                    </div>
+                    <div class="button-group mt-0 mb-0">
+                      <button class="btn btn--text btn--text-dark btn--text-line btn--cancel">取&nbsp;&nbsp;&nbsp;消</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lightbox" id="BankType">
+          <div class="lightbox__back"></div>
+          <div class="lightbox__outer">
+            <div class="lightbox__inner">
+              <div class="lightbox__select">
+                <div class="step__title step__title--align-left">
+                  <h3>請選擇銀行類型</h3>
+                </div>
+                <form>
+                  <div class="lightbox__ps">
+                    <div class="select__content">
+                      <div class="select__content__inner">
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankType" value="本國銀行"><span>本國銀行</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankType" value="外國銀行"><span>外國銀行</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankType" value="信用合作社"><span>信用合作社</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankType" value="農會"><span>農會</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankType" value="郵局"><span>郵局</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankType" value="漁會"><span>漁會</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="lightbox__footer">
+                    <div class="button-group mb-md mt-md">
+                      <button class="btn btn--primary btn--w250 btn--check" disabled>確&nbsp;&nbsp;&nbsp;定</button>
+                    </div>
+                    <div class="button-group mt-0 mb-0">
+                      <button class="btn btn--text btn--text-dark btn--text-line btn--cancel">取&nbsp;&nbsp;&nbsp;消</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lightbox" id="BankBranch">
+          <div class="lightbox__back"></div>
+          <div class="lightbox__outer">
+            <div class="lightbox__inner">
+              <div class="lightbox__select">
+                <div class="step__title step__title--align-left">
+                  <h3>請選擇分行</h3>
+                </div>
+                <form>
+                  <div class="lightbox__ps">
+                    <div class="select__content">
+                      <div class="select__content__inner">
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankBranch" value="7154 七賢分行"><span>7154 七賢分行</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankBranch" value="1484 八德分行"><span>1484 八德分行</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankBranch" value="7095 十全分行"><span>7095 十全分行</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankBranch" value="7040 三民分行"><span>7040 三民分行</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankBranch" value="2056 土城分行"><span>2056 土城分行</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankBranch" value="4234 大甲分行"><span>4234 大甲分行</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="lightbox__footer">
+                    <div class="button-group mb-md mt-md">
+                      <button class="btn btn--primary btn--w250 btn--check" disabled>確&nbsp;&nbsp;&nbsp;定</button>
+                    </div>
+                    <div class="button-group mt-0 mb-0">
+                      <button class="btn btn--text btn--text-dark btn--text-line btn--cancel">取&nbsp;&nbsp;&nbsp;消 </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lightbox" id="BankVerify">
+          <div class="lightbox__back"></div>
+          <div class="lightbox__outer">
+            <div class="lightbox__inner">
+              <div class="lightbox__select">
+                <div class="step__title step__title--align-left">
+                  <h3>請選擇驗證方式</h3>
+                </div>
+                <form>
+                  <div class="lightbox__ps">
+                    <div class="select__content">
+                      <div class="select__content__inner">
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankVerify" value="簡訊動態密碼(一次性預借現金密碼)"><span>簡訊動態密碼
+                              <div class="inline-block fs-xs">(一次性預借現金密碼)</div></span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="BankVerify" value="預借現金密碼"><span>預借現金密碼</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="lightbox__footer">
+                    <div class="button-group mb-md mt-md">
+                      <button class="btn btn--primary btn--w250 btn--check" disabled>確&nbsp;&nbsp;&nbsp;定</button>
+                    </div>
+                    <div class="button-group mt-0 mb-0">
+                      <button class="btn btn--text btn--text-dark btn--text-line btn--cancel">取&nbsp;&nbsp;&nbsp;消</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer></footer>
+    </main>
+    <script src="../../assets/js/source/jquery-3.3.1.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/jquery.payment.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/slick.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/sortable.min.securejs" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){
+        // input 須為 number
+        $(".input-number").on("keypress", function (e) {
+          const keyCode = e.which ? e.which : e.keyCode
+          if (!(keyCode >= 48 && keyCode <= 57)) {
+            return false;
+          }
+        });
+      
+        // 彈窗
+        $('[data-popup]').on('click', function(e){
+          e.preventDefault();
+          let target = $(this).data('popup');
+          $('#'+ target).addClass('show');
+        })
+      
+        $('.btn--cancel').on('click', function(e){
+          e.preventDefault();
+          $('.lightbox').removeClass('show');
+        })
+      
+        $('.btn--check').on('click', function(e){
+          e.preventDefault();
+          let name = $(this).parents('form').children('.lightbox__ps').find('input').attr('name');
+          console.log($(this).parents('form').children('.lightbox__ps').find('input'))
+          console.log(name)
+          var opt = $(':radio[name="'+ name +'"]').filter(':checked').val();
+          $('[data-popup="' + name +'"].select-btn span').addClass('selected').html(opt);
+          $('.lightbox').removeClass('show');
+        })
+      
+        $(':radio').not(':radio[name="radio1"]').change(function() {
+          if($('input[name^="Bank"]')){
+            var select_val = $(this).filter(':checked').val();
+            if(select_val){
+              $(this).parents('.lightbox__ps').next().find(".btn--check").removeAttr("disabled");
+            }
+          }
+        });
+      
+        $(':radio[name="radio1"]').change(function() {
+          var bank = $(this).filter(':checked').val();
+          if(bank === "other"){
+            $('[data-other]').removeClass("hide");
+            $('[data-sinopac]').addClass("hide");
+          }else{
+            $('[data-other]').addClass("hide");
+            $('[data-sinopac]').removeClass("hide");
+          }
+        });
+      
+        //- for 帳戶
+        $('input[name^="acct"]').change(function() {
+          let val_name = $(this).filter(':checked').data('name');
+          let val_account = $(this).filter(':checked').data('account');
+          if(val_name){
+            $('.btn--acccheck').removeAttr("disabled");
+          }
+        });
+      
+        $('.btn--acccheck').on('click', function(e){
+          e.preventDefault();
+          let val_name = $(':radio[name="'+ name +'"]').filter(':checked').data('name');
+          let val_account = $(':radio[name="'+ name +'"]').filter(':checked').data('account');
+          $('[data-popup="' + name +'"].select-btn').html("<span class='selected'>" + val_name + "<br>" + val_account + "</span>");
+          $('.lightbox').removeClass('show');
+        });
+      })
+    </script>
+  </body>
+</html>

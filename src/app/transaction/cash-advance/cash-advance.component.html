@@ -1,0 +1,402 @@
+<mat-horizontal-stepper #stepper [@.disabled]="true" [linear]="false" [selectedIndex]="selectedIndex"
+    (selectionChange)="scrollTop()">
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step3"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step4"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step5"></ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+<ng-template #step1>
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <h1 class="title">申請資訊</h1>
+        </div>
+        <div class="step step__pt-xxs">
+            <form>
+                <div class="form">
+                    <!-- 信用卡資訊 -->
+                    <ng-container [formGroup]="cardForm">
+                        <div class="form__row">
+                            <div class="form__col">
+                                <p class="form__label">信用卡卡號</p>
+                                <div class="form__data">
+                                    <input type="hidden" formControlName="CardNo">
+                                    <button class="select-btn btn-native" data-popup="acctCreditCard">
+                                        <!-- 選擇後 addClass .selected--><span
+                                            [class.selected]="cardForm.controls['CardNo']?.value !== ''"
+                                            (click)="openAcctCreditCard()">{{ cardName ?? '請選擇信用卡' }}<br>{{
+                                            cardForm.controls['CardNo']?.value | mask:'0000-0000-0000-0000' |
+                                            cardnumbermask:'●'}}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form__row form__row--line-none">
+                            <div class="form__col">
+                                <p class="form__label">有效期限</p>
+                                <div class="form__data flex-center" formGroupName="ExpiryDate">
+                                    <div class="line">
+                                        <input class="align-center" type="tel" maxlength="2" placeholder="月"
+                                            formControlName="Month" inputmode="tel" numberOnly #month
+                                            inputmode="numeric" oncopy="return false;" onpaste="return false;"
+                                            autocomplete="off">
+                                    </div><span class="mr-sm ml-sm black-bg">/</span>
+                                    <div class="line">
+                                        <input class="align-center" type="tel" maxlength="2" placeholder="年"
+                                            formControlName="Year" inputmode="tel" numberOnly #year inputmode="numeric"
+                                            oncopy="return false;" onpaste="return false;" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 月份、年份格式 -->
+                        <div class="form__error" [class.show]="!Month.valid && Month.touched || Month.errors?.Month">
+                            哎呀！有效月份格式有誤，請重新輸入。</div>
+                        <div class="form__error" [class.show]="!Year.valid && Year.touched || Year.errors?.Year">
+                            哎呀！有效年份格式有誤，請重新輸入。</div>
+                        <div class="form__row">
+                            <div class="form__col">
+                                <p class="form__label">借款金額</p>
+                                <div class="form__data">
+                                    <input class="input-number" type="text" placeholder="請輸入借款金額"
+                                        formControlName="Amount" inputmode="numeric" currencyMask oncopy="return false;"
+                                        onpaste="return false;" autocomplete="off" maxlength="9" autocomplete="off"
+                                        mask="separator" thousandSeparator=","
+                                        oninput="this.value = this.value.replace(new RegExp('[^\\d]|^[0]','g'))">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form__notice">可用預借現金額度 {{ cashAvailable | number:'1.0-0' }} 元</div>
+                        <div class="form__error">格式不正確</div>
+                        <div class="form__row form__row--line-none">
+                            <div class="form__col">
+                                <p class="form__label">請選擇轉入帳戶</p>
+                                <div class="form__data form__data--flex">
+                                    <label class="radio-btn radio-btn-bg" *ngIf="accountList?.length > 0">
+                                        <input type="radio" value="sinopac" formControlName="Account"
+                                            (click)="switchInputClear('sinopac')"><span>永豐帳戶</span>
+                                    </label>
+                                    <label class="radio-btn radio-btn-bg">
+                                        <input type="radio" value="other" formControlName="Account"
+                                            (click)="switchInputClear('other')"><span>他行帳戶</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="form__notice mt--ssm">※ 他行帳戶需30元匯款手續費，且僅限本人帳戶</div>
+                    <!-- 轉入-其他帳戶 -->
+                    <ng-container *ngIf="Account.value === 'other'">
+                        <ng-container [formGroup]="otherAccoutForm">
+                            <div class="form__row" data-other>
+                                <div class="form__col">
+                                    <p class="form__label">轉入銀行類型</p>
+                                    <div class="form__data">
+                                        <input type="hidden" formControlName="BankType">
+                                        <button class="select-btn btn-native" data-popup="BankType"
+                                            (click)="openOtherBankType()">
+                                            <!-- 選擇後 addClass .selected--><span
+                                                [class.selected]="otherAccoutForm.controls['BankType']?.value !== ''">{{
+                                                bankType ?? '請選擇銀行類型' }}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form__row" data-other>
+                                <div class="form__col">
+                                    <p class="form__label">轉入銀行代碼</p>
+                                    <div class="form__data">
+                                        <input type="hidden" formControlName="BankID">
+                                        <button class="select-btn btn-native" data-popup="BankID"
+                                            (click)="openOtherBankID()">
+                                            <!-- 選擇後 addClass .selected--><span
+                                                [class.selected]="otherAccoutForm.controls['BankID']?.value !== ''">{{
+                                                bankId ?? '請選擇銀行代碼' }}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form__row" data-other>
+                                <div class="form__col">
+                                    <p class="form__label">轉入銀行分行</p>
+                                    <div class="form__data">
+                                        <input type="hidden" formControlName="BankBranch">
+                                        <button class="select-btn btn-native" data-popup="BankBranch"
+                                            (click)="openOtherBankBranch()">
+                                            <!-- 選擇後 addClass .selected--><span
+                                                [class.selected]="otherAccoutForm.controls['BankBranch']?.value !== ''">{{
+                                                bankBranch ?? '請選擇銀行分行' }}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                    <div class="form__row" [formGroup]="AccoutForm">
+                        <div class="form__col">
+                            <p class="form__label">轉入銀行帳號</p>
+                            <div class="form__data">
+                                <ng-container *ngIf="Account.value === 'sinopac';else other">
+                                    <button class="select-btn btn-native" data-popup="BankAccount"
+                                        (click)="openAcctBankAccount()">
+                                        <!-- 選擇後 addClass .selected-->
+                                        <span [class.selected]="AccoutForm.controls['BankAccount']?.value !== ''">
+                                            {{ BankAccountNum !==undefined ? (BankAccountNum | custommask):'請輸入銀行帳號' }}
+                                        </span>
+                                    </button>
+                                </ng-container>
+                                <ng-template #other>
+                                    <input class="input-number" type="tel" onblur-mask [start]=3 [end]=9
+                                        (focus)="isPassWord=true" (blur)="isPassWord=false" autocomplete="off"
+                                        numberOnly inputmode="numeric" formControlName="BankAccount" maxlength="16"
+                                        placeholder="請輸入銀行帳號">
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__row" [formGroup]="bankverifytForm">
+                        <div class="form__col">
+                            <p class="form__label">驗證方式</p>
+                            <div class="form__data">
+                                <input type="hidden">
+                                <button class="select-btn btn-native" data-popup="BankVerify"
+                                    (click)="openBankVerify()">
+                                    <!-- 選擇後 addClass .selected-->
+                                    <span [class.selected]="bankverifytForm.controls['BankVerify']?.value !== ''">
+                                        {{ BankVerify ?? '請選擇驗證方式' }}
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="button-group">
+            <button class="btn btn--primary btn--w250" (click)="submit()">我要申請</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goCardAccount()">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+        <app-cash-advance-notice></app-cash-advance-notice>
+    </div>
+</ng-template>
+<!-- OTP -->
+<ng-template #step2>
+    <div class="wrap wrap__pd">
+        <form [formGroup]="otpForm">
+            <div class="step">
+                <div class="step__title">
+                    <h3>請輸入您的手機驗證碼</h3>
+                    <p>已發送簡訊驗證碼至 {{ mobile | mobilemask:'●' }}</p>
+                </div>
+                <div class="form">
+                    <div class="form__row">
+                        <div class="form__col">
+                            <div class="form__data">
+                                <input class="captcha-otp" type="tel" name="captcha" maxlength="6"
+                                    autocomplete="one-time-code" oncopy="return false;" onpaste="return false;"
+                                    formControlName="captcha" mask="000000" inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-danger" *ngIf="captcha.touched && captcha?.errors?.pattern">*請輸入6位數字驗證碼。</div>
+                <div class="text-danger" *ngIf="captcha.touched && captcha?.errors?.required">*請輸入驗證碼。</div>
+                <div class="captcha-time">
+                    <div class="flex-between">
+                        <p>剩餘時間：<span>{{countdown}}</span>秒</p>
+                        <button>
+                            <p class="icon icon--tl icon--refresh" (click)="generateOTP(true)">重發驗證碼</p>
+                        </button>
+                    </div>
+                    <button *ngIf="countdown == 0" class="error" (click)="generateOTP(true)">驗證碼已失效，重新發送驗證碼</button>
+                </div>
+            </div>
+            <div class="button-group"><a class="btn btn--primary btn--w250" href="javascript:void(0)"
+                    appPreventDoubleClick (throttledClick)="OTPSubmit()">確&nbsp;&nbsp;&nbsp;定</a></div>
+        </form>
+    </div>
+</ng-template>
+<!-- 確認資訊 -->
+<ng-template #step3>
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <h1 class="title">請確認以下資訊</h1>
+        </div>
+        <div class="step step__pt--lg">
+            <div class="list-table">
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">信用卡號</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b align-right">{{ confirmCardName }}<br>{{ confirmCardNo |
+                            mask:'0000-0000-0000-0000' | cardnumbermask:'●'}}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">有效期限</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{ confirmExpiryDate }}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">借款金額</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b fc-gold">{{ confirmAmount | number:'1.0-0' }} 元</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">轉入帳號</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b align-right">
+                            {{ confirmBankCode }}
+                            <br>
+                            {{ confirmBankAccount }}
+                        </h4>
+                    </div>
+                    <div class="list-table__col icon icon--eye icon--tl"
+                        [class.icon--eye-active]="confirmShowBankAccount" (click)="confiBAVisible()">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step step__pt-xxs" *ngIf="bankverifytForm.controls['BankVerify']?.value === 1">
+            <form [formGroup]="pinForm">
+                <div class="form">
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">預借現金密碼</p>
+                            <div class="form__data">
+                                <input *ngIf="isPassWord;else visable" type="text" name="credit-number"
+                                    formControlName="password" oncopy="return false;" onpaste="return false;"
+                                    autocomplete="off" numberOnly inputmode="numeric" maxlength="4"
+                                    placeholder="請輸入4位數預借現金密碼">
+                                <ng-template #visable>
+                                    <input type="password" name="credit-number" formControlName="password"
+                                        oncopy="return false;" onpaste="return false;" autocomplete="off" numberOnly
+                                        inputmode="numeric" maxlength="4" placeholder="請輸入4位數預借現金密碼">
+                                </ng-template>
+                                <!-- 開眼請 addClass .icon--eye-active-->
+                                <div class="form__icon icon icon--eye icon--tl" [class.icon--eye-active]="isPassWord"
+                                    (click)="isPassWord=!isPassWord">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__error">格式不正確</div>
+                </div>
+            </form>
+        </div>
+        <div class="button-group">
+            <button class="btn btn--primary btn--w250" appPreventDoubleClick
+                (throttledClick)="applyCashAdvance()">我要申請</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goCardAccount()">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+    </div>
+</ng-template>
+<!-- 申請成功 -->
+<ng-template #step4>
+    <div class="wrap wrap__pd">
+        <div class="result">
+            <div class="result__icon"><img src="assets/images/img/img-success-gold.svg">
+                <h2>申請完成</h2>
+            </div>
+        </div>
+        <div class="step step__pt-xxs">
+            <div class="wrap">
+                <div class="wrap__detail">
+                    <div class="list align-left">
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">信用卡號</div>
+                                <p>{{ successCardName }}<br>{{ successCardNo | mask:'0000-0000-0000-0000' |
+                                    cardnumbermask:'●'}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">有效期限</div>
+                                <p>{{ successExpiryDate }}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">借款金額</div>
+                                <p> <span class="gold">{{ successAmount | number:'1.0-0' }} </span>元</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">轉入帳號</div>
+                                <p>
+                                    {{ successBankCode }}
+                                    <br>
+                                    {{ successBankAccount }}
+                                </p>
+                            </div>
+                            <div class="list-table__col icon icon--eye icon--tl"
+                                [class.icon--eye-active]="successShowBankAccount" (click)="successBAVisible()">
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">交易序號</div>
+                                <p>{{ refNo }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn--primary btn--w250" (click)="goCardAccount()">確&nbsp;&nbsp;&nbsp;定</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<!-- 申請失敗 -->
+<ng-template #step5>
+    <div class="wrap wrap__pd">
+        <div class="result">
+            <div class="result__icon"><img src="assets/images/img/img-fail.svg">
+                <div class="result__content">
+                    <p>【錯誤代碼】 {{displayResultCode}}</p>
+                </div>
+                <h2 class="fail">申請失敗</h2>
+            </div>
+            <div class="result__content">
+                <p *ngIf="displayResultCode==='51';else common">
+                    您申請的額度已超過限額或卡片無法使用，<br>請致電客服專線02-25287776，<br>由客服人員協助您處理，謝謝。
+                </p>
+                <ng-template #common>
+                    <p #com>請致電本行客服專線 02-25287776<br>由客服人員協助您處理</p>
+                </ng-template>
+            </div>
+        </div>
+        <div class="button-group mt-lg-4">
+            <button class="btn btn--primary btn--w250" (click)="callCustomerServer()">聯繫客服</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goCardAccount()">回帳務明細</button>
+        </div>
+    </div>
+</ng-template>

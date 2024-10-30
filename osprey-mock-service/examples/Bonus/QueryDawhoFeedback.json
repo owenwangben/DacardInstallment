@@ -1,0 +1,66 @@
+{
+	"Header": {
+		"RequestTime": "",
+		"ResponseTime": "",
+		"ApplicationName": "SinoPac.Cawho.Web",
+		"SessionID": "",
+		"ClientIP": "",
+		"UserAgent": ""
+	},
+	"ResultCode": "00",
+	"ResultMessage": "",
+	"Result": {
+        "Summary": [
+            {
+                "Code": "REAW_1",
+                "Name": "DAWHO卡一般消費回饋(國內)",
+                "TotalAmt": "418",
+                "TotalFeedbackAmt": "4"
+            },
+            {
+                "Code": "REAX",
+                "Name": "DAWHO卡指定任務加碼回饋",
+                "TotalAmt": "2548",
+                "TotalFeedbackAmt": "33"
+            }
+        ],
+        "TotalFeedbackAmt": "37",
+        "DetailA": [
+            {
+                "Code": "REAW_1",
+                "Name": "DAWHO卡一般消費回饋(國內)",
+                "Items": [
+                    {
+                        "TXDATE": "20200601",
+                        "MEMO": "中油－忠孝東路自助加油站",
+                        "TX_AMT": "88"
+                    },
+                    {
+                        "TXDATE": "20200606",
+                        "MEMO": "大江國際購物中心",
+                        "TX_AMT": "330"
+                    }
+                ]
+            },
+            {
+                "Code": "REAX",
+                "Name": "DAWHO卡指定任務加碼回饋",
+                "Items": [
+                    {
+                        "TXDATE": "20200626",
+                        "MEMO": "三中港奧特萊斯",
+                        "TX_AMT": "25,000"
+                    },
+                    {
+                        "TXDATE": "20200625",
+                        "MEMO": "GOGORO",
+                        "TX_AMT": "483"
+                    }
+                ]
+            }
+        ]
+	},
+	"Original": {
+	},
+	"Success": true
+}

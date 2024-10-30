@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>DACARD - 永豐銀行</title>
+    <meta name="title" content="DACARD - 永豐銀行">
+    <meta name="description" content="">
+    <meta property="og:title" content="DACARD - 永豐銀行">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="author" content="永豐銀行">
+    <meta name="copyright" content="永豐銀行">
+    <meta property="og:site_name" content="DACARD - 永豐銀行">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="">
+    <link rel="apple-touch-icon" href="">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+  </head>
+  <body class="permanent_adjust_1">
+    <main class="container">
+      <div class="wrap wrap__pd">
+        <div class="flex-between">
+          <h1 class="title">額度資訊</h1>
+        </div>
+        <div class="step step__pt-xxs">
+          <form>
+            <div class="form list align-left">
+              <div class="list__row">
+                <div class="list__col">
+                  <div class="list__label">原始信用額度</div>
+                  <p class="fs-md">10,000 元</p>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__col">
+                  <p class="form__label">申請增加信用額度</p>
+                  <div class="form__data">
+                    <input type="tel" name="" pattern="d*" maxlength="6" placeholder="請輸入申請金額">
+                  </div>
+                </div>
+              </div>
+              <div class="list__row">
+                <div class="list__col">
+                  <div class="list__label">申請提高信用額度至</div>
+                  <p class="fs-md">30,000 元</p>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__col">
+                  <p class="form__label">申請原因</p>
+                  <div class="form__data">
+                    <input type="hidden">
+                    <button class="select-btn btn-native" data-popup="Reason">
+                      <!-- 選擇後 addClass .selected--><span>請選擇申請原因</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row hide" data-ReasonText>
+                <div class="form__col">
+                  <div class="form__data">
+                    <input type="text" name="explain" pattern="d*" maxlength="10" placeholder="請輸入申請其他原因">
+                  </div>
+                </div>
+              </div>
+              <div class="form__error">格式不正確</div>
+              <div class="form__row">
+                <div class="form__col">
+                  <p class="form__label">服務機構</p>
+                  <div class="form__data">
+                    <input type="text" name="Company" pattern="d*" maxlength="10" placeholder="請輸入服務機構">
+                  </div>
+                </div>
+              </div>
+              <div class="form__error">格式不正確</div>
+            </div>
+          </form>
+        </div>
+        <div class="flex-between">
+          <h1 class="title">上傳財力或其他證明文件</h1>
+        </div>
+        <div class="step step__pt-xxs">
+          <form>
+            <div class="form">
+              <div class="form__row form__row--line-none">
+                <div class="form__col">
+                  <p class="msg">
+                     您可擇一上傳：最新年度扣繳憑單或國稅局各式報稅憑單證明、車齡十年內之汽車行照、任一金融機構網銀畫面(畫面需含戶名，如存款紀錄、基金、股票)、最近三個月內ATM餘額單(含提款卡正反面影本或存摺封面)、近期薪資證明:薪資單、在職薪資證明(需蓋有公司大小章或發票章)、近兩個月薪資轉帳(含帳號戶名)、不動產證明(權狀、稅單、謄本或財產清單)。</p>
+                </div>
+              </div>
+              <div class="form__row form__row--line-none form__row--h-auto">
+                <div class="form__col">
+                  <label class="check-row check-row-agree check-row-text">
+                    <p>我是永豐銀行理財客戶，依本行往來資料審理</p>
+                    <input type="radio" name="verify_doc" data-radio="1"><span></span>
+                  </label>
+                </div>
+              </div>
+              <div class="form__notice fs-xs ml-size-md hide dataNotice" data-radioval="1">我是永豐銀行授信客戶，同意永豐銀行依一年內申辦本行相關授信業務提供之所得或財力資料審理。</div>
+              <div class="form__row form__row--line-none form__row--h-auto">
+                <div class="form__col">
+                  <label class="check-row check-row-agree check-row-text">
+                    <p>財力或其他證明文件</p>
+                    <input type="radio" name="verify_doc" data-radio="2"><span></span>
+                  </label>
+                </div>
+              </div>
+              <div class="form__row form__row--line-none hide dataNotice" data-radioval="2">
+                <div class="form__col">
+                  <div class="form__upload">
+                    <div class="form__data hide mb-md"></div>
+                    <input class="verify_doc" id="upload-3" type="file">
+                    <label class="btn btn--primary btn--primary-xs btn--primary-white icon--tl icon--camera" for="upload-3"><span class="inline-block">拍照上傳</span></label>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row form__row--line-none form__row--h-auto">
+                <div class="form__col">
+                  <label class="check-row check-row-agree check-row-text">
+                    <p>我名下有不動產，同意委託永豐商業銀行代為調閱不動產電子謄本。</p>
+                    <input type="radio" name="verify_doc" data-radio="3"><span></span>
+                  </label>
+                </div>
+              </div>
+              <div class="form__row form__row--h-auto hide dataNotice" data-radioval="3">
+                <div class="form__col">
+                  <p class="form__label">不動產地址</p>
+                  <div class="form__data">
+                    <input type="hidden">
+                    <button class="select-btn btn-native" data-popup="Address">
+                      <!-- 選擇後 addClass .selected--><span class="ws-normal">請選擇不動產地址</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row form__row--h-auto hide dataNotice" data-radioval="3-1">
+                <div class="form__col">
+                  <p class="form__label">不動產地址</p>
+                  <div class="form__data">
+                    <input type="text" name="address" pattern="d*" placeholder="請輸入不動產地址" value="台灣省台中市北屯區大鵬路陳平里１２之３巷５之１弄３之２鄰５８號６樓之３">
+                  </div>
+                </div>
+              </div>
+              <div class="form__error">格式不正確</div>
+              <div class="form__row form__row--line-none form__row--h-auto">
+                <div class="form__col">
+                  <label class="check-row check-row-agree check-row-text">
+                    <p>使用個人化資料自主運用(MyData)平臺</p>
+                    <input type="radio" name="verify_doc"><span></span>
+                  </label>
+                </div>
+              </div>
+              <div class="form__row form__row--line-none pt-xxs ml-size-md">
+                <div class="form__col">
+                  <p class="msg">透過個人化資料自主運用(MyData)平臺，經您完成身分驗證及同意後，將健保個人投保資料、財稅個人財產及所得資料等提供予本行做為永久額度調整之相關證明文件</p>
+                  <p class="msg msg-gold"><br><a href="https://mydata.nat.gov.tw/sp/about#open-browser" target="_blank">了解更多個人化資料自主運用(MyData)平臺資訊</a></p>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="button-group"><a class="btn btn--primary btn--w250" href="./snapAdjust_2.html">我要申請</a></div>
+        <div class="button-group mt-sm">
+          <button class="btn btn--text btn--text-line">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+        <div class="lightbox" id="Reason">
+          <div class="lightbox__back"></div>
+          <div class="lightbox__outer">
+            <div class="lightbox__inner">
+              <div class="lightbox__select">
+                <div class="step__title step__title--align-left">
+                  <h3>請選擇申請原因</h3>
+                </div>
+                <form>
+                  <div class="lightbox__ps">
+                    <div class="select__content">
+                      <div class="select__content__inner">
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="reason" value="出國"><span>出國</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="reason" value="搬家"><span>搬家</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="reason" value="結婚"><span>結婚</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="reason" value="公務"><span>公務</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="reason" value="其他"><span>其他</span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full">
+                            <input type="radio" name="reason" value="繳稅"><span>繳稅</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="lightbox__footer">
+                    <div class="button-group mb-md mt-md">
+                      <button class="btn btn--primary btn--w250 btn--check" disabled>確&nbsp;&nbsp;&nbsp;定</button>
+                    </div>
+                    <div class="button-group mt-0 mb-0">
+                      <button class="btn btn--text btn--text-dark btn--text-line btn--cancel">取&nbsp;&nbsp;&nbsp;消</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lightbox" id="Address">
+          <div class="lightbox__back"></div>
+          <div class="lightbox__outer">
+            <div class="lightbox__inner">
+              <div class="lightbox__select">
+                <div class="step__title step__title--align-left">
+                  <h3>請選擇不動產地址</h3>
+                </div>
+                <form>
+                  <div class="lightbox__ps lightbox__ps--search">
+                    <div class="select__content">
+                      <div class="select__content__inner">
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="address" value="地址可能會很長，地址可能會很長，地址可能會很長，地址可能會很長，地址可能會很長，"><span> 
+                              <div class="list__col">
+                                <p class="list__label">同現居地址</p>
+                                <p class="list__text--address mb-ssm pb-ssm">地址可能會很長，地址可能會很長，地址可能會很長，地址可能會很長，地址可能會很長，</p>
+                              </div></span>
+                          </label>
+                        </div>
+                        <div class="select__content__item">
+                          <label class="radio-btn-full radio-btn-full--block-unset">
+                            <input type="radio" name="address" value="台灣省台中市北屯區大鵬路陳平里１２之３巷５之１弄３之２鄰５８號６樓之３"><span> 
+                              <div class="list__col">
+                                <p class="list__label">同戶籍地址</p>
+                                <p class="list__text--address mb-ssm pb-ssm">台灣省台中市北屯區大鵬路陳平里１２之３巷５之１弄３之２鄰５８號６樓之３</p>
+                              </div></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="divider mt-sm">or</div>
+                  <div class="button-group mb-md mt-md">
+                    <button class="btn btn--primary btn--w250 btn--enter">自行輸入</button>
+                  </div>
+                  <div class="button-group mt-0 mb-0">
+                    <button class="btn btn--text btn--text-dark btn--text-line btn--cancel">取&nbsp;&nbsp;&nbsp;消</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer></footer>
+    </main>
+    <script src="../../assets/js/source/jquery-3.3.1.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/jquery.payment.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/slick.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/sortable.min.securejs" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){
+      
+        // 彈窗
+        $('[data-popup]').on('click', function(e){
+          e.preventDefault();
+          let target = $(this).data('popup');
+          $('#'+ target).addClass('show');
+        })
+        $('.btn--check').on('click', function(e){
+          e.preventDefault();
+          var opt = $(':radio[name="reason"]').filter(':checked').val();
+          $('[data-popup="Reason"].select-btn span').addClass('selected').html(opt);
+          if(opt ===  "其他"){
+            $('[data-ReasonText]').removeClass('hide');
+          }else{
+            $('[data-ReasonText]').addClass('hide');
+          }
+          $('.lightbox').removeClass('show');
+        })
+        //- 自行輸入
+        $('.btn--enter').on('click', function(e){
+          e.preventDefault();
+          $('[data-radioval="3"]').addClass('hide');
+          $('[data-radioval="3-1"]').removeClass('hide');
+          $('.lightbox').removeClass('show');
+        })
+      
+        $('.btn--cancel').on('click', function(e){
+          e.preventDefault();
+          $('.lightbox').removeClass('show');
+        })
+      
+        $('.btn--cancel').on('click', function(e){
+          e.preventDefault();
+          $('.lightbox').removeClass('show');
+        })
+      
+        $(':radio[name="reason"]').change(function() {
+          var reason = $(this).filter(':checked').val();
+          if(reason){
+            $('.btn--check').removeAttr("disabled");
+          }
+        });
+        //- 選擇地址
+        $(':radio[name="address"]').change(function() {
+          var opt = $(':radio[name="address"]').filter(':checked').val();
+          $('[data-popup="Address"].select-btn span').addClass('selected').html(opt);
+          $('.lightbox').removeClass('show');
+        });
+      
+        $('input[type="file"]').on('change', function(e) {
+          const _this = $(this);
+          const _val = $(this).val();
+          //- 圖片名稱
+          const startIndex = _val.indexOf('\\') >= 0 ? _val.lastIndexOf('\\') : _val.lastIndexOf('/');
+          let filename = _val.substring(startIndex);
+          if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+            filename = filename.substring(1);
+          }
+          if(_this[0].files && _this[0].files[0]){
+            if(_this.hasClass('verify_doc')){
+              //- 其他證明
+              const data = _this.siblings('.form__data');
+              data.append("<div class='inline-block-group inline-block-group--box'><div class='icon icon--fail-black icon--fail-black-doc icon--alone pointer'></div><p class='msg'></p></div>")
+              data.find('.inline-block-group').last().find('.msg').html(filename);
+              data.removeClass('hide');
+            }else{
+              //- 身分證
+              const data = _this.parent().siblings('.form__data');
+              //- 圖片
+              const reader = new FileReader();
+              reader.onload = function (e) {
+                _this.parent().addClass('hide');
+                data.removeClass('hide');
+                data.find('img').attr('src', e.target.result);
+              }
+              reader.readAsDataURL(_this[0].files[0]);
+              data.find('.msg').html(filename);
+            }
+          }
+        });
+      
+        //- 上傳財力或其他證明文件選項
+        $(':radio[name="verify_doc"]').change(function() {
+          var option_val = $(this).filter(':checked').data('radio');
+          $('.dataNotice').addClass('hide')
+          if($(':radio[name="verify_doc"]').filter(':checked')){
+            $('[data-radioval="' + option_val + '"]').removeClass('hide');
+          }
+        });
+        $(document).on('click', '.icon--fail-black-doc', function(){ 
+          const data = $(this).parents(".inline-block-group");
+          const data_parent = data.parents(".form__data");
+          data.remove();
+          if(data_parent.is(':empty')){
+            data_parent.addClass('hide');
+          }
+        }); 
+      })
+    </script>
+  </body>
+</html>

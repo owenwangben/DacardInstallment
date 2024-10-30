@@ -1,0 +1,226 @@
+<mat-horizontal-stepper #stepper [@.disabled]="true" [linear]="true" [selectedIndex]="this.selectedIndex">
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+<ng-template #step1>
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <h1 class="title">信用卡申請進度查詢</h1>
+        </div>
+        <div class="step step__pt-xxs">
+            <form [formGroup]="form">
+                <div class="form">
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">身分證字號</p>
+                            <div class="form__data column">
+                                <!-- style是將輸入的英文顯示大寫，如輸入小寫則送出時也是小寫 -->
+                                <input style="text-transform: uppercase;" name="UserId" formControlName="UserId" onblur-mask [start]=4 [end]=7
+                                    maxlength="10" (focus)="eyeOpen=true" (blur)="eyeOpen=false"
+                                    placeholder="請輸入您的身分證字號" autocomplete="off" oncopy="return false;"
+                                    onpaste="return false;" mask="S000000000">
+                                <div class="form__eye icon icon--eye icon--tl"
+                                    [ngClass]="{'icon--eye-active': eyeOpen}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-danger">{{form.controls.UserId['errorMessages'][0]}}</div>
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">出生月日 ( MM/DD )</p>
+                            <div class="form__data">
+                                <input class="input-number" formControlName="DOB" mask="00/00" placeholder="請輸入您的出生月日"
+                                    autocomplete="off" oncopy="return false;" onpaste="return false;"
+                                    inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-danger">{{form.controls.DOB['errorMessages'][0]}}</div>
+                    <div class="form__row form__row--line-none">
+                        <div class="form__col">
+                            <p class="form__label">驗證碼</p>
+                            <div class="form__data form__captcha flex-center">
+                                <div class="line">
+                                    <input formControlName="Captcha" mask="000000" placeholder="請輸入驗證碼"
+                                        autocomplete="off" inputmode="numeric"
+                                        (input)="form.controls.Captcha['clearBackEndErrors']()">
+                                </div>
+                                <app-captcha></app-captcha>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-danger">{{form.controls.Captcha['errorMessages'][0]}}</div>
+                </div>
+            </form>
+        </div>
+        <div class="button-group"><a class="btn btn--primary btn--w250" (click)="onSubmit()">確定查詢</a></div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goHome()">取消</button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #step2>
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <h1 class="title">信用卡申請進度列表</h1>
+        </div>
+        <div class="step step__pt-xxs pb-lg">
+            <div class="form">
+                <div class="form__row form__row--line-none">
+                    <div class="form__col">
+                        <div class="form__data card-query">
+                            <div class="radio-btn-full radio-btn-full--line-none card-list"
+                                *ngFor="let item of cardItem">
+                                <span [ngClass]="{'approval': item.STATUS === '4' || item.STATUS === '5'}">
+                                    <div class="flex-left flex-left-top"><img class="card-img" [src]="item.CardFaceURL"
+                                            (error)="onImgError($event)">
+                                        <div class="card-list__inner">
+                                            <h4 class="ellipsis">{{ item.CARD_DESC | stringlength:[20] }}</h4>
+                                            <div class="flex-left" [ngSwitch]="item?.CARD_TYPE">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <div class="card-query-text">
+                                    <h6>{{ item.STATUS_DESC }}</h6>
+                                    <div class="mt-ssm" *ngIf="item?.UploadFileMessages?.length > 0
+                                        || item?.ServiceMessages?.length > 0
+                                        || item?.DownloadFileMessages?.length > 0
+                                        || item?.Memo"></div>
+                                    <div>
+                                        <div *ngIf="item?.UploadFileMessages?.length> 0" style="text-align: left;">
+                                            <h6>敬請提供：</h6>
+                                            <ul style="padding-left: 20px; list-style:disc;"
+                                                *ngFor="let msg of item?.UploadFileMessages">
+                                                <li>
+                                                    <h6>{{msg}}</h6>
+                                                </li>
+                                            </ul>
+                                            <h6>〔點選下方按鍵即可立即上傳缺補文件〕</h6>
+                                        </div>
+                                        <div class="mt-ssm"
+                                            *ngIf="item?.UploadFileMessages?.length > 0 && item?.ServiceMessages?.length > 0">
+                                        </div>
+                                        <div *ngIf="item?.ServiceMessages?.length > 0" style="text-align: left;">
+                                            <h6>敬請提供：</h6>
+                                            <ul style="padding-left: 20px; list-style:disc;"
+                                                *ngFor="let msg of item?.ServiceMessages">
+                                                <li>
+                                                    <h6>{{msg}}</h6>
+                                                </li>
+                                            </ul>
+                                            <h6>〔請洽本行客服中心：02-2528-7776〕</h6>
+                                        </div>
+                                        <div class="mt-ssm"
+                                            *ngIf="item?.ServiceMessages?.length > 0 && item?.DownloadFileMessages?.length > 0">
+                                        </div>
+                                        <div *ngIf="item?.DownloadFileMessages?.length > 0" style="text-align: left;">
+                                            <h6>敬請提供：</h6>
+                                            <ul style="padding-left: 20px; list-style:disc;"
+                                                *ngFor="let msg of item?.DownloadFileMessages">
+                                                <li>
+                                                    <h6>{{msg}}</h6>
+                                                </li>
+                                            </ul>
+                                            <h6>〔點選下方按鍵即可立即下載聲明書〕</h6>
+                                        </div>
+                                        <div class="mt-ssm" *ngIf="item?.DownloadFileMessages?.length > 0 && item.Memo">
+                                        </div>
+                                        <div>
+                                            <h6>{{item.Memo}}</h6>
+                                        </div>
+                                        <div class="mt-ssm"></div>
+                                        <div class="flex-between">
+                                            <p>申請編號：{{item.APPLNO}}</p>
+                                            <p>{{ item.STATUS_DATE }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form [formGroup]="form2" [ngStyle]="{'display':urgentCardApplyBlock ? 'block' : 'none'}">
+            <div class="flex-between mt-ssm">
+                <h1 class="title">急需用卡說明</h1>
+            </div>
+            <div class="step step__pt-xxs">
+                <div class="form">
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">申請原因</p>
+                            <div class="form__data" (click)="selectMenu=true">
+                                <input type="hidden" formControlName="ReasonType">
+                                <button class="select-btn btn-native">
+                                    <span>請選擇申請原因</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__error" *ngIf="form2.controls.ReasonType['errorMessages'][0]">
+                        {{form2.controls.ReasonType['errorMessages'][0]}}</div>
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">請說明原因 (50字內)</p>
+                            <div class="form__data">
+                                <input class="input-number" type="text" maxlength="50" formControlName="Description"
+                                    placeholder="請說明...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__error" *ngIf="form2.controls.Description['errorMessages'][0]">
+                        {{form2.controls.Description['errorMessages'][0]}}</div>
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn--primary btn--w250" appPreventDoubleClick (throttledClick)="urgentCardApplySubmit()">急需用卡</button>
+            </div>
+        </form>
+        <div class="button-group" *ngIf="uploadButton">
+            <button class="btn btn--primary btn--w250" (click)="upload()">上傳缺補文件</button>
+        </div>
+        <div class="button-group" *ngIf="downloadButton">
+            <button class="btn btn--primary btn--w250" (click)="download()">下載聲明書</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="customerService()">聯繫客服</button>
+        </div>
+        <div class="lightbox" [ngClass]="selectMenu ? 'show':''">
+            <div class="lightbox__back"></div>
+            <div class="lightbox__outer">
+                <div class="lightbox__inner">
+                    <div class="lightbox__select">
+                        <div class="step__title step__title--align-left">
+                            <h3>請選擇申請原因</h3>
+                        </div>
+                        <div class="lightbox__ps">
+                            <div class="select__content">
+                                <div class="select__content__inner">
+                                    <div class="select__content__item" *ngFor="let option of reasonOptions">
+                                        <label class="radio-btn-full">
+                                            <input type="radio" name="reason" [value]="option"><span>{{option}}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-group mb-md mt-md">
+                            <button class="btn btn--primary btn--w250 btn--check" disabled
+                            appPreventDoubleClick (throttledClick)="confirmReasonType($event)">確&nbsp;&nbsp;&nbsp;定</button>
+                        </div>
+                        <div class="button-group mt-0 mb-0">
+                            <button class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                                (click)="selectMenu=false">取&nbsp;&nbsp;&nbsp;消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

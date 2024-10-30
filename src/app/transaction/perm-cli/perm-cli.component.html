@@ -1,0 +1,455 @@
+<mat-horizontal-stepper #stepper [@.disabled]="true" [linear]="false" [selectedIndex]="this.selectedIndex"
+    (selectionChange)="scrollTop()">
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step3"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step4"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step5"></ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<ng-template #step1>
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <h1 class="title">額度資訊</h1>
+        </div>
+        <div class="step step__pt-xxs">
+            <form [formGroup]="form1">
+                <div class="form list align-left" formGroupName="info">
+                    <div class="list__row">
+                        <div class="list__col">
+                            <div class="list__label">原始信用額度</div>
+                            <p class="fs-md">{{originamount | number:'1.0-0'}}元</p>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">申請增加信用額度</p>
+                            <div class="form__data">
+                                <input inputmode="numeric" maxlength="7" placeholder="以仟元為單位" formControlName="credits"
+                                    (ngModelChange)="amountaccumulated()" oncopy="return false;" onpaste="return false;"
+                                    autocomplete="off" mask="separator" thousandSeparator=","
+                                    oninput="this.value = this.value.replace(new RegExp('[^\\d]|^[0]','g'))">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list__row">
+                        <div class="list__col">
+                            <div class="list__label">申請提高信用額度至</div>
+                            <p class="fs-md">{{finalamount | number:'1.0-0'}}元</p>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">申請原因</p>
+                            <div class="form__data" (click)="openApplyReason()">
+                                <input type="hidden" formControlName="reason">
+                                <button class="select-btn btn-native" data-popup="Reason">
+                                    <input type="text" readonly placeholder="請選擇申請原因" formControlName="reason"
+                                        [value]="ApplyReason.value">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__row " data-ReasonText [ngClass]="disabledText ? 'show':'hide'">
+                        <div class="form__col">
+                            <div class="form__data">
+                                <input type="text" placeholder="請輸入申請其他原因" formControlName="illustrate" maxlength="50">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">服務機構</p>
+                            <div class="form__data">
+                                <input type="text" placeholder="請輸入服務機構" formControlName="mechanism" maxlength="50">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="flex-between">
+            <h1 class="title">上傳財力或其他證明文件</h1>
+        </div>
+        <div class="step step__pt-xxs">
+            <form [formGroup]="form1">
+                <div class="form">
+                    <div class="form__row form__row--line-none form__row--h-auto">
+                        <div class="form__col">
+                            <label class="check-row check-row-agree check-row-text">
+                                <p>我是永豐銀行理財客戶，依本行往來資料審理</p>
+                                <input type="radio" name="verify_doc" data-radio="1"
+                                    (click)="financialprooftypeConform(1)"><span></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form__notice fs-xs ml-size-md hide dataNotice" data-radioval="1"
+                        [ngClass]="FinancialProofType === 1 ? 'show' : 'hide'">
+                        我是永豐銀行授信客戶，同意永豐銀行依一年內申辦本行相關授信業務提供之所得或財力資料審理。</div>
+                    <div class="form__row form__row--line-none form__row--h-auto">
+                        <div class="form__col">
+                            <label class="check-row check-row-agree check-row-text">
+                                <p>財力或其他證明文件</p>
+                                <input type="radio" name="verify_doc" data-radio="2"
+                                    (click)="financialprooftypeConform(2)"><span></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form__row form__row--line-none dataNotice hide" data-radioval="2"
+                        [ngClass]="FinancialProofType === 2 ? 'show' : 'hide'">
+                        <div class="form__row form__row--line-none pt-xxs ">
+                            <div class="form__col">
+                                <p class="msg">
+                                    您可擇一上傳：最新年度扣繳憑單或國稅局各式報稅憑單證明、車齡十年內之汽車行照、任一金融機構網銀畫面(畫面需含戶名，如存款紀錄、基金、股票)、最近三個月內ATM餘額單(含提款卡正反面影本或存摺封面)、近期薪資證明:薪資單、在職薪資證明(需蓋有公司大小章或發票章)、近兩個月薪資轉帳(含帳號戶名)、不動產證明(權狀、稅單、謄本或財產清單)。
+                                </p>
+                                <div class="form__upload">
+                                    <div class="form__data mb-md">
+                                        <ng-container *ngFor="let i of img_name; let idx = index;">
+                                            <div class="inline-block-group inline-block-group--box">
+                                                <div class="icon icon--fail-black icon--fail-black-doc icon--alone pointer"
+                                                    (click)="remove( idx)"></div>
+                                                <p class="msg">{{ i }}</p>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                    <input class="verify_doc" id="upload-3" type="file"
+                                        accept="image/jpg,image/jpeg,image/tiff,image/png"
+                                        (change)="readUrl($event, uploaders[0])" ng2FileSelect
+                                        [uploader]="uploaders[0]">
+                                    <label
+                                        class="btn btn--primary btn--primary-xs btn--primary-white icon--tl icon--camera"
+                                        for="upload-3"><span class="inline-block">拍照上傳</span></label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__row form__row--line-none form__row--h-auto">
+                        <div class="form__col">
+                            <label class="check-row check-row-agree check-row-text">
+                                <p>我名下有不動產，同意委託永豐商業銀行代為調閱不動產電子謄本。</p>
+                                <input type="radio" name="verify_doc" data-radio="3"
+                                    (click)="financialprooftypeConform(3)"><span></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form__row form__row--h-auto hide dataNotice" data-radioval="3"
+                        [ngClass]="FinancialProofType === 3 && !manualinputAddr ? 'show' : 'hide'">
+                        <div class="form__col">
+                            <p class="form__label">不動產地址</p>
+                            <div class="form__data" formGroupName="prove">
+                                <input type="hidden">
+                                <button class="select-btn btn-native" data-popup="Address"
+                                    (click)="openLandRegisterAddress()">
+                                    <input type="text" class="short" placeholder="請選擇不動產地址"
+                                        formControlName="companyaddr" value={{AddCompanyAddr.value}} readonly>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__row form__row--h-auto hide dataNotice" data-radioval="3-1"
+                        [ngClass]="manualinputAddr ? 'show' : 'hide'">
+                        <div class="form__col">
+                            <p class="form__label">不動產地址</p>
+                            <div class="form__data" formGroupName="prove">
+                                <input type="text" name="address-manual" autocomplete="off" pattern="d*"
+                                    placeholder="請輸入不動產地址" formControlName="companyaddr" value={{AddCompanyAddr.value}}>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__row form__row--line-none form__row--h-auto">
+                        <div class="form__col">
+                            <label class="check-row check-row-agree check-row-text">
+                                <p>使用個人化資料自主運用(MyData)平臺</p>
+                                <input type="radio" name="verify_doc"
+                                    (click)="financialprooftypeConform(4)"><span></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form__row form__row--line-none pt-xxs ml-size-md">
+                        <div class="form__col">
+                            <p class="msg">透過個人化資料自主運用(MyData)平臺，經您完成身分驗證及同意後，將健保個人投保資料、財稅個人財產及所得資料等提供予本行做為永久額度調整之相關證明文件
+                            </p>
+                            <p class="msg msg-gold"><br><a href="https://mydata.nat.gov.tw/sp/about#open-browser"
+                                    target="_blank">了解更多個人化資料自主運用(MyData)平臺資訊</a></p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="button-group"><a class="btn btn--primary btn--w250" (click)="submit()">我要申請</a></div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goCardManage()">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #step2>
+    <div class="wrap wrap__pd">
+        <h1 class="title"><span>請確認以下資訊</span></h1>
+        <div class="step step__pt--lg">
+            <div class="list-table">
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">原始信用額度</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{originamount | number:'1.0-0'}} 元</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">申請增加信用額度</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b fc-gold">{{AddCredits.value | number:'1.0-0'}}元</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">申請提高信用額度至</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{finalamount | number:'1.0-0'}} 元</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">申請原因</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{ApplyReason.value+" "+(ApplyIllustrate.value !== undefined ?
+                            ApplyIllustrate.value : "" )}}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">服務機構</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{AddMechanism.value}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-between">
+            <h1 class="title">確認財力或其他證明文件</h1>
+        </div>
+        <ng-container [ngSwitch]="FinancialProofType">
+            <div class="step pb-sm pt-sm" *ngSwitchCase="1">
+                <div class="wrap">
+                    <div class="wrap__detail">
+                        <div class="list-table">
+                            <div class="list-table__row">
+                                <p>我是永豐銀行授信客戶，同意永豐銀行依一年內申辦本行相關授信業務提供之所得或財力資料審理。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step step__pt-xxs" *ngSwitchCase="2">
+                <form>
+                    <div class="form">
+                        <div class="form__row form__row--line-none">
+                            <div class="form__col">
+                                <div class="form__data">
+                                    <div class="inline-block-group inline-block-group--box" *ngFor="let i of img_name;">
+                                        <P class="msg">{{i}}</P>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="step step__pt-xxs step__pd--md" *ngSwitchCase="3">
+                <div class="list align-left">
+                    <div class="list__row">
+                        <div class="list__col">
+                            <div class="list__label">不動產地址</div>
+                            <p>{{AddCompanyAddr.value}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step pb-sm pt-sm" *ngSwitchCase="4">
+                <div class="wrap">
+                    <div class="wrap__detail">
+                        <div class="list-table">
+                            <div class="list-table__row">
+                                <p class="pt-ssm pb-ssm">使用個人化資料自主運用(MyData)平臺</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <div class="button-group"><a class="btn btn--primary btn--w250" appPreventDoubleClick (throttledClick)="apply()"
+                matStepperNext>我要申請</a></div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goCardManage()">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #step3>
+    <div class="wrap wrap__pd">
+        <div class="result">
+            <div class="result__icon"><img src="assets/images/img/img-success-gold.svg">
+                <h2>申請完成</h2>
+            </div>
+            <div class="result__content">
+                <p>
+                    感謝您的申請，申請資料已送出，<br>將儘速為您處理，審核結果將另行通知。<br>如欲查詢申請進度請至(額度調整進度查詢)<br>或於營業時間聯繫本行客服專線02-25287776，謝謝。
+                </p>
+            </div>
+        </div>
+        <div class="step step__pt-xxs">
+            <div class="wrap">
+                <div class="wrap__detail">
+                    <div class="list align-left">
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">交易序號</div>
+                                <p>{{RefNo}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">原始信用額度</div>
+                                <p>{{originamount | number:'1.0-0'}}元</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">申請增加信用額度</div>
+                                <p> <span class="gold" style="font-weight: 700;">{{AddCredits.value | number:'1.0-0'}}</span>元</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">申請提高信用額度至</div>
+                                <p> <span class="gold" style="font-weight: 700;">{{finalamount | number:'1.0-0'}}</span>元</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">申請原因</div>
+                                <p>{{ApplyReason.value+" "+(ApplyIllustrate.value !== undefined ?
+                                    ApplyIllustrate.value : "" )}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">服務機構</div>
+                                <p>{{AddMechanism.value}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">財力證明</div>
+                                <p *ngIf="FinancialProofType === 3">{{AddCompanyAddr.value}}</p>
+                                <p *ngIf="FinancialProofType === 4">使用個人化資料自主運用(MyData)平臺</p>
+                                <p *ngIf="IsFinancialCustomer === true ; else attachments">
+                                    我是永豐銀行授信客戶，同意永豐銀行依一年內申辦本行相關授信業務提供之所得或財力資料審理</p>
+                                <ng-template #attachments>
+                                    <ul>
+                                        <li *ngFor="let attachment of img_name">{{attachment}}</li>
+                                    </ul>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-group" *ngIf="FinancialProofType !== 4">
+            <button class="btn btn--primary btn--w250" (click)="exit()">確&nbsp;&nbsp;&nbsp;定</button>
+        </div>
+        <div class="button-group mt-sm" *ngIf="FinancialProofType !== 4">
+            <button class="btn btn--text btn--text-line" routerLink="/Transaction/PermCLIStatus">申請進度查詢</button>
+        </div>
+        <div class="button-group" *ngIf="FinancialProofType === 4">
+            <button class="btn btn--primary btn--w250 btn--mydata" (click)="DoMyData()">前往MyData</button>
+        </div>
+        <div class="lightbox" [ngClass]="goMyData ? 'show' : ''">
+            <div class="lightbox__back"></div>
+            <div class="lightbox__outer">
+                <div class="lightbox__inner lightbox--iframe lightbox--error">
+                    <div class="iframe-box">
+                        <h4 class="mb-ssm">提醒您，您即將離開大咖APP，前往MyData平臺</h4>
+                        <div class="content_outer">
+                            <div class="content_inner">
+                                <h5>為簡化永久額度調整流程，透過MyData服務，經消費者完成身分驗證及同意後，將勞保被保險人投保、財稅個人財產及所得資料等提供予本行做為申辦信用卡永久額度調整之相關證明文件。
+                                    若您在申辦過程中有任何疑問，請洽客服專線(02)2528-7776/0800-058-888(限市話)。</h5>
+                                <p class="msg msg-red mt-lg">※更多資訊請至<a class="underline"
+                                        href="https://mydata.nat.gov.tw/sp/about#open-browser" target="_blank">MyData平臺
+                                    </a></p>
+                                <p class="msg-red mt-lg">※MyData適用Edge、Firefox 31、Chrome 36版本以上，1280 x 1024
+                                    解析度瀏覽，不適用IE瀏覽器。手機適用iOS 12.4、Android 8.0 以上之系統</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-group mb-md mt-md">
+                        <button class="btn btn--primary btn--w250 btn--check" (click)="postMydata()">立即前往</button>
+                    </div>
+                    <div class="button-group mt-0 mb-0">
+                        <button class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                            (click)="goMyData=false">取&nbsp;&nbsp;&nbsp;消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form id="mydata-form" method="post">
+        <input type="hidden" name="BusinessNo" value="{{mydataForm?.BusinessNo}}">
+        <input type="hidden" name="ApiVersion" value="{{mydataForm?.ApiVersion}}">
+        <input type="hidden" name="HashKeyNo" value="{{mydataForm?.HashKeyNo}}">
+        <input type="hidden" name="VerifyNo" value="{{mydataForm?.VerifyNo}}">
+        <input type="hidden" name="Token" value="{{mydataForm?.Token}}">
+        <input type="hidden" name="IdentifyNo" value="{{mydataForm?.IdentifyNo}}">
+    </form>
+</ng-template>
+<ng-template #step4>
+    <div class="wrap wrap__pd">
+        <div class="result">
+            <div class="result__icon"><img src="assets/images/img/img-fail.svg">
+                <h2 class="fail">申請失敗</h2>
+            </div>
+        </div>
+        <div class="result__content" style="text-align: center;">
+            <p>請致電本行客服專線 02-25287776<br>由客服人員協助您處理</p>
+            <p style="text-align:center">【錯誤代碼:{{failCode}}】</p>
+        </div>
+        <div>
+            <div class="button-group">
+                <button class="btn btn--primary btn--w250" (click)="callCustomerServer()">聯繫客服</button>
+            </div>
+            <div class="button-group mt-sm">
+                <button class="btn btn--text btn--text-line" (click)="goCardManage()">回帳務明細</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #step5>
+    <div class="wrap">
+        <div class="info align-center">
+            <div class="info__msg">
+                <h4 class="fw-b fs-md-1">您今日已申請過永調</h4>
+            </div>
+        </div>
+        <div class="button-group mt-lg-4"><a class="btn btn--primary btn--w250" (click)="callCustomerServer()">聯繫客服</a>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goCardManage()">回帳務明細</button>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,1343 @@
+{
+    "Header": {
+        "ReferenceNo": "",
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "ClientIP": "",
+        "SessionID": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Items": [
+			{
+				"Type": "1",
+				"BankCode": "000",
+				"BankName": "000 中央銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "001",
+				"BankName": "001 中央信託局",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "003",
+				"BankName": "003 交通銀行",
+				"BankLong": "12"
+			},
+			{
+				"Type": "1",
+				"BankCode": "004",
+				"BankName": "004 台灣銀行",
+				"BankLong": "12"
+			},
+			{
+				"Type": "1",
+				"BankCode": "005",
+				"BankName": "005 台灣土地銀行",
+				"BankLong": "12"
+			},
+			{
+				"Type": "1",
+				"BankCode": "006",
+				"BankName": "006 合作金庫銀行",
+				"BankLong": "13"
+			},
+			{
+				"Type": "1",
+				"BankCode": "007",
+				"BankName": "007 第一商業銀行",
+				"BankLong": "11"
+			},
+			{
+				"Type": "1",
+				"BankCode": "008",
+				"BankName": "008 華南商業銀行",
+				"BankLong": "12"
+			},
+			{
+				"Type": "1",
+				"BankCode": "009",
+				"BankName": "009 彰化商業銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "011",
+				"BankName": "011 上海商業儲蓄銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "012",
+				"BankName": "012 台北富邦銀行",
+				"BankLong": "12,14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "013",
+				"BankName": "013 國泰世華商業銀行",
+				"BankLong": "14,12,11"
+			},
+			{
+				"Type": "1",
+				"BankCode": "016",
+				"BankName": "016 高雄銀行",
+				"BankLong": "12"
+			},
+			{
+				"Type": "1",
+				"BankCode": "017",
+				"BankName": "017 兆豐國際商業銀行",
+				"BankLong": "11"
+			},
+			{
+				"Type": "1",
+				"BankCode": "018",
+				"BankName": "018 全國農業金庫",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "021",
+				"BankName": "021 花旗台灣銀行",
+				"BankLong": "10,14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "040",
+				"BankName": "040 中華開發工業銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "048",
+				"BankName": "048 王道商業銀行",
+				"BankLong": "12"
+			},
+			{
+				"Type": "1",
+				"BankCode": "050",
+				"BankName": "050 台灣中小企業銀行",
+				"BankLong": "11"
+			},
+			{
+				"Type": "1",
+				"BankCode": "051",
+				"BankName": "051 台北國際商業銀行",
+				"BankLong": "13"
+			},
+			{
+				"Type": "1",
+				"BankCode": "052",
+				"BankName": "052 英商渣打銀行-竹銀",
+				"BankLong": "11,12,14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "053",
+				"BankName": "053 台中商業銀行",
+				"BankLong": "12"
+			},
+			{
+				"Type": "1",
+				"BankCode": "054",
+				"BankName": "054 京城商業銀行",
+				"BankLong": "13,12"
+			},
+			{
+				"Type": "1",
+				"BankCode": "056",
+				"BankName": "056 花蓮區中小企業銀行",
+				"BankLong": "11"
+			},
+			{
+				"Type": "1",
+				"BankCode": "057",
+				"BankName": "057 台東區中小企業銀行",
+				"BankLong": "13"
+			},
+			{
+				"Type": "1",
+				"BankCode": "101",
+				"BankName": "101 瑞興銀行",
+				"BankLong": "13"
+			},
+			{
+				"Type": "1",
+				"BankCode": "102",
+				"BankName": "102 華泰商業銀行",
+				"BankLong": "13"
+			},
+			{
+				"Type": "1",
+				"BankCode": "103",
+				"BankName": "103 新光商業銀行",
+				"BankLong": "13"
+			},
+			{
+				"Type": "1",
+				"BankCode": "108",
+				"BankName": "108 陽信商業銀行",
+				"BankLong": "11,12"
+			},
+			{
+				"Type": "1",
+				"BankCode": "118",
+				"BankName": "118 板信商業銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "147",
+				"BankName": "147 三信商業銀行",
+				"BankLong": "10"
+			},
+			{
+				"Type": "1",
+				"BankCode": "151",
+				"BankName": "151 第七商業銀行",
+				"BankLong": "13"
+			},
+			{
+				"Type": "1",
+				"BankCode": "202",
+				"BankName": "202 高新商業銀行",
+				"BankLong": "12"
+			},
+			{
+				"Type": "1",
+				"BankCode": "582",
+				"BankName": "582 農金資中心所屬會員",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "803",
+				"BankName": "803 聯邦商業銀行",
+				"BankLong": "12"
+			},
+			{
+				"Type": "1",
+				"BankCode": "804",
+				"BankName": "804 香港上海匯豐銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "805",
+				"BankName": "805 遠東國際商業銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "806",
+				"BankName": "806 元大商業銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "807",
+				"BankName": "807 永豐商業銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "808",
+				"BankName": "808 玉山商業銀行",
+				"BankLong": "13"
+			},
+			{
+				"Type": "1",
+				"BankCode": "809",
+				"BankName": "809 凱基商業銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "810",
+				"BankName": "810 星展商業銀行",
+				"BankLong": "12,10,11"
+			},
+			{
+				"Type": "1",
+				"BankCode": "811",
+				"BankName": "811 中興商業銀行",
+				"BankLong": "12"
+			},
+			{
+				"Type": "1",
+				"BankCode": "812",
+				"BankName": "812 台新國際商業銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "814",
+				"BankName": "814 大眾商業銀行",
+				"BankLong": "12,13"
+			},
+			{
+				"Type": "1",
+				"BankCode": "815",
+				"BankName": "815 日盛國際商業銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "816",
+				"BankName": "816 安泰商業銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "822",
+				"BankName": "822 中國信託商業銀行",
+				"BankLong": "13,12,14"
+			},
+			{
+				"Type": "1",
+				"BankCode": "825",
+				"BankName": "825 慶豐商業銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "2",
+				"BankCode": "020",
+				"BankName": "020 日商瑞穗實業銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "2",
+				"BankCode": "022",
+				"BankName": "022 美國銀行",
+				"BankLong": "14,8"
+			},
+			{
+				"Type": "2",
+				"BankCode": "023",
+				"BankName": "023 泰國盤谷銀行",
+				"BankLong": "13"
+			},
+			{
+				"Type": "2",
+				"BankCode": "024",
+				"BankName": "024 美國運通銀行",
+				"BankLong": "6,9"
+			},
+			{
+				"Type": "2",
+				"BankCode": "025",
+				"BankName": "025 菲律賓首都銀行",
+				"BankLong": "11"
+			},
+			{
+				"Type": "2",
+				"BankCode": "039",
+				"BankName": "039 澳商澳盛銀行",
+				"BankLong": "14,13,12,11,10,9"
+			},
+			{
+				"Type": "2",
+				"BankCode": "072",
+				"BankName": "072 德商德意志銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "2",
+				"BankCode": "073",
+				"BankName": "073 日商日聯銀行",
+				"BankLong": "13,12"
+			},
+			{
+				"Type": "2",
+				"BankCode": "075",
+				"BankName": "075 香港商東亞銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "2",
+				"BankCode": "076",
+				"BankName": "076 美商摩根大通銀行",
+				"BankLong": "12"
+			},
+			{
+				"Type": "2",
+				"BankCode": "080",
+				"BankName": "080 法國里昂信貸銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "2",
+				"BankCode": "081",
+				"BankName": "081 香港上海匯豐銀行",
+				"BankLong": "12,14"
+			},
+			{
+				"Type": "2",
+				"BankCode": "082",
+				"BankName": "082 法國巴黎銀行",
+				"BankLong": "11"
+			},
+			{
+				"Type": "2",
+				"BankCode": "083",
+				"BankName": "083 英商渣打銀行",
+				"BankLong": "11"
+			},
+			{
+				"Type": "2",
+				"BankCode": "086",
+				"BankName": "086 法國東方匯理銀行",
+				"BankLong": "10"
+			},
+			{
+				"Type": "2",
+				"BankCode": "092",
+				"BankName": "092 瑞士商瑞士銀行",
+				"BankLong": "10"
+			},
+			{
+				"Type": "2",
+				"BankCode": "096",
+				"BankName": "096 澳商澳洲紐西蘭銀行",
+				"BankLong": "11"
+			},
+			{
+				"Type": "2",
+				"BankCode": "098",
+				"BankName": "098 日商東京三菱銀行",
+				"BankLong": "13"
+			},
+			{
+				"Type": "2",
+				"BankCode": "099",
+				"BankName": "099 比利時商比利時聯合銀行",
+				"BankLong": "10"
+			},
+			{
+				"Type": "2",
+				"BankCode": "320",
+				"BankName": "320 法商佳信銀行",
+				"BankLong": "14"
+			},
+			{
+				"Type": "2",
+				"BankCode": "321",
+				"BankName": "321 日商三井住友銀行",
+				"BankLong": "11"
+			},
+			{
+				"Type": "2",
+				"BankCode": "A21",
+				"BankName": "A21 花旗銀行大來卡",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "104",
+				"BankName": "104 台北市第五信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "106",
+				"BankName": "106 台北市第九信用合作社",
+				"BankLong": "13"
+			},
+			{
+				"Type": "3",
+				"BankCode": "114",
+				"BankName": "114 基隆市第一信用合作社",
+				"BankLong": "13"
+			},
+			{
+				"Type": "3",
+				"BankCode": "115",
+				"BankName": "115 基隆市第二信用合作社",
+				"BankLong": "11"
+			},
+			{
+				"Type": "3",
+				"BankCode": "119",
+				"BankName": "119 台北縣淡水第一信用合作社",
+				"BankLong": "13"
+			},
+			{
+				"Type": "3",
+				"BankCode": "120",
+				"BankName": "120 台北縣淡水信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "124",
+				"BankName": "124 宜蘭縣宜蘭市信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "127",
+				"BankName": "127 桃園縣桃園信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "130",
+				"BankName": "130 新竹市第一信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "132",
+				"BankName": "132 新竹市第三信用合作社",
+				"BankLong": "13"
+			},
+			{
+				"Type": "3",
+				"BankCode": "135",
+				"BankName": "135 新竹市第十信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "139",
+				"BankName": "139 苗栗縣竹南信用合作社",
+				"BankLong": "12"
+			},
+			{
+				"Type": "3",
+				"BankCode": "142",
+				"BankName": "142 豐原信用合作社",
+				"BankLong": "13"
+			},
+			{
+				"Type": "3",
+				"BankCode": "146",
+				"BankName": "146 台中市第二信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "158",
+				"BankName": "158 彰化市第一信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "161",
+				"BankName": "161 彰化市第五信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "162",
+				"BankName": "162 彰化縣第六信用合作社",
+				"BankLong": "13"
+			},
+			{
+				"Type": "3",
+				"BankCode": "163",
+				"BankName": "163 彰化市第十信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "165",
+				"BankName": "165 彰化縣鹿港信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "172",
+				"BankName": "172 雲林縣斗六信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "176",
+				"BankName": "176 嘉義市第一信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "178",
+				"BankName": "178 嘉義市第三信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "179",
+				"BankName": "179 嘉義市第四信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "188",
+				"BankName": "188 台南市第三信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "191",
+				"BankName": "191 台南市第六信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "192",
+				"BankName": "192 台南市第七信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "198",
+				"BankName": "198 高雄縣鳳山信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "203",
+				"BankName": "203 高雄市第二信用合作社",
+				"BankLong": "13,14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "204",
+				"BankName": "204 高雄市第三信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "215",
+				"BankName": "215 花蓮第一信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "216",
+				"BankName": "216 花蓮第二信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "219",
+				"BankName": "219 台東縣台東市信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "222",
+				"BankName": "222 澎湖縣第一信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "223",
+				"BankName": "223 澎湖縣第二信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "3",
+				"BankCode": "224",
+				"BankName": "224 金門縣信用合作社",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "519",
+				"BankName": "519 農金資-新化",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "541",
+				"BankName": "541 農金資-白河",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "557",
+				"BankName": "557 新市區農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "574",
+				"BankName": "574 農金資中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "577",
+				"BankName": "577 南投縣魚池鄉農會",
+				"BankLong": "0,0,0,0,1,4"
+			},
+			{
+				"Type": "4",
+				"BankCode": "579",
+				"BankName": "579 農金資中心-國姓",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "583",
+				"BankName": "583 東山區農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "588",
+				"BankName": "588 壯圍農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "589",
+				"BankName": "589 員山鄉農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "596",
+				"BankName": "596 五結農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "599",
+				"BankName": "599 宜蘭縣三星農會信用部",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "603",
+				"BankName": "603 基隆市農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "605",
+				"BankName": "605 高雄市農會信用部",
+				"BankLong": "13,14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "606",
+				"BankName": "606 台北縣農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "607",
+				"BankName": "607 宜農",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "608",
+				"BankName": "608 桃園農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "610",
+				"BankName": "610 新竹農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "611",
+				"BankName": "611 後龍鎮農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "613",
+				"BankName": "613 名間本會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "614",
+				"BankName": "614 彰化縣農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "616",
+				"BankName": "616 雲林縣農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "617",
+				"BankName": "617 嘉義縣農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "618",
+				"BankName": "618 台南縣農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "619",
+				"BankName": "619 高雄縣農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "620",
+				"BankName": "620 屏東縣農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "621",
+				"BankName": "621 花蓮縣農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "622",
+				"BankName": "622 台東縣農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "623",
+				"BankName": "623 台北市農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "624",
+				"BankName": "624 澎湖縣農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "625",
+				"BankName": "625 台中市農會信用部",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "627",
+				"BankName": "627 連江縣農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "629",
+				"BankName": "629 農金資中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "632",
+				"BankName": "632 田中鎮農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "638",
+				"BankName": "638 花壇鄉農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "643",
+				"BankName": "643 農金資中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "650",
+				"BankName": "650 福興鄉農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "698",
+				"BankName": "698 麥寮鄉農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "699",
+				"BankName": "699 林內鄉農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "749",
+				"BankName": "749 內埔地區農會\t",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "763",
+				"BankName": "763 桃園區農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "768",
+				"BankName": "768 龜山區農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "769",
+				"BankName": "769 農金資-八德",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "775",
+				"BankName": "775 新北市土城農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "777",
+				"BankName": "777 中和農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "778",
+				"BankName": "778 淡水農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "780",
+				"BankName": "780 農金資-鶯歌",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "781",
+				"BankName": "781 三峽區農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "786",
+				"BankName": "786 農金資-五股",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "787",
+				"BankName": "787 林口農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "790",
+				"BankName": "790 八里農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "791",
+				"BankName": "791 金山地區農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "792",
+				"BankName": "792 瑞芳區農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "793",
+				"BankName": "793 新店區農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "797",
+				"BankName": "797 平溪本會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "860",
+				"BankName": "860 農金資中埔",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "869",
+				"BankName": "869 農金資中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "874",
+				"BankName": "874 臺中市霧峰區農會信用部",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "875",
+				"BankName": "875 農金資中心-太平",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "876",
+				"BankName": "876 農金資中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "885",
+				"BankName": "885 農金資中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "897",
+				"BankName": "897 農金資-鳳榮",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "901",
+				"BankName": "901 台中縣大里市農會信用部",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "903",
+				"BankName": "903 台北縣汐止市農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "904",
+				"BankName": "904 台北縣新莊市農會",
+				"BankLong": "13"
+			},
+			{
+				"Type": "4",
+				"BankCode": "906",
+				"BankName": "906 農金資中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "908",
+				"BankName": "908 農金資中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "909",
+				"BankName": "909 農金資中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "910",
+				"BankName": "910 財團法人農漁會聯合資訊中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "912",
+				"BankName": "912 宜蘭冬山鄉農會",
+				"BankLong": "13"
+			},
+			{
+				"Type": "4",
+				"BankCode": "913",
+				"BankName": "913 宜蘭五結鄉農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "916",
+				"BankName": "916 南投縣草屯鎮農會信用部",
+				"BankLong": "13,14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "917",
+				"BankName": "917 苗栗縣公館鄉農會",
+				"BankLong": "1,4"
+			},
+			{
+				"Type": "4",
+				"BankCode": "919",
+				"BankName": "919 台中縣沙鹿鎮農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "922",
+				"BankName": "922 台南市農會信用部",
+				"BankLong": "13"
+			},
+			{
+				"Type": "4",
+				"BankCode": "925",
+				"BankName": "925 南投縣竹山鎮農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "928",
+				"BankName": "928 台北縣板橋市農會",
+				"BankLong": "13"
+			},
+			{
+				"Type": "4",
+				"BankCode": "938",
+				"BankName": "938 橫山農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "951",
+				"BankName": "951 台北縣農會附設北區農會電腦共同利用中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "952",
+				"BankName": "952 財團法人農漁會南區資訊中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "954",
+				"BankName": "954 財團法人農漁會中區資訊中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "984",
+				"BankName": "984 北投農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "4",
+				"BankCode": "985",
+				"BankName": "985 士林區農會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "5",
+				"BankCode": "700",
+				"BankName": "700 中華郵政股份有限公司",
+				"BankLong": "14,11,8"
+			},
+			{
+				"Type": "6",
+				"BankCode": "503",
+				"BankName": "503 基隆區漁會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "6",
+				"BankCode": "504",
+				"BankName": "504 瑞芳區漁會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "6",
+				"BankCode": "505",
+				"BankName": "505 頭城區漁會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "6",
+				"BankCode": "506",
+				"BankName": "506 桃園區漁會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "6",
+				"BankCode": "507",
+				"BankName": "507 新竹區漁會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "6",
+				"BankCode": "510",
+				"BankName": "510 農金資中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "6",
+				"BankCode": "511",
+				"BankName": "511 彰化區漁會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "6",
+				"BankCode": "512",
+				"BankName": "512 雲林區漁會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "6",
+				"BankCode": "515",
+				"BankName": "515 嘉義區漁會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "6",
+				"BankCode": "517",
+				"BankName": "517 南市區漁會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "6",
+				"BankCode": "518",
+				"BankName": "518 南縣區漁會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "6",
+				"BankCode": "520",
+				"BankName": "520 高雄區漁會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "6",
+				"BankCode": "521",
+				"BankName": "521 彌陀區漁會；永安區漁會；興達港區漁會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "6",
+				"BankCode": "523",
+				"BankName": "523 枋寮區漁會；東港區漁會；林邊區漁會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "6",
+				"BankCode": "524",
+				"BankName": "524 新港區漁會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "6",
+				"BankCode": "525",
+				"BankName": "525 澎湖區漁會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "044",
+				"BankName": "044 亞洲信託投資公司",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "060",
+				"BankName": "060 中興票券金融股份有限公司",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "061",
+				"BankName": "061 中華票券金融股份有限公司",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "062",
+				"BankName": "062 國際票券金融股份有限公司",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "066",
+				"BankName": "066 萬通票券金融股份有限公司",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "372",
+				"BankName": "372 大慶票券金融股份有限公司",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "374",
+				"BankName": "374 台新票券金融股份有限公司",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "950",
+				"BankName": "950 財金資訊股份有限公司",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "961",
+				"BankName": "961 國防部主計局同袍儲蓄會",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "974",
+				"BankName": "974 友邦信用卡公司",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "978",
+				"BankName": "978 台灣永旺信用卡公司",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "995",
+				"BankName": "995 關貿網路股份有限公司",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "996",
+				"BankName": "996 財政部台北區支付處",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "997",
+				"BankName": "997 中華民國信合社聯合社南區聯合資訊處理中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "998",
+				"BankName": "998 財團法人金融聯合徵信中心",
+				"BankLong": "14"
+			},
+			{
+				"Type": "9",
+				"BankCode": "999",
+				"BankName": "999 台北市票據交換所",
+				"BankLong": "14"
+			}
+		]
+    }
+}

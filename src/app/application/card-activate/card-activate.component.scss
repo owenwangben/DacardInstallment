@@ -1,0 +1,16 @@
+:host ::ng-deep .mat-horizontal-stepper-header-container {
+    display: none;
+}
+.mt-lg-4{
+    margin-top: 120px!important;
+}
+
+:host ::ng-deep .mat-horizontal-content-container{
+    padding: 0px!important;
+}
+
+.line__result__content p{
+    font-size:16px;
+    color:#fff;
+    margin-top:10px
+}

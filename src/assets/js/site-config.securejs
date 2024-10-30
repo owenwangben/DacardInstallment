@@ -1,0 +1,14 @@
+window['site_config'] = {
+    production: true,
+    isTMode: false,
+    home: 'Account/CardBill',
+    site_url: 'https://paybill.sinopac.com/WebCard/',
+    advPlatformParam:{
+        url:'https://sf.sinopac.com:8443/SF_SFO/',
+        projectName:'default',
+        orgID:'sinopacbankprod',
+        accessToken:'67fc7363-6c70-4f91-9cf2-bef942f0898f',
+        sectionID:'section_id_1854955433195',
+        logID:'DACARDApp'
+    },
+}

@@ -1,0 +1,22 @@
+{
+    "Header": {
+        "ReferenceNo": "",
+        "RequestTime": "",
+        "ResponseTime": "2023-07-12T16:01:29.3203853+08:00",
+        "ApplicationName": "DACARD"
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "EffectDate": "2023/05/25之次一營業日"
+    },
+    "Original": {
+        "ID": "A131089765",
+        "Flag": "Y",
+        "BankCode": "807",
+        "Account": "19801800706958",
+        "PaymentType": "2",
+        "NewPaymentType": "2"
+    },
+    "Success": true
+}

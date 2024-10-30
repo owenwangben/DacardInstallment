@@ -1,0 +1,38 @@
+{
+	"Header": {
+		"RequestTime": "",
+		"ResponseTime": "",
+		"ApplicationName": "SinoPac.Cawho.Web",
+		"SessionID": "",
+		"ClientIP": "",
+		"UserAgent": ""
+	},
+	"ResultCode": "00",
+	"ResultMessage": "",
+	"Result": {
+        "Items": [
+            {
+                "ApproveDate": "2020/06/14",
+                "PriorActivateExpDate": "2020/07/13",
+                "CardName": "虛擬世界卡",
+                "CardTypeName": "MasterCard世界卡",
+                "CardNo": "4705720200018201",
+                "ExpDate": "1225",
+                "CVV2": "188",
+                "CName": "A133621449",
+                "EName": "LIN HSIAO--TZU",
+                "PermanentCreditLimit": 60000,
+                "CreditLimit": 50000,
+                "IsActived": false,
+                "CreditAvailable": 0,
+                "ProductCode": "479",
+                "CardFace": "066",
+				"Email": "user@sinopac.com",
+				"IsPriorActivated": false
+			}
+        ]
+    },
+	"Original": {
+	},
+	"Success": true
+}

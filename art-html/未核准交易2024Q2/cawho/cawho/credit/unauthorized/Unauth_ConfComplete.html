@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>DACARD - 永豐銀行</title>
+    <meta name="title" content="DACARD - 永豐銀行">
+    <meta name="description" content="">
+    <meta property="og:title" content="DACARD - 永豐銀行">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="author" content="永豐銀行">
+    <meta name="copyright" content="永豐銀行">
+    <meta property="og:site_name" content="DACARD - 永豐銀行">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="">
+    <link rel="apple-touch-icon" href="">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/main_all.css">
+  </head>
+  <body class="Unauth_ConfComplete">
+    <main class="container">
+      <div class="wrap wrap__pd">
+        <h1 class="title flex-between"><span>未核准授權交易</span><span class="remark">依臺幣計</span></h1>
+        <div class="step step__pd--ssm accordion__item active"> 
+          <div class="list-table">
+            <div class="list-table__row u-nounderline"> 
+              <div class="list-table__col">
+                <h4>永豐信用卡 2536</h4>
+                <p>2024-3-27 17:22:38 </p>
+              </div>
+              <div class="list-table__col">
+                <h6 class="inline-block">1,322</h6>
+                <button class="btn--more inline-block"><img class="arrow" src="../../assets/images/icon/icon-arrow-gray.svg"></button>
+              </div>
+            </div>
+            <div class="list-table__row justify-content-center">
+              <div class="list-table__col">
+                <p class="t-primary fc-red">交易授權失敗</p>
+                <p class="align-center fc-black">請確認是否為本人交易?</p>
+                <div class="button-group mt-sm">
+                  <button class="btn btn--primary btn--primary-xxs gray">非本人交易</button>
+                  <button class="btn btn--primary btn--primary-xxs ml-ssm">本人交易</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="step step__pd--ssm unauth_self">
+          <div class="list-table__row u-nounderline">
+            <div class="list-table__col">
+              <p class="fw-b fs-xs">本人交易</p>
+              <h4>永豐信用卡 0807</h4>
+              <p>2024-3-27 20:38:22 </p>
+            </div>
+            <div class="list-table__col">
+              <h6 class="inline-block">8,802</h6>
+            </div>
+          </div>
+        </div>
+        <h4 class="white">注意事項：未核准交易請於24小時內回覆，若超過時效則無法回覆。</h4>
+        <div class="button-group">
+          <button class="btn btn--primary btn--w250">回信用卡頁</button>
+        </div>
+        <div class="warning mt-lg-2"><img class="margin-center" src="../../assets/images/demo/warning.svg" alt="謹慎理財 信用至上"></div>
+      </div>
+      <footer></footer>
+    </main>
+    <script src="../../assets/js/source/jquery-3.3.1.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/jquery.payment.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/slick.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/sortable.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/highcharts.securejs" type="text/javascript"></script>
+    <script>
+      $('.accordion__item .list-table__row:first-child').on('click', function(){
+        $(this).parents('.accordion__item').toggleClass('active');
+      })
+    </script>
+  </body>
+</html>

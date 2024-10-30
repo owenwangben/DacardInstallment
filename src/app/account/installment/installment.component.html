@@ -1,0 +1,323 @@
+<mat-horizontal-stepper #stepper [@.disabled]="true" [linear]="true" [selectedIndex]="this.selectedIndex"
+    (selectionChange)="scrollTop()">
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step3"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step4"></ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<ng-template #step1>
+    <div class="wrap wrap__pd" *ngIf="canapply">
+        <h1 class="title flex-between"><span>選擇分期與試算</span></h1>
+        <div class="step step__pt--lg">
+            <div class="list-table">
+                    <p class="errorMessage">您目前不符合帳單分期申請資格</p>
+                    <p class="errorMessage2">符合帳單分期申請資格為</p>
+                    <p class="errorMessage3">1. 應繳足最低應繳</p>
+                    <p class="errorMessage3">2. 申辦不得超過繳款截止日</p>
+            </div>
+        </div>
+        <div class="button-group">
+            <a class="btn btn--primary btn--w250"
+                (click)="backToPreviousButton('ApplyFail')">回上頁
+            </a>
+        </div>
+    </div>
+    <div class="wrap wrap__pd" *ngIf="!canapply">
+        <h1 class="title flex-between"><span>選擇分期與試算</span></h1>
+        <div class="step step__pt--lg">
+            <div class="list-table">
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">帳單截止日</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{installmentDataResult.StmtDate| date:'YYYY/MM/dd'}}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">繳款截止日</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{installmentDataResult.DueDate| date:'YYYY/MM/dd'}}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">當期應繳總金額</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{installmentDataResult.StmtAmt| number }}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">當期最低應繳金額</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{installmentDataResult.StmtMinAmt| number }}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">可分期金額</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{installmentDataResult.InstallmentAmt| number }}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 class="title flex-between"><span>可分期期數</span></h1>
+        <div class="step">
+            <div class="list-table--line">
+                <a class="list-table__row u-nounderline" *ngFor="let item of installmentDataResult.Rates" (click)="getEasyCashCalcCycleFee(item.Period,item.Rate,item.Fee)">
+                    <div class="list-table__col">
+                        <h6>{{item.Period}}期</h6>
+                        <p>年利率 {{item.Rate}} % / 手續費 ${{item.Fee}}</p>
+                    </div>
+                    <div class="list-table__col">
+                        <p class="inline-block fs-b fw-b">試算</p>
+                        <button class="btn--more inline-block" ><img src="assets/images/icon/icon-arrow-gray.svg"></button>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="button-group mt-0 mb-0">
+            <button class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                (click)="backToPreviousButton()">返&nbsp;&nbsp;&nbsp;回</button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #step2>
+    <div class="wrap wrap__pd">
+        <h1 class="title flex-between"><span>分期試算與結果</span></h1>
+        <div class="step step__pt--lg">
+            <div class="list-table">
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">分期本金</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{installmentDataResult.InstallmentAmt| number }}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">選擇期數</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h6 class="fs-s">{{Period}}期</h6>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">手續費</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{ProcessFee| number }}</h4>
+                    </div>
+                </div>
+                <div class="list-table__row">
+                    <div class="list-table__col">
+                        <p class="fs-b">總費用年百分率</p>
+                    </div>
+                    <div class="list-table__col">
+                        <h4 class="fs-b">{{AnnRate}}%</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 class="title flex-between"><span>每期應繳金額</span></h1>
+        <div class="step">
+            <div class="list-table--line list-table--line--sm">
+                <div class="list-table__row list-table__row--ssm">
+                    <div class="list-table__col list-table__col--w">
+                        <p>期數</p>
+                    </div>
+                    <div class="list-table__col list-table__col--w">
+                        <p>本金</p>
+                    </div>
+                    <div class="list-table__col list-table__col--w">
+                        <p>利息</p>
+                    </div>
+                    <div class="list-table__col list-table__col--w">
+                        <p>每月&emsp;&emsp;<br>應付本息</p>
+                    </div>
+                </div>
+                <div class="list-table__row list-table__row--ssm" *ngFor="let item of EasyCashCalcCycleFeeResult">
+                    <div class="list-table__col list-table__col--w">
+                        <h4 class="fs-s align-center">{{item.SEQ}}</h4>
+                    </div>
+                    <div class="list-table__col list-table__col--w">
+                        <h4 class="fs-s align-center">{{item.PrincipalAmount| number }}</h4>
+                    </div>
+                    <div class="list-table__col list-table__col--w">
+                        <h4 class="fs-s align-center">{{item.Interest| number }}</h4>
+                    </div>
+                    <div class="list-table__col list-table__col--w">
+                        <h4 class="fs-s align-center">{{item.MonthPayment| number }}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-group">
+            <button class="btn btn--primary btn--w250 btn--apply"
+                (click)="showRule()">我要申請</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="selectedIndex=0">重新選擇</button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #step3>
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <h1 class="title">確認以下資料</h1>
+        </div>
+        <div class="step step__pt-xxs">
+            <div class="wrap">
+                <div class="wrap__detail">
+                    <div class="list align-left">
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">申請日期</div>
+                                <p>{{applyDate| date:'YYYY/MM/dd'}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">分期本金</div>
+                                <p>{{installmentDataResult.InstallmentAmt| number }}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">選擇期數</div>
+                                <p>{{Period}}期</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">年利率</div>
+                                <p>{{AnnRate}}%</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">手續費</div>
+                                <p>{{ProcessFee| number }}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">首期應繳分期本金</div>
+                                <p>{{EasyCashCalcCycleFeeResult[0]?.PrincipalAmount}}元</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">首期應繳利息</div>
+                                <p>{{EasyCashCalcCycleFeeResult[0]?.Interest}}元</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-group"><a class="btn btn--primary btn--w250" appPreventDoubleClick (throttledClick)="applyStmtInstallment()">再次確認</a></div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="backToPreviousButton()">取&nbsp;&nbsp;&nbsp;消</button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #step4>
+    <div class="wrap wrap__pd">
+        <div class="result">
+            <div class="result__icon" [ngStyle]="{'display':applyStatus?'block':'none'}"><img
+                    src="assets/images/img/img-success-gold.svg">
+                <h2>申請成功</h2>
+            </div>
+            <div class="result__icon" [ngStyle]="{'display':!applyStatus?'block':'none'}"><img
+                    src="assets/images/img/img-fail.svg">
+                <h2 class="fail">申請失敗</h2>
+            </div>
+        </div>
+        <div class="step step__pt-xxs" [ngStyle]="{'display':applyStatus?'block':'none'}">
+            <div class="wrap">
+                <div class="wrap__detail">
+                    <div class="list align-left">
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">交易編號</div>
+                                <p>{{RefNo}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">申請日期</div>
+                                <p>{{applyDate| date:'YYYY/MM/dd'}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">分期本金</div>
+                                <p>{{installmentDataResult.InstallmentAmt| number }}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">選擇期數</div>
+                                <p>{{Period}}期</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">年利率</div>
+                                <p>{{AnnRate}}%</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">手續費</div>
+                                <p>{{ProcessFee| number }}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">首期應繳分期本金</div>
+                                <p>{{EasyCashCalcCycleFeeResult[0]?.PrincipalAmount}}元</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <div class="list__label">首期應繳利息</div>
+                                <p>{{EasyCashCalcCycleFeeResult[0]?.Interest}}元</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="result__content" style="text-align: center;" [ngStyle]="{'display':!applyStatus?'block':'none'}">
+            <h6>【錯誤代碼】</h6>
+            <p>若有問題請洽客服專線(02)2528-7776</p>
+            <p>{{errorMessage}}</p>
+        </div>
+        <div class="button-group">
+            <button class="btn btn--primary btn--w250" (click)="backToPreviousButton('FinalCheck')">查看申請紀錄</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="callCustomerServer()">聯繫客服</button>
+        </div>
+    </div>
+</ng-template>

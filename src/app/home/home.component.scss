@@ -1,0 +1,27 @@
+body {
+    max-width: initial;
+}
+p, a {
+    font-size: 14px !important;
+    word-break: break-all;
+}
+a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.list {
+    border-radius: 0;
+    background: white;
+    margin: 10px;
+}
+.list__col {
+    width: 20%;
+    padding: 10px;
+    text-align: left;
+}
+.list__col:nth-child(1) {
+  width: 60%;
+}
+.btn--text {
+    color: #000;
+}

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="110" viewBox="0 0 100 110">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="矩形_3313" data-name="矩形 3313" width="100" height="110" transform="translate(816 323)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="蒙版组_33" data-name="蒙版组 33" transform="translate(-816 -323)" clip-path="url(#clip-path)">
+    <circle id="椭圆_465" data-name="椭圆 465" cx="45.463" cy="45.463" r="45.463" transform="translate(820.537 336.553)" fill="#8f8f8f"/>
+    <g id="组_3728" data-name="组 3728" transform="translate(0 4)">
+      <g id="组_3726" data-name="组 3726">
+        <g id="组_3721" data-name="组 3721">
+          <g id="组_3719" data-name="组 3719">
+            <path id="路径_7249" data-name="路径 7249" d="M905.543,389.615c-3.216,0-4.169-2.46-4.169-5.495l.006-23.431v-3.765c0-3.546-1.824-6.42-4.075-6.42h-.56c-2.25,0-5.943,2.874-5.943,6.42H873.047v22.709h-11.3v9.982Z" fill="#12213a"/>
+            <path id="路径_7250" data-name="路径 7250" d="M897.736,350.5H860.383c-3.03,0-5.486,2.874-5.486,6.42v.317h-.013v50.105c0,3.545-1.372,6.42-3.865,6.42h37.507c2.493,0,4.514-2.875,4.514-6.42V357.241h0v-.317C893.039,353.378,894.706,350.5,897.736,350.5Z" fill="#eaeaea"/>
+          </g>
+          <g id="组_3720" data-name="组 3720">
+            <path id="路径_7251" data-name="路径 7251" d="M886.343,407.346v-1.293h.009V346.271c0-3.546-2.273-6.421-5.077-6.421h-.7c-2.8,0-7.4,2.875-7.4,6.421h-22.12v22.708H836.973v38.367c0,3.545,3.179,6.42,7.1,6.42H891.6C887.68,413.766,886.343,410.891,886.343,407.346Z" fill="#203e5b"/>
+          </g>
+        </g>
+        <path id="路径_7252" data-name="路径 7252" d="M833.6,339.85c-3.918,0-7.095,2.714-7.095,6.062v48.22l0,4.968a2.469,2.469,0,0,0,2.47,2.467l44.389,0a2.469,2.469,0,0,0,2.469-2.47v-53.18a5.738,5.738,0,0,1,6.075-6.062Z" fill="#fff"/>
+        <g id="组_3725" data-name="组 3725">
+          <g id="组_3724" data-name="组 3724">
+            <g id="组_3722" data-name="组 3722">
+              <rect id="矩形_2878" data-name="矩形 2878" width="7.058" height="7.058" transform="translate(835.02 375.721)" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            </g>
+            <line id="直线_191" data-name="直线 191" x2="32.654" transform="translate(834.707 351.989)" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <line id="直线_192" data-name="直线 192" x2="32.654" transform="translate(834.707 358.507)" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <line id="直线_193" data-name="直线 193" x2="32.654" transform="translate(834.707 365.024)" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <line id="直线_194" data-name="直线 194" x2="32.654" transform="translate(834.707 371.542)" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <line id="直线_195" data-name="直线 195" x2="21.779" transform="translate(845.583 376.359)" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <line id="直线_196" data-name="直线 196" x2="21.779" transform="translate(845.583 381.176)" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <line id="直线_197" data-name="直线 197" x2="21.779" transform="translate(845.583 385.993)" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <line id="直线_198" data-name="直线 198" x2="21.779" transform="translate(845.583 390.81)" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <path id="路径_7253" data-name="路径 7253" d="M838.235,380.78l-1.665-1.346.619-.672.955.772,1.672-1.815.71.574Z" fill="#dfa340"/>
+            <g id="组_3723" data-name="组 3723">
+              <rect id="矩形_2879" data-name="矩形 2879" width="7.058" height="7.058" transform="translate(835.02 385.384)" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            </g>
+            <path id="路径_7254" data-name="路径 7254" d="M838.235,390.444,836.57,389.1l.619-.672.955.772,1.672-1.815.71.574Z" fill="#dfa340"/>
+          </g>
+        </g>
+      </g>
+      <path id="路径_7255" data-name="路径 7255" d="M875.832,390.666V345.11a5.275,5.275,0,0,1,5.26-5.26h0a5.275,5.275,0,0,1,5.26,5.26v65.309a3.357,3.357,0,0,0,3.347,3.347h0a3.357,3.357,0,0,0,3.347-3.347V355.4" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <path id="路径_7256" data-name="路径 7256" d="M839.967,414.62" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <path id="路径_7257" data-name="路径 7257" d="M881.092,339.85H833.6c-6.269,0-7.095,6.114-7.095,6.114v52.205s-.589,3.4,2.472,3.4h32.77" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <path id="路径_7258" data-name="路径 7258" d="M836.973,401.567v5.165s-.658,7.034,7.939,7.034H889.7" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <path id="路径_7259" data-name="路径 7259" d="M893.046,367.024V354.67a4.177,4.177,0,0,1,4.166-4.166h0a4.178,4.178,0,0,1,4.166,4.166V384.9a4.178,4.178,0,0,0,4.165,4.166H893.551" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <line id="直线_199" data-name="直线 199" x1="10.393" transform="translate(886.352 350.504)" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <g id="组_3727" data-name="组 3727">
+        <circle id="椭圆_466" data-name="椭圆 466" cx="16.065" cy="16.065" r="16.065" transform="translate(851.296 374.601)" fill="#dfa340"/>
+        <path id="路径_7260" data-name="路径 7260" d="M863.992,396.772l-4.865-4.561a2.474,2.474,0,0,1,0-3.612h0a2.475,2.475,0,0,1,3.385,0l2.629,2.464a.794.794,0,0,0,1.087,0l7.542-7.069a2.475,2.475,0,0,1,3.386,0h0a2.474,2.474,0,0,1,0,3.611l-9.778,9.167A2.475,2.475,0,0,1,863.992,396.772Z" fill="#fff"/>
+      </g>
+      <circle id="椭圆_467" data-name="椭圆 467" cx="16.065" cy="16.065" r="16.065" transform="translate(851.296 374.601)" fill="none" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

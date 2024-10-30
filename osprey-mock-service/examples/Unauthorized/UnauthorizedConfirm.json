@@ -1,0 +1,26 @@
+{
+    "Header": {
+        "ReferenceNo": "d4aaf1902b1c44079c0d814a946a4bd0",
+        "RequestTime": "2024-05-07T18:00:42.2921792+08:00",
+        "ResponseTime": "2024-05-07T18:00:42.8246276+08:00",
+        "ApplicationName": "DACARD",
+        "SessionID": "SinopacCawhoDevice",
+        "ClientIP": "10.11.140.10",
+        "ClientRefNo": "3ca55c942e594c579f7aa303c63bd413",
+        "ClientTimestamp": "2024-04-19T04:17:55.658Z"
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "ResponseCode": "N1",
+        "ResponseDesp": "",
+        "EventID": "985874"
+    },
+    "Original": {
+        "ID": "A131577859",
+        "EventID": "985874",
+        "DecisionAuthorizationCode": "857541",
+        "SelfTradeConfirm": false
+    },
+    "Success": true
+}

@@ -1,0 +1,14 @@
+window['site_config'] = {
+    production: false,
+    isTMode: true,
+    home: 'Home',
+    site_url: 'http://10.11.140.9/WebCard/',
+    advPlatformParam:{
+        url:'http://10.11.22.217:8081/SF_SFO_UAT/',
+        projectName:'uat',
+        orgID:'sinopacbanktest',
+        accessToken:'39780040-31c9-4b48-86f7-9149de9e2315',
+        sectionID:'section_id_1854955433195',
+        logID:'DACARDApp'
+    },
+}

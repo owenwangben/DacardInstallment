@@ -1,0 +1,28 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "ApplyDate": "2022-07-14T09:58:05.0544752+08:00",
+        "Address": "ＸＸ縣ＸＸ區ＸＸＸＸＸＸＸＸＸＸＸＸＸＸ",
+        "Items": [
+            {
+                "CardNo": "4637111122223333",
+                "CardTypeCode": "SP",
+                "IsSuccess": true
+            },
+            {
+                "CardNo": "5588111122223333",
+                "CardTypeCode": "NP",
+                "IsSuccess": true
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Header": {
+        "ReferenceNo": "",
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "ClientIP": "",
+        "SessionID": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Items": [
+            {
+                "RecordID": "12",
+                "CardNoList": ["5199233300002552", "4696560000034654"],
+                "RegionCode": "B",
+                "ReasonCode": "01",
+                "ReasonDesc": "說明",
+                "TCLimit": "200000",
+                "EffDate": "20220711",
+                "ExpDate": "20220809",
+                "Tel": "0987654321",
+                "Status": "審查中",
+                "ApplyDate": "20220711"
+            },
+            {
+                "RecordID": "13",
+                "CardNoList": ["5199237700003075", "5241960100097005"],
+                "RegionCode": "B",
+                "ReasonCode": "02",
+                "ReasonDesc": "說明2",
+                "TCLimit": "380000",
+                "EffDate": "20220711",
+                "ExpDate": "20220809",
+                "Tel": "0987654321",
+                "Status": "已結案",
+                "ApplyDate": "20220711"
+            }
+        ]
+    }
+}

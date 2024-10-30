@@ -1,0 +1,14 @@
+window['site_config'] = {
+    production: false,
+    isTMode: true,
+    home: 'Home',
+    site_url: 'http://10.11.140.9/WebCard/',
+    advPlatformParam:{
+        url:'http://10.11.22.217:8081/SF_SFO_SIT/',
+        projectName:'default',
+        orgID:'sinopacbank-sit',
+        accessToken:'19e7b356-3f28-4a27-bac3-462d5e64d2ae',
+        sectionID:'section_id_1854955433195',
+        logID:'67890'
+    },
+}

@@ -1,0 +1,196 @@
+<div class="wrap wrap__pd pb-0">
+    <div class="eventDate mb-lg">
+        <button class="eventDate--prev" (click)="previousDay()">
+            <img src="assets/images/icon/icon-arrow-gray.svg" />
+        </button>
+        <div class="eventDate--date">{{ dateDisplay }}</div>
+        <button class="eventDate--next" (click)="nextDate()">
+            <img src="assets/images/icon/icon-arrow-gray.svg" />
+        </button>
+    </div>
+    <div class="card-apply" *ngIf="!customCard">
+        <div class="title-img" [style.background-image]="'url(' + rightMessage.imageUrl + ')'"></div>
+        <button class="btn btn--primary btn--primary-xs btn--primary-withArrow icon--tr icon--arrow-white"
+            (click)="toCardRecommend()">
+            {{ rightMessage.buttonMsg }}
+        </button>
+    </div>
+    <p class="fs-s white pt-sm pb-sm">
+        1. 登錄各項活動前，請詳閱活動詳情(包含活動辦法及注意事項)，若完成活動登錄即表示您已了解並同意相關活動規則。<a class="fc-gold underline"
+            href="https://bank.sinopac.com/sinopacBT/personal/credit-card/discount/list.html#open-browser"
+            target="_blank" rel="noopener noreferrer">查看信用卡活動</a><br>
+        2. 24小時服務專線：(02)2528-7776/0800-058-888 (限市話) 循環信用利率5%~15% (基準日2023/3/3)；預借現金手續費：預借現金金額X3.5%+指定金額(100元新台幣/3.5美元/350日圓/3歐元)其他費用請上永豐銀行網站查詢
+    </p>
+    <div class="pill-tabs mt-md" [style]="tab ? '--background-offset: 0%' : '--background-offset: 100%'">
+        <a class="pill-tabs__button pill-tabs--card" [attr.aria-selected]="tab" (click)="changeTab(true)">信用卡活動</a><a
+            class="pill-tabs__button pill-tabs--login" [attr.aria-selected]="!tab" (click)="changeTab(false)">搶登錄</a>
+    </div>
+    <div class="flex-between mt-md">
+        <h1 class="title">當日活動</h1>
+        <button class="btn btn--normal btn--normal-more" (click)="toRegisterOrBenefitsPage()"
+            routerLink="/Activity/Register">
+            更多活動
+        </button>
+    </div>
+    <div class="pill-content-card" *ngIf="tab">
+        <div class="step step-empty" *ngIf="activityShowList?.length === 0 && pocActivityLoadFinish">
+            <div class="flex-center">
+                <div class="align-center line-h-2">
+                    <p>opps!! 當天沒活動!!</p>
+                    <p class="msg-gold pt-xxs">
+                        <a routerLink="/Account/CardBenefits" fragment="ChoiceActivity" rel="noopener noreferrer">看看目前還有哪些活動吧！</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="step step-empty" *ngIf="!pocActivityLoadFinish">
+            <div class="flex-center">
+                <div class="align-center">
+                    <img class="margin-center loadingGif" src="assets/images/img/dcloading.gif" />
+                    <p class="fs-sm pt-xxs">優惠活動載入中...</p>
+                </div>
+            </div>
+        </div>
+        <div class="step step-discount" data-popup="discountEvent" *ngFor="let item of activityShowList">
+            <div class="list-table" (click)="showPocActivityLightBox(item)">
+                <div class="list-table__row">
+                    <div class="list-table__col list-table__col--auto">
+                        <img class="img" src="assets/images/demo/discount-s.png" [src]="item.ActivityImage" />
+                    </div>
+                    <div class="list-table__col discountDetail">
+                        <div class="fw-b">{{ item.TextOne }}</div>
+                        <div class="fc-gold fs-md fw-b">{{ item.TextTwo }}</div>
+                        <div class="fc-gray fs-xs">
+                            {{
+                            (item.StartTime | date : "yyyy/MM/dd") +
+                            " - " +
+                            (item.EndTime | date : "yyyy/MM/dd")
+                            }}
+                        </div>
+                    </div>
+                    <div class="list-table__col list-table__col--auto">
+                        <button class="btn--more">
+                            <img src="assets/images/icon/icon-arrow-gray.svg" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pill-content-login" *ngIf="!tab">
+        <div class="step step-empty" *ngIf="activityDBShowList?.length === 0 && dbActivityLoadFinish">
+            <div class="flex-center">
+                <div class="align-center line-h-2">
+                    <p>opps!! 當天沒有開始登錄的活動!!</p>
+                    <p class="msg-gold pt-xxs">
+                        <a rel="noopener noreferrer" (click)="routeByBillID()">看看目前還有哪些登錄活動吧！</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="step step-empty" *ngIf="!dbActivityLoadFinish">
+            <div class="flex-center">
+                <div class="align-center">
+                    <img class="margin-center loadingGif" src="assets/images/img/dcloading.gif" />
+                    <p class="fs-sm pt-xxs">優惠活動載入中...</p>
+                </div>
+            </div>
+        </div>
+        <div class="step step__pd--ssm" *ngFor="let item of activityDBShowList">
+            <div class="list-table--line">
+                <a class="list-table__row u-nounderline pt-ssm" href="javascript:void(0)">
+                    <div class="list-table__col pr-sm">
+                        <div class="list-table__overflow--4">
+                            <h4 class="fs-md">
+                                {{ item.Title }}
+                            </h4>
+                        </div>
+                        <p class="fs-xs">
+                            開放登錄：{{
+                            item.RegisterBeginTime | date : "yyyy/MM/dd HH:mm"
+                            }}
+                        </p>
+                        <p class="fs-xs">
+                            結束登錄：{{
+                            item.RegisterEndTime | date : "yyyy/MM/dd HH:mm"
+                            }}
+                        </p>
+                    </div>
+                    <div class="list-table__col list-table__col--auto">
+                        <button class="btn btn--normal btn--normal-more btn--normal-gold"
+                            (click)="showPrecautions(item)">
+                            搶登錄
+                        </button>
+                    </div>
+                </a>
+                <div class="button-group mt-sm mb-ssm" *ngIf="item.SignUrl">
+                    <button class="btn btn--text btn--text-line fs-xs" (click)="SignUrl(item.SignUrl)">
+                        活動詳情
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="notice fs-xs mt-lg">
+    <div class="warning pt-sm">
+        <img src="assets/images/demo/warning.svg" alt="謹慎理財 信用至上" />
+    </div>
+</div>
+
+<div class="lightbox" [class.show]="pocActivityLightBox" id="discountEvent">
+    <div class="lightbox__back"></div>
+    <div class="lightbox__outer">
+        <div class="lightbox__inner lightbox--iframe lightbox--bold">
+            <h3 class="mb-xs align-left">{{ pocActivityLightBoxContent.ActivityTitle }}</h3>
+            <div class="lightbox__close btn--cancel icon--close-blue" (click)="pocActivityLightBox = false"></div>
+            <div class="iframe-box iframe-box--sm">
+                <div class="content_outer content_outer--md">
+                    <div class="content_inner align-left">
+                        <!-- <a
+                                class="fc-gold underline"
+                                href="https://bank.sinopac.com/sinopacBT/personal/credit-card/card-right/airport-parking.html"
+                                >優惠活動的相關連結</a
+                            > -->
+                        <ul class="lightbox__listUl lightbox__listUl--decimal black"
+                            [innerHTML]="pocActivityLightBoxContent.Content"></ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="gray mt-md" />
+            <div class="button-group mb-md mt-md">
+                <a class="btn btn--primary btn--w250 btn--check" [href]="
+                    pocActivityLightBoxContent.ButtonOneLink +
+                    '#open-browser'
+                ">{{ pocActivityLightBoxContent.ButtonOneText }}</a>
+            </div>
+            <div class="button-group mt-0 mb-0" *ngIf="pocActivityLightBoxContent.ButtonTwoText">
+                <a class="btn btn--text btn--text-dark btn--text-line" [href]="
+                    pocActivityLightBoxContent.ButtonTwoLink +
+                    '#open-browser'
+                ">{{ pocActivityLightBoxContent.ButtonTwoText }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="lightbox" [class.show]="dbActivityResultLightBox" id="PointExchangeIntro">
+    <div class="lightbox__back"></div>
+    <div class="lightbox__outer">
+        <div class="lightbox__inner lightbox--bold">
+            <h3 class="mb-ssm">{{ Title }}</h3>
+            <div [innerHTML]="text"></div>
+            <div class="button-group mb-md mt-md">
+                <button class="btn btn--primary btn--w250 btn--check" (click)="dbActivityResultLightBox = false">
+                    {{ dbActivityResultLightBoxButtonOnetext }}
+                </button>
+            </div>
+            <div class="button-group mt-0 mb-0">
+                <button class="btn btn--text btn--text-dark btn--text-line btn--cancel" (click)="toRegisterPage()">
+                    查看已登錄活動
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<footer></footer>

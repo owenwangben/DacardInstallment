@@ -1,0 +1,104 @@
+{
+    "Header": {
+        "SessionID": "",
+        "ApplicationName": "EWEB2",
+        "ReferenceNo": "",
+        "UserID": "",
+        "RequestTime": "",
+        "TxCode": "",
+        "RemoteAddr": "",
+        "PageName": "",
+        "SsaToken": null
+    },
+    "Result":{
+        "MainCategories": [
+            {
+                "ID": 6,
+                "Name": "酬賓回饋"
+            },
+            {
+                "ID": 1,
+                "Name": "點點變愛心"
+            },
+            {
+                "ID": 4,
+                "Name": "紅利兌換刷卡金"
+            },
+            {
+                "ID": 14,
+                "Name": "居家生活"
+            },
+            {
+                "ID": 16,
+                "Name": "購物娛樂"
+            }
+        ],
+        "Gifts": [
+            {
+                "ID": 197,
+                "GiftNo": "2071",
+                "Name": "萬寶龍紳仕短夾",
+                "ImportNo": null,
+                "SubGiftCategoryId": null,
+                "IsVisible": false,
+                "IsExchangeable": false,
+                "CheckStatus": false,
+                "BigImagePath": null,
+                "SmallImagePath": "/assets/data_images/bonus/2319100.jpg",
+                "Description": "以下為示意文字。\r\n年度精選 - 兌換期限至 2023年12月31日止，\r\n每2,600點紅利點數可兌換本服務1天，包括桃園國際機場之大園出國停車場及小港國際機場之大鵬停車場。限永豐銀行信用卡持卡人兌換並且限本人使用，且兌換日起算三個月內必須使用完畢，逾期視為放棄權利，並視同本商品業已兌換，不得取消、更換或延長期限。為便利提供服務之廠商處理兌換後續相關作業，會員兌換成功即視為同意本行將必要之資料一併轉知廠商。兌換成功者享有本項服務之資格，並非等同已完成預約，會員仍須於兌換成功後依規定主動聯絡服務中心預約。詳細服務說明及注意事項請參閱永豐紅利享樂回饋計劃活動辦法及「台灣桃園/小港國際機場外圍停車服務」相關規定辦理。兌換成功之會員請於使用日一至七個工作日前致電(02)2528-7776客服中心完成預約(不含使用當日，工作日定義:週一至週五AM8:30~PM6:00，不含國定假日)。本服務須於台灣完成預約手續。預約後如欲變更或取消，請於使用日前一日告知(變更為提前者仍需符合1個工作日前完成變更預約)，未依規定期限變更或取消者，視同已使用服務一次。",
+                "SelfPayment": 4425,
+                "Point": 37920,
+                "ProjectNo": "509002",
+                "Priority": 2,
+                "MainCategoryId": 6,
+                "MainCategoryName": "酬賓回饋",
+                "SubCategoryName": "汽車"
+            },
+            {
+                "ID": 198,
+                "GiftNo": "1310",
+                "Name": "Glasslock強化玻璃保鮮盒組",
+                "ImportNo": null,
+                "SubGiftCategoryId": null,
+                "IsVisible": false,
+                "IsExchangeable": false,
+                "CheckStatus": false,
+                "BigImagePath": null,
+                "SmallImagePath": "/mma8/card/images/reward-products/3170.jpg",
+                "Description": "123555666",
+                "SelfPayment": 0,
+                "Point": 12800,
+                "ProjectNo": "510002",
+                "Priority": 0,
+                "MainCategoryId": 1,
+                "MainCategoryName": "點點變愛心",
+                "SubCategoryName": "GUCCI",
+                "SendType": "T"
+            },
+            {
+                "ID": 196,
+                "GiftNo": "1351",
+                "Name": "Glas23124組",
+                "ImportNo": null,
+                "SubGiftCategoryId": null,
+                "IsVisible": false,
+                "IsExchangeable": false,
+                "CheckStatus": false,
+                "BigImagePath": null,
+                "SmallImagePath": "/mma8/card/images/reward-products/3170.jpg",
+                "Description": "123",
+                "SelfPayment": 0,
+                "Point": 1000,
+                "ProjectNo": "511569",
+                "Priority": 0,
+                "MainCategoryId": 1,
+                "MainCategoryName": "點點變愛心",
+                "SubCategoryName": "GUCCI",
+                "SendType": "M"
+            }
+        ]
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Error": null
+}

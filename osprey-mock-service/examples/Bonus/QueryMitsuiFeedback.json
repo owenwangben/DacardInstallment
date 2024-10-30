@@ -1,0 +1,430 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+		"Summary": [
+			{
+				"Code": "RE05",
+				"Name": "三井聯名卡/國內",
+				"TotalAmt": 0.00,
+				"TotalFeedbackAmt": 6.00
+			},
+			{
+				"Code": "RE08",
+				"Name": "三井聯名卡/美元/國外",
+				"TotalAmt": 1580.45,
+				"TotalFeedbackAmt": 31.60
+			},
+			{
+				"Code": "RE07",
+				"Name": "三井聯名卡/日圓/國外",
+				"TotalAmt": 10000.00,
+				"TotalFeedbackAmt": 200.00
+			},
+			{
+				"Code": "RE09",
+				"Name": "三井聯名卡/歐元/國外",
+				"TotalAmt": 3000.50,
+				"TotalFeedbackAmt": 60.01
+			},
+			{
+				"Code": "REDY",
+				"Name": "三井聯名卡/加碼回饋",
+				"TotalAmt": 3000.00,
+				"TotalFeedbackAmt": 120.00
+			},
+			{
+				"Code": "REDZ",
+				"Name": "三井聯名卡/特選通路",
+				"TotalAmt": 600.00,
+				"TotalFeedbackAmt": 30.00
+			}
+		],
+		"DetailA": [
+			{
+				"Code": "RE05",
+				"Name": "三井聯名卡(國內)",
+				"Items": [
+					{
+						"TXDATE": "20200221",
+						"TX_AMT": 100.00,
+						"TW_AMT": null,
+						"DCUR_AMT": null,
+						"TTL_AMT": null,
+						"MEMO": "永豐電子",
+						"ORG": null
+					},
+					{
+						"TXDATE": "20200216",
+						"TX_AMT": 200.00,
+						"TW_AMT": null,
+						"DCUR_AMT": null,
+						"TTL_AMT": null,
+						"MEMO": "永豐電子",
+						"ORG": null
+					},
+					{
+						"TXDATE": "20200215",
+						"TX_AMT": 300.00,
+						"TW_AMT": null,
+						"DCUR_AMT": null,
+						"TTL_AMT": null,
+						"MEMO": "永豐烘焙",
+						"ORG": null
+					}
+				]
+			},
+			{
+				"Code": "RE08",
+				"Name": "三井聯名卡(美元/國外)",
+				"Items": [
+					{
+						"TXDATE": "20200221",
+						"TX_AMT": 1000.00,
+						"TW_AMT": null,
+						"DCUR_AMT": null,
+						"TTL_AMT": null,
+						"MEMO": "永豐電子",
+						"ORG": null
+					},
+					{
+						"TXDATE": "20200216",
+						"TX_AMT": 2000.00,
+						"TW_AMT": null,
+						"DCUR_AMT": null,
+						"TTL_AMT": null,
+						"MEMO": "永豐電子",
+						"ORG": null
+					},
+					{
+						"TXDATE": "20200215",
+						"TX_AMT": 3000.00,
+						"TW_AMT": null,
+						"DCUR_AMT": null,
+						"TTL_AMT": null,
+						"MEMO": "永豐烘焙",
+						"ORG": null
+					}
+				]
+			},
+			{
+				"Code": "RE07",
+				"Name": "三井聯名卡(日圓/國外)",
+				"Items": [
+					{
+						"TXDATE": "20200221",
+						"TX_AMT": 350000.00,
+						"TW_AMT": null,
+						"DCUR_AMT": null,
+						"TTL_AMT": null,
+						"MEMO": "永豐電子",
+						"ORG": null
+					},
+					{
+						"TXDATE": "20200216",
+						"TX_AMT": 205000.00,
+						"TW_AMT": null,
+						"DCUR_AMT": null,
+						"TTL_AMT": null,
+						"MEMO": "永豐電子",
+						"ORG": null
+					},
+					{
+						"TXDATE": "20200215",
+						"TX_AMT": 195000.00,
+						"TW_AMT": null,
+						"DCUR_AMT": null,
+						"TTL_AMT": null,
+						"MEMO": "永豐烘焙",
+						"ORG": null
+					}
+				]
+			},
+			{
+				"Code": "RE09",
+				"Name": "三井聯名卡(歐元/國外)",
+				"Items": [
+					{
+						"TXDATE": "20200221",
+						"TX_AMT": 35.00,
+						"TW_AMT": null,
+						"DCUR_AMT": null,
+						"TTL_AMT": null,
+						"MEMO": "永豐電子",
+						"ORG": null
+					},
+					{
+						"TXDATE": "20200216",
+						"TX_AMT": 25.00,
+						"TW_AMT": null,
+						"DCUR_AMT": null,
+						"TTL_AMT": null,
+						"MEMO": "永豐電子",
+						"ORG": null
+					},
+					{
+						"TXDATE": "20200215",
+						"TX_AMT": 45.00,
+						"TW_AMT": null,
+						"DCUR_AMT": null,
+						"TTL_AMT": null,
+						"MEMO": "永豐烘焙",
+						"ORG": null
+					}
+				]
+			}
+		],
+		"DetailB": [
+			{
+				"Code": "REDY",
+				"Name": "三井聯名卡(加碼回饋)",
+				"CurrencyItems": [
+					{
+						"CurrencyCode": "",
+						"CurrencyName": "臺幣",
+						"Items": [
+							{
+								"TXDATE": "20200221",
+								"TX_AMT": null,
+								"TW_AMT": 350000.00,
+								"DCUR_AMT": null,
+								"TTL_AMT": null,
+								"MEMO": "永豐電子",
+								"ORG": ""
+							},
+							{
+								"TXDATE": "20200216",
+								"TX_AMT": null,
+								"TW_AMT": 205000.00,
+								"DCUR_AMT": null,
+								"TTL_AMT": null,
+								"MEMO": "永豐電子",
+								"ORG": ""
+							},
+							{
+								"TXDATE": "20200215",
+								"TX_AMT": null,
+								"TW_AMT": 195000.00,
+								"DCUR_AMT": null,
+								"TTL_AMT": null,
+								"MEMO": "永豐烘焙",
+								"ORG": ""
+							}
+						]
+					},
+					{
+						"CurrencyCode": "840",
+						"CurrencyName": "美元",
+						"Items": [
+							{
+								"TXDATE": "20200221",
+								"TX_AMT": null,
+								"TW_AMT": null,
+								"DCUR_AMT": 580.45,
+								"TTL_AMT": 1764,
+								"MEMO": "永豐電子",
+								"ORG": "840"
+							},
+							{
+								"TXDATE": "20200216",
+								"TX_AMT": null,
+								"TW_AMT": null,
+								"DCUR_AMT": 1000.00,
+								"TTL_AMT": 3081,
+								"MEMO": "永豐電子",
+								"ORG": "840"
+							},
+							{
+								"TXDATE": "20200215",
+								"TX_AMT": 195000.00,
+								"TW_AMT": null,
+								"DCUR_AMT": 2000.00,
+								"TTL_AMT": 662,
+								"MEMO": "永豐烘焙",
+								"ORG": "840"
+							}
+						]
+					},
+					{
+						"CurrencyCode": "392",
+						"CurrencyName": "日元",
+						"Items": [
+							{
+								"TXDATE": "20200221",
+								"TX_AMT": null,
+								"TW_AMT": null,
+								"DCUR_AMT": 1000.00,
+								"TTL_AMT": 27100,
+								"MEMO": "永豐電子",
+								"ORG": "392"
+							}
+						]
+					},
+					{
+						"CurrencyCode": "978",
+						"CurrencyName": "歐元",
+						"Items": [
+							{
+								"TXDATE": "20200221",
+								"TX_AMT": null,
+								"TW_AMT": null,
+								"DCUR_AMT": 580.45,
+								"TTL_AMT": 1764,
+								"MEMO": "永豐電子",
+								"ORG": "978"
+							},
+							{
+								"TXDATE": "20200216",
+								"TX_AMT": null,
+								"TW_AMT": null,
+								"DCUR_AMT": 1000.00,
+								"TTL_AMT": 3031,
+								"MEMO": "永豐電子",
+								"ORG": "978"
+							},
+							{
+								"TXDATE": "20200215",
+								"TX_AMT": 195000.00,
+								"TW_AMT": null,
+								"DCUR_AMT": 2000.00,
+								"TTL_AMT": 662,
+								"MEMO": "永豐烘焙",
+								"ORG": "978"
+							}
+						]
+					}
+				]
+			},
+			{
+				"Code": "REDZ",
+				"Name": "三井聯名卡(指定通路)",
+				"CurrencyItems": [
+					{
+						"CurrencyCode": "",
+						"CurrencyName": "臺幣",
+						"Items": [
+							{
+								"TXDATE": "20200221",
+								"TX_AMT": null,
+								"TW_AMT": 135000.00,
+								"DCUR_AMT": null,
+								"TTL_AMT": null,
+								"MEMO": "永豐電子",
+								"ORG": ""
+							},
+							{
+								"TXDATE": "20200216",
+								"TX_AMT": null,
+								"TW_AMT": 220500.00,
+								"DCUR_AMT": null,
+								"TTL_AMT": null,
+								"MEMO": "永豐電子",
+								"ORG": ""
+							},
+							{
+								"TXDATE": "20200215",
+								"TX_AMT": null,
+								"TW_AMT": 319500.00,
+								"DCUR_AMT": null,
+								"TTL_AMT": null,
+								"MEMO": "永豐烘焙",
+								"ORG": ""
+							}
+						]
+					},
+					{
+						"CurrencyCode": "840",
+						"CurrencyName": "美元",
+						"Items": [
+							{
+								"TXDATE": "20200221",
+								"TX_AMT": null,
+								"TW_AMT": null,
+								"DCUR_AMT": 580.45,
+								"TTL_AMT": 1764,
+								"MEMO": "永豐電子",
+								"ORG": "840"
+							},
+							{
+								"TXDATE": "20200216",
+								"TX_AMT": null,
+								"TW_AMT": null,
+								"DCUR_AMT": 1000.00,
+								"TTL_AMT": 381,
+								"MEMO": "永豐電子",
+								"ORG": "840"
+							},
+							{
+								"TXDATE": "20200215",
+								"TX_AMT": 195000.00,
+								"TW_AMT": null,
+								"DCUR_AMT": 2000.00,
+								"TTL_AMT": 6062,
+								"MEMO": "永豐烘焙",
+								"ORG": "840"
+							}
+						]
+					},
+					{
+						"CurrencyCode": "392",
+						"CurrencyName": "日元",
+						"Items": [
+							{
+								"TXDATE": "20200221",
+								"TX_AMT": null,
+								"TW_AMT": null,
+								"DCUR_AMT": 1000.00,
+								"TTL_AMT": 2710,
+								"MEMO": "永豐電子",
+								"ORG": "392"
+							}
+						]
+					},
+					{
+						"CurrencyCode": "978",
+						"CurrencyName": "歐元",
+						"Items": [
+							{
+								"TXDATE": "20200221",
+								"TX_AMT": null,
+								"TW_AMT": null,
+								"DCUR_AMT": 580.45,
+								"TTL_AMT": 17634,
+								"MEMO": "永豐電子",
+								"ORG": "978"
+							},
+							{
+								"TXDATE": "20200216",
+								"TX_AMT": null,
+								"TW_AMT": null,
+								"DCUR_AMT": 1000.00,
+								"TTL_AMT": 30381,
+								"MEMO": "永豐電子",
+								"ORG": "978"
+							},
+							{
+								"TXDATE": "20200215",
+								"TX_AMT": 195000.00,
+								"TW_AMT": null,
+								"DCUR_AMT": 2000.00,
+								"TTL_AMT": 60762,
+								"MEMO": "永豐烘焙",
+								"ORG": "978"
+							}
+						]
+					}
+				]
+			}
+		]
+    },
+    "Original": {},
+    "Success": true
+}

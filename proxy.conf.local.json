@@ -1,0 +1,17 @@
+{
+	"/api/Captcha": {
+		"target": "http://localhost:4200",
+		"pathRewrite": {
+			"/api/Captcha": "/assets/images/demo/captcha.svg"
+		},
+		"secure": false,
+		"changeOrigin": true,
+		"logLevel": "debug"
+	},
+	"/api": {
+		"target": "http://localhost:3000",
+		"secure": false,
+		"changeOrigin": true,
+		"logLevel": "debug"
+	}
+}

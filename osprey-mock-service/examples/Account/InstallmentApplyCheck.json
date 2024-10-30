@@ -1,0 +1,72 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Items": [
+            {
+                "ProgramCode": "C00071",
+                "ProductCode": "0016",
+                "Period": 3,
+                "Rate": 6.00,
+                "FirstAmt": "0",
+                "Program": "C00071",
+                "Desc": ""
+            },
+            {
+                "ProgramCode": "C00071",
+                "ProductCode": "0011",
+                "Period": 6,
+                "Rate": 6.00,
+                "FirstAmt": "0",
+                "Program": "C00071",
+                "Desc": ""
+            },
+            {
+                "ProgramCode": "C00071",
+                "ProductCode": "1009",
+                "Period": 9,
+                "Rate": 9.00,
+                "FirstAmt": "0",
+                "Program": "C00071",
+                "Desc": ""
+            },
+            {
+                "ProgramCode": "C00071",
+                "ProductCode": "0012",
+                "Period": 12,
+                "Rate": 10.00,
+                "FirstAmt": "0",
+                "Program": "C00071",
+                "Desc": ""
+            },
+            {
+                "ProgramCode": "C00071",
+                "ProductCode": "1018",
+                "Period": 18,
+                "Rate": 11.00,
+                "FirstAmt": "0",
+                "Program": "C00071",
+                "Desc": ""
+            },
+            {
+                "ProgramCode": "C00071",
+                "ProductCode": "1024",
+                "Period": 24,
+                "Rate": 14.00,
+                "FirstAmt": "0",
+                "Program": "C00071",
+                "Desc": ""
+            }
+        ]
+    },
+    "Original": {},
+    "Success": true
+}

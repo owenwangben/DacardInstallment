@@ -1,0 +1,38 @@
+{
+    "Header": {
+      "ReferenceNo": "f316b0731382451cb3ff87273bb37033",
+      "RequestTime": "2023-07-28T15:20:22.9557158+08:00",
+      "ResponseTime": "2023-07-28T15:20:23.0763117+08:00",
+      "ApplicationName": "DACARD",
+      "SessionID": "SinopacCawhoDevice",
+      "ClientIP": "10.11.33.34",
+      "ClientRefNo": "5920290aca2d4093b5ba6d0321a777b7",
+      "ClientTimestamp": "2023-07-28T07:20:22.207Z",
+      "UserAgent": "sinopac://CaWhoPay?appVer=appVer&osType=Web&osVerName=osVerName&osVer=12&manufacturer=manufacturer&model=model"
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+      "Items": [
+        {
+          "DE_DATE": "20230303",
+          "ADD_POINT": "234",
+          "TRA_POINT_TTL": "0",
+          "MEMO": " 永豐卡紅利二倍                                   "
+        },
+        {
+          "DE_DATE": "20230303",
+          "ADD_POINT": "234",
+          "TRA_POINT_TTL": "0",
+          "MEMO": " 前月消費點數                                     "
+        }
+      ]
+    },
+    "Original": {
+      "QTYPE": "ADD",
+      "ID": "A100000967",
+      "QYear": "",
+      "NearlyYEAR": 1
+    },
+    "Success": true
+  }

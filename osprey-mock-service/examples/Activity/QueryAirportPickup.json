@@ -1,0 +1,20 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "LASTUSED_NUM": "3",
+        "SYS_INS": "0",
+        "MEMO": "備註1",
+        "YEARLY_SPENDING": "0"
+    },
+    "Original": {},
+    "Success": true
+}

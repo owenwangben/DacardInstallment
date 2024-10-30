@@ -1,0 +1,31 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Items":[
+            {
+               "NAME":"天天刷永豐 處處仟送佰",
+               "ProjectId":"TKHW",
+               "AddSource": "DAWHO",
+               "AddDateTime":"2020-05-01T00:00:00",
+               "SNO":"efasfeaswfsawf",
+               "SignUrl":"123456789"
+            },
+            {
+               "NAME":"\t55688聯名卡 百搭生活券",
+               "ProjectId":"TPAS",
+               "AddSource": "DAWHO",
+               "AddDateTime":"2022-12-13T00:00:00",
+               "SNO":"494985469"
+            }
+         ]
+    }
+}

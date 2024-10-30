@@ -1,0 +1,21 @@
+{
+    "Header": {
+        "SessionID": "",
+        "ApplicationName": "EWEB2",
+        "ReferenceNo": "",
+        "UserID": "",
+        "RequestTime": "",
+        "TxCode": "",
+        "RemoteAddr": "",
+        "PageName": "",
+        "SsaToken": null
+    },
+    "Result":{
+        "Point": 320000,
+        "ExpiringPoint": 2400,
+        "ExpireOn": "20231231"
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Error": null
+}

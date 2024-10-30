@@ -1,0 +1,69 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "IsSignedInstallmentAgreement": false,
+        "PID": "A123456789",
+        "MFPCode": "MFPCode",
+        "BaseMFPcode": "BaseMFPcode",
+        "StmtDate": "2017-06-10T00:00:00+08:00",
+        "DueDate": "2017-06-25T00:00:00+08:00",
+        "StmtAmt": 41536,
+        "StmtMinAmt": 6125,
+        "InstallmentAmt": "34567",
+        "Rates": [
+            {
+                "Period": 3,
+                "Rate": 5.99,
+                "Fee": 0,
+                "BaseFlag": "0"
+            },
+            {
+                "Period": 6,
+                "Rate": 5.99,
+                "Fee": 0,
+                "BaseFlag": "0"
+            },
+            {
+                "Period": 9,
+                "Rate": 5.99,
+                "Fee": 0,
+                "BaseFlag": "0"
+            },
+            {
+                "Period": 12,
+                "Rate": 8.99,
+                "Fee": 0,
+                "BaseFlag": "0"
+            },
+            {
+                "Period": 18,
+                "Rate": 8.99,
+                "Fee": 0,
+                "BaseFlag": "0"
+            },
+            {
+                "Period": 24,
+                "Rate": 9.99,
+                "Fee": 0,
+                "BaseFlag": "0"
+            },
+            {
+                "Period": 30,
+                "Rate": 11.99,
+                "Fee": 0,
+                "BaseFlag": "0"
+            }
+        ]
+    },
+    "Original": {},
+    "Success": true
+}

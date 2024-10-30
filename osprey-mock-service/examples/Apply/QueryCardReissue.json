@@ -1,0 +1,41 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "HomeAddress": "106 現居地址 新北市ＸＸ區ＸＸＸＸＸＸＸＸＸＸＸＸＸＸ",
+        "CompanyAddress": "242 公司地址 ＸＸ縣ＸＸ區ＸＸＸＸＸＸＸＸＸＸＸＸＸＸ",
+        "ResidentAddress": "106 戶籍地址 ＸＸ縣ＸＸ區ＸＸＸＸＸＸＸＸＸＸＸＸＸＸ",
+        "Items": [
+            {
+                "CardNo": "4637111122223333",
+                "Name": "DAWHO現金回饋信用卡",
+                "CardTypeCode": "PP",
+                "CardTypeDesc": "正卡",
+                "ProductCode": "426",
+                "CardFace": "178",
+                "CardBrand": "V",
+                "CardHolderName": "李ＸＸ",
+                "ExpDate":"0930"
+            },
+            {
+                "CardNo": "5588111122223333",
+                "Name": "DAWHO現金回饋信用卡",
+                "CardTypeCode": "NP",
+                "CardTypeDesc": "附卡",
+                "ProductCode": "426",
+                "CardFace": "178",
+                "CardBrand": "V",
+                "CardHolderName": "李ＸＸ",
+                "ExpDate":"1001"
+            }
+        ]
+    }
+}

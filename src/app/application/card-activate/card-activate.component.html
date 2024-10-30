@@ -1,0 +1,142 @@
+<mat-horizontal-stepper #stepper [@.disabled]="true" [linear]="false" [selectedIndex]="this.stepIndex">
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step3"></ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<ng-template #step1>
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <h1 class="title">永豐銀行開卡</h1>
+        </div>
+        <form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()">
+            <div class="step step__pt-xxs">
+                <div class="form">
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">信用卡卡號</p>
+                            <div class="form__data" *ngIf="displayCardNo; else OCR">
+                                <p style="font-size: 18px;">{{displayCardNo}}</p>
+                                <div class="form__data--icon">
+                                    <div class="icon icon--alone icon--eye" [ngClass]="{'icon--eye-active': eyeOpen}" (click)="changeEyeStatus()"></div>
+                                </div>
+                            </div>
+                            <ng-template #OCR>
+                                <div class="form__data">
+                                    <input formControlName="CardNo" onblur-mask [start]=7 [end]=14 mask="0000-0000-0000-0000"
+                                        placeholder="請輸入您的卡號" autocomplete="off" oncopy="return false;" onpaste="return false;" inputmode="numeric">
+                                    <div class="form__data--icon" (click)="cameraOCR()">
+                                        <div class="icon icon--camera icon--alone"></div>拍照識別
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="text-danger">{{form.controls.CardNo['errorMessages'][0]}}</div>
+                    <div class="form__row form__row--line-none">
+                        <div class="form__col">
+                            <p class="form__label">有效期限</p>
+                            <div class="form__data flex-center">
+                                <div class="line">
+                                    <input formControlName="ExpiryMM" class="align-center" mask="00" placeholder="月"
+                                        autocomplete="off" (input)="onKeyDate($event)" oncopy="return false;" onpaste="return false;" inputmode="numeric">
+                                </div>
+                                <span class="mr-sm ml-sm black-bg">/</span>
+                                <div class="line">
+                                    <input formControlName="ExpiryYY" class="align-center" mask="00" #expiryYY placeholder="年"
+                                        autocomplete="off" oncopy="return false;" onpaste="return false;" inputmode="numeric">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-danger">{{form.controls.ExpiryMM['errorMessages'][0]}}</div>
+                    <div class="text-danger">{{form.controls.ExpiryYY['errorMessages'][0]}}</div>
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">出生年月日 ( YYYYMMDD )</p>
+                            <div class="form__data">
+                                <input formControlName="DOB" class="input-number" mask="0000/00/00" placeholder="請輸入您的出生年月日"
+                                    autocomplete="off" oncopy="return false;" onpaste="return false;" inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-danger">{{form.controls.DOB['errorMessages'][0]}}</div>
+                    <div class="form__row form__row--line-none">
+                        <div class="form__col">
+                            <p class="form__label">驗證碼</p>
+                            <div class="form__data form__captcha flex-center">
+                                <div class="line">
+                                    <input formControlName="Captcha" mask="000000" placeholder="請輸入驗證碼" (input)="form.controls.Captcha['clearBackEndErrors']()"
+                                        autocomplete="off" oncopy="return false;" onpaste="return false;" inputmode="numeric">
+                                </div>
+                                <app-captcha></app-captcha>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-danger">{{form.controls.Captcha['errorMessages'][0]}}</div>
+                </div>
+            </div>
+            <div class="button-group">
+                <button type="button" class="btn btn--primary btn--w250" appPreventDoubleClick (throttledClick)="submit()">確定開卡</button>
+            </div>
+            <div class="button-group mt-sm">
+                <button type="button" class="btn btn--text btn--text-line" (click)="goHome()">取&nbsp;&nbsp;&nbsp;消</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<!-- 開卡成功 -->
+<ng-template #step2>
+    <div class="wrap wrap__pd">
+        <div class="result">
+            <div class="result__icon"><img src="assets/images/img/img-success-gold.svg">
+                <h2>開卡成功</h2>
+            </div>
+            <div *ngIf="!IsLinePointCard" class="result__content" style="text-align: center;">
+                <p>刷卡帳務輕鬆管理，回饋報告一目瞭然</p>
+            </div>
+            <div *ngIf="IsLinePointCard"  class="line__result__content" style="text-align: center;">
+                <p>您已開卡成功，立即綁定永豐LINE官方帳號<br>享信用卡即時消費通知。</p>
+            </div>
+        </div>
+        <div class="button-group mt-lg-4">
+            <button *ngIf="sso && !IsLinePointCard" class="btn btn--primary btn--w250" (click)="goHome()">確&nbsp;&nbsp;&nbsp;定</button>
+            <button *ngIf="!sso && !IsLinePointCard" class="btn btn--primary btn--w250" (click)="goCardManage()">搶先體驗</button>
+            <button *ngIf="IsLinePointCard" class="btn btn--primary btn--w250" (click)="goLineOA()">立即綁定</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button *ngIf="sso" class="btn btn--text btn--text-line" (click)="goHome()">回信用卡頁</button>
+            <button *ngIf="!sso" class=" btn btn--text btn--text-line" (click)="goHome()">回首頁</button>
+        </div>
+    </div>
+</ng-template>
+
+<!-- 開卡失敗 -->
+<ng-template #step3>
+    <div class="wrap wrap__pd">
+        <div class="result">
+            <div class="result__icon"><img src="assets/images/img/img-fail.svg">
+                <h2 class="fail">開卡失敗</h2>
+            </div>
+            <div class="result__content" style="text-align: center;">
+                <h6>【錯誤代碼】</h6>
+                <p>若有問題請洽客服專線(02)2528-7776</p>
+                <p>{{errorMessage}}</p>
+            </div>
+        </div>
+        <div class="button-group mt-lg-4">
+            <button class="btn btn--primary btn--w250" (click)="CallCustomerServer()">聯繫客服</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button *ngIf="sso" class="btn btn--text btn--text-line" (click)="goHome()">回信用卡頁</button>
+            <button *ngIf="!sso" class="btn btn--text btn--text-line" (click)="goHome()">回首頁</button>
+        </div>
+    </div>
+</ng-template>

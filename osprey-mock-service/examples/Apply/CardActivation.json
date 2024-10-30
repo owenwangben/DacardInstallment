@@ -1,0 +1,19 @@
+{
+	"Header": {
+		"RequestTime": "",
+		"ResponseTime": "",
+		"ApplicationName": "SinoPac.Cawho.Web",
+		"SessionID": "",
+		"ClientIP": "",
+		"UserAgent": ""
+	},
+	"ResultCode": "00",
+	"ResultMessage": "",
+	"Result": {
+		"CardType":"426178",
+		"IsLinePointCard":false
+	},
+	"Original": {
+	},
+	"Success": true
+}

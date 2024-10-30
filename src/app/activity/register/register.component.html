@@ -1,0 +1,251 @@
+<mat-horizontal-stepper #stepper [@.disabled]="true" [linear]="true" [selectedIndex]="this.selectedIndex">
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step3"></ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+<ng-template #step1>
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <h1 class="title">信用卡活動登錄</h1>
+        </div>
+        <div class="step step__pt-xxs">
+            <form [formGroup]="form">
+                <div class="form">
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">身分證字號</p>
+                            <div class="form__data column">
+                                <!-- style是將輸入的英文顯示大寫，如輸入小寫則送出時也是小寫 -->
+                                <input style="text-transform: uppercase;"
+                                    id="UserId"
+                                    name="UserId"
+                                    formControlName="UserId"
+                                    onblur-mask [start]=4 [end]=7
+                                    maxlength="10"
+                                    onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
+                                    onpaste="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
+                                    oncontextmenu = "value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
+                                    placeholder="請輸入您的身分證字號"
+                                    autocomplete="off"
+                                    oncopy="return false;"
+                                    onpaste="return false;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-danger">{{form.controls.UserId['errorMessages'][0]}}</div>
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">出生年月日 ( YYYY/MM/DD )</p>
+                            <div class="form__data">
+                                <input class="input-number" formControlName="DOB" mask="0000/00/00" placeholder="請輸入您的出生年月日"
+                                    autocomplete="off" oncopy="return false;" onpaste="return false;"
+                                    inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-danger">{{form.controls.DOB['errorMessages'][0]}}</div>
+                    <div class="form__row form__row--line-none">
+                        <div class="form__col">
+                            <p class="form__label">驗證碼</p>
+                            <div class="form__data form__captcha flex-center">
+                                <div class="line">
+                                    <input formControlName="Captcha" mask="000000" placeholder="請輸入驗證碼"
+                                        autocomplete="off" inputmode="numeric"
+                                        (input)="form.controls.Captcha['clearBackEndErrors']()">
+                                </div>
+                                <app-captcha></app-captcha>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-danger">{{form.controls.Captcha['errorMessages'][0]}}</div>
+                </div>
+            </form>
+        </div>
+        <div class="button-group"><a class="btn btn--primary btn--w250" (click)="onSubmit()">確定</a></div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goHome()">取消</button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #step2>
+    <main class="container">
+    <div class="wrap">
+      <div class="bg-creditCard-event">
+        <div class="dacard-mission-summary">
+          <div class="flex-center">
+            <div class="select-input--icon">
+              <select name="point" #selected (change)="copyTextValue(selected.value)" id="pointSelector">
+                <option value="活動登錄">活動登錄</option>
+                <option value="大咖任務">大咖任務</option>
+                <option value="金Bee">金Bee</option>
+                <option value="紅利點數">紅利點數</option>
+                <option value="卡友權益">卡友權益</option>
+              </select>
+              <!-- 在APP上其他活動目前都直接導頁沒有機會顯示小圖示，故直接hide -->
+              <div class="iconbox"><img class="eventDarts-img" [ngClass]="iconControl == '活動登錄'? '':'hide' " src='assets/images/icon/icon-event-darts.svg'><img class="goldBee-img hide" src='assets/images/icon/icon-gold-bee.svg'></div>
+              <input class="destination" type="text" value="活動登錄">
+            </div>
+          </div>
+          <div class="dacard-mission-data flex-center">
+            <h4>總活動</h4>
+            <h2>{{activityItemsCount}}</h2>
+            <h4>項</h4>
+          </div>
+          <p [ngClass]="activityItemsCount === 0?'hide':''">最近一期活動登錄到期日</p>
+          <p [ngClass]="activityItemsCount === 0?'hide':''">{{closestItem?.RegisterEndTime | date:'yyyy/MM/dd'}}</p>
+        </div>
+      </div>
+      <div class="tab">
+        <div class="tab__wrap">
+          <ul class="tab__navs">
+            <li class="tab__nav-unregistered is-active"><a class="tab__nav tab__nav-unregistered">活動列表</a></li>
+            <li class="tab__nav-registered" (click)="changepage('已登錄')"><a class="tab__nav tab__nav-registered">已登錄</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="content-unregistered">
+        <div class="wrap wrap__pd">
+          <div class="detail__info">
+            <div class="flex-between mt-ssm">
+              <p class="fc-gray fs-xs">登錄各項活動前，請詳閱活動詳情(包含活動辦法及注意事項)，若完成活動登錄即表示您已了解並同意相關活動規則。<a class="fc-gold fs-xs" style="text-decoration:underline;" href="https://bank.sinopac.com/sinopacBT/personal/credit-card/discount/list.html#open-browser">查看信用卡活動</a></p>
+            </div>
+            <div class="flex-between mt-ssm">
+              <p class="fc-gold fs-xs fw-b">總活動數：{{activityItemsCount}} 項</p>
+            </div>
+            <div class="step step__pd--md" *ngIf="activityItems?.length == 0;else showTx">
+                <div class="list-table__row">
+                    <p class="t-primary">尚無登錄活動</p>
+                </div>
+            </div>
+        <ng-template #showTx>
+            <div class="step step__pd--ssm" *ngFor="let item of activityItems">
+              <div [ngClass]="item.SignUrl?'list-table--line':''"><a class="list-table__row u-nounderline pt-ssm" href="javascript:void(0)">
+                  <div class="list-table__col pr-sm">
+                    <!-- <h4 class="fc-gray-100 fw-b">熱門活動</h4> -->
+                    <div class="list-table__overflow--4">
+                      <h4 class="fs-md">{{item.Title}}</h4>
+                    </div>
+                    <p class="fs-xs">開放登錄：{{item.RegisterBeginTime| date:'yyyy/MM/dd HH:mm'}}</p>
+                    <p class="fs-xs">結束登錄：{{item.RegisterEndTime| date:'yyyy/MM/dd HH:mm'}}</p>
+                  </div>
+                  <div class="list-table__col list-table__col--auto" >
+                    <button class="btn btn--normal btn--normal-more btn--normal-gold" (click)="SignActivity(item)">搶登錄</button>
+                  </div></a>
+                <div class="button-group mt-sm mb-ssm" *ngIf="item.SignUrl" (click)="SignUrl(item.SignUrl)">
+                  <button class="btn btn--text btn--text-line fs-xs" >活動詳情</button>
+                </div>
+              </div>
+            </div>
+        </ng-template>
+            <div class="notice">
+              <p>注意事項：</p>
+              <p>謹慎理財 信用至上</p>
+              <p>24小時服務專線：(02)2528-7776/0800-058-888 (限市話) 循環信用利率5%~15% (基準日2023/3/3)；預借現金手續費：預借現金金額X3.5%+指定金額(100元新台幣/3.5美元/350日圓/3歐元)其他費用請上永豐銀行網站查詢</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer></footer>
+  </main>
+</ng-template>
+<ng-template #step3>
+    <main class="container">
+    <div class="wrap">
+      <div class="bg-creditCard-event">
+        <div class="dacard-mission-summary">
+          <div class="flex-center">
+            <div class="select-input--icon">
+              <select name="point" #selected (change)="copyTextValue(selected.value)" id="pointSelector">
+                <option value="活動登錄">活動登錄</option>
+                <option value="大咖任務">大咖任務</option>
+                <option value="金Bee">金Bee</option>
+              </select>
+              <div class="iconbox"><img class="eventDarts-img" src="assets/images/icon/icon-event-darts.svg"><img class="goldBee-img hide" src="assets/images/icon/icon-gold-bee.svg"></div>
+              <input class="destination" type="text" value="活動登錄">
+            </div>
+          </div>
+          <div class="dacard-mission-data flex-center">
+            <h4>總活動</h4>
+            <h2>{{activityItemsCount}}</h2>
+            <h4>項</h4>
+          </div>
+          <p [ngClass]="activityItemsCount === 0?'hide':''">最近一期活動登錄到期日</p>
+          <p [ngClass]="activityItemsCount === 0?'hide':''">{{closestItem?.RegisterEndTime | date:'yyyy/MM/dd'}}</p>
+        </div>
+      </div>
+      <div class="tab">
+        <div class="tab__wrap">
+          <ul class="tab__navs">
+            <li class="tab__nav-unregistered " (click)="changepage('活動列表')"><a class="tab__nav tab__nav-unregistered">活動列表</a></li>
+            <li class="tab__nav-registered is-active" ><a class="tab__nav tab__nav-registered">已登錄</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="content-registered">
+        <div class="wrap wrap__pd">
+          <div class="detail__info">
+            <div class="flex-between mt-ssm">
+              <p class="fc-gray fs-xs">登錄各項活動前，請詳閱活動詳情(包含活動辦法及注意事項)，若完成活動登錄即表示您已了解並同意相關活動規則。<a class="fc-gold fs-xs" style="text-decoration:underline;" href="https://bank.sinopac.com/sinopacBT/personal/credit-card/discount/list.html#open-browser">查看信用卡活動</a></p>
+            </div>
+            <div class="flex-between mt-ssm">
+              <p class="fc-gold fs-xs fw-b">近一年已登活動數：{{activityedCount}} 項</p>
+            </div>
+            <div class="step step__pd--md" *ngIf="activityedCount === 0;else showTx2">
+                <div class="list-table__row">
+                    <p class="t-primary">近一年無登錄活動</p>
+                </div>
+            </div>
+        <ng-template #showTx2>
+            <div class="step step__pd--ssm" *ngFor="let item of activityedItems">
+              <div [ngClass]="item.SignUrl?'list-table--line':''"><a class="list-table__row u-nounderline pt-ssm" href="javascript:void(0)">
+                  <div class="list-table__col pr-sm">
+                    <!-- <h4 class="fc-gray-100 fw-b">熱門活動</h4> -->
+                    <div class="list-table__overflow--4">
+                      <h4 class="fs-md">{{item.NAME}}</h4>
+                    </div>
+                    <p class="fs-xs">登錄序號：{{item.SNO}}</p>
+                    <p class="fs-xs">登錄時間：{{item.AddDateTime | date:'yyyy/MM/dd'}}</p>
+                  </div>
+                  <div class="list-table__col list-table__col--auto">
+                    <div class="btn btn--normal btn--normal-more btn--normal-gray">已登錄</div>
+                  </div></a>
+                <div class="button-group mt-sm mb-ssm" *ngIf="item.SignUrl" (click)="SignUrl(item.SignUrl)">
+                  <button class="btn btn--text btn--text-line fs-xs">活動詳情</button>
+                </div>
+              </div>
+            </div>
+        </ng-template>
+            <div class="notice">
+              <p>注意事項：</p>
+              <p>謹慎理財 信用至上</p>
+              <p>24小時服務專線：(02)2528-7776/0800-058-888 (限市話) 循環信用利率5%~15% (基準日2023/3/3)；預借現金手續費：預借現金金額X3.5%+指定金額(100元新台幣/3.5美元/350日圓/3歐元)其他費用請上永豐銀行網站查詢</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer></footer>
+  </main>
+</ng-template>
+<div class="lightbox"[ngClass]="lightboxstatus? 'show' :''" id="PointExchangeIntro">
+    <div class="lightbox__back"></div>
+    <div class="lightbox__outer">
+        <div class="lightbox__inner lightbox--bold">
+        <h3 class="mb-ssm">{{Title}}</h3>
+        <div [innerHTML]="text"></div>
+        <div class="button-group mb-md mt-md">
+            <button class="btn btn--primary btn--w250 btn--check" (click)="lightboxcheck(lightboxID)">{{check}}</button>
+        </div>
+        <div class="button-group mt-0 mb-0 " [ngClass]="hideUnCheck? 'hide' :''">
+            <button class="btn btn--text btn--text-dark btn--text-line btn--cancel" (click)="lightboxuncheck(lightboxID)">{{uncheck}}</button>
+        </div>
+        </div>
+    </div>
+    </div>

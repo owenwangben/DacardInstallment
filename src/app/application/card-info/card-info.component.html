@@ -1,0 +1,155 @@
+<mat-horizontal-stepper #stepper [@.disabled]="true" [linear]="false" [selectedIndex]="this.selectedIndex">
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step3"></ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<!-- 確認發送簡訊驗證碼 -->
+<ng-template #step1>
+    <div class="wrap wrap__pd">
+        <div class="card-list-single pb-lg">
+            <h4 class="mb-lg">查詢卡片資訊</h4>
+            <p class="message">將發送簡訊驗證碼至 {{ mobile| mobilemask:'●' }}</p>
+        </div>
+        <div [ngStyle]="{'padding-top':'120px'}">
+            <div class="button-group">
+                <button type="submit" (click)="nextStep()" class="btn btn--primary btn--w250">發送簡訊驗證碼</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<!-- OTP -->
+<ng-template #step2>
+    <div class="wrap wrap__pd">
+        <form [formGroup]="otpform">
+            <div class="step">
+                <div class="step__title">
+                    <h3>請輸入您的手機驗證碼</h3>
+                    <p>已發送簡訊驗證碼至 {{ mobile| mobilemask:'●' }}</p>
+                </div>
+                <div class="form">
+                    <div class="form__row">
+                        <div class="form__col">
+                            <div class="form__data">
+                                <input class="captcha-otp" type="tel" name="captcha" maxlength="6"
+                                    autocomplete="one-time-code" oncopy="return false;" onpaste="return false;"
+                                    formControlName="captcha" mask="000000">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-danger">{{otpform.controls.captcha['errorMessages'][0]}}</div>
+                <div class="captcha-time">
+                    <div class="flex-between">
+                        <p>剩餘時間：<span>{{countdown}}</span>秒</p>
+                        <button>
+                            <p class="icon icon--tl icon--refresh" (click)="generateOTP(true)">重發驗證碼</p>
+                        </button>
+                    </div>
+                    <button *ngIf="countdown == 0" class="error" (click)="generateOTP(true)">驗證碼已失效，重新發送驗證碼</button>
+                </div>
+            </div>
+            <div class="button-group"><a class="btn btn--primary btn--w250" href="javascript:void(0)"
+                appPreventDoubleClick (throttledClick)="OTPsubmit()">確&nbsp;&nbsp;&nbsp;定</a></div>
+        </form>
+        <!-- <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goHome()">取&nbsp;&nbsp;&nbsp;消</button>
+        </div> -->
+        <!-- <div class="button-group mt-lg-2 align-center">
+            <a class="btn btn--text btn--text-line btn--text-sm msg"
+                href="https://mma.sinopac.com/Shared/HomePageTwd.aspx?CH=setting&ID=2#open-browser" target="_blank">
+                換手機號碼，收不到驗證碼?
+            </a>
+        </div> -->
+    </div>
+</ng-template>
+
+<ng-template #step3>
+    <div class="wrap bg-gradient bg-gradient-sm">
+        <div class="card-list-single pb-lg">
+            <h4 class="mb-md">{{cardName}}</h4><img [src]="cardUrl"
+                (error)="onImgError($event)">
+        </div>
+    </div>
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <h1 class="title">卡片資訊</h1>
+            <div class="icon icon--tl icon--eye-white icon--text icon--text-w"
+                [ngClass]="{'icon--eye-white-active':!hideCardInfo}" (click)="hideCardInfo=!hideCardInfo"><span
+                    class="inline-block">{{hideCardInfo?'顯示內容':'隱藏內容'}}</span>
+            </div>
+        </div>
+        <div class="step step__pt-xxs">
+            <div class="wrap">
+                <div class="wrap__detail">
+                    <div class="list align-left">
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">卡片名稱</p>
+                                <p>{{cardName}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">國際組織/卡別</p>
+                                <p>{{cardBrand}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">信用卡卡號</p>
+                                <p>{{hideCardInfo?(cardNo|mask:'0000-0000-0000-0000'|cardnumbermask:'●'):(cardNo|mask:'0000-0000-0000-0000')}}
+                                </p>
+                            </div>
+                            <div class="list__col">
+                                <div class="form__icon icon icon--copy icon--tl" [ngClass]="{'hide':hideCardInfo}"
+                                    (click)="copyCardNumber()"></div>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">有效期限(MM/YY)</p>
+                                <p>{{hideCardInfo?'●●●●':expDate|mask:'00/00'}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row">
+                            <div class="list__col">
+                                <p class="list__label">卡片背面末三碼</p>
+                                <p>{{hideCardInfo?'●●●':CVV2}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row" *ngIf="ElectronicTicketName">
+                            <div class="list__col">
+                                <p class="list__label">電子票證</p>
+                                <p>{{ElectronicTicketName}}</p>
+                            </div>
+                        </div>
+                        <div class="list__row" *ngIf="ElectronicTicketNo">
+                            <div class="list__col">
+                                <p class="list__label">電子票證號碼</p>
+                                <p>{{hideCardInfo?(ElectronicTicketNo|mask:'0000-0000-0000-0000'|cardnumbermask:'●'):ElectronicTicketNo|mask:'0000-0000-0000-0000'}}</p>
+                            </div>
+                            <div class="list__col">
+                                <div class="form__icon icon icon--copy icon--tl" [ngClass]="{'hide':hideCardInfo}"
+                                    (click)="copyElectronicTicketNo()"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-group">
+            <button class="btn btn--primary btn--w250" (click)="callCustomerServer()">聯繫客服</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="goHome()">回信用卡頁</button>
+        </div>
+    </div>
+</ng-template>

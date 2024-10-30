@@ -1,0 +1,44 @@
+{
+    "Header": {
+        "ReferenceNo": "d6ebc9c40d8a4bdd86ec3fb400ff46ef ",
+        "RequestTime": "2022-07-14T09:58:05.0544752+08:00 ",
+        "ResponseTime": "2022-07-14T09:58:06.7554594+08:00 ",
+        "ApplicationName": "DACARD",
+        "ClientIP": "10.11.37.159",
+        "SessionID": " BB700530-C54B-47DE-95DE-D10AADF3E5A2",
+        "UserAgent": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko"
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "CashLimit": 120000,
+        "CashAvailable": 200000,
+        "CreditCardLimit": 60000,
+        "CreditAvailable": 1000,
+        "AuthAmount": 0,
+        "CardList": [
+            {
+                "CardNo": "4637111122223333",
+                "Name": "MITSUI OUTLET PARK御璽聯名卡",
+                "CardTypeCode": "PP",
+                "CardTypeDesc": "主卡",
+                "CardFace": "179",
+                "ProductCode": "228",
+                "ExpDate": "1223",
+                "CardBrand ": "V"
+            },
+            {
+                "CardNo": "5588111122223333",
+                "Name": "日圓雙幣卡",
+                "CardTypeCode": "PP",
+                "CardTypeDesc": "主卡",
+                "CardFace": "301",
+                "ProductCode": "293",
+                "ExpDate": "0524",
+                "CardBrand": "J"
+            }
+        ],
+        "BankList": [],
+        "IsChangeMobileNo": false
+    }
+}

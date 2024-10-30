@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>DACARD - 永豐銀行</title>
+    <meta name="title" content="DACARD - 永豐銀行">
+    <meta name="description" content="">
+    <meta property="og:title" content="DACARD - 永豐銀行">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="author" content="永豐銀行">
+    <meta name="copyright" content="永豐銀行">
+    <meta property="og:site_name" content="DACARD - 永豐銀行">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="">
+    <link rel="apple-touch-icon" href="">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/main_all.css">
+  </head>
+  <body class="card_top_page">
+    <main class="container">
+      <div class="wrap">
+        <div class="tab">
+          <div class="tab__wrap">
+            <ul class="tab__navs">
+              <li class="tab__nav-bill is-active"><a class="tab__nav tab__nav-bill">帳務</a></li>
+              <li class="tab__nav-card"><a class="tab__nav tab__nav-card">卡片</a></li>
+            </ul>
+          </div>
+        </div><img class="margin-center" src="../../assets/images/img/img-infoMsg-bg-1.png">
+        <div class="msg-cover">
+          <div class="msg-cover__inner">
+            <h3>登入使用信用卡管理服務</h3>
+            <div class="button-group mt-md">
+              <button class="btn btn--primary btn--primary-wb">立即登入</button>
+            </div>
+            <div class="flex-center mt-lg-1"><a class="pl-ssm pr-ssm" href=""><img src="../../assets/images/img/img_clipperService_repo.svg">
+                <p class="fs-sm white mt-xs">進度查詢</p></a><a class="pl-ssm pr-ssm" href=""><img src="../../assets/images/img/img_clipperService_upload.svg">
+                <p class="fs-sm white mt-xs">線上補件</p></a></div>
+          </div>
+        </div>
+      </div>
+      <footer></footer>
+    </main>
+    <script src="../../assets/js/source/jquery-3.3.1.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/jquery.payment.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/slick.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/sortable.min.securejs" type="text/javascript"></script>
+    <script src="../../assets/js/source/highcharts.securejs" type="text/javascript"></script>
+    <script>
+      $(document).ready(function () {
+        $('.tab__nav-bill').on('click' , function (e) {
+          $('.tab__nav-bill').addClass('is-active'); 
+          $('.tab__nav-card').removeClass('is-active');
+          $('.content-bill').show();
+          $('.content-registered').hide()
+        });
+        $('.tab__nav-card').on('click' , function (e) {
+          $('.tab__nav-card').addClass('is-active'); 
+          $('.tab__nav-bill').removeClass('is-active');
+          $('.content-card').show();
+          $('.content-bill').hide()
+        });
+      
+        })
+      $(document).ready(function () {
+        $('body').addClass('scroll-fixed');
+      })
+    </script>
+  </body>
+</html>

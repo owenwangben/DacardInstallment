@@ -1,0 +1,469 @@
+<div class="wrap">
+    <div class="tab">
+        <div class="tab__wrap">
+            <ul class="tab__navs">
+                <li class="tab__nav-discount" routerLink="/Account/CardBenefits"><a class="tab__nav tab__nav-discount">優惠</a></li>
+                <li class="tab__nav-bill is-active"><a class="tab__nav tab__nav-bill">帳務</a></li>
+                <li class="tab__nav-card" routerLink="/Account/CardManage"><a class="tab__nav tab__nav-card">卡片</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="wrap wrap__pd pb-0">
+    <div class="pill-tabs" [style]="pillTabs === bill.cedit? '--background-offset: 0%' : '--background-offset: 100%'">
+        <a *ngIf="ceditHave" class="pill-tabs__button" [class.pill-tabs--card]="debitHave"
+            [class.pill-tabs__button--single]="!debitHave" [attr.aria-selected]="pillTabs === bill.cedit"
+            (click)="pillTabSwitch(bill.cedit)">信用卡</a>
+        <a *ngIf="debitHave" class="pill-tabs__button" [class.pill-tabs--debitCard]="ceditHave"
+            [class.pill-tabs__button--single]="!ceditHave" [attr.aria-selected]="pillTabs === bill.debit"
+            (click)="pillTabSwitch(bill.debit)">Debit卡</a>
+    </div>
+</div>
+<div class="wrap wrap__pd pt-0">
+    <div class="pill-content-card">
+        <div class="flex-between mt-sm">
+            <div class="inline-block">
+                <h1 class="title inline-block">本期帳務資訊</h1>
+                <span *ngIf="pillTabs === bill.cedit || pillTabs === bill.debit && StatementStatus !== 3"
+                    class="icon--tr icon--info-white inline-block" data-popup="accountInfo"
+                    (click)="accountInfoShow()"></span>
+            </div>
+            <div class="inline-block" (click)="amountHideSwitch()">
+                <div class="icon icon--eye icon--tl icon--text icon--text-w" [class.icon--eye-active]="!amountHide">
+                    <span class="fc-gray fs-xs inline-block">顯示資訊</span>
+                </div>
+            </div>
+        </div>
+        <!-- 信用卡 -->
+        <div *ngIf="pillTabs === bill.cedit">
+            <div class="step step__pd--ssm">
+                <div *ngIf="billTwStatus === 0" class="list-table__row">
+                    <p class="t-primary">加載中...</p>
+                </div>
+                <div *ngIf="billTwStatus === 2" class="list-table__row">
+                    <p class="t-primary"><span class="icon--tl icon--reload"
+                            (click)="apiReload(0)"></span><span>重新載入</span></p>
+                </div>
+                <div *ngIf="billTwStatus === 3" class="list-table--line">
+                    <div class="list-table__row u-nounderline">
+                        <p class="t-primary">尚無帳務資訊 </p>
+                    </div>
+                    <div class="flex-center mt-sm mb-ssm">
+                        <a class="pl-ssm pr-ssm">
+                            <button class="btn btn--normal btn--normal-more btn--normal-gold"
+                                (click)="recordShow()">繳款紀錄</button>
+                        </a>
+                    </div>
+                </div>
+                <div *ngIf="billTwStatus === 1" class="list-table--line">
+                    <div class="flex-between pt-ssm">
+                        <div class="list-table__col">
+                            <h4 class="inline-block">{{ monthBill }}月份帳單 (臺幣)</h4>
+                            <div class="flex-left">
+                                <p class="fs-xs fw-b mr-xxs">{{autoWithholding? '自動扣繳日':'繳款截止日' }}{{ duedate | date:'M/d' }}</p>
+                                <p class="fs-xs fw-b mr-xxs">|</p>
+                                <p class="fc-gold fs-xs fw-b hideInfo">已繳 {{ amountHide? (billTw?.TotalPaymentAmt |
+                                    pricemask): billTw?.TotalPaymentAmt }}元</p>
+                            </div>
+                        </div>
+                        <div class="list-table__col list-table__col--auto">
+                            <div class="flex-right">
+                                <div [class.icon]="billTwFinish" [class.icon--success-green]="billTwFinish"
+                                    [class.icon--tr]="billTwFinish" [class.flex-center]="billTwFinish">
+                                    <h1 class="fs-md-3 hideInfo">{{ amountHide? (billTw?.CURRBAL | pricemask):
+                                        (numPipe(billTw?.CURRBAL) | number:'1.0-0') }}</h1>
+                                </div>
+                                <button class="btn--more inline-block" (click)="routeByBillID(4)"><img
+                                        src="assets/images/icon/icon-arrow-gray.svg"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngFor="let out of billOut" class="list-table__row u-nounderline">
+                        <div class="list-table__col">
+                            <h4 class="inline-block">{{ monthBill }}月份帳單 ({{ out?.CurrencyName }})</h4>
+                            <div class="flex-left">
+                                <p class="mr-xxs fs-xs fw-b">自動扣款日 {{ duedate| date:'M/d' }}</p>
+                            </div>
+                        </div>
+                        <div class="list-table__col list-table__col--auto">
+                            <div class="flex-right">
+                                <h1 class="fs-md-3 hideInfo">{{ amountHide? (out?.CURRBAL | pricemask ):
+                                    numPipe(out?.CURRBAL) | number:'1.2-2' }}
+                                </h1>
+                                <button class="btn--more inline-block" (click)="routeByBillID(4)"><img
+                                        src="assets/images/icon/icon-arrow-gray.svg"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-center mt-sm mb-ssm">
+                        <a class="pl-ssm pr-ssm">
+                            <button class="btn btn--normal btn--normal-more btn--normal-gold"
+                                (click)="showPaymentRecordBtn? recordShow() : routeByBillID(6)">{{ showPaymentRecordBtn? '繳款紀錄':'立即繳費'
+                                }}</button>
+                        </a>
+                        <a class="pl-ssm pr-ssm" *ngIf="!billTwFinish">
+                            <button class="btn btn--normal btn--normal-more btn--normal-gold"
+                                (click)="routeByBillID(5)">帳單分期</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="step step__pd--md pt-md">
+                <div class="list-table">
+                    <div class="list-table__row">
+                        <div class="list-table__col">
+                            <h4 class="card-query">帳單自動扣繳免煩惱
+                                <span *ngIf="autoWithholding" class="card-query-apply inline-block">已申請</span>
+                            </h4>
+                        </div>
+                        <div class="list-table__col list-table__col--auto"><a class="pl-ssm pr-ssm">
+                                <button class="btn btn--normal btn--normal-more btn--normal-gold" (click)="goCardAutoWithholding()" >{{autoWithHoldingMsg}}</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="autoWithholding" class="card-query">
+                    <div class="card-query-text mb-0 mt-ssm">
+                        <p class="align-left">{{twdAutoDeductMsg}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-between">
+                <div class="inline-block">
+                    <h1 class="title inline-block">近期消費資訊</h1>
+                </div>
+            </div>
+            <div class="step step__pd--ssm">
+                <div *ngIf="recordListStatus === 0" class="list-table__row">
+                    <p class="t-primary">加載中...</p>
+                </div>
+                <div *ngIf="recordListStatus === 2" class="list-table__row">
+                    <p class="t-primary"><span class="icon--tl icon--reload"
+                            (click)="apiReload(1)"></span><span>重新載入</span></p>
+                </div>
+                <div *ngIf="recordListStatus === 1 || recordListStatus === 3" class="list-table--line">
+                    <div *ngFor="let record of recordList" class="flex-between pt-ssm">
+                        <div class="list-table__col">
+                            <h4 class="inline-block">未出帳金額({{ record?.CurrencyName }})</h4>
+                            <p class="fs-xs fw-b">每月結帳日，{{ STMTDATE }}日</p>
+                        </div>
+                        <div class="list-table__col list-table__col--auto">
+                            <div class="flex-right">
+                                <h1 class="fs-md-3 hideInfo">{{ amountHide? (record?.SubTotalAmt | pricemask):
+                                    record?.CurrencyCode === '000'? (numPipe(record?.SubTotalAmt)|number:'1.0-0') :
+                                    (numPipe(record?.SubTotalAmt)| number:'1.2-2')}}</h1>
+                                <button class="btn--more inline-block" (click)="routeByBillID(4)"><img
+                                        src="assets/images/icon/icon-arrow-gray.svg"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="recordListStatus === 3" class="flex-center mt-sm mb-ssm">
+                        <p class="t-primary fw-b">尚無消費資訊</p>
+                    </div>
+                    <div *ngIf="haveCredit">
+                        <div class="pt-ssm progress-bar-box">
+                            <div class="bar-graph">
+                                <div class="bar-text" [attr.data-pourcent]="CredirPercentage">{{ CredirPercentage }}%
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-table__row u-nounderline pt-0">
+                            <div class="list-table__col">
+                                <div class="flex-left">
+                                    <p class="fc-gold fs-xs fw-b">可用額度</p>
+                                    <p class="fs-xs fw-b mr-xxs ml-xxs">/</p>
+                                    <p class="fs-xs fw-b">總額度(臺幣)</p>
+                                </div>
+                            </div>
+                            <div class="list-table__col">
+                                <div class="flex-right">
+                                    <p class="fc-gold fs-xs fw-b hideInfo">{{ amountHide? (CreditAvailable | pricemask):
+                                        CreditAvailable | number }}</p>
+                                    <p class="fs-xs fw-b mr-xxs ml-xxs">/</p>
+                                    <p class="fs-xs fw-b hideInfo">{{ amountHide? (CreditCardLimit | pricemask):
+                                        CreditCardLimit| number }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-center mt-sm mb-ssm"><a class="pl-ssm pr-ssm">
+                            <button class="btn btn--normal btn--normal-more btn--normal-gold" data-popup="creditsModify"
+                                (click)="creditsModifyShow()">額度調整</button></a><a class="pl-ssm pr-ssm">
+                            <button class="btn btn--normal btn--normal-more btn--normal-gold" data-popup="cashAdvance"
+                                (click)="routeByBillID(10)">預借現金</button></a></div>
+
+                </div>
+            </div>
+            <div class="step step__pd--md pt-md">
+                <div class="list-table">
+                    <div class="list-table__row">
+                        <div class="list-table__col">
+                            <h4>可申請單筆分期項目</h4>
+                        </div>
+                        <div class="list-table__col list-table__col--auto"><a class="pl-ssm pr-ssm">
+                                <button class="btn btn--normal btn--normal-more btn--normal-gold"
+                                    (click)="routeByBillID(11)">立即查看</button></a></div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="loginMethod !== 'Fido'" class="step step__pd--md pt-md">
+                <div class="list-table">
+                  <div class="list-table__row">
+                    <div class="list-table__col">
+                      <h4>開啟生物辨識驗證刷卡交易</h4>
+                    </div>
+                    <div class="list-table__col list-table__col--auto"><a class="pl-ssm pr-ssm">
+                        <button class="btn btn--normal btn--normal-more btn--normal-gold"  (click)="goFido()">立即設定</button></a></div>
+                  </div>
+                </div>
+            </div>
+            <div class="flex-between">
+                <div class="inline-block">
+                    <h1 class="title inline-block">分期查詢</h1>
+                </div>
+            </div>
+            <div class="step step__pd--md pt-md">
+                <div class="list-table">
+                    <div class="list-table__row">
+                        <div class="list-table__col">
+                            <h4>單筆分期與帳單分期查詢</h4>
+                        </div>
+                        <div class="list-table__col list-table__col--auto"><a class="pl-ssm pr-ssm">
+                            <button class="btn btn--normal btn--normal-more btn--normal-gold"
+                                (click)="goInstallmentRecord()">立即查看</button></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-between">
+                <div class="inline-block">
+                    <h1 class="title inline-block">通知設定</h1>
+                </div>
+            </div>
+            <div class="step step__pd--md pt-md">
+                <div class="list-table">
+                    <div class="list-table__row">
+                        <div class="list-table__col">
+                            <h4>推播與Email提醒通知</h4>
+                        </div>
+                        <div class="list-table__col list-table__col--auto"><a class="pl-ssm pr-ssm">
+                            <button class="btn btn--normal btn--normal-more btn--normal-gold"
+                                (click)="routeByBillID(13)">立即設定</button></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-between">
+                <div class="inline-block">
+                    <h1 class="title inline-block">快捷服務</h1>
+                </div>
+            </div>
+            <div class="flex-between mt-ssm">
+                <a (click)="routeByBillID(0)"> <img src="assets/images/img/img_clipperService_repo.svg">
+                    <p class="fs-sm white mt-xs">回饋報告</p>
+                </a>
+                <a (click)="routeByBillID(1)"> <img src="assets/images/img/img_clipperService_gift.svg">
+                    <p class="fs-sm white mt-xs">活動登錄</p>
+                </a>
+                <a (click)="routeByBillID(2)"> <img src="assets/images/img/img_clipperService_manCard.svg">
+                    <p class="fs-sm white mt-xs">線上開卡</p>
+                </a>
+                <a (click)="routeByBillID(3)"> <img src="assets/images/img/img_clipperService_cardLoss.svg">
+                    <p class="fs-sm white mt-xs">掛失補發</p>
+                </a>
+            </div>
+        </div>
+        <!-- Debit卡 -->
+        <div *ngIf="pillTabs === bill.debit">
+            <div class="step step__pd--md pt-md">
+                <div *ngIf="StatementStatus === 0" class="list-table__row">
+                    <p class="t-primary">加載中...</p>
+                </div>
+                <div *ngIf="StatementStatus === 2" class="list-table__row">
+                    <p class="t-primary"><span class="icon--tl icon--reload"
+                            (click)="apiReload(2)"></span><span>重新載入</span></p>
+                </div>
+                <div *ngIf="StatementStatus === 3" class="list-table--line">
+                    <div class="list-table__row u-nounderline">
+                        <p class="t-primary">尚無帳務資訊 </p>
+                    </div>
+                    <div class="flex-center mt-sm mb-ssm"><a (click)="Godebitcard()">
+                            <button class="btn btn--normal btn--normal-more btn--normal-gold">帳務紀錄</button></a></div>
+                </div>
+                <div *ngIf="StatementStatus === 1" class="list-table">
+                    <div *ngFor="let item of Statement" class="list-table__row list-table__row--debitInfo">
+                        <div class="list-table__col">
+                            <h4 class="inline-block">{{ item?.DEDATE | date: 'M' }}月份已請款金額 {{ item?.CurrencyCName }}
+                            </h4>
+                        </div>
+                        <div class="list-table__col list-table__col--auto">
+                            <div class="flex-right">
+                                <h1 *ngIf="item?.CurrencyCode === '901'; else otherCurrency" class="fs-md-3 hideInfo">
+                                    {{ amountHide? (item?.AMT | number:'1.0-0' | pricemask) : item?.AMT | number:'1.0-0'
+                                    }}</h1>
+                                <ng-template #otherCurrency>
+                                    <h1 #otherCurrency class="fs-md-3 hideInfo">
+                                        {{ amountHide? (item?.AMT | number:'1.2-2' | pricemask) : item?.AMT |
+                                        number:'1.2-2' }}</h1>
+                                </ng-template>
+                                <button class="btn--more inline-block" (click)="Godebitcard(item?.CurrencyCName)"><img
+                                        src="assets/images/icon/icon-arrow-gray.svg"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-between">
+                <h1 class="title inline-block">最新授權金額</h1>
+                <button *ngIf="LatestTxStatus === 1||LatestTxStatus === 3" class="btn btn--normal btn--normal-more"
+                    (click)="Godebitcard(optionSelected)">查看更多</button>
+            </div>
+            <div class="step step__pd--md">
+                <div *ngIf="LatestTxStatus === 0" class="list-table__row">
+                    <p class="t-primary">加載中...</p>
+                </div>
+                <div *ngIf="LatestTxStatus === 2" class="list-table__row">
+                    <p class="t-primary"><span class="icon--tl icon--reload"
+                            (click)="apiReload(3)"></span><span>重新載入</span></p>
+                </div>
+                <div *ngIf="LatestTxStatus === 1 || LatestTxStatus === 3" class="list-table">
+                    <div class="list-table__row">
+                        <div class="select-box">
+                            <select #select (change)="optionChange(select.value)">
+                                <option *ngFor="let item of optionLatestTx" value="{{ item.CurrencyCode }}">
+                                    {{ item.CurrencyCName }}</option>
+                                <option *ngIf="LatestTxStatus === 3">臺幣</option>
+                            </select>
+                        </div>
+                    </div>
+                    <a *ngFor="let item of LatestTxItem5" class="list-table__row u-nounderline">
+                        <div class="list-table__col">
+                            <h4>{{ item?.Memo }}</h4>
+                            <p>{{ item?.AuthDate }}</p>
+                        </div>
+                        <div class="list-table__col">
+                            <h6 *ngIf="item?.CurrencyCode === '901'; else otherCurrency" class="inline-block">
+                                {{ amountHide? ( numPipe(item?.AuthAmt) | number:'1.0-0' | pricemask) :
+                                numPipe(item?.AuthAmt) | number:'1.0-0' }}</h6>
+                            <ng-template #otherCurrency>
+                                <h6 class="inline-block">{{ amountHide? (numPipe(item?.AuthAmt) | number:'1.2-2' |
+                                    pricemask):
+                                    numPipe(item?.AuthAmt) | number:'1.2-2' }}</h6>
+                            </ng-template>
+                        </div>
+                    </a>
+                    <div *ngIf="LatestTxStatus === 3" class="flex-center mt-sm mb-ssm">
+                        <p class="t-primary fw-b">尚無授權金額</p>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="loginMethod !== 'Fido'" class="step step__pd--md pt-md">
+                <div class="list-table">
+                  <div class="list-table__row">
+                    <div class="list-table__col">
+                      <h4>開啟生物辨識驗證刷卡交易</h4>
+                    </div>
+                    <div class="list-table__col list-table__col--auto"><a class="pl-ssm pr-ssm">
+                        <button class="btn btn--normal btn--normal-more btn--normal-gold"  (click)="goFido()">立即設定</button></a></div>
+                  </div>
+                </div>
+            </div>
+            <div class="flex-between">
+                <h1 class="title">大咖精選</h1>
+            </div>
+            <div class="step step__pd--ssm">
+                <div class="list-table--line image-box">
+                    <div class="list-table__row image-box__row u-nounderline">
+                        <div class="flex-right dawhoCard__imgbox">
+                            <img class="dawhoCard__img" src="assets/images/img/img-dawhoDebitCard.png">
+                        </div>
+                        <div class="flex-left">
+                            <h4 class="fs-md-4">DAWHO現金回饋卡</h4>
+                            <h5>消費最高國內7%、國外8%現金回饋！7大特色通路任你刷，品味質感生活，只有大戶卡懂你！ </h5>
+                        </div>
+                    </div>
+                    <div class="flex-center mt-sm mb-ssm"><a
+                            href="https://mma.sinopac.com/SinoCard/Application/ApplyCard?CardFace=426178&mode=1&source=1&utm_source=dacard&utm_medium=button&utm_term=nonpaid&utm_content=na&utm_campaign=creditcarddawhoapply202305#open-browser"
+                            target="_blank">
+                            <button class="btn btn--normal btn--normal-more btn--normal-gold">立即申辦</button></a></div>
+                </div>
+            </div>
+        </div>
+        <div class="warning mt-lg-2"><img class="margin-center" src="assets/images/demo/warning.svg" alt="謹慎理財 信用至上">
+        </div>
+    </div>
+    <div class="lightbox" [class.show]="creditsModify" id="creditsModify">
+        <div class="lightbox__back"></div>
+        <div class="lightbox__outer">
+            <div class="lightbox__inner lightbox--error">
+                <h3 class="mb-ssm">請選擇信用額度調整服務</h3>
+                <div class="button-group mb-md mt-md">
+                    <button class="btn btn--primary btn--w250" (click)="routeByBillID(7)">臨時信用額度</button>
+                </div>
+                <div class="button-group mb-md mt-md">
+                    <button class="btn btn--primary btn--w250" (click)="routeByBillID(8)">永久信用額度</button>
+                </div>
+                <div class="button-group mb-md mt-md">
+                    <button class="btn btn--primary btn--w250" (click)="routeByBillID(9)">額度調整進度</button>
+                </div>
+                <div class="button-group mt-0 mb-0">
+                    <button class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                        (click)="creditsModifyShow()">關閉視窗</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lightbox" [class.show]="accountInfo" id="accountInfo">
+        <div class="lightbox__back"></div>
+        <div class="lightbox__outer">
+            <div class="lightbox__inner lightbox--iframe">
+                <div class="iframe-box">
+                <h3 class="mb-ssm">信用卡帳務</h3>
+                <div class="content_outer">
+                    <div class="content_inner">
+                        <ul>
+                            <li>本期帳務資訊:</li>
+                            <li>1. 款項入帳時間一般為繳款後1至3個營業日。</li>
+                            <li>2. 如您已完成繳費，請勿於其他通路(如網路銀行、網路ATM、全國繳費網)重覆繳費。</li>
+                            <li>3.
+                                外幣帳款扣繳方式將自正卡持卡人於本行外幣帳戶進行自動轉帳扣款。若外幣帳戶餘額不足，則依申請人與貴行約定之新臺幣自動轉帳扣款帳戶，按依扣款失敗當日貴行日終牌告匯率辦理自動買匯扣款扣繳外幣信用卡帳款。
+                            </li>
+                            <li>4. 信用卡自動扣繳設定將於您的信用卡每期繳款截止日進行扣款，當自動轉帳帳戶餘額小於本期應扣繳金額時，則以該帳戶全部餘額扣款，並於次一營業日進行第二次扣款。
+                            </li>
+                            <li>5. 繳款截止日若遇假日，順延至次一營業日。
+                            </li>
+                            <li>6. 外幣帳款將共用同一臺幣歸戶信用額度，亦與永豐銀行其他信用卡共用同一臺幣歸戶信用額度，並共用同一份帳單，帳單上將顯示臺幣單一總額度。
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+                <div class="button-group mb-md mt-md">
+                    <button class="btn btn--primary btn--w250 btn--cancel"
+                        (click)="accountInfoShow()">確&nbsp;&nbsp;&nbsp;定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lightbox" [class.show]="errorMsg" id="errorMsg_1">
+        <div class="lightbox__back"></div>
+        <div class="lightbox__outer">
+            <div class="lightbox__inner">
+                <h4>系統查詢錯誤，請稍後再試。</h4>
+                <div class="button-group mb-md mt-md">
+                    <button class="btn btn--primary btn--w250 btn--cancel"
+                        (click)="errorMsg = false;routeByBillID(12)">確&nbsp;&nbsp;&nbsp;定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lightbox"  [class.show]="isFidoMSG">
+        <div class="lightbox__back"></div>
+        <div class="lightbox__outer">
+          <div class="lightbox__inner lightbox--bold">
+            <h3 class="mb-ssm fc-red">提醒訊息</h3>
+            <p class="align-center">您已完成生物辨識FIDO註冊囉!</p>
+            <div class="button-group mb-md mt-md">
+              <button class="btn btn--primary btn--w250 btn--check"  (click)="isFidoMSG = false">確&nbsp;&nbsp;&nbsp;定</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

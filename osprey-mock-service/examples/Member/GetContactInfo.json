@@ -1,0 +1,27 @@
+{
+    "Header": {
+        "ReferenceNo": "",
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "ClientIP": "",
+        "SessionID": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Mobile": "string",
+        "HomeTel": "string",
+        "CompanyTel": "string",
+        "ResidenceTel": "string",
+        "AddrInd": "1",
+        "HomeZip": "23522",
+        "CompanyZip": "235",
+        "ResidenceZip": "235",
+        "HomeAddress": "新北市中和區板南路492號7樓",
+        "CompanyAddress": "新北市中和區板南路492號8樓",
+        "ResidenceAddress": "新北市中和區板南路492號9樓",
+        "CompanyName": "string"
+    }
+}

@@ -1,0 +1,94 @@
+<main class="container">
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <div class="inline-block">
+                <h1 *ngIf="!cardLast4" class="title inline-block">Debit卡授權金額</h1>
+                <h1 *ngIf="cardLast4" class="title inline-block">Debit卡授權金額({{cardLast4}})</h1>
+            </div>
+            <div class="select-box select-box--xxs margin-center">
+                <select #CurrencyName (change)="changeCurrencyEName(CurrencyName.value)">
+                    <option *ngFor="let item of currencyNameList" [selected]="item === currencyNameNow"
+                        value="{{item}}">{{item}}</option>
+                </select>
+            </div>
+        </div>
+        <ng-container *ngIf="latestTxItemView?.length > 0 ;else LatestTx">
+            <div class="step step__pt--lg">
+                <div class="list-table">
+                    <div class="list-table__row" *ngFor="let item of latestTxItemView">
+                        <div class="list-table__col">
+                            <h4>{{item.Memo}}</h4>
+                            <p>{{item.AuthDate}}</p>
+                        </div>
+                        <div class="list-table__col">
+                            <h6 class="inline-block">{{item.AuthAmtView}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #LatestTx>
+            <div class="step step__pd--md">
+                <div class="list-table">
+                    <div class="list-table__row">
+                        <p class="t-primary">查無資料</p>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <div class="flex-between">
+            <div class="inline-block">
+                <h1 *ngIf="!cardLast4" class="title inline-block">Debit卡交易紀錄</h1>
+                <h1 *ngIf="cardLast4" class="title inline-block">Debit卡交易紀錄({{cardLast4}})</h1>
+            </div>
+        </div>
+        <div class="select-box mt-md">
+            <select #selected (change)="getDetail(selected.value)">
+                <option *ngFor="let month of Months" value="{{month.value}}">
+                    {{month.Month}}</option>
+            </select>
+        </div>
+        <ng-container *ngIf="statementInquiryView?.length > 0 ;else StatementInquiry">
+            <div class="step step__pt--lg">
+                <div class="list-table">
+                    <div class="list-table__row" *ngFor="let item of statementInquiryView">
+                        <div class="list-table__col">
+                            <h4>{{item.MEMO}}</h4>
+                            <p>消費日{{item.TXDATE}} / 入帳日{{item.DEDATE}}</p>
+                        </div>
+                        <div class="list-table__col">
+                            <h6 class="inline-block">{{item.AMT}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #StatementInquiry>
+            <div class="step step__pd--md">
+                <div class="list-table">
+                    <div class="list-table__row">
+                        <p class="t-primary">查無資料</p>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <div class="" [ngClass]="cardLast4?'hide':specialRecordView?.active? '':'hide'">
+            <h1 class="fc-gold specialRecordView-text">存款帳號 : {{specialRecordView?.cardNumber}}</h1>
+            <h1 class="fc-gold specialRecordView-text"
+                [ngClass]="specialRecordView?.AmountUndebiteInThisPeriod?'':'hide'">本期未扣款金額 :
+                {{specialRecordView?.AmountUndebiteInThisPeriod}}</h1>
+            <h1 class="fc-gold specialRecordView-text"
+                [ngClass]="specialRecordView?.CumulativeUndebitedAmount?'':'hide'">累計未扣款金額 :
+                {{specialRecordView?.CumulativeUndebitedAmount}}</h1>
+        </div>
+        <div class="notice">
+            <p>注意事項：</p>
+            <p>1. 「Debit卡授權金額」：內容為最新消費紀錄為21天內簽帳金融卡交易紀錄，實際金額以商家請款金額為準。</p>
+            <p>2. 「Debit卡交易紀錄」：消費紀錄為商家已請款之明細。提醒您！如果有消費尚未扣款成功，請立即補款，以免影響您的使用權益。</p>
+        </div>
+        <div class="button-group" (click)='close()'>
+            <button class="btn btn--primary btn--w250">關&nbsp;&nbsp;&nbsp;閉</button>
+        </div>
+    </div>
+    <footer></footer>
+</main>

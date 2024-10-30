@@ -1,0 +1,214 @@
+{
+    "Header": {
+        "ReferenceNo": "",
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "Sinopac.Cawho.Web",
+        "SessionID": "",
+        "ServiceType": "",
+        "ClientIP": "",
+        "UserAgent": "",
+        "Tag": "",
+        "UserId": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Items": [
+            {
+                "CardFaceId": 205301,
+                "FeedBackType": 5
+            },
+            {
+                "CardFaceId": 211840,
+                "FeedBackType": 1
+            },
+            {
+                "CardFaceId": 212392,
+                "FeedBackType": 1
+            },
+            {
+                "CardFaceId": 213978,
+                "FeedBackType": 1
+            },
+            {
+                "CardFaceId": 237038,
+                "FeedBackType": 1
+            },
+            {
+                "CardFaceId": 238038,
+                "FeedBackType": 1
+            },
+            {
+                "CardFaceId": 247038,
+                "FeedBackType": 1
+            },
+            {
+                "CardFaceId": 272066,
+                "FeedBackType": 7
+            },
+            {
+                "CardFaceId": 272066,
+                "FeedBackType": 12
+            },
+            {
+                "CardFaceId": 272088,
+                "FeedBackType": 7
+            },
+            {
+                "CardFaceId": 272178,
+                "FeedBackType": 7
+            },
+            {
+                "CardFaceId": 272272,
+                "FeedBackType": 7
+            },
+            {
+                "CardFaceId": 284178,
+                "FeedBackType": 5
+            },
+            {
+                "CardFaceId": 285178,
+                "FeedBackType": 5
+            },
+            {
+                "CardFaceId": 293001,
+                "FeedBackType": 3
+            },
+            {
+                "CardFaceId": 293178,
+                "FeedBackType": 3
+            },
+            {
+                "CardFaceId": 293179,
+                "FeedBackType": 3
+            },
+            {
+                "CardFaceId": 293301,
+                "FeedBackType": 3
+            },
+            {
+                "CardFaceId": 425001,
+                "FeedBackType": 12
+            },
+            {
+                "CardFaceId": 425066,
+                "FeedBackType": 12
+            },
+            {
+                "CardFaceId": 425178,
+                "FeedBackType": 4
+            },
+            {
+                "CardFaceId": 426088,
+                "FeedBackType": 2
+            },
+            {
+                "CardFaceId": 426178,
+                "FeedBackType": 2
+            },
+            {
+                "CardFaceId": 427950,
+                "FeedBackType": 12
+            },
+            {
+                "CardFaceId": 436178,
+                "FeedBackType": 5
+            },
+            {
+                "CardFaceId": 437301,
+                "FeedBackType": 5
+            },
+            {
+                "CardFaceId": 476178,
+                "FeedBackType": 8
+            },
+            {
+                "CardFaceId": 479066,
+                "FeedBackType": 6
+            },
+            {
+                "CardFaceId": 479066,
+                "FeedBackType": 12
+            },
+            {
+                "CardFaceId": 479088,
+                "FeedBackType": 6
+            },
+            {
+                "CardFaceId": 479089,
+                "FeedBackType": 6
+            },
+            {
+                "CardFaceId": 479090,
+                "FeedBackType": 6
+            },
+            {
+                "CardFaceId": 479178,
+                "FeedBackType": 6
+            },
+            {
+                "CardFaceId": 479479,
+                "FeedBackType": 6
+            },
+            {
+                "CardFaceId": 484178,
+                "FeedBackType": 5
+            },
+            {
+                "CardFaceId": 638178,
+                "FeedBackType": 5
+            },
+            {
+                "CardFaceId": 641178,
+                "FeedBackType": 5
+            },
+            {
+                "CardFaceId": 642301,
+                "FeedBackType": 5
+            },
+            {
+                "CardFaceId": 643002,
+                "FeedBackType": 12
+            },
+            {
+                "CardFaceId": 643088,
+                "FeedBackType": 4
+            },
+            {
+                "CardFaceId": 208179,
+               "FeedBackType":9
+            },
+            {
+                "CardFaceId": 208180,
+               "FeedBackType":9
+            },
+            {
+                "CardFaceId": 427950,
+               "FeedBackType":10
+            },
+            {
+                "CardFaceId": 277001,
+               "FeedBackType":11
+            },
+            {
+                "CardFaceId": 277002,
+               "FeedBackType":11
+            },
+            {
+                "CardFaceId": 428001,
+                "FeedBackType": 16
+            },
+            {
+                "CardFaceId": 428178,
+                "FeedBackType": 16
+            },
+            {
+                "CardFaceId": 283955,
+               "FeedBackType":13
+            }
+        ]
+    },
+    "Original": {},
+    "Success": true
+}

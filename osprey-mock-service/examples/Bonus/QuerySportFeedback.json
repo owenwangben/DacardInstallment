@@ -1,0 +1,87 @@
+{
+	"Header": {
+		"RequestTime": "",
+		"ResponseTime": "",
+		"ApplicationName": "SinoPac.Cawho.Web",
+		"SessionID": "",
+		"ClientIP": "",
+		"UserAgent": ""
+	},
+	"ResultCode": "00",
+	"ResultMessage": "",
+	"Result": {
+        "Summary": [
+            {
+                "Code": "SC1",
+                "Name": "SPORT卡(基本回饋)",
+                "TotalAmt": "2203",
+                "TotalFeedbackAmt": "22"
+            },
+            {
+                "Code": "SC2",
+                "Name": "SPORT卡(指定通路)",
+                "TotalAmt": "2203",
+                "TotalFeedbackAmt": "110"
+            },
+			{
+                "Code": "SC3",
+                "Name": "SPORT卡(運動獎勵)",
+                "TotalAmt": "2203",
+                "TotalFeedbackAmt": "110"
+            }
+        ],
+        "DetailA": [
+            {
+                "Code": "SC1",
+                "Name": "SPORT卡(基本回饋)",
+                "Items": [
+                    {
+                        "TXDATE": "20200601",
+                        "MEMO": "中油－忠孝東路自助加油站",
+                        "TX_AMT": "88"
+                    },
+                    {
+                        "TXDATE": "20200606",
+                        "MEMO": "大江國際購物中心",
+                        "TX_AMT": "330"
+                    }
+                ]
+            },
+            {
+                "Code": "SC2",
+                "Name": "SPORT卡(指定通路)",
+                "Items": [
+                    {
+                        "TXDATE": "20200626",
+                        "MEMO": "三中港奧特萊斯",
+                        "TX_AMT": "25,000"
+                    },
+                    {
+                        "TXDATE": "20200625",
+                        "MEMO": "GOGORO",
+                        "TX_AMT": "483"
+                    }
+                ]
+            },
+			{
+                "Code": "SC3",
+                "Name": "SPORT卡(運動獎勵)",
+                "Items": [
+                    {
+                        "TXDATE": "20200626",
+                        "MEMO": "全國－復興北路加油站",
+                        "TX_AMT": "6,500"
+                    },
+                    {
+                        "TXDATE": "20200625",
+                        "MEMO": "YAMAHA",
+                        "TX_AMT": "950"
+                    }
+                ]
+            }
+        ]
+	},
+	"Original": {
+	},
+	"Success": true
+}

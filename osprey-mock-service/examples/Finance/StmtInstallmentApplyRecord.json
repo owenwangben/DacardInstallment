@@ -1,0 +1,65 @@
+{
+    "Header": {
+        "ReferenceNo": "",
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "Sinopac.Cawho.Web",
+        "SessionID": "",
+        "ServiceType": "",
+        "ClientIP": "",
+        "UserAgent": "",
+        "Tag": "",
+        "UserId": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "Items": [
+            {
+                "PID": "R131399626 ",
+                "ApplyDate": "2023-06-26T00:00:00",
+                "Channel": "電話",
+                "StmtAmt": 49999.0,
+                "StmtMinAmt": 4999.0,
+                "InstallmentAmt": 45000.0,
+                "Rate": 6.5000,
+                "Fee": 0.0,
+                "FirstPeriodAmt": 15000.0,
+                "Period": 3,
+                "Status": "申請中"
+            },
+            {
+                "PID": "R131399626 ",
+                "ApplyDate": "2022-06-26T00:00:00",
+                "Channel": "電話",
+                "StmtAmt": 49999.0,
+                "StmtMinAmt": 4999.0,
+                "InstallmentAmt": 45000.0,
+                "Rate": 6.5000,
+                "Fee": 0.0,
+                "FirstPeriodAmt": 15000.0,
+                "Period": 3,
+                "Status": "失敗"
+            },
+            {
+                "PID": "R131399626 ",
+                "ApplyDate": "2025-06-26T00:00:00",
+                "Channel": "電話",
+                "StmtAmt": 49999.0,
+                "StmtMinAmt": 4999.0,
+                "InstallmentAmt": 45000.0,
+                "Rate": 6.5000,
+                "Fee": 0.0,
+                "FirstPeriodAmt": 15000.0,
+                "Period": 3,
+                "Status": "成功"
+            }
+        ]
+    },
+    "Original": {
+        "ID": "R131399626",
+        "BeginDate": "20230327",
+        "EndDate": "20230627"
+    },
+    "Success": true
+}

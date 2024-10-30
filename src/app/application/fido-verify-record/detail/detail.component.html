@@ -1,0 +1,52 @@
+<div class="wrap wrap__pd">
+    <h1 class="title flex-between"><span>本次FIDO驗證紀錄</span></h1>
+    <div class="step step__pt--lg">
+        <div class="list-table">
+            <div class="list-table__row">
+                <div class="list-table__col">
+                    <p class="fs-b fw-b">序號</p>
+                </div>
+                <div class="list-table__col">
+                    <h4 class="fs-b">{{ detail.SerialID }}</h4>
+                </div>
+            </div>
+            <div class="list-table__row">
+                <div class="list-table__col">
+                    <p class="fs-b fw-b">驗證日期/時間</p>
+                </div>
+                <div class="list-table__col">
+                    <h4 class="fs-b">{{ detail.VerifyTime }}</h4>
+                </div>
+            </div>
+            <div class="list-table__row">
+                <div class="list-table__col">
+                    <p class="fs-b fw-b">驗證結果</p>
+                </div>
+                <div class="list-table__col">
+                    <h4
+                        class="fs-b"
+                        [ngClass]=" detail.VerifyResult === '成功' ? 'fc-gold' : 'fc-gray-100'">
+                        {{ detail.VerifyResult }}
+                    </h4>
+                </div>
+            </div>
+            <div class="list-table__row">
+                <div class="list-table__col">
+                    <p class="fs-b fw-b">IP</p>
+                </div>
+                <div class="list-table__col">
+                    <h4 class="fs-b">{{ detail.ClientIP }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button-group">
+        <button class="btn btn--primary btn--primary-wsm" (click)="last()">上一筆</button>
+        <button class="btn btn--primary btn--primary-wsm" (click)="next()">下一筆</button>
+    </div>
+    <div class="button-group mt-lg-1">
+        <button class="btn btn--text btn--text-line" (click)="close()">
+            回首頁
+        </button>
+    </div>
+</div>

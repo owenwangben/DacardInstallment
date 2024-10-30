@@ -1,0 +1,378 @@
+<div *ngIf="isTMode">
+    <main class="container" >
+        <div class="wrap wrap__pd">
+            <div class="flex-between">
+                <h1 class="title">永豐銀行Cawho卡網測試首頁</h1>
+            </div>
+            <div style="color:gray">目前的AppToken: {{currentToken}}</div>
+            <div style="color:gray">目前的UserAgent: {{currentUserAgent}}</div>
+            <div class="step step__pt-xxs">
+                <form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()">
+                    <div class="form">
+                        <div class="form__row">
+                            <div class="form__col">
+                                <p class="form__label">AppToken</p>
+                                <div class="form__data">
+                                    <input formControlName="appToken" placeholder="請輸入AppToken">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-danger">{{form.controls.appToken['errorMessages'][0]}}</div>
+                        <div class="form__row">
+                            <div class="form__col">
+                                <p class="form__label">UserAgent</p>
+                                <div class="form__data">
+                                    <input formControlName="userAgent" placeholder="請輸入UserAgent">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-danger">{{form.controls.userAgent['errorMessages'][0]}}</div>
+                    <div class="button-group">
+                        <button type="submit" class="btn btn--primary btn--w250">設定</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <div class="list">
+        <div class="list__row">
+            <div class="list__col">
+                <p>功能</p>
+            </div>
+            <div class="list__col">
+                <p>測試網址</p>
+            </div>
+            <div class="list__col">
+                <p>切版時間</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>信用卡主頁(/Account/CardManage)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Account/CardManage">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>5/31</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>調整卡片顯示順序(/Account/CardOrder)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Account/CardOrder">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>6/2</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>Cawho Pay 綁定(/Account/CardBundle)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Account/CardBundle">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>9/14</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>帳單分期-已登入(/Account/RTEStmt/Sso)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Account/RTEStmt/Sso">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>3/1</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>帳單分期-未登入(/Account/RTEStmt)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Account/RTEStmt">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>3/1</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>單筆消費分期-已登入(/Account/RTE/Sso)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Account/RTE/Sso">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>5/15</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>單筆消費分期-已登入(/Account/RTE)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Account/RTE">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>5/15</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>信用卡開卡-未登入(/Application/CardActivate)</p>
+            </div>
+            <div class="list__col"> <a class="btn btn--text" routerLink="/Application/CardActivate">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>6/1</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>信用卡開卡-已登入(/Application/CardActivate/Sso)</p>
+            </div>
+            <div class="list__col"> <a class="btn btn--text" routerLink="/Application/CardActivate/Sso"
+                    [queryParams]="{'cardNo':'4321123456789876'}">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>6/1</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>啟用卡片(/Application/CardEnable)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Application/CardEnable">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>6/2</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>卡片進度查詢-未登入(/Application/CardQuery)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Application/CardQuery">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>6/3</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>卡片進度查詢-已登入(/Application/CardQuery/Sso)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Application/CardQuery/Sso">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>6/3</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>線上掛失-已登入(/Application/CardLose)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Application/CardLose">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>3/3</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>線上補件-未登入(/Application/CardAddDoc)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Application/CardAddDoc">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>1/26</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>線上補件-已登入(/Application/CardAddDoc/Sso)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Application/CardAddDoc/Sso">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>6/4</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>卡片資訊(/Application/CardInfo)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Application/CardInfo">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>3/10</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>MyData完成頁-成功(/Application/MyDataComplete/1?rc=0)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Application/MyDataComplete/1?rc=0">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>3/10</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>MyData完成頁-失敗(/Application/MyDataComplete/:type)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Application/MyDataComplete/1">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>3/10</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>信用卡臨時調整額度(/Transaction/TempCLI)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Transaction/TempCLI">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>2022/7/20</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>信用卡永久調整額度(/Transaction/PermCLI)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Transaction/PermCLI">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>2022/7/25</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>信用卡臨時調整額度進度查詢(/Transaction/TempCLIStatus)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Transaction/TempCLIStatus">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>2022/7/30</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>信用卡永久調整額度進度查詢(/Transaction/PermCLIStatus)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Transaction/PermCLIStatus">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>2022/7/30</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>信用卡預借現金(/Transaction/CashAdvance)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Transaction/CashAdvance">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>2022/7/30</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>換補發(/Application/CardReissue)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" (click)="goCardReussieTest('Loss')">去瞧瞧 GO(遺失)</a></div>
+            <div class="list__col"><a class="btn btn--text" (click)="goCardReussieTest('Damag')">去瞧瞧 GO(毀損)</a></div>
+            <div class="list__col">
+                <p>2022/7/30</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>信用卡首頁_帳務資訊頁(/Account/CardBill)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Account/CardBill">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>2022/7/30</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>活動登入(/Activity/Register)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Activity/Register">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>2022/7/30</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>DebitCard交易明細(/Account/DebitCard)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Account/DebitCard">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>2022/7/30</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>自動扣繳(/Application/CardAutoWithholding)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Application/CardAutoWithholding">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>2022/7/30</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>分期查詢(/Account/InstallmentRecord)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Account/InstallmentRecord">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>2022/7/30</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>紅利點數(/Reward/RewardPointsManage)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Reward/RewardPointsManage">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p>2023/6/30</p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>卡友權益(/Activity/Right)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Activity/Right">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p></p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>信用卡優惠(/Account/CardBenefits)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Account/CardBenefits">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p></p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>信用卡今日活動(/Activity/DailyActivity)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Activity/DailyActivity">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p></p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>未核准交易(/Transaction/UnauthorizedTxn)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Transaction/UnauthorizedTxn">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p></p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>交易驗證(/Application/FidoVerify)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Application/FidoVerify">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p></p>
+            </div>
+        </div>
+        <div class="list__row">
+            <div class="list__col">
+                <p>交易驗證(/Application/FidoVerifyRecord)</p>
+            </div>
+            <div class="list__col"><a class="btn btn--text" routerLink="/Application/FidoVerifyRecord">去瞧瞧 GO</a></div>
+            <div class="list__col">
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,309 @@
+<mat-horizontal-stepper #stepper [@.disabled]="true" [linear]="true" [selectedIndex]="this.selectedIndex">
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step3"></ng-container>
+    </mat-step>
+    <mat-step>
+        <ng-container *ngTemplateOutlet="step4"></ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<!-- 自動扣繳查詢 -->
+<ng-template #step1>
+    <div class="wrap wrap__pd">
+        <div class="step step__pt-xxs">
+            <form>
+                <div class="form">
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">每月永豐卡費自動扣繳</p>
+                            <p>已開啟</p>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <div class="form__col">
+                            <div class="inline-block">
+                                <p class="form__label">自動扣繳帳號<span (click)="amountHide = !amountHide"
+                                        class="icon icon--eye icon--tr" [class.icon--eye-active]="!amountHide"></span>
+                                </p>
+                            </div>
+                            <p>{{getAutoDeductResp?.BankName}}{{ getAutoDeductResp?.AccountName ? '_' + getAutoDeductResp?.AccountName : ''}}</p>
+                            <p>{{amountHide? (getAutoDeductResp?.BankCodeAndAccount |
+                                cardnumberandbankcodemask):getAutoDeductResp?.BankCodeAndAccount}}</p>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">扣款方式</p>
+                            <p>{{getAutoDeductResp?.PaymentType == "1"? "最低應繳金額":"當期應繳全額"}}</p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="button-group mb-md mt-md" (click)="changOrGoBack('button1',getAutoDeductResp?.BankCode)">
+            <button class="btn btn--primary btn--primary-wb btn--check">{{getAutoDeductResp?.BankCode === "807"?
+                "關閉":"變更設定"}}</button>
+        </div>
+        <div class="button-group mt-sm" (click)="changOrGoBack('button2',getAutoDeductResp?.BankCode)">
+            <button class="btn btn--text btn--text-line">{{getAutoDeductResp?.BankCode !== "807"? "關閉":"變更設定"}}</button>
+        </div>
+        <!-- 注意事項 -->
+        <div class="notice" *ngIf="selectedIndex !== 3">
+            <p>注意事項：</p>
+            <p>1. 本服務限本行存款帳戶扣繳本行信用卡應繳款項。</p>
+            <p>2. 本交易於營業日17:00以前完成，將於次營業日生效；若於營業日17:00以後完成，將於次營業日之下一營業日生效。 </p>
+            <p>3. 本交易若為由其他行庫變更為本行自動扣繳，本次變更將於次期帳單生效，請以帳單顯示之扣款帳號為準。</p>
+        </div>
+        <div class="warning mt-lg-2"><img class="margin-center" src="assets/images/demo/warning.svg" alt="謹慎理財 信用至上">
+        </div>
+    </div>
+</ng-template>
+<!-- 自動扣繳設定(填寫) -->
+<ng-template #step2>
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <div class="inline-block">
+                <h1 class="title inline-block">扣款方式設定</h1>
+            </div>
+        </div>
+        <div class="step step__pt-xxs">
+            <form>
+                <div class="form">
+                    <div class="form__row form__row--line-none">
+                        <div class="form__col">
+                            <p class="form__label">每月永豐卡費自動扣繳</p>
+                            <div class="form__data form__data--flex">
+                                <label class="radio-btn radio-btn-bg">
+                                    <input type="radio" value="2" name="radio1" [(ngModel)]="pickPaymentType"
+                                        (click)="setAccountPaymentType('2')"><span>當期應繳總金額</span>
+                                </label>
+                                <label class="radio-btn radio-btn-bg">
+                                    <input type="radio" value="1" name="radio1" [(ngModel)]="pickPaymentType"
+                                        (click)="setAccountPaymentType('1')"><span>最低應繳總金額</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__row" data-sinopac>
+                        <div class="form__col">
+                            <p class="form__label">扣款帳戶<span class="icon icon--eye icon--tr"
+                                    (click)="setAccountHide = !setAccountHide"
+                                    [class.icon--eye-active]="!setAccountHide"></span></p>
+
+                            <div class="form__data">
+                                <input type="hidden">
+                                <button class="select-btn btn-native fs-base" data-popup="acctBankAccount"
+                                    (click)="setLightBoxStatus = !setLightBoxStatus">
+                                    <!-- 選擇後 addClass .selected-->
+                                    <p class="selected">{{setAccountName}}</p>
+                                    <p>{{setAccountHide? (setAccountNo | cardnumberandbankcodemask):setAccountNo}}</p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__notice">限本行存款帳戶扣款本行信用卡</div>
+                    <div class="form__row form__row--line-none form__row--h-auto">
+                        <div class="form__col">
+                            <label class="check-row check-row-agree check-row-text" (click)="openRule()">
+                                <p class="fs-sm">本人已詳閱及了解注意事項並同意遵守信用卡自動扣繳設定約定條款</p>
+                                <input type="checkbox" [checked]='isChecked' disabled><span></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="button-group mb-md mt-md">
+            <button class="btn btn--primary btn--primary-wb btn--check" [disabled]="setAutoNextStep"
+                (click)="goNextStep()">下一步</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="returnToLastPage()">取消</button>
+        </div>
+        <!-- 注意事項 -->
+        <div class="notice" *ngIf="selectedIndex !== 3">
+            <p>注意事項：</p>
+            <p>1. 本服務限本行存款帳戶扣繳本行信用卡應繳款項。</p>
+            <p>2. 本交易於營業日17:00以前完成，將於次營業日生效；若於營業日17:00以後完成，將於次營業日之下一營業日生效。 </p>
+            <p>3. 本交易若為由其他行庫變更為本行自動扣繳，本次變更將於次期帳單生效，請以帳單顯示之扣款帳號為準。</p>
+        </div>
+        <div class="warning mt-lg-2"><img class="margin-center" src="assets/images/demo/warning.svg" alt="謹慎理財 信用至上">
+        </div>
+    </div>
+</ng-template>
+<!-- 自動扣繳設定(確認) -->
+<ng-template #step3>
+    <div class="wrap wrap__pd">
+        <div class="flex-between">
+            <div class="inline-block">
+                <h1 class="title inline-block">請確認以下資訊</h1>
+            </div>
+        </div>
+        <div class="step step__pt-xxs">
+            <form>
+                <div class="form">
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">每月永豐卡費自動扣繳</p>
+                            <p>{{pickPaymentType === '1'?'最低應繳總金額':'當期應繳總金額'}}</p>
+                        </div>
+                    </div>
+                    <div class="form__row" data-sinopac>
+                        <div class="form__col">
+                            <p class="form__label">扣款帳戶<span class="icon icon--eye icon--tr"
+                                    (click)="confirmAccountHide = !confirmAccountHide"
+                                    [class.icon--eye-active]="!confirmAccountHide"></span></p>
+                            <p>{{setAccountName}}</p>
+                            <p>{{confirmAccountHide? (setAccountNo | cardnumberandbankcodemask):setAccountNo}}</p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="button-group mb-md mt-md">
+            <button class="btn btn--primary btn--primary-wb btn--check" [disabled]="isSentApply" (click)="sentApply()">確認送出</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="selectedIndex = 1;">返回修改</button>
+        </div>
+        <!-- 注意事項 -->
+        <div class="notice" *ngIf="selectedIndex !== 3">
+            <p>注意事項：</p>
+            <p>1. 本服務限本行存款帳戶扣繳本行信用卡應繳款項。</p>
+            <p>2. 本交易於營業日17:00以前完成，將於次營業日生效；若於營業日17:00以後完成，將於次營業日之下一營業日生效。 </p>
+            <p>3. 本交易若為由其他行庫變更為本行自動扣繳，本次變更將於次期帳單生效，請以帳單顯示之扣款帳號為準。</p>
+        </div>
+        <div class="warning mt-lg-2"><img class="margin-center" src="assets/images/demo/warning.svg" alt="謹慎理財 信用至上">
+        </div>
+    </div>
+</ng-template>
+<!-- 自動扣繳設定(完成) -->
+<ng-template #step4>
+    <div class="wrap wrap__pd">
+        <div class="result">
+            <div class="result__icon" *ngIf="applyResult?.ResultCode === '00'"><img
+                    src="assets/images/img/img-success-gold.svg">
+                <h2>申請成功</h2>
+            </div>
+            <div class="result__icon" *ngIf="applyResult?.ResultCode !== '00'"><img
+                    src="assets/images/img/img-fail.svg">
+                <h2>申請失敗</h2>
+            </div>
+            <div class="result__content">
+                <p class="align-left fs-base" *ngIf="applyResult?.ResultCode === '00'">
+                    本次設定將於{{applyResult.Result.EffectDate}}生效，如生效日已超過您當期繳款截止日，仍請點擊「立即繳卡費」完成繳款。正式生效後系統將自動發送簡訊至您留存於本行信用卡之手機號碼通知。
+                </p>
+                <p class="align-left fs-base" *ngIf="applyResult?.ResultCode !== '00'">{{applyResult?.ResultMessage}}
+                </p>
+            </div>
+        </div>
+        <div class="step step__pt-xxs">
+            <form>
+                <div class="form">
+                    <div class="form__row" *ngIf="applyResult?.ResultCode === '00'">
+                        <div class="form__col">
+                            <p class="form__label">扣款方式</p>
+                            <p>{{pickPaymentType === '1'?'最低應繳總金額':'當期應繳總金額'}}</p>
+                        </div>
+                    </div>
+                    <div class="form__row" *ngIf="applyResult?.ResultCode === '00'">
+                        <div class="form__col">
+                            <p class="form__label">扣款帳戶<span class="icon icon--eye icon--tr"
+                                    (click)="finalAccountHide = !finalAccountHide"
+                                    [class.icon--eye-active]="!finalAccountHide"></span></p>
+                            <p>{{setAccountName}}</p>
+                            <p>{{finalAccountHide? (setAccountNo | cardnumberandbankcodemask):setAccountNo}}</p>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <div class="form__col">
+                            <p class="form__label">申請時間</p>
+                            <p>{{applyTime}}</p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="button-group">
+            <button class="btn btn--primary btn--w250"
+                (click)="lightboxcheck('finalApplyResult')">{{applyResult?.ResultCode === '00'?'立即繳卡費':'聯繫客服'}}</button>
+        </div>
+        <div class="button-group mt-sm">
+            <button class="btn btn--text btn--text-line" (click)="lightboxuncheck('finalApplyResult')">前往信用卡首頁</button>
+        </div>
+        <div class="warning mt-lg-2"><img class="margin-center" src="assets/images/demo/warning.svg" alt="謹慎理財 信用至上"></div>
+    </div>
+</ng-template>
+<div class="lightbox" [ngClass]="lightboxstatus? 'show' :''" id="PointExchangeIntro">
+    <div class="lightbox__back"></div>
+    <div class="lightbox__outer">
+        <div class="lightbox__inner lightbox--bold">
+            <h3 class="mb-ssm">{{Title}}</h3>
+            <div [innerHTML]="text"></div>
+            <div class="button-group mb-md mt-md">
+                <button class="btn btn--primary btn--w250 btn--check"
+                    (click)="lightboxcheck(lightboxID)">{{check}}</button>
+            </div>
+            <div class="button-group mt-0 mb-0 ">
+                <button class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                    (click)="lightboxuncheck(lightboxID)">{{uncheck}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="lightbox" [ngClass]="setLightBoxStatus? 'show' :''" id="acctBankAccount">
+    <div class="lightbox__back"></div>
+    <div class="lightbox__outer">
+        <div class="lightbox__inner">
+            <div class="lightbox__select">
+                <div class="step__title step__title--align-left">
+                    <h3>請選擇銀行帳號</h3>
+                </div>
+                <form>
+                    <div class="lightbox__ps lightbox__ps--search">
+                        <div class="select__content">
+                            <div class="select__content__inner">
+                                <div class="select__content__item" *ngFor="let item of autoDeductAccount">
+                                    <label class="radio-btn-full radio-btn-full--block-unset">
+                                        <input type="radio" name="acctBankAccount"
+                                            value={{[item?.AccountNo,item?.AccountName]}}
+                                            data-name={{item?.AccountName}} [(ngModel)]="isPickAccount"><span
+                                            class="pt-ssm pb-ssm">
+                                            <div class="list-table">
+                                                <div class="list-table__row flex-left flex-nowrap">
+                                                    <div class="list-table__col list-table__col-num mr-ssm">
+                                                        <h4 class="fs-md-1 fc-gray">{{item.No}}</h4>
+                                                    </div>
+                                                    <div class="list-table__col">
+                                                        <p class="fs-b fw-b">{{item?.AccountName}}</p>
+                                                        <h4>{{item?.AccountNo}}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lightbox__footer">
+                        <div class="button-group mb-md mt-xs">
+                            <button class="btn btn--primary btn--w250 btn--acccheck" [disabled]="!isPickAccount"
+                                (click)="lightboxcheck('pickAccount')">確&nbsp;&nbsp;&nbsp;定</button>
+                        </div>
+                        <div class="button-group mt-0 mb-0">
+                            <button class="btn btn--text btn--text-dark btn--text-line btn--cancel"
+                                (click)="lightboxuncheck('pickAccount')">取&nbsp;&nbsp;&nbsp;消</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

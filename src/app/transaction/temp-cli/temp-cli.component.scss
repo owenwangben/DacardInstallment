@@ -1,0 +1,8 @@
+:host ::ng-deep .mat-horizontal-stepper-header-container {
+    display: none;
+}
+
+::ng-deep h4,
+p {
+    word-break: break-all !important;
+}

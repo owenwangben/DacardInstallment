@@ -1,0 +1,69 @@
+{
+    "Header": {
+        "RequestTime": "",
+        "ResponseTime": "",
+        "ApplicationName": "SinoPac.Cawho.Web",
+        "SessionID": "",
+        "ClientIP": "",
+        "UserAgent": ""
+    },
+    "ResultCode": "00",
+    "ResultMessage": "",
+    "Result": {
+        "IsSignedInstallmentAgreement": false,
+        "CanApplyInstallment": true,
+        "Items": [
+            {
+                "TransactionDate": "20220105",
+                "IsTCTD": true,
+                "DeDate": "20220110",
+                "Amount": "16400   ",
+                "Memo": " 街口電支－台灣電力股份有限公司         ",
+                "IsAlreadyInstallment": false,
+                "AuthCode": "000023",
+                "CardNumber": "4637890001479002",
+                "MCC": "7999",
+                "MerchNumber": "8080909715",
+                "FirstFlag": "",
+                "InstallmentStatus": "可分期",
+                "SalRef": "74889560314251343477265",
+                "TXCUR": "TWD",
+                "MerchArea": "US"
+            },
+            {
+                "TransactionDate": "20220105",
+                "IsTCTD": true,
+                "DeDate": "20220110",
+                "Amount": "2900    ",
+                "Memo": " １１０年地價稅　　 5527602834620000    ",
+                "IsAlreadyInstallment": false,
+                "AuthCode": "000929",
+                "CardNumber": "4637890001479002",
+                "MCC": "9311",
+                "MerchNumber": "0124200053",
+                "FirstFlag": "",
+                "InstallmentStatus": "可分期",
+                "SalRef": "74293390321822374023963"
+            },
+            {
+                "TransactionDate": "20220105",
+                "IsTCTD": true,
+                "DeDate": "20220110",
+                "Amount": "2900    ",
+                "Memo": " １１０年地價稅　　 5527602834620000    ",
+                "IsAlreadyInstallment": true,
+                "AuthCode": "000929",
+                "CardNumber": "4637890001479002",
+                "MCC": "9311",
+                "MerchNumber": "0124200053",
+                "FirstFlag": "",
+                "InstallmentStatus": "可分期",
+                "SalRef": "74293390321822374023963",
+                "TXCUR": "TWD",
+                "MerchArea": "US"
+            }
+        ]
+    },
+    "Original": {},
+    "Success": true
+}
